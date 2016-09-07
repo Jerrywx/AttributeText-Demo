@@ -1,0 +1,20 @@
+PODS:
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - TYAttributedLabel (2.6.1)
+  - YYText (1.0.5)
+
+DEPENDENCIES:
+  - SDWebImage (~> 3.8.1)
+  - TYAttributedLabel (~> 2.6.1)
+  - YYText (~> 1.0.5)
+
+SPEC CHECKSUMS:
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  TYAttributedLabel: 4785820dc8d7935446f49f1de4daa0f99ebcba8a
+  YYText: ac09660c9ccd9b817f409a20caa6f5587444d2ae
+
+PODFILE CHECKSUM: 798015755f84f4072480ace24b7bed4a6a1b0a79
+
+COCOAPODS: 1.0.1
