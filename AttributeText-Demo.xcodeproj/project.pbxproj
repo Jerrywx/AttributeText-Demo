@@ -14,6 +14,27 @@
 		C40D94811D7FAE0900E512ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40D947F1D7FAE0900E512ED /* Main.storyboard */; };
 		C40D94831D7FAE0900E512ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C40D94821D7FAE0900E512ED /* Assets.xcassets */; };
 		C40D94861D7FAE0900E512ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40D94841D7FAE0900E512ED /* LaunchScreen.storyboard */; };
+		C429A58C1D8167BA00A430A6 /* data0.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5771D8167BA00A430A6 /* data0.json */; };
+		C429A58D1D8167BA00A430A6 /* data1.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5781D8167BA00A430A6 /* data1.json */; };
+		C429A58E1D8167BA00A430A6 /* data10.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5791D8167BA00A430A6 /* data10.json */; };
+		C429A58F1D8167BA00A430A6 /* data11.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A57A1D8167BA00A430A6 /* data11.json */; };
+		C429A5901D8167BA00A430A6 /* data12.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A57B1D8167BA00A430A6 /* data12.json */; };
+		C429A5911D8167BA00A430A6 /* data13.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A57C1D8167BA00A430A6 /* data13.json */; };
+		C429A5921D8167BA00A430A6 /* data14.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A57D1D8167BA00A430A6 /* data14.json */; };
+		C429A5931D8167BA00A430A6 /* data15.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A57E1D8167BA00A430A6 /* data15.json */; };
+		C429A5941D8167BA00A430A6 /* data16.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A57F1D8167BA00A430A6 /* data16.json */; };
+		C429A5951D8167BA00A430A6 /* data17.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5801D8167BA00A430A6 /* data17.json */; };
+		C429A5961D8167BA00A430A6 /* data18.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5811D8167BA00A430A6 /* data18.json */; };
+		C429A5971D8167BA00A430A6 /* data19.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5821D8167BA00A430A6 /* data19.json */; };
+		C429A5981D8167BA00A430A6 /* data2.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5831D8167BA00A430A6 /* data2.json */; };
+		C429A5991D8167BA00A430A6 /* data20.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5841D8167BA00A430A6 /* data20.json */; };
+		C429A59A1D8167BA00A430A6 /* data3.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5851D8167BA00A430A6 /* data3.json */; };
+		C429A59B1D8167BA00A430A6 /* data4.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5861D8167BA00A430A6 /* data4.json */; };
+		C429A59C1D8167BA00A430A6 /* data5.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5871D8167BA00A430A6 /* data5.json */; };
+		C429A59D1D8167BA00A430A6 /* data6.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5881D8167BA00A430A6 /* data6.json */; };
+		C429A59E1D8167BA00A430A6 /* data7.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5891D8167BA00A430A6 /* data7.json */; };
+		C429A59F1D8167BA00A430A6 /* data8.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58A1D8167BA00A430A6 /* data8.json */; };
+		C429A5A01D8167BA00A430A6 /* data9.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58B1D8167BA00A430A6 /* data9.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +51,27 @@
 		C40D94821D7FAE0900E512ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C40D94851D7FAE0900E512ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C40D94871D7FAE0900E512ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C429A5771D8167BA00A430A6 /* data0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data0.json; sourceTree = "<group>"; };
+		C429A5781D8167BA00A430A6 /* data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data1.json; sourceTree = "<group>"; };
+		C429A5791D8167BA00A430A6 /* data10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data10.json; sourceTree = "<group>"; };
+		C429A57A1D8167BA00A430A6 /* data11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data11.json; sourceTree = "<group>"; };
+		C429A57B1D8167BA00A430A6 /* data12.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data12.json; sourceTree = "<group>"; };
+		C429A57C1D8167BA00A430A6 /* data13.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data13.json; sourceTree = "<group>"; };
+		C429A57D1D8167BA00A430A6 /* data14.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data14.json; sourceTree = "<group>"; };
+		C429A57E1D8167BA00A430A6 /* data15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data15.json; sourceTree = "<group>"; };
+		C429A57F1D8167BA00A430A6 /* data16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data16.json; sourceTree = "<group>"; };
+		C429A5801D8167BA00A430A6 /* data17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data17.json; sourceTree = "<group>"; };
+		C429A5811D8167BA00A430A6 /* data18.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data18.json; sourceTree = "<group>"; };
+		C429A5821D8167BA00A430A6 /* data19.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data19.json; sourceTree = "<group>"; };
+		C429A5831D8167BA00A430A6 /* data2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data2.json; sourceTree = "<group>"; };
+		C429A5841D8167BA00A430A6 /* data20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data20.json; sourceTree = "<group>"; };
+		C429A5851D8167BA00A430A6 /* data3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data3.json; sourceTree = "<group>"; };
+		C429A5861D8167BA00A430A6 /* data4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data4.json; sourceTree = "<group>"; };
+		C429A5871D8167BA00A430A6 /* data5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data5.json; sourceTree = "<group>"; };
+		C429A5881D8167BA00A430A6 /* data6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data6.json; sourceTree = "<group>"; };
+		C429A5891D8167BA00A430A6 /* data7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data7.json; sourceTree = "<group>"; };
+		C429A58A1D8167BA00A430A6 /* data8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data8.json; sourceTree = "<group>"; };
+		C429A58B1D8167BA00A430A6 /* data9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data9.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +119,7 @@
 				C40D947A1D7FAE0900E512ED /* AppDelegate.m */,
 				C40D947C1D7FAE0900E512ED /* ViewController.h */,
 				C40D947D1D7FAE0900E512ED /* ViewController.m */,
+				C429A5761D8167BA00A430A6 /* data */,
 				C40D94761D7FAE0900E512ED /* Supporting Files */,
 			);
 			path = "AttributeText-Demo";
@@ -92,6 +135,34 @@
 				C40D94771D7FAE0900E512ED /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C429A5761D8167BA00A430A6 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				C429A5771D8167BA00A430A6 /* data0.json */,
+				C429A5781D8167BA00A430A6 /* data1.json */,
+				C429A5791D8167BA00A430A6 /* data10.json */,
+				C429A57A1D8167BA00A430A6 /* data11.json */,
+				C429A57B1D8167BA00A430A6 /* data12.json */,
+				C429A57C1D8167BA00A430A6 /* data13.json */,
+				C429A57D1D8167BA00A430A6 /* data14.json */,
+				C429A57E1D8167BA00A430A6 /* data15.json */,
+				C429A57F1D8167BA00A430A6 /* data16.json */,
+				C429A5801D8167BA00A430A6 /* data17.json */,
+				C429A5811D8167BA00A430A6 /* data18.json */,
+				C429A5821D8167BA00A430A6 /* data19.json */,
+				C429A5831D8167BA00A430A6 /* data2.json */,
+				C429A5841D8167BA00A430A6 /* data20.json */,
+				C429A5851D8167BA00A430A6 /* data3.json */,
+				C429A5861D8167BA00A430A6 /* data4.json */,
+				C429A5871D8167BA00A430A6 /* data5.json */,
+				C429A5881D8167BA00A430A6 /* data6.json */,
+				C429A5891D8167BA00A430A6 /* data7.json */,
+				C429A58A1D8167BA00A430A6 /* data8.json */,
+				C429A58B1D8167BA00A430A6 /* data9.json */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 		C77933A76F10159743FE1244 /* Pods */ = {
@@ -163,9 +234,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C429A5901D8167BA00A430A6 /* data12.json in Resources */,
+				C429A5991D8167BA00A430A6 /* data20.json in Resources */,
+				C429A58C1D8167BA00A430A6 /* data0.json in Resources */,
+				C429A5931D8167BA00A430A6 /* data15.json in Resources */,
+				C429A5921D8167BA00A430A6 /* data14.json in Resources */,
+				C429A5941D8167BA00A430A6 /* data16.json in Resources */,
 				C40D94861D7FAE0900E512ED /* LaunchScreen.storyboard in Resources */,
+				C429A59A1D8167BA00A430A6 /* data3.json in Resources */,
+				C429A5961D8167BA00A430A6 /* data18.json in Resources */,
+				C429A5971D8167BA00A430A6 /* data19.json in Resources */,
+				C429A59F1D8167BA00A430A6 /* data8.json in Resources */,
 				C40D94831D7FAE0900E512ED /* Assets.xcassets in Resources */,
+				C429A58D1D8167BA00A430A6 /* data1.json in Resources */,
+				C429A5A01D8167BA00A430A6 /* data9.json in Resources */,
+				C429A58E1D8167BA00A430A6 /* data10.json in Resources */,
+				C429A59C1D8167BA00A430A6 /* data5.json in Resources */,
 				C40D94811D7FAE0900E512ED /* Main.storyboard in Resources */,
+				C429A5911D8167BA00A430A6 /* data13.json in Resources */,
+				C429A59D1D8167BA00A430A6 /* data6.json in Resources */,
+				C429A59E1D8167BA00A430A6 /* data7.json in Resources */,
+				C429A5951D8167BA00A430A6 /* data17.json in Resources */,
+				C429A5981D8167BA00A430A6 /* data2.json in Resources */,
+				C429A59B1D8167BA00A430A6 /* data4.json in Resources */,
+				C429A58F1D8167BA00A430A6 /* data11.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +434,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jerry.AttributeText-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,6 +447,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jerry.AttributeText-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
