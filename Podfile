@@ -24,4 +24,7 @@ target 'AttributeText-Demo' do
 	pod 'JCAlertView'
 	pod 'DZNEmptyDataSet'
 	
+	pod 'VVBlurPresentation'
+	#pod 'SABlurImageView'
+	
 end

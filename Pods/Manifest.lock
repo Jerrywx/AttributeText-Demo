@@ -40,6 +40,7 @@ PODS:
   - SQLCipher/standard (3.4.0):
     - SQLCipher/common
   - TYAttributedLabel (2.6.1)
+  - VVBlurPresentation (0.1.1)
   - YYText (1.0.5)
 
 DEPENDENCIES:
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - RegexKitLite (~> 4.0)
   - SDWebImage (~> 3.8.1)
   - TYAttributedLabel (~> 2.6.1)
+  - VVBlurPresentation
   - YYText (~> 1.0.5)
 
 SPEC CHECKSUMS:
@@ -82,8 +84,9 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SQLCipher: 4c768761421736a247ed6cf412d9045615d53dff
   TYAttributedLabel: 4785820dc8d7935446f49f1de4daa0f99ebcba8a
+  VVBlurPresentation: 62c0a9d6ac22f9bed99c0c5735e7eae8156bc618
   YYText: ac09660c9ccd9b817f409a20caa6f5587444d2ae
 
-PODFILE CHECKSUM: 25001dee37ff932969019aeac6596ba3988ef943
+PODFILE CHECKSUM: e5af3bd812132aa4979a39f1bda4976f7a6c7fd7
 
 COCOAPODS: 1.0.1
