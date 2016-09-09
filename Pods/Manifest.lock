@@ -16,6 +16,9 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - Colours (5.13.0):
+    - Colours/ObjC (= 5.13.0)
+  - Colours/ObjC (5.13.0)
   - DateTools (1.7.0)
   - DZNEmptyDataSet (1.8.1)
   - FMDB/SQLCipher (2.6.2):
@@ -47,6 +50,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.2.0)
   - BFNavigationBarDrawer
   - BlocksKit (~> 2.2.5)
+  - Colours
   - DateTools
   - DZNEmptyDataSet
   - IQKeyboardManager
@@ -68,6 +72,7 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   BFNavigationBarDrawer: 7114305b2eb64f796aeee63029a037e30bf37a93
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Colours: f24220c38f13deac88612667e9b4a7fb96b871d4
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
@@ -87,6 +92,6 @@ SPEC CHECKSUMS:
   VVBlurPresentation: 62c0a9d6ac22f9bed99c0c5735e7eae8156bc618
   YYText: ac09660c9ccd9b817f409a20caa6f5587444d2ae
 
-PODFILE CHECKSUM: 0c629b402d7de4babcac0084fe1cdbbe44002dc9
+PODFILE CHECKSUM: 22855cdc0a9df54ef34376c29e886092b91eecd2
 
 COCOAPODS: 1.0.1

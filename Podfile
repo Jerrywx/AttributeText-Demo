@@ -26,5 +26,6 @@ target 'AttributeText-Demo' do
 	
 	pod 'VVBlurPresentation'
 	#pod 'SABlurImageView'
+	pod 'Colours'
 
 end
