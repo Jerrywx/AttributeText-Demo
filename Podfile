@@ -27,5 +27,8 @@ target 'AttributeText-Demo' do
 	pod 'VVBlurPresentation'
 	#pod 'SABlurImageView'
 	pod 'Colours'
+	pod 'YYImage', '~> 1.0.3'
+	pod 'YLGIFImage'
+	pod 'TTTAttributedLabel'
 
 end

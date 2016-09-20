@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JRBaseViewController : UIViewController
+@interface JRBaseViewController : UIViewController 
 
 @end

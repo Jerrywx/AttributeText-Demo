@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
+		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
 		C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448AE1D82654D0039A815 /* JRBaseViewController.m */; };
 		C40448B21D82655A0039A815 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448B11D82655A0039A815 /* MainViewController.m */; };
 		C40D94781D7FAE0900E512ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C40D94771D7FAE0900E512ED /* main.m */; };
@@ -36,16 +37,21 @@
 		C429A59E1D8167BA00A430A6 /* data7.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5891D8167BA00A430A6 /* data7.json */; };
 		C429A59F1D8167BA00A430A6 /* data8.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58A1D8167BA00A430A6 /* data8.json */; };
 		C429A5A01D8167BA00A430A6 /* data9.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58B1D8167BA00A430A6 /* data9.json */; };
+		C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		C400712E1D901ED100220BB9 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
 		C40448AD1D82654D0039A815 /* JRBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBaseViewController.h; sourceTree = "<group>"; };
 		C40448AE1D82654D0039A815 /* JRBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBaseViewController.m; sourceTree = "<group>"; };
 		C40448B01D82655A0039A815 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C40448B11D82655A0039A815 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C40448B31D8287330039A815 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C40448B41D8287880039A815 /* FrameWorksHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameWorksHeader.h; sourceTree = "<group>"; };
 		C40D94731D7FAE0900E512ED /* AttributeText-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AttributeText-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40D94771D7FAE0900E512ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C40D94791D7FAE0900E512ED /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -75,6 +81,8 @@
 		C429A5891D8167BA00A430A6 /* data7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data7.json; sourceTree = "<group>"; };
 		C429A58A1D8167BA00A430A6 /* data8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data8.json; sourceTree = "<group>"; };
 		C429A58B1D8167BA00A430A6 /* data9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data9.json; sourceTree = "<group>"; };
+		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
+		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRYYTextViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,7 @@
 			children = (
 				C40448AB1D82653A0039A815 /* JRBaseClasses */,
 				C40448AC1D82653A0039A815 /* JRMainViewControllers */,
+				C4478C4C1D8FC5410099EA3C /* YYTextController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -157,6 +166,8 @@
 		C40D94761D7FAE0900E512ED /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C40448B31D8287330039A815 /* PrefixHeader.pch */,
+				C40448B41D8287880039A815 /* FrameWorksHeader.h */,
 				C40D947F1D7FAE0900E512ED /* Main.storyboard */,
 				C40D94821D7FAE0900E512ED /* Assets.xcassets */,
 				C40D94841D7FAE0900E512ED /* LaunchScreen.storyboard */,
@@ -192,6 +203,17 @@
 				C429A58B1D8167BA00A430A6 /* data9.json */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		C4478C4C1D8FC5410099EA3C /* YYTextController */ = {
+			isa = PBXGroup;
+			children = (
+				C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */,
+				C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */,
+				C400712D1D901ED100220BB9 /* TextViewController.h */,
+				C400712E1D901ED100220BB9 /* TextViewController.m */,
+			);
+			path = YYTextController;
 			sourceTree = "<group>";
 		};
 		C77933A76F10159743FE1244 /* Pods */ = {
@@ -346,8 +368,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */,
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
 				C40D947B1D7FAE0900E512ED /* AppDelegate.m in Sources */,
+				C400712F1D901ED100220BB9 /* TextViewController.m in Sources */,
 				C40D94781D7FAE0900E512ED /* main.m in Sources */,
 				C40448B21D82655A0039A815 /* MainViewController.m in Sources */,
 			);
@@ -464,6 +488,7 @@
 			baseConfigurationReference = 248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "AttributeText-Demo/PrefixHeader.pch";
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -477,6 +502,7 @@
 			baseConfigurationReference = 519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "AttributeText-Demo/PrefixHeader.pch";
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

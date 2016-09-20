@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  AttributeText-Demo
+//
+//  Created by 王潇 on 16/9/9.
+//  Copyright © 2016年 王潇. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/// 第三方框架头文件
+#import "FrameWorksHeader.h"
+
+///
+#import "JRYYTextViewController.h"
+
+
+#endif /* PrefixHeader_pch */
