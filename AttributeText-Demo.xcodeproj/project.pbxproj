@@ -38,6 +38,7 @@
 		C429A59F1D8167BA00A430A6 /* data8.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58A1D8167BA00A430A6 /* data8.json */; };
 		C429A5A01D8167BA00A430A6 /* data9.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58B1D8167BA00A430A6 /* data9.json */; };
 		C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */; };
+		C482750C1D9173130032EE10 /* JRForumDetialControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C482750B1D9173130032EE10 /* JRForumDetialControllerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,8 @@
 		C429A58B1D8167BA00A430A6 /* data9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data9.json; sourceTree = "<group>"; };
 		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
 		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRYYTextViewController.m; sourceTree = "<group>"; };
+		C482750A1D9173130032EE10 /* JRForumDetialControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRForumDetialControllerViewController.h; sourceTree = "<group>"; };
+		C482750B1D9173130032EE10 /* JRForumDetialControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRForumDetialControllerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,7 @@
 		C40448AA1D82653A0039A815 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C48275081D9172EF0032EE10 /* JRDemoClasses */,
 				C40448AB1D82653A0039A815 /* JRBaseClasses */,
 				C40448AC1D82653A0039A815 /* JRMainViewControllers */,
 				C4478C4C1D8FC5410099EA3C /* YYTextController */,
@@ -214,6 +218,23 @@
 				C400712E1D901ED100220BB9 /* TextViewController.m */,
 			);
 			path = YYTextController;
+			sourceTree = "<group>";
+		};
+		C48275081D9172EF0032EE10 /* JRDemoClasses */ = {
+			isa = PBXGroup;
+			children = (
+				C48275091D9172EF0032EE10 /* ZHForumContrller */,
+			);
+			path = JRDemoClasses;
+			sourceTree = "<group>";
+		};
+		C48275091D9172EF0032EE10 /* ZHForumContrller */ = {
+			isa = PBXGroup;
+			children = (
+				C482750A1D9173130032EE10 /* JRForumDetialControllerViewController.h */,
+				C482750B1D9173130032EE10 /* JRForumDetialControllerViewController.m */,
+			);
+			path = ZHForumContrller;
 			sourceTree = "<group>";
 		};
 		C77933A76F10159743FE1244 /* Pods */ = {
@@ -370,6 +391,7 @@
 			files = (
 				C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */,
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
+				C482750C1D9173130032EE10 /* JRForumDetialControllerViewController.m in Sources */,
 				C40D947B1D7FAE0900E512ED /* AppDelegate.m in Sources */,
 				C400712F1D901ED100220BB9 /* TextViewController.m in Sources */,
 				C40D94781D7FAE0900E512ED /* main.m in Sources */,
