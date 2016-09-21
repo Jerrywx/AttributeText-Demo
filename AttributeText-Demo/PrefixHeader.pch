@@ -16,4 +16,13 @@
 #import "JRYYTextViewController.h"
 
 
+//////
+#define SCREEN_W ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_H ([UIScreen mainScreen].bounds.size.height)
+#define STATUS_H 20
+#define NAVIGA_H 44
+
+
+
+
 #endif /* PrefixHeader_pch */

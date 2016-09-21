@@ -1,5 +1,5 @@
 //
-//  JRForumDetialControllerViewController.h
+//  JRButton.h
 //  AttributeText-Demo
 //
 //  Created by 王潇 on 16/9/20.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JRForumDetialControllerViewController : UIViewController
+@interface JRButton : UIButton
 
 @end

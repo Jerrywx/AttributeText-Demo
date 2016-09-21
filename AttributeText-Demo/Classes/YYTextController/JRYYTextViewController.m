@@ -11,6 +11,7 @@
 
 @interface JRYYTextViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView	*tableView;
+@property (nonatomic, strong) NSArray		*dataList;
 @end
 
 @implementation JRYYTextViewController
@@ -47,24 +48,54 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 22;
+	return self.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-	
-	cell.textLabel.text = @"This is YYText Cell";
+
+	NSDictionary *dict = self.dataList[indexPath.row];
+	cell.textLabel.text = dict[@"title"];
 	
 	return cell;
 }
 
 #pragma mark - UItableVewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+
+	// 1. 设置 cell 点击动画
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	TextViewController *textVC = [[TextViewController alloc] init];
-	[self.navigationController pushViewController:textVC animated:YES];
+	
+	// 2. 获取控制器类名
+	NSDictionary *dict = self.dataList[indexPath.row];
+	NSString *conName = dict[@"controller"];
+	
+	// 3. 创建控制器
+	Class class = NSClassFromString(conName);
+	UIViewController *controller = [class new];
+	
+	// 4. 跳转控制器
+	[self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - Lazy Loading
+- (NSArray *)dataList {
+	
+	if (_dataList) {
+		return _dataList;
+	}
+	
+	_dataList = @[
+				  @{@"title"		: @"YYLabel-Demo",
+					@"controller"	: @"TextViewController"},
+				  @{@"title"		: @"纵横圈子-圈子详情",
+					@"controller"	: @"JRForumDetialController"},
+				  @{@"title"		: @"纵横圈子-帖子详情",
+					@"controller"	: @"JRThreadDetialController"},
+				  ];
+	
+	return _dataList;
 }
 
 @end
