@@ -23,6 +23,13 @@
 #define NAVIGA_H 44
 
 
+/// 字体大小
+#define kFontSize_10  [UIFont systemFontOfSize:10]
+#define kFontSize_12  [UIFont systemFontOfSize:12]
+#define kFontSize_14  [UIFont systemFontOfSize:14]
+
+
+
 
 
 #endif /* PrefixHeader_pch */

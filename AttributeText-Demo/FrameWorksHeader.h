@@ -17,11 +17,13 @@
 #import <colours.h>
 ///
 #import <SDWebImage/SDWebImageManager.h>
-
+///
+#import <Masonry.h>
 
 
 //////
 #import "JRButton.h"
+#import "JRUserHeader.h"
 
 
 #endif /* FrameWorksHeader_h */

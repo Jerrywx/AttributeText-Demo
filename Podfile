@@ -30,5 +30,6 @@ target 'AttributeText-Demo' do
 	pod 'YYImage', '~> 1.0.3'
 	pod 'YLGIFImage'
 	pod 'TTTAttributedLabel'
+	pod 'Masonry'
 
 end
