@@ -18,19 +18,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 	[self setupView];
 }
 
 - (void)setupView {
-	
-	// 0.
-	self.title = @"YYText";
 
-	// 1.
-	self.view.backgroundColor = [UIColor whiteColor];
-	
-	// 2.
+	self.title = @"YYText";
+	self.view.backgroundColor	= [UIColor whiteColor];
 	self.tableView = ({
 		UITableView *tableView  = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds
 															  style:UITableViewStyleGrouped];
@@ -89,6 +83,8 @@
 	_dataList = @[
 				  @{@"title"		: @"YYLabel-Demo",
 					@"controller"	: @"TextViewController"},
+				  @{@"title"		: @"文字排版",
+					@"controller"	: @"JRTextViewViewController"},
 				  @{@"title"		: @"纵横圈子-圈子详情",
 					@"controller"	: @"JRForumDetialController"},
 				  @{@"title"		: @"纵横圈子-帖子详情",

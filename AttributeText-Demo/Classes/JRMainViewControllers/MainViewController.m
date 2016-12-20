@@ -20,15 +20,11 @@
 	[self setupView];
 }
 
+///
 - (void)setupView {
-	
-	// 0.
+
 	self.title = @"Example";
-	
-	// 1.
-	self.view.backgroundColor = [UIColor whiteColor];
-	
-	// 2.
+	self.view.backgroundColor	= [UIColor whiteColor];
 	self.tableView = ({
 		UITableView *tableView	= [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds
 															  style:UITableViewStyleGrouped];

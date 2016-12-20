@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C31E08D987004BDE4A /* JRTextViewViewController.m */; };
+		304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
 		C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448AE1D82654D0039A815 /* JRBaseViewController.m */; };
@@ -51,6 +53,11 @@
 
 /* Begin PBXFileReference section */
 		248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		304288C21E08D987004BDE4A /* JRTextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextViewViewController.h; sourceTree = "<group>"; };
+		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
+		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
+		304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+JRExtension.m"; sourceTree = "<group>"; };
+		309CCFE01E08FDE000B23A4D /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
@@ -241,6 +248,9 @@
 				C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */,
 				C400712D1D901ED100220BB9 /* TextViewController.h */,
 				C400712E1D901ED100220BB9 /* TextViewController.m */,
+				304288C21E08D987004BDE4A /* JRTextViewViewController.h */,
+				304288C31E08D987004BDE4A /* JRTextViewViewController.m */,
+				309CCFE01E08FDE000B23A4D /* NSAttributedString.h */,
 			);
 			path = YYTextController;
 			sourceTree = "<group>";
@@ -268,6 +278,8 @@
 			children = (
 				C48275121D9174F40032EE10 /* UIColor+JRExtension.h */,
 				C48275131D9174F40032EE10 /* UIColor+JRExtension.m */,
+				304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */,
+				304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */,
 			);
 			path = JRExtension;
 			sourceTree = "<group>";
@@ -377,6 +389,7 @@
 				TargetAttributes = {
 					C40D94721D7FAE0900E512ED = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = B5SJ8JYP65;
 					};
 				};
 			};
@@ -485,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */,
 				C49868851D92C693009223A1 /* JRThreadDetialController.m in Sources */,
 				C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */,
 				C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */,
@@ -493,6 +507,7 @@
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
 				C482755A1D91947B0032EE10 /* JRButton.m in Sources */,
 				C4064EF81D940EE100B197A7 /* JRThreadModel.m in Sources */,
+				304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */,
 				C48275571D9187DF0032EE10 /* JRViewController.m in Sources */,
 				C40D947B1D7FAE0900E512ED /* AppDelegate.m in Sources */,
 				C49868891D92D679009223A1 /* JRImageView.m in Sources */,
@@ -614,6 +629,7 @@
 			baseConfigurationReference = 248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				GCC_PREFIX_HEADER = "AttributeText-Demo/PrefixHeader.pch";
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -628,6 +644,7 @@
 			baseConfigurationReference = 519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				GCC_PREFIX_HEADER = "AttributeText-Demo/PrefixHeader.pch";
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
