@@ -13,6 +13,11 @@
 ///
 @property (nonatomic, strong) UILabel	*label;
 
+///
+@property (nonatomic, strong) UILabel	*label01;
+
+@property (nonatomic, strong) UILabel	*label02;
+
 @end
 
 @implementation JRTextViewViewController
@@ -55,7 +60,32 @@
 	
 	/// 属性字符串
 	{
-	
+		
+		self.label01 = ({
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 200, 200, 30)];
+			label.backgroundColor = [UIColor lightGrayColor];
+			[self.view addSubview:label];
+			label;
+		});
+		
+		self.label02 = ({
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 250, 200, 30)];
+			label.backgroundColor = [UIColor lightGrayColor];
+			[self.view addSubview:label];
+			label;
+		});
+		
+		NSString *ligatureStr = @"flush";
+		
+		NSDictionary *attrDict1 = @{ NSLigatureAttributeName: [NSNumber numberWithInt: 0],
+									 NSFontAttributeName: [UIFont fontWithName: @"futura" size: 30] };
+		
+		_label01.attributedText = [[NSAttributedString alloc] initWithString: ligatureStr attributes: attrDict1];
+		
+		NSDictionary *attrDict2 = @{ NSLigatureAttributeName: @(1),
+									 NSFontAttributeName: [UIFont fontWithName: @"futura" size: 30]
+									 };
+		_label02.attributedText = [[NSAttributedString alloc] initWithString: ligatureStr attributes: attrDict2];
 	}
 }
 

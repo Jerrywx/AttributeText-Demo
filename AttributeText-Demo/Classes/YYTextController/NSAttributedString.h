@@ -11,15 +11,26 @@
 
 /************************ Attributes ************************/
 
-// Predefined character attributes for text. If the key is not in the dictionary, then use the default values as described below.
-UIKIT_EXTERN NSString * const NSFontAttributeName NS_AVAILABLE(10_0, 6_0);                // UIFont, default Helvetica(Neue) 12
-UIKIT_EXTERN NSString * const NSParagraphStyleAttributeName NS_AVAILABLE(10_0, 6_0);      // NSParagraphStyle, default defaultParagraphStyle
-UIKIT_EXTERN NSString * const NSForegroundColorAttributeName NS_AVAILABLE(10_0, 6_0);     // UIColor, default blackColor
-UIKIT_EXTERN NSString * const NSBackgroundColorAttributeName NS_AVAILABLE(10_0, 6_0);     // UIColor, default nil: no background
-UIKIT_EXTERN NSString * const NSLigatureAttributeName NS_AVAILABLE(10_0, 6_0);            // NSNumber containing integer, default 1: default ligatures, 0: no ligatures
-UIKIT_EXTERN NSString * const NSKernAttributeName NS_AVAILABLE(10_0, 6_0);                // NSNumber containing floating point value, in points; amount to modify default kerning. 0 means kerning is disabled.
-UIKIT_EXTERN NSString * const NSStrikethroughStyleAttributeName NS_AVAILABLE(10_0, 6_0);  // NSNumber containing integer, default 0: no strikethrough
-UIKIT_EXTERN NSString * const NSUnderlineStyleAttributeName NS_AVAILABLE(10_0, 6_0);      // NSNumber containing integer, default 0: no underline
+// Predefined character attributes for text.
+// If the key is not in the dictionary, then use the default values as described below.
+
+// UIFont, default Helvetica(Neue) 12											字体默认 12
+UIKIT_EXTERN NSString * const NSFontAttributeName;
+// NSParagraphStyle, default defaultParagraphStyle								段落样式 defaultParagraphStyle 对象
+UIKIT_EXTERN NSString * const NSParagraphStyleAttributeName;
+// UIColor, default blackColor													字体颜色 默认黑色
+UIKIT_EXTERN NSString * const NSForegroundColorAttributeName;
+// UIColor, default nil: no background											背景色 默认无
+UIKIT_EXTERN NSString * const NSBackgroundColorAttributeName;
+// NSNumber containing integer, default 1: default ligatures, 0: no ligatures	连字符 默认@(1) @(0) 无连字符
+UIKIT_EXTERN NSString * const NSLigatureAttributeName;
+// NSNumber containing floating point value, in points;
+// amount to modify default kerning. 0 means kerning is disabled.				字间距 NSNumber float
+UIKIT_EXTERN NSString * const NSKernAttributeName;
+// NSNumber containing integer, default 0: no strikethrough						删除线 默认无
+UIKIT_EXTERN NSString * const NSStrikethroughStyleAttributeName;
+// NSNumber containing integer, default 0: no underline							下划线 默认无
+UIKIT_EXTERN NSString * const NSUnderlineStyleAttributeName NS_AVAILABLE(10_0, 6_0);
 UIKIT_EXTERN NSString * const NSStrokeColorAttributeName NS_AVAILABLE(10_0, 6_0);         // UIColor, default nil: same as foreground color
 UIKIT_EXTERN NSString * const NSStrokeWidthAttributeName NS_AVAILABLE(10_0, 6_0);         // NSNumber containing floating point value, in percent of font point size, default 0: no stroke; positive for stroke alone, negative for stroke and fill (a typical value for outlined text would be 3.0)
 UIKIT_EXTERN NSString * const NSShadowAttributeName NS_AVAILABLE(10_0, 6_0);              // NSShadow, default nil: no shadow
