@@ -40,6 +40,7 @@
 		C429A59E1D8167BA00A430A6 /* data7.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5891D8167BA00A430A6 /* data7.json */; };
 		C429A59F1D8167BA00A430A6 /* data8.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58A1D8167BA00A430A6 /* data8.json */; };
 		C429A5A01D8167BA00A430A6 /* data9.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58B1D8167BA00A430A6 /* data9.json */; };
+		C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43EDF741E0A863A00893611 /* JRBlurViewController.m */; };
 		C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */; };
 		C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275131D9174F40032EE10 /* UIColor+JRExtension.m */; };
 		C48275571D9187DF0032EE10 /* JRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275561D9187DF0032EE10 /* JRViewController.m */; };
@@ -99,6 +100,8 @@
 		C429A5891D8167BA00A430A6 /* data7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data7.json; sourceTree = "<group>"; };
 		C429A58A1D8167BA00A430A6 /* data8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data8.json; sourceTree = "<group>"; };
 		C429A58B1D8167BA00A430A6 /* data9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data9.json; sourceTree = "<group>"; };
+		C43EDF731E0A863A00893611 /* JRBlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlurViewController.h; sourceTree = "<group>"; };
+		C43EDF741E0A863A00893611 /* JRBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlurViewController.m; sourceTree = "<group>"; };
 		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
 		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRYYTextViewController.m; sourceTree = "<group>"; };
 		C48275121D9174F40032EE10 /* UIColor+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JRExtension.h"; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 				C40448AB1D82653A0039A815 /* JRBaseClasses */,
 				C40448AC1D82653A0039A815 /* JRMainViewControllers */,
 				C4478C4C1D8FC5410099EA3C /* YYTextController */,
+				C43EDF721E0A862C00893611 /* JRBlurViewController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -239,6 +243,15 @@
 				C429A58B1D8167BA00A430A6 /* data9.json */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		C43EDF721E0A862C00893611 /* JRBlurViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C43EDF731E0A863A00893611 /* JRBlurViewController.h */,
+				C43EDF741E0A863A00893611 /* JRBlurViewController.m */,
+			);
+			path = JRBlurViewController;
 			sourceTree = "<group>";
 		};
 		C4478C4C1D8FC5410099EA3C /* YYTextController */ = {
@@ -505,6 +518,7 @@
 				C48275641D919EFC0032EE10 /* JRForumDetialController.m in Sources */,
 				C49868861D92C693009223A1 /* JRThreadHeader.m in Sources */,
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
+				C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */,
 				C482755A1D91947B0032EE10 /* JRButton.m in Sources */,
 				C4064EF81D940EE100B197A7 /* JRThreadModel.m in Sources */,
 				304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */,
