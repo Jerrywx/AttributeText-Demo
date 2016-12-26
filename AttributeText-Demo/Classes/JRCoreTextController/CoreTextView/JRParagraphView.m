@@ -19,20 +19,16 @@
 	// 1. 获取图形上下文
 	CGContextRef context = UIGraphicsGetCurrentContext();
  
-	// 2. 饭庄坐标系
-	CGContextTranslateCTM(context, 0, self.bounds.size.height);
-	CGContextScaleCTM(context, 1.0, -1.0);
+	// 2. 翻转坐标系
+//	CGContextTranslateCTM(context, 0, self.bounds.size.height);
+//	CGContextScaleCTM(context, 1.0, -1.0);
  
-	// Initializing a graphic context in OS X is different:
-	// CGContextRef context =
-	//     (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
-	
 	// 3. 设置坐标系
 	CGContextSetTextMatrix(context, CGAffineTransformIdentity);
 	// 4. 创建路径
 	CGMutablePathRef path = CGPathCreateMutable();
 	// 5. 绘制一个矩形
-	CGRect bounds = CGRectMake(0.0, 0.0, 200.0, 200.0);
+	CGRect bounds = CGRectMake(0.0, 0.0, rect.size.width, rect.size.height);
 	CGPathAddRect(path, NULL, bounds );
 	// 6. 创建 CFStringRef 字符串
 	CFStringRef textString = CFSTR("Hello, World! I know nothing in the world that has as much power as a word. Sometimes I write one, and I look at it, until it begins to shine.");
@@ -40,6 +36,7 @@
 	// Create a mutable attributed string with a max length of 0.
 	// The max length is a hint as to how much internal storage to reserve.
 	// 0 means no hint.
+	///
 	CFMutableAttributedStringRef attrString =
 	CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
  
@@ -49,7 +46,7 @@
 	
 	// 创建颜色属性设置给字符串
 	CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-	CGFloat components[] = { 0.0, 0.0, 1.0, 0.8 };
+	CGFloat components[] = { 1.0, 0.0, 0.0, 0.8 };
 	CGColorRef red = CGColorCreate(rgbColorSpace, components);
 	CGColorSpaceRelease(rgbColorSpace);
  
@@ -74,8 +71,6 @@
 	CFRelease(frame);
 	CFRelease(path);
 	CFRelease(framesetter);
-
-	
 }
 
 

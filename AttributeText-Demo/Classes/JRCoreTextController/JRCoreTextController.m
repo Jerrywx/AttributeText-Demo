@@ -30,7 +30,7 @@
 //	view.backgroundColor = [UIColor yellowColor];
 //	[self.view addSubview:view];
 	
-	self.paragraphView = [[JRParagraphView alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 200)];
+	self.paragraphView = [[JRParagraphView alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 100)];
 	self.paragraphView.backgroundColor = [UIColor lightGrayColor];
 	[self.view addSubview:self.paragraphView];
 	

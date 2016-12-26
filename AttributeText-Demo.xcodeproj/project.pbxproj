@@ -246,6 +246,7 @@
 		C42600121E115C530022C4D5 /* JRCoreTextController */ = {
 			isa = PBXGroup;
 			children = (
+				C426001D1E11780E0022C4D5 /* HeaderFile */,
 				C42600191E1175500022C4D5 /* CoreTextView */,
 				C42600131E115CB80022C4D5 /* JRCoreTextController.h */,
 				C42600141E115CB80022C4D5 /* JRCoreTextController.m */,
@@ -262,6 +263,13 @@
 				C426001B1E1175790022C4D5 /* JRParagraphView.m */,
 			);
 			path = CoreTextView;
+			sourceTree = "<group>";
+		};
+		C426001D1E11780E0022C4D5 /* HeaderFile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HeaderFile;
 			sourceTree = "<group>";
 		};
 		C429A5761D8167BA00A430A6 /* data */ = {
