@@ -59,8 +59,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	JRYYTextViewController *textVC = [[JRYYTextViewController alloc] init];
-	[self.navigationController pushViewController:textVC animated:YES];
+	if (indexPath.row == 0) {
+		JRYYTextViewController *textVC = [[JRYYTextViewController alloc] init];
+		[self.navigationController pushViewController:textVC animated:YES];
+	} else {
+		JRCoreTextController *testVC = [JRCoreTextController new];
+		[self.navigationController pushViewController:testVC animated:YES];
+	}
+	
+	
 }
 
 @end

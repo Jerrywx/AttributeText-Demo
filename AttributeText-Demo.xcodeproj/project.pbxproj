@@ -21,6 +21,9 @@
 		C40D94861D7FAE0900E512ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C40D94841D7FAE0900E512ED /* LaunchScreen.storyboard */; };
 		C41D53B31E0D6E1100DEDFF9 /* JRCoreImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = C41D53B21E0D6E1100DEDFF9 /* JRCoreImageController.m */; };
 		C41D53B51E0D768600DEDFF9 /* apple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C41D53B41E0D768600DEDFF9 /* apple.jpg */; };
+		C42600151E115CB80022C4D5 /* JRCoreTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = C42600141E115CB80022C4D5 /* JRCoreTextController.m */; };
+		C42600181E115EBA0022C4D5 /* JRCoreTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C42600171E115EBA0022C4D5 /* JRCoreTextView.m */; };
+		C426001C1E1175790022C4D5 /* JRParagraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = C426001B1E1175790022C4D5 /* JRParagraphView.m */; };
 		C429A58C1D8167BA00A430A6 /* data0.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5771D8167BA00A430A6 /* data0.json */; };
 		C429A58D1D8167BA00A430A6 /* data1.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5781D8167BA00A430A6 /* data1.json */; };
 		C429A58E1D8167BA00A430A6 /* data10.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5791D8167BA00A430A6 /* data10.json */; };
@@ -84,6 +87,12 @@
 		C41D53B11E0D6E1100DEDFF9 /* JRCoreImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreImageController.h; sourceTree = "<group>"; };
 		C41D53B21E0D6E1100DEDFF9 /* JRCoreImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreImageController.m; sourceTree = "<group>"; };
 		C41D53B41E0D768600DEDFF9 /* apple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple.jpg; sourceTree = "<group>"; };
+		C42600131E115CB80022C4D5 /* JRCoreTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreTextController.h; sourceTree = "<group>"; };
+		C42600141E115CB80022C4D5 /* JRCoreTextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreTextController.m; sourceTree = "<group>"; };
+		C42600161E115EBA0022C4D5 /* JRCoreTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreTextView.h; sourceTree = "<group>"; };
+		C42600171E115EBA0022C4D5 /* JRCoreTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreTextView.m; sourceTree = "<group>"; };
+		C426001A1E1175790022C4D5 /* JRParagraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRParagraphView.h; sourceTree = "<group>"; };
+		C426001B1E1175790022C4D5 /* JRParagraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRParagraphView.m; sourceTree = "<group>"; };
 		C429A5771D8167BA00A430A6 /* data0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data0.json; sourceTree = "<group>"; };
 		C429A5781D8167BA00A430A6 /* data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data1.json; sourceTree = "<group>"; };
 		C429A5791D8167BA00A430A6 /* data10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data10.json; sourceTree = "<group>"; };
@@ -157,6 +166,7 @@
 				C4478C4C1D8FC5410099EA3C /* YYTextController */,
 				C43EDF721E0A862C00893611 /* JRBlurViewController */,
 				C41D53B01E0D6DF600DEDFF9 /* JRCoreImageController */,
+				C42600121E115C530022C4D5 /* JRCoreTextController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -231,6 +241,27 @@
 				C41D53B21E0D6E1100DEDFF9 /* JRCoreImageController.m */,
 			);
 			path = JRCoreImageController;
+			sourceTree = "<group>";
+		};
+		C42600121E115C530022C4D5 /* JRCoreTextController */ = {
+			isa = PBXGroup;
+			children = (
+				C42600191E1175500022C4D5 /* CoreTextView */,
+				C42600131E115CB80022C4D5 /* JRCoreTextController.h */,
+				C42600141E115CB80022C4D5 /* JRCoreTextController.m */,
+				C42600161E115EBA0022C4D5 /* JRCoreTextView.h */,
+				C42600171E115EBA0022C4D5 /* JRCoreTextView.m */,
+			);
+			path = JRCoreTextController;
+			sourceTree = "<group>";
+		};
+		C42600191E1175500022C4D5 /* CoreTextView */ = {
+			isa = PBXGroup;
+			children = (
+				C426001A1E1175790022C4D5 /* JRParagraphView.h */,
+				C426001B1E1175790022C4D5 /* JRParagraphView.m */,
+			);
+			path = CoreTextView;
 			sourceTree = "<group>";
 		};
 		C429A5761D8167BA00A430A6 /* data */ = {
@@ -531,6 +562,8 @@
 				304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */,
 				C49868851D92C693009223A1 /* JRThreadDetialController.m in Sources */,
 				C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */,
+				C426001C1E1175790022C4D5 /* JRParagraphView.m in Sources */,
+				C42600181E115EBA0022C4D5 /* JRCoreTextView.m in Sources */,
 				C41D53B31E0D6E1100DEDFF9 /* JRCoreImageController.m in Sources */,
 				C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */,
 				C48275641D919EFC0032EE10 /* JRForumDetialController.m in Sources */,
@@ -539,6 +572,7 @@
 				C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */,
 				C482755A1D91947B0032EE10 /* JRButton.m in Sources */,
 				C4064EF81D940EE100B197A7 /* JRThreadModel.m in Sources */,
+				C42600151E115CB80022C4D5 /* JRCoreTextController.m in Sources */,
 				304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */,
 				C48275571D9187DF0032EE10 /* JRViewController.m in Sources */,
 				C40D947B1D7FAE0900E512ED /* AppDelegate.m in Sources */,

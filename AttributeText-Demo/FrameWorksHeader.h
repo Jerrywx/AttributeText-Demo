@@ -25,5 +25,7 @@
 #import "JRButton.h"
 #import "JRUserHeader.h"
 
+#import "JRCoreTextController.h"
+
 
 #endif /* FrameWorksHeader_h */
