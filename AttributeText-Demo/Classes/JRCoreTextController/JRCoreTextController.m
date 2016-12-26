@@ -25,10 +25,6 @@
 	
 	self.title = @"Core Text!";
 	self.view.backgroundColor = [UIColor whiteColor];
-
-//	JRCoreTextView *view = [[JRCoreTextView alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
-//	view.backgroundColor = [UIColor yellowColor];
-//	[self.view addSubview:view];
 	
 	self.paragraphView = [[JRParagraphView alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 100)];
 	self.paragraphView.backgroundColor = [UIColor lightGrayColor];
