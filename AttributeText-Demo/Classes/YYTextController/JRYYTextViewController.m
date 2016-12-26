@@ -89,6 +89,8 @@
 					@"controller"	: @"JRForumDetialController"},
 				  @{@"title"		: @"纵横圈子-帖子详情",
 					@"controller"	: @"JRThreadDetialController"},
+				  @{@"title"		: @"Core_Image",
+					@"controller"	: @"JRCoreImageController"},
 				  ];
 	
 	return _dataList;
