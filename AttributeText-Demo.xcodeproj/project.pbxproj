@@ -64,7 +64,9 @@
 		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
 		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
 		304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+JRExtension.m"; sourceTree = "<group>"; };
+		308AC7221E137CA000B54AAE /* jr_CGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CGAffineTransform.h; sourceTree = "<group>"; };
 		309CCFE01E08FDE000B23A4D /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
+		30CD5E0B1E13589800E0F2E9 /* jr_CGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_CGContext.h; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
@@ -151,6 +153,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30CD5E091E13589800E0F2E9 /* HeardFiles */ = {
+			isa = PBXGroup;
+			children = (
+				30CD5E0A1E13589800E0F2E9 /* CoreGraphics */,
+			);
+			path = HeardFiles;
+			sourceTree = "<group>";
+		};
+		30CD5E0A1E13589800E0F2E9 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				30CD5E0B1E13589800E0F2E9 /* jr_CGContext.h */,
+				308AC7221E137CA000B54AAE /* jr_CGAffineTransform.h */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
 		7D5D91122C51F49A0CFF4206 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,7 +268,7 @@
 		C42600121E115C530022C4D5 /* JRCoreTextController */ = {
 			isa = PBXGroup;
 			children = (
-				C426001D1E11780E0022C4D5 /* HeaderFile */,
+				30CD5E091E13589800E0F2E9 /* HeardFiles */,
 				C42600191E1175500022C4D5 /* CoreTextView */,
 				C42600131E115CB80022C4D5 /* JRCoreTextController.h */,
 				C42600141E115CB80022C4D5 /* JRCoreTextController.m */,
@@ -268,13 +287,6 @@
 				C426001B1E1175790022C4D5 /* JRParagraphView.m */,
 			);
 			path = CoreTextView;
-			sourceTree = "<group>";
-		};
-		C426001D1E11780E0022C4D5 /* HeaderFile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HeaderFile;
 			sourceTree = "<group>";
 		};
 		C429A5761D8167BA00A430A6 /* data */ = {

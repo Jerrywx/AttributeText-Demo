@@ -8,6 +8,8 @@
 
 #import "JRTranslateCTMView.h"
 
+static inline double radians (double degrees) {return degrees * M_PI/180;}
+
 @implementation JRTranslateCTMView
 
 
@@ -17,18 +19,23 @@
     // Drawing code
 	
 	CGContextRef myContext = UIGraphicsGetCurrentContext();
-	UIImage *myImage = [UIImage imageNamed:@"ggg"];
+	UIImage *myImage = [UIImage imageNamed:@"qqq"];
 	
-	// x,y 位置
-	CGContextTranslateCTM (myContext, 40, 40);
-	//
-//	CGContextTranslateCTM (myContext, rect.size.width, rect.size.height);
-//	CGContextRotateCTM (myContext, -20);
-	//
-//	CGContextTranslateCTM(myContext, 0, self.bounds.size.height * 0.5);
-//	CGContextScaleCTM(myContext, 1.0, -1.0);
-	
+	// 平移
+//	CGContextTranslateCTM (myContext, rect.size.width * 0.5, rect.size.height * 0.5);
+	// 旋转
+//	CGContextRotateCTM (myContext, radians(-90));
+	// 缩放
+//	CGContextScaleCTM(myContext, 0.5, 0.5);
+	// 仿射矩阵
+//	CGContextConcatCTM(myContext, <#CGAffineTransform transform#>)
+
+	// 缩放绘制
 	CGContextDrawImage(myContext, rect, [myImage CGImage]);
+	// 旋转绘制
+//	CGContextDrawImage(myContext,
+//					   CGRectMake(0, 0, rect.size.width * 0.25, rect.size.height * 0.25),
+//					   [myImage CGImage]);
 }
 
 
