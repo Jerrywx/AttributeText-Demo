@@ -45,6 +45,7 @@
 		C429A59E1D8167BA00A430A6 /* data7.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A5891D8167BA00A430A6 /* data7.json */; };
 		C429A59F1D8167BA00A430A6 /* data8.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58A1D8167BA00A430A6 /* data8.json */; };
 		C429A5A01D8167BA00A430A6 /* data9.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58B1D8167BA00A430A6 /* data9.json */; };
+		C42A193F1E133E9500268F1C /* JRTranslateCTMView.m in Sources */ = {isa = PBXBuildFile; fileRef = C42A193E1E133E9500268F1C /* JRTranslateCTMView.m */; };
 		C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43EDF741E0A863A00893611 /* JRBlurViewController.m */; };
 		C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */; };
 		C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275131D9174F40032EE10 /* UIColor+JRExtension.m */; };
@@ -114,6 +115,8 @@
 		C429A5891D8167BA00A430A6 /* data7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data7.json; sourceTree = "<group>"; };
 		C429A58A1D8167BA00A430A6 /* data8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data8.json; sourceTree = "<group>"; };
 		C429A58B1D8167BA00A430A6 /* data9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data9.json; sourceTree = "<group>"; };
+		C42A193D1E133E9500268F1C /* JRTranslateCTMView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTranslateCTMView.h; sourceTree = "<group>"; };
+		C42A193E1E133E9500268F1C /* JRTranslateCTMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTranslateCTMView.m; sourceTree = "<group>"; };
 		C43EDF731E0A863A00893611 /* JRBlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlurViewController.h; sourceTree = "<group>"; };
 		C43EDF741E0A863A00893611 /* JRBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlurViewController.m; sourceTree = "<group>"; };
 		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 		C42600191E1175500022C4D5 /* CoreTextView */ = {
 			isa = PBXGroup;
 			children = (
+				C42A193D1E133E9500268F1C /* JRTranslateCTMView.h */,
+				C42A193E1E133E9500268F1C /* JRTranslateCTMView.m */,
 				C426001A1E1175790022C4D5 /* JRParagraphView.h */,
 				C426001B1E1175790022C4D5 /* JRParagraphView.m */,
 			);
@@ -582,6 +587,7 @@
 				C4064EF81D940EE100B197A7 /* JRThreadModel.m in Sources */,
 				C42600151E115CB80022C4D5 /* JRCoreTextController.m in Sources */,
 				304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */,
+				C42A193F1E133E9500268F1C /* JRTranslateCTMView.m in Sources */,
 				C48275571D9187DF0032EE10 /* JRViewController.m in Sources */,
 				C40D947B1D7FAE0900E512ED /* AppDelegate.m in Sources */,
 				C49868891D92D679009223A1 /* JRImageView.m in Sources */,
