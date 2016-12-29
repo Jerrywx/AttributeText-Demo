@@ -7,10 +7,11 @@
 //
 
 #import "NEHTTPEyeDetailViewController.h"
+#import "NEMapViewController.h"
 #import "NEHTTPModel.h"
 @interface NEHTTPEyeDetailViewController (){
 
-    UITextView *textView1;
+    UITextView *mainTextView;
 
 }
 
@@ -41,6 +42,14 @@
     [backBt addTarget:self action:@selector(backBtAction) forControlEvents:UIControlEventTouchUpInside];
     [bar addSubview:backBt];
     
+    UIButton *mapBt=[UIButton buttonWithType:UIButtonTypeCustom];
+    mapBt.frame=CGRectMake([[UIScreen mainScreen] bounds].size.width-60, 27, 50, 30);
+    [mapBt setTitle:@"map" forState:UIControlStateNormal];
+    mapBt.titleLabel.font=[UIFont systemFontOfSize:13];
+    [mapBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [mapBt addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+    [bar addSubview:mapBt];
+    
     UILabel *titleText = [[UILabel alloc] initWithFrame: CGRectMake(([[UIScreen mainScreen] bounds].size.width-230)/2, 20, 230, 44)];
     titleText.backgroundColor = [UIColor clearColor];
     titleText.textColor=[UIColor whiteColor];
@@ -49,8 +58,9 @@
     [bar addSubview:titleText];
     titleText.text=_model.requestURLString;
     
-    textView1=[[UITextView alloc] initWithFrame:CGRectMake(0, 64, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-64)];
-    [self.view addSubview:textView1];
+    mainTextView=[[UITextView alloc] initWithFrame:CGRectMake(0, 64, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-64)];
+    [self.view addSubview:mainTextView];
+    mainTextView.editable=NO;
 
     [self setupAttributedString];
 }
@@ -188,11 +198,20 @@
                                                                           NSForegroundColorAttributeName: titleColor
                                                                           }];
     
-    receiveJSONData = [[NSMutableAttributedString alloc] initWithString:@"[responseJSON]\n"
-                                                             attributes:@{
-                                                                          NSFontAttributeName : titleFont,
-                                                                          NSForegroundColorAttributeName: titleColor
-                                                                          }];
+    if ([_model.responseMIMEType isEqualToString:@"application/xml"] ||[_model.responseMIMEType isEqualToString:@"text/xml"]) {
+        receiveJSONData = [[NSMutableAttributedString alloc] initWithString:@"[responseXML]\n"
+                                                                 attributes:@{
+                                                                              NSFontAttributeName : titleFont,
+                                                                              NSForegroundColorAttributeName: titleColor
+                                                                              }];
+    }else {
+        receiveJSONData = [[NSMutableAttributedString alloc] initWithString:@"[responseJSON]\n"
+                                                                 attributes:@{
+                                                                              NSFontAttributeName : titleFont,
+                                                                              NSForegroundColorAttributeName: titleColor
+                                                                              }];
+    }
+    
     
     
     
@@ -344,20 +363,24 @@
     [attrText appendAttributedString:receiveJSONData];
     [attrText appendAttributedString:receiveJSONDataDetail];
 
-    textView1.attributedText=attrText;
+    mainTextView.attributedText=attrText;
     
 }
-- (void)backBtAction{
+- (void)backBtAction {
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+- (void)rightAction {
+    NEMapViewController *map = [[NEMapViewController alloc] init];
+    map.model = _model;
+    [self presentViewController:map animated:YES completion:nil];
 }
 
 #pragma mark - Utils
 
 //unicode to utf-8
-+ (NSString*) replaceUnicode:(NSString*)aUnicodeString
-
-{
++ (NSString*) replaceUnicode:(NSString*)aUnicodeString {
     
     NSString *tempStr1 = [aUnicodeString stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
     NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
@@ -378,7 +401,5 @@
     return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
     
 }
-
-
 
 @end

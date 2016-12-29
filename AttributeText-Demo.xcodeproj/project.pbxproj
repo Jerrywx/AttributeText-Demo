@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C31E08D987004BDE4A /* JRTextViewViewController.m */; };
 		304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */; };
+		30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
 		C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448AE1D82654D0039A815 /* JRBaseViewController.m */; };
@@ -67,6 +68,8 @@
 		308AC7221E137CA000B54AAE /* jr_CGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CGAffineTransform.h; sourceTree = "<group>"; };
 		309CCFE01E08FDE000B23A4D /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
 		30CD5E0B1E13589800E0F2E9 /* jr_CGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_CGContext.h; sourceTree = "<group>"; };
+		30FE49F41E15033700ED9F47 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
+		30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 		C41D53B01E0D6DF600DEDFF9 /* JRCoreImageController */ = {
 			isa = PBXGroup;
 			children = (
+				30FE49F41E15033700ED9F47 /* UIView+YYAdd.h */,
+				30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */,
 				C41D53B41E0D768600DEDFF9 /* apple.jpg */,
 				C41D53B11E0D6E1100DEDFF9 /* JRCoreImageController.h */,
 				C41D53B21E0D6E1100DEDFF9 /* JRCoreImageController.m */,
@@ -559,7 +564,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F89EB43C96A285A938FEA463 /* [CP] Copy Pods Resources */ = {
@@ -592,6 +597,7 @@
 				C41D53B31E0D6E1100DEDFF9 /* JRCoreImageController.m in Sources */,
 				C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */,
 				C48275641D919EFC0032EE10 /* JRForumDetialController.m in Sources */,
+				30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */,
 				C49868861D92C693009223A1 /* JRThreadHeader.m in Sources */,
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
 				C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */,
