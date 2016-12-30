@@ -30,11 +30,15 @@
 //	self.paragraphView.backgroundColor = [UIColor lightGrayColor];
 //	[self.view addSubview:self.paragraphView];
 	
-	JRTranslateCTMView *imgView = [[JRTranslateCTMView alloc] initWithFrame:CGRectMake(20, 
-															80, SCREEN_W - 40, SCREEN_W - 40)];
-	imgView.backgroundColor = [UIColor yellowColor];
-	[self.view addSubview:imgView];
+//	JRTranslateCTMView *imgView = [[JRTranslateCTMView alloc] initWithFrame:CGRectMake(20, 
+//															80, SCREEN_W - 40, SCREEN_W - 40)];
+//	imgView.backgroundColor = [UIColor yellowColor];
+//	[self.view addSubview:imgView];
 	
+	
+	CFStringRef string = CFSTR("按时阿萨德阿萨德是");
+	NSString *s = (__bridge NSString *)(string);
+	NSLog(@"%@", s);
 }
 
 

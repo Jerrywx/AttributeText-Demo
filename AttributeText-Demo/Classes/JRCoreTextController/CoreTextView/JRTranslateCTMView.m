@@ -36,6 +36,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 //	CGContextDrawImage(myContext,
 //					   CGRectMake(0, 0, rect.size.width * 0.25, rect.size.height * 0.25),
 //					   [myImage CGImage]);
+
+//	CFSTR(<#cStr#>)
 }
 
 

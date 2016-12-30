@@ -47,6 +47,7 @@
 		C429A59F1D8167BA00A430A6 /* data8.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58A1D8167BA00A430A6 /* data8.json */; };
 		C429A5A01D8167BA00A430A6 /* data9.json in Resources */ = {isa = PBXBuildFile; fileRef = C429A58B1D8167BA00A430A6 /* data9.json */; };
 		C42A193F1E133E9500268F1C /* JRTranslateCTMView.m in Sources */ = {isa = PBXBuildFile; fileRef = C42A193E1E133E9500268F1C /* JRTranslateCTMView.m */; };
+		C42E98971E16A99E004A6159 /* JRCoreFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E98961E16A99E004A6159 /* JRCoreFoundationController.m */; };
 		C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43EDF741E0A863A00893611 /* JRBlurViewController.m */; };
 		C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */; };
 		C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275131D9174F40032EE10 /* UIColor+JRExtension.m */; };
@@ -122,6 +123,9 @@
 		C429A58B1D8167BA00A430A6 /* data9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data9.json; sourceTree = "<group>"; };
 		C42A193D1E133E9500268F1C /* JRTranslateCTMView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTranslateCTMView.h; sourceTree = "<group>"; };
 		C42A193E1E133E9500268F1C /* JRTranslateCTMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTranslateCTMView.m; sourceTree = "<group>"; };
+		C42E98941E16A45C004A6159 /* jr_CFString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CFString.h; sourceTree = "<group>"; };
+		C42E98951E16A99E004A6159 /* JRCoreFoundationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreFoundationController.h; sourceTree = "<group>"; };
+		C42E98961E16A99E004A6159 /* JRCoreFoundationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreFoundationController.m; sourceTree = "<group>"; };
 		C43EDF731E0A863A00893611 /* JRBlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlurViewController.h; sourceTree = "<group>"; };
 		C43EDF741E0A863A00893611 /* JRBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlurViewController.m; sourceTree = "<group>"; };
 		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 		30CD5E091E13589800E0F2E9 /* HeardFiles */ = {
 			isa = PBXGroup;
 			children = (
+				C42E98931E16A1C8004A6159 /* CoreFoundation */,
 				30CD5E0A1E13589800E0F2E9 /* CoreGraphics */,
 			);
 			path = HeardFiles;
@@ -279,6 +284,8 @@
 				C42600141E115CB80022C4D5 /* JRCoreTextController.m */,
 				C42600161E115EBA0022C4D5 /* JRCoreTextView.h */,
 				C42600171E115EBA0022C4D5 /* JRCoreTextView.m */,
+				C42E98951E16A99E004A6159 /* JRCoreFoundationController.h */,
+				C42E98961E16A99E004A6159 /* JRCoreFoundationController.m */,
 			);
 			path = JRCoreTextController;
 			sourceTree = "<group>";
@@ -320,6 +327,14 @@
 				C429A58B1D8167BA00A430A6 /* data9.json */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		C42E98931E16A1C8004A6159 /* CoreFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				C42E98941E16A45C004A6159 /* jr_CFString.h */,
+			);
+			path = CoreFoundation;
 			sourceTree = "<group>";
 		};
 		C43EDF721E0A862C00893611 /* JRBlurViewController */ = {
@@ -595,6 +610,7 @@
 				C426001C1E1175790022C4D5 /* JRParagraphView.m in Sources */,
 				C42600181E115EBA0022C4D5 /* JRCoreTextView.m in Sources */,
 				C41D53B31E0D6E1100DEDFF9 /* JRCoreImageController.m in Sources */,
+				C42E98971E16A99E004A6159 /* JRCoreFoundationController.m in Sources */,
 				C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */,
 				C48275641D919EFC0032EE10 /* JRForumDetialController.m in Sources */,
 				30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */,

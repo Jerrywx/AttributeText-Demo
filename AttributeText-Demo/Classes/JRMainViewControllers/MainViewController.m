@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "JRCoreFoundationController.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView	*tableView;
@@ -62,6 +63,9 @@
 	if (indexPath.row == 0) {
 		JRYYTextViewController *textVC = [[JRYYTextViewController alloc] init];
 		[self.navigationController pushViewController:textVC animated:YES];
+	} else if (indexPath.row == 1) {
+		JRCoreFoundationController *testVC = [JRCoreFoundationController new];
+		[self.navigationController pushViewController:testVC animated:YES];
 	} else {
 		JRCoreTextController *testVC = [JRCoreTextController new];
 		[self.navigationController pushViewController:testVC animated:YES];
