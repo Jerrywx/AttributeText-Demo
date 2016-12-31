@@ -100,6 +100,7 @@
 		C42600171E115EBA0022C4D5 /* JRCoreTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreTextView.m; sourceTree = "<group>"; };
 		C426001A1E1175790022C4D5 /* JRParagraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRParagraphView.h; sourceTree = "<group>"; };
 		C426001B1E1175790022C4D5 /* JRParagraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRParagraphView.m; sourceTree = "<group>"; };
+		C42668FD1E17509D00D945B3 /* jr_CFDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CFDictionary.h; sourceTree = "<group>"; };
 		C429A5771D8167BA00A430A6 /* data0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data0.json; sourceTree = "<group>"; };
 		C429A5781D8167BA00A430A6 /* data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data1.json; sourceTree = "<group>"; };
 		C429A5791D8167BA00A430A6 /* data10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data10.json; sourceTree = "<group>"; };
@@ -333,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				C42E98941E16A45C004A6159 /* jr_CFString.h */,
+				C42668FD1E17509D00D945B3 /* jr_CFDictionary.h */,
 			);
 			path = CoreFoundation;
 			sourceTree = "<group>";
