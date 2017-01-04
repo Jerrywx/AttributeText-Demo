@@ -149,15 +149,43 @@ static void ModelSetWithDictionaryFunction(const void *_key, const void *_value,
 #pragma mark - create
 - (CFDictionaryRef)createCFDictionary {
 	
-	NSString *key[]		= {@"key1", @"key2", @"key3", @"key4", @"key5"};
-	NSString *value[]	= {@"value1",@"value2",@"value3",@"value4",@"value5"};
+	NSString *key[]		= {@"key1", @"key2", @"key3", @"key4", @"key5", @"key7", @"key6"};
+	NSString *value[]	= {@"value1",@"value2",@"value3",@"value4",@"value5",@"value6",@"value7"};
 	
 	CFDictionaryRef cfDict = CFDictionaryCreate(kCFAllocatorDefault,
 												(void *)&key,
 												(void *)&value,
-												5,
+												7,
 												&kCFTypeDictionaryKeyCallBacks,
 												&kCFTypeDictionaryValueCallBacks);
+	
+	/// 获取 key 的出现次数
+//	CFIndex len = CFDictionaryGetCountOfKey(cfDict, (void *)@"key5");
+	/// 获取 value 的出现次数
+//	CFIndex len = CFDictionaryGetCountOfValue(cfDict, (void *)@"value3");
+//	NSLog(@"--- %ld",len);
+	
+	/// 获取是否包含 key
+//	Boolean bol = CFDictionaryContainsKey(cfDict, (void *)@"key3");
+//	NSLog(@"== %zd", bol);
+	
+	/// 根据给定 key 获取 value
+//	NSString *ss = (NSString *)CFDictionaryGetValue(cfDict, (void *)@"key3");
+//	NSLog(@"== %@", ss);
+
+	/// 追加
+	CFDictionaryAddValue(cfDict, @"key00", @"value00");
+	
+	///
+	NSString *keys[7];
+	NSString *values[7];
+	// Implicit conversion of an indirect pointer to an Objective-C pointer to 'const void **' is disallowed with ARC
+	CFDictionaryGetKeysAndValues(cfDict, (void *)keys, (void *)values);
+	
+	for (int i=0; i<7; i++) {
+		NSLog(@"keys: %@ - %@", keys[i], values[i]);
+	}
+	
 	return cfDict;
 }
 
