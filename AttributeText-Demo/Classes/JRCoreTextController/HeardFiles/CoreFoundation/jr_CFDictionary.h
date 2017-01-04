@@ -104,11 +104,7 @@ typedef const struct CF_BRIDGED_TYPE(NSDictionary) __CFDictionary * CFDictionary
 /// 可变 CFDictionary
 typedef struct CF_BRIDGED_MUTABLE_TYPE(NSMutableDictionary) __CFDictionary * CFMutableDictionaryRef;
 
-/*!
-	@function CFDictionaryGetTypeID
-	Returns the type identifier of all CFDictionary instances.
- */
-CF_EXPORT
+/// Returns the type identifier of all CFDictionary instances.
 CFTypeID CFDictionaryGetTypeID(void);
 
 /// 创建 CFDictionaryRef

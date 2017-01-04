@@ -173,8 +173,8 @@ static void ModelSetWithDictionaryFunction(const void *_key, const void *_value,
 //	NSString *ss = (NSString *)CFDictionaryGetValue(cfDict, (void *)@"key3");
 //	NSLog(@"== %@", ss);
 
-	/// 追加
-	CFDictionaryAddValue(cfDict, @"key00", @"value00");
+	/// 追加 CFMutableDicyionary
+//	CFDictionaryAddValue(cfDict, @"key00", @"value00");
 	
 	///
 	NSString *keys[7];
@@ -185,7 +185,6 @@ static void ModelSetWithDictionaryFunction(const void *_key, const void *_value,
 	for (int i=0; i<7; i++) {
 		NSLog(@"keys: %@ - %@", keys[i], values[i]);
 	}
-	
 	return cfDict;
 }
 
