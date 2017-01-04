@@ -147,6 +147,7 @@
 		C49868881D92D679009223A1 /* JRImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRImageView.m; sourceTree = "<group>"; };
 		C498688A1D92D69B009223A1 /* JRUserHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRUserHeader.h; sourceTree = "<group>"; };
 		C498688B1D92D69B009223A1 /* JRUserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRUserHeader.m; sourceTree = "<group>"; };
+		C4991A4F1E1D5D45004FE84A /* jr_CTFramesetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFramesetter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +176,7 @@
 			children = (
 				30CD5E0B1E13589800E0F2E9 /* jr_CGContext.h */,
 				308AC7221E137CA000B54AAE /* jr_CGAffineTransform.h */,
+				C4991A4F1E1D5D45004FE84A /* jr_CTFramesetter.h */,
 			);
 			path = CoreGraphics;
 			sourceTree = "<group>";
