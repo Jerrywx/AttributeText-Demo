@@ -21,8 +21,8 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
  
 	// 2. 翻转坐标系
-//	CGContextTranslateCTM(context, 0, self.bounds.size.height);
-//	CGContextScaleCTM(context, 1.0, -1.0);
+	CGContextTranslateCTM(context, 0, self.bounds.size.height);
+	CGContextScaleCTM(context, 1.0, -1.0);
  
 	// 3. 设置坐标系
 	CGContextSetTextMatrix(context, CGAffineTransformIdentity);

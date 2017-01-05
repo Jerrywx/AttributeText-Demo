@@ -10,8 +10,10 @@
 #import "TextViewController.h"
 
 @interface JRYYTextViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (nonatomic, strong) UITableView	*tableView;
 @property (nonatomic, strong) NSArray		*dataList;
+
 @end
 
 @implementation JRYYTextViewController

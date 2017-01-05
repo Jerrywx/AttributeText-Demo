@@ -10,7 +10,10 @@
 #import "JRCoreFoundationController.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (nonatomic, strong) UITableView	*tableView;
+@property (nonatomic, strong) NSArray		*dataList;
+
 @end
 
 @implementation MainViewController
@@ -43,15 +46,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 22;
+	return self.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	
-	cell.textLabel.text = @"This is a Cell";
-	cell.detailTextLabel.text = @"This is Cell Detail";
+	NSDictionary *dict  = self.dataList[indexPath.row];
+	cell.textLabel.text = dict[@"title"];
 	
 	return cell;
 }
@@ -60,18 +63,38 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	if (indexPath.row == 0) {
-		JRYYTextViewController *textVC = [[JRYYTextViewController alloc] init];
-		[self.navigationController pushViewController:textVC animated:YES];
-	} else if (indexPath.row == 1) {
-		JRCoreFoundationController *testVC = [JRCoreFoundationController new];
-		[self.navigationController pushViewController:testVC animated:YES];
-	} else {
-		JRCoreTextController *testVC = [JRCoreTextController new];
-		[self.navigationController pushViewController:testVC animated:YES];
+	// 1. 设置 cell 点击动画
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	// 2. 获取控制器类名
+	NSDictionary *dict = self.dataList[indexPath.row];
+	NSString *conName = dict[@"controller"];
+	
+	// 3. 创建控制器
+	Class class = NSClassFromString(conName);
+	UIViewController *controller = [class new];
+	
+	// 4. 跳转控制器
+	[self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - Lazy Loading
+- (NSArray *)dataList {
+	
+	if (_dataList) {
+		return _dataList;
 	}
 	
+	_dataList = @[
+				  @{@"title"		: @"YYTextView-Demo",
+					@"controller"	: @"JRYYTextViewController"},
+				  @{@"title"		: @"CoreFoundation-Demo",
+					@"controller"	: @"JRCoreFoundationController"},
+				  @{@"title"		: @"CoreText-Demo",
+					@"controller"	: @"JRCoreTextController"},
+				  ];
 	
+	return _dataList;
 }
 
 @end
