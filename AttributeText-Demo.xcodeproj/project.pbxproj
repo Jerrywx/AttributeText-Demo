@@ -83,6 +83,7 @@
 		3087D4B01E1E027B00D3CADA /* JRNonrectangularRegionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNonrectangularRegionView.m; sourceTree = "<group>"; };
 		3087D4B21E1E10F100D3CADA /* jr_CTFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFont.h; sourceTree = "<group>"; };
 		3087D4B31E1E1C2C00D3CADA /* jr_CTStringAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTStringAttributes.h; sourceTree = "<group>"; };
+		3087D4B41E1E2D3B00D3CADA /* jr_CTLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTLine.h; sourceTree = "<group>"; };
 		308AC7221E137CA000B54AAE /* jr_CGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CGAffineTransform.h; sourceTree = "<group>"; };
 		309CCFE01E08FDE000B23A4D /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
 		30CD5E0B1E13589800E0F2E9 /* jr_CGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_CGContext.h; sourceTree = "<group>"; };
@@ -198,6 +199,7 @@
 				C4238BD81E1DCC4200958034 /* jr_CTFrameRef.h */,
 				3087D4B21E1E10F100D3CADA /* jr_CTFont.h */,
 				3087D4B31E1E1C2C00D3CADA /* jr_CTStringAttributes.h */,
+				3087D4B41E1E2D3B00D3CADA /* jr_CTLine.h */,
 			);
 			path = CoreGraphics;
 			sourceTree = "<group>";

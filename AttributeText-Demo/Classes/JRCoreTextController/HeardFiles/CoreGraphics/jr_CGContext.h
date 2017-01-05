@@ -49,7 +49,6 @@ typedef CF_ENUM (int32_t, CGPathDrawingMode) {
 };
 
 /* Drawing modes for text. */
-
 typedef CF_ENUM (int32_t, CGTextDrawingMode) {
 	kCGTextFill,
 	kCGTextStroke,
@@ -758,20 +757,18 @@ CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
  character and the origin of the next. */
 
 CG_EXTERN void CGContextSetCharacterSpacing(CGContextRef cg_nullable c,
-											CGFloat spacing)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+											CGFloat spacing);
 
-/* Set the user-space point at which text will be drawn in the context `c'
- to `(x, y)'. */
 
+/* Set the user-space point at which text will be drawn in the context `c' to `(x, y)'. */
+/// 设置绘制点
 CG_EXTERN void CGContextSetTextPosition(CGContextRef cg_nullable c,
-										CGFloat x, CGFloat y)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+										CGFloat x, CGFloat y);
 
 /* Return the user-space point at which text will be drawn in `context'. */
+/// 获取绘制点
+CG_EXTERN CGPoint CGContextGetTextPosition(CGContextRef cg_nullable c);
 
-CG_EXTERN CGPoint CGContextGetTextPosition(CGContextRef cg_nullable c)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 
 /* Set the text matrix in the context `c' to `t'. */
 
@@ -785,25 +782,20 @@ CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 CG_EXTERN CGAffineTransform CGContextGetTextMatrix(CGContextRef cg_nullable c)
 CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 
-/* Set the text drawing mode in the current graphics state of the context
- `c' to `mode'. */
-
+/* Set the text drawing mode in the current graphics state of the context `c' to `mode'. */
+/// 设置绘制模式
 CG_EXTERN void CGContextSetTextDrawingMode(CGContextRef cg_nullable c,
-										   CGTextDrawingMode mode)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+										   CGTextDrawingMode mode);
 
-/* Set the font in the current graphics state of the context `c' to
- `font'. */
-
+/* Set the font in the current graphics state of the context `c' to`font'. */
+/// 设置字体 不起作用
 CG_EXTERN void CGContextSetFont(CGContextRef cg_nullable c,
-								CGFontRef cg_nullable font)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+								CGFontRef cg_nullable font);
 
-/* Set the font size in the current graphics state of the context `c' to
- `size'. */
+/* Set the font size in the current graphics state of the context `c' to `size'. */
+/// 设置字体 不起作用
+CG_EXTERN void CGContextSetFontSize(CGContextRef cg_nullable c, CGFloat size);
 
-CG_EXTERN void CGContextSetFontSize(CGContextRef cg_nullable c, CGFloat size)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 
 /* Draw `glyphs', an array of `count' CGGlyphs, at the points specified by
  `positions'. Each element of `positions' specifies the position from the

@@ -20,12 +20,15 @@
 ///
 #import <Masonry.h>
 
+#import <YYImage.h>
+#import <YYAnimatedImageView.h>
+
 
 //////
 #import "JRButton.h"
 #import "JRUserHeader.h"
 
 #import "JRCoreTextController.h"
-
+#import "NSAttributedString+JRExtension.h"
 
 #endif /* FrameWorksHeader_h */

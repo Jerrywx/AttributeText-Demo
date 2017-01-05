@@ -65,6 +65,10 @@
 	CTFrameRef frame = CTFramesetterCreateFrame(framesetter,
 												CFRangeMake(0, 0), path, NULL);
  
+	/// 设置渲染字体
+	CGFontRef cgFont = CGFontCreateWithFontName((CFStringRef)[UIFont boldSystemFontOfSize:20].fontName);
+	CGContextSetFont(context, cgFont);
+	
 	// Draw the specified frame in the given context.
 	CTFrameDraw(frame, context);
  
