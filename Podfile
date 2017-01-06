@@ -4,7 +4,7 @@ platform :ios, '8.0'
 target 'AttributeText-Demo' do
   	
 	#pod 'AsyncDisplayKit', 	'~> 1.9.81'
-	pod 'YYText', 				'~> 1.0.7'
+	pod 'YYText' , 				'~> 1.0.7'
 	pod 'YYImage', '~> 1.0.3'
 	pod 'YYModel', '~> 1.0.4'
 	pod 'SDWebImage', 			'~> 3.8.1'

@@ -113,121 +113,31 @@ CFTypeID CTLineGetTypeID( void ) CT_AVAILABLE(10_5, 3_2);
 /// Creates a single immutable line object directly from an attributed string.
 CTLineRef CTLineCreateWithAttributedString(CFAttributedStringRef attrString );
 
-
-/*!
- @function   CTLineCreateTruncatedLine
- @abstract   Creates a truncated line from an existing line.
- 
- @param      line
- The line that you want to create a truncated line for.
- 
- @param      width
- The width at which truncation will begin. The line will be
- truncated if its width is greater than the width passed in this.
- 
- @param      truncationType
- The type of truncation to perform if needed.
- 
- @param      truncationToken
- This token will be added to the point where truncation took place
- to indicate that the line was truncated. Usually, the truncation
- token is the ellipsis character (U+2026). If this parameter is
- set to NULL, then no truncation token is used, and the line is
- simply cut off. The line specified in truncationToken should have
- a width less than the width specified by the width parameter. If
- the width of the line specified in truncationToken is greater,
- this function will return NULL if truncation is needed.
- 
- @result     This function will return a reference to a truncated CTLine
- object if the call was successful. Otherwise, it will return
- NULL.
- */
-
+/// Creates a truncated line from an existing line.
 CTLineRef __nullable CTLineCreateTruncatedLine(
 											   CTLineRef line,
 											   double width,
 											   CTLineTruncationType truncationType,
-											   CTLineRef __nullable truncationToken ) CT_AVAILABLE(10_5, 3_2);
+											   CTLineRef __nullable truncationToken );
 
-
-/*!
- @function   CTLineCreateJustifiedLine
- @abstract   Creates a justified line from an existing line.
- 
- @param      line
- The line that you want to create a justified line for.
- 
- @param      justificationFactor
- Allows for full or partial justification. When set to 1.0 or
- greater indicates, full justification will be performed. If less
- than 1.0, varying degrees of partial justification will be
- performed. If set to 0 or less, then no justification will be
- performed.
- 
- @param      justificationWidth
- The width to which the resultant line will be justified. If
- justificationWidth is less than the actual width of the line,
- then negative justification will be performed ("text squishing").
- 
- @result     This function will return a reference to a justified CTLine
- object if the call was successful. Otherwise, it will return
- NULL.
- */
-
+/// Creates a justified(对齐线) line from an existing line.
 CTLineRef __nullable CTLineCreateJustifiedLine(
 											   CTLineRef line,
 											   CGFloat justificationFactor,
-											   double justificationWidth ) CT_AVAILABLE(10_5, 3_2);
+											   double justificationWidth );
 
 
 /* --------------------------------------------------------------------------- */
 /* Line Access */
 /* --------------------------------------------------------------------------- */
-
-/*!
- @function   CTLineGetGlyphCount
- @abstract   Returns the total glyph count for the line object.
- 
- @discussion The total glyph count is equal to the sum of all of the glyphs in
- the glyph runs forming the line.
- 
- @param      line
- The line that you want to obtain the glyph count for.
- 
- @result     The total glyph count for the line passed in.
- */
-
-CFIndex CTLineGetGlyphCount(
-							CTLineRef line ) CT_AVAILABLE(10_5, 3_2);
+/// Returns the total glyph count for the line object.
+CFIndex CTLineGetGlyphCount(CTLineRef line );
 
 
-/*!
- @function   CTLineGetGlyphRuns
- @abstract   Returns the array of glyph runs that make up the line object.
- 
- @param      line
- The line that you want to obtain the glyph run array for.
- 
- @result     A CFArrayRef containing the CTRun objects that make up the line.
- */
+/// Returns the array of glyph runs that make up the line object.
+CFArrayRef CTLineGetGlyphRuns(CTLineRef line );
 
-CFArrayRef CTLineGetGlyphRuns(
-							  CTLineRef line ) CT_AVAILABLE(10_5, 3_2);
-
-
-/*!
- @function   CTLineGetStringRange
- @abstract   Gets the range of characters that originally spawned the glyphs
- in the line.
- 
- @param      line
- The line that you want to obtain the string range from.
- 
- @result     A CFRange that contains the range over the backing store string
- that spawned the glyphs. If the function fails for any reason, an
- empty range will be returned.
- */
-
+/// Gets the range of characters that originally spawned the glyphs in the line.
 CFRange CTLineGetStringRange(
 							 CTLineRef line ) CT_AVAILABLE(10_5, 3_2);
 
@@ -266,35 +176,7 @@ void CTLineDraw(CTLineRef line, CGContextRef context );
 /* Line Measurement */
 /* --------------------------------------------------------------------------- */
 
-/*!
- @function   CTLineGetTypographicBounds
- @abstract   Calculates the typographic bounds for a line.
- 
- @discussion A line's typographic width is the distance to the rightmost
- glyph advance width edge. Note that this distance includes
- trailing whitespace glyphs.
- 
- @param      line
- The line that you want to calculate the typographic bounds for.
- 
- @param      ascent
- Upon return, this parameter will contain the ascent of the line.
- This may be set to NULL if not needed.
- 
- @param      descent
- Upon return, this parameter will contain the descent of the line.
- This may be set to NULL if not needed.
- 
- @param      leading
- Upon return, this parameter will contain the leading of the line.
- This may be set to NULL if not needed.
- 
- @result     The typographic width of the line. If line is invalid, this
- function will always return zero.
- 
- @seealso    CTLineGetTrailingWhitespaceWidth
- */
-
+/// Calculates the typographic bounds for a line.
 double CTLineGetTypographicBounds(
 								  CTLineRef line,
 								  CGFloat * __nullable ascent,

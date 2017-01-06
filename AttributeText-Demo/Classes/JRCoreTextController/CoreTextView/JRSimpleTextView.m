@@ -16,7 +16,7 @@
 	CFStringRef string; CTFontRef font; CGContextRef context;
 	
 	/// 创建 CFStringRef
-	string = CFSTR("Where are you：这个设置比较特别，因为 Alfred 内置了常用网站搜索功能，在这里设置了你所在的国家后，Alfred 在搜索时会打开搜索网站对应国家的网站。");
+	string = CFSTR("Where are you：这个设。Calculates the trailing whitespace width for a line.");
 	
 	/// 创建 CTFontRef
 	font = CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:14].fontName, 24, NULL);
@@ -50,13 +50,13 @@
 //	line = CTLineCreateTruncatedLine(line, 15, kCTLineTruncationEnd, line);
 	
 	/// \u2026 是 Unicode编码 ...
-	NSAttributedString *truncatedString = [[NSAttributedString alloc] initWithString:@"\u2026\u2026"];
-	CTLineRef token = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)truncatedString);
-	
-//	CTLineTruncationType ltt = kCTLineTruncationStart;
-//	CTLineTruncationType ltt = kCTLineTruncationMiddle;
-	CTLineTruncationType ltt = kCTLineTruncationEnd;
-	line = CTLineCreateTruncatedLine(line, self.bounds.size.width, ltt, token);
+//	NSAttributedString *truncatedString = [[NSAttributedString alloc] initWithString:@"\u2026\u2026"];
+//	CTLineRef token = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)truncatedString);
+//	
+////	CTLineTruncationType ltt = kCTLineTruncationStart;
+////	CTLineTruncationType ltt = kCTLineTruncationMiddle;
+//	CTLineTruncationType ltt = kCTLineTruncationEnd;
+//	line = CTLineCreateTruncatedLine(line, self.bounds.size.width, ltt, token);
  
 	/// 设置绘制点
 	CGContextSetTextPosition(context, 0.0, 10.0);
@@ -72,6 +72,18 @@
 //	CGFontRef cgFont = CGFontCreateWithFontName((CFStringRef)[UIFont boldSystemFontOfSize:20].fontName);
 //	CGContextSetFont(context, cgFont);
 
+	////
+	CFIndex index = CTLineGetGlyphCount(line);
+//	NSLog(@"===== %zd", index);
+	
+	////
+//	CGRect re = CTLineGetBoundsWithOptions(line, kCTLineBoundsIncludeLanguageExtents);
+//	NSLog(@"=== %@", NSStringFromCGRect(re));
+	
+	////
+	double width =  CTLineGetTrailingWhitespaceWidth(line);
+	NSLog(@"===== %f", width);
+	
 	/// 绘制
 	CTLineDraw(line, context);
 	/// 释放
