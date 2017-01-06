@@ -26,77 +26,83 @@
 
 	self.title = @"Core Image";
 	self.view.backgroundColor = [UIColor whiteColor];
-//
-//	///
+
 	self.label = [YYLabel new];
 	self.label.textVerticalAlignment = YYTextVerticalAlignmentTop;
-	self.label.size = CGSizeMake(SCREEN_W - 40, 110);
-	self.label.centerX = SCREEN_W * 0.5;
-	self.label.centerY = 200;
-//	self.label.text
-	NSString *string = @"我们在绘制图像前操作CTM来旋转、缩放或平移page,从而变换我们将要绘制的对象。以变换CTM之前，我们需要保存图形状态，以便绘制后能恢复。我们同样能用仿射矩阵来联结CTM。在本节中，我们将介绍与CTM函数相关的四种操作--平移、旋转、缩放和联结。";
+	self.label.size		= CGSizeMake(SCREEN_W - 40, MAXFLOAT);
+	self.label.centerX	= SCREEN_W * 0.5;
+	self.label.centerY	= 200;
+	self.label.font		= [UIFont systemFontOfSize:18];
+
+	NSString *string = @"http://m.zongheng.com/h5/book?bookid=635757《绝品邪帝》来访求各位朋友们眼熟！！";
 	
 	NSAttributedString *aString = [NSAttributedString attributedString:string 
 															 textColor:[UIColor grayColor] 
 															  textFont:[UIFont systemFontOfSize:16] 
-														 textLineSpace:5];
-
-//	NSAttributedString *aString = [NSAttributedString getNickName:string 
-//															image:[UIImage imageNamed:@"vote"] 
-//															color:[UIColor grayColor] 
-//															 font:[UIFont systemFontOfSize:16] 
-//														   margin:5 
-//														imageMode:UIViewContentModeLeft 
-//														 isHeader:YES];
-	
-	self.label.attributedText = aString;
+														 textLineSpace:6];
+//	self.label.attributedText	= aString;
+	self.label.text				= string;
+	self.label.numberOfLines	= 0;
+	CGSize size					= [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, 0)];
+	self.label.size				= size;
+	self.label.centerY			= 200;
+	self.label.backgroundColor	= [UIColor orangeColor];
 	[self.view addSubview:self.label];
-	self.label.numberOfLines = 3;
-	CGSize size		= [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, 0)];
-	self.label.size = size;
-	self.label.backgroundColor = [UIColor orangeColor];
-	
-	
-	
-//	NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"uartz 2D 绘制模型定义了两种独立的坐标空间：用户空间(用于表现文档页)和设备空间(用于表现设备的本地分辨率)。用户坐标空间用浮点数表示坐标，与设备空间的像素分辨率没有关系。当我们需要一个点或者显示文档时"];
-//
-//	_label = [YYLabel new];
-//	_label.textVerticalAlignment = YYTextVerticalAlignmentTop;
-//	_label.size = CGSizeMake(260, 260);
-//	_label.center = CGPointMake(SCREEN_W / 2, SCREEN_H / 2 - 0);
-//	[self.view addSubview:_label];
-//	_label.attributedText	= text;
-//	_label.numberOfLines	= 2;
-//	size = [_label sizeThatFits:CGSizeMake(260, 0)];
-//	_label.size = size;
-//	_label.backgroundColor = [UIColor orangeColor];
-	
-//	[self demo1];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-	
-	NSString *string = @"我们在绘制图像前操作CTM来旋是大大说阿萨德、缩放和联结。";
-	
-	//	NSAttributedString *aString = [NSAttributedString attributedString:string
-	//															 textColor:[UIColor grayColor]
-	//															  textFont:[UIFont systemFontOfSize:16]
-	//														 textLineSpace:5];
-	
-	NSAttributedString *aString = [NSAttributedString getNickName:string
-															image:[UIImage imageNamed:@"vote"]
-															color:[UIColor grayColor]
-															 font:[UIFont systemFontOfSize:16]
-														   margin:5
-														imageMode:UIViewContentModeLeft
-														 isHeader:YES];
 
-	self.label.attributedText = aString;
-	self.label.numberOfLines = 3;
-	CGSize size		= [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, 0)];
-	self.label.size = size;
+//	NSAttributedString *aString = [self getAttributedString];
+//	self.label.height			= MAXFLOAT;
+//	self.label.numberOfLines	= 3;
+//	self.label.attributedText	= aString;
+//
+//	CGSize size					= [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, 0)];
+//	self.label.size				= size;
+//	self.label.centerY			= 200;
+//	NSLog(@"------- %f - %f = %zd", size.width, size.height, aString.string.length);
 }
 
+///
+- (NSAttributedString *)getAttributedString {
+	
+	NSMutableAttributedString *aString = [NSMutableAttributedString new];
+	UIFont *font = [UIFont systemFontOfSize:16];
+	
+	[aString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Thasdax撒啊撒adfadfasdfasssasas fsdf d啊撒是fasdf sadString:" attributes:nil]];
+	
+	NSArray *names = @[@"冷笑", @"亲亲", @"吐舌头", @"委屈", @"笑哭", @"呵呵",@"冷笑", @"亲亲", @"吐舌头", @"委屈", @"笑哭", @"呵呵"];
+	
+//	for (NSString *name in names) {
+//
+//		UIImage *img   = [UIImage imageNamed:name];
+//		NSData *data = UIImagePNGRepresentation(img);
+//		YYImage *image	= [YYImage imageWithData:data scale:3];
+//
+//		NSMutableAttributedString *attachText
+//			= [NSMutableAttributedString yy_attachmentStringWithContent:image
+//															contentMode:UIViewContentModeCenter
+//														 attachmentSize:CGSizeMake(21, 20)
+//															alignToFont:font
+//															  alignment:YYTextVerticalAlignmentCenter];
+//		[aString appendAttributedString:attachText];
+//	}
+	
+//	UIImage *image = [UIImage imageNamed:@"ggg"];
+//	NSMutableAttributedString *attachText
+//		= [NSMutableAttributedString yy_attachmentStringWithContent:image 
+//														contentMode:UIViewContentModeScaleAspectFit
+//													 attachmentSize:CGSizeMake(20, 20) 
+//														alignToFont:font 
+//														  alignment:YYTextVerticalAlignmentCenter];
+//	[aString appendAttributedString:attachText];
+	
+	[aString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
+	
+	return aString;
+}
+
+////
 - (void)demo1 {
 	
 	UIImage *image = [UIImage imageNamed:@"apple.jpg"];
