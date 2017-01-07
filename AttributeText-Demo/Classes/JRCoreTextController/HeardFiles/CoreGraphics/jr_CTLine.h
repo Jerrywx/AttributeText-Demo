@@ -138,8 +138,7 @@ CFIndex CTLineGetGlyphCount(CTLineRef line );
 CFArrayRef CTLineGetGlyphRuns(CTLineRef line );
 
 /// Gets the range of characters that originally spawned the glyphs in the line.
-CFRange CTLineGetStringRange(
-							 CTLineRef line ) CT_AVAILABLE(10_5, 3_2);
+CFRange CTLineGetStringRange(CTLineRef line );
 
 
 /*!

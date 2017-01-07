@@ -16,7 +16,7 @@
 	CFStringRef string; CTFontRef font; CGContextRef context;
 	
 	/// 创建 CFStringRef
-	string = CFSTR("Where are you：这个设。Calculates the trailing whitespace width for a line.");
+	string = CFSTR("Where are you：这个设。CA");
 	
 	/// 创建 CTFontRef
 	font = CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:14].fontName, 24, NULL);
@@ -73,7 +73,7 @@
 //	CGContextSetFont(context, cgFont);
 
 	////
-	CFIndex index = CTLineGetGlyphCount(line);
+//	CFIndex index = CTLineGetGlyphCount(line);
 //	NSLog(@"===== %zd", index);
 	
 	////
@@ -81,8 +81,21 @@
 //	NSLog(@"=== %@", NSStringFromCGRect(re));
 	
 	////
+	CFRange range = CTLineGetStringRange(line);
+//	NSLog(@"------ %ld - %ld", range.location, range.length);
+	
+	////
 	double width =  CTLineGetTrailingWhitespaceWidth(line);
-	NSLog(@"===== %f", width);
+//	NSLog(@"===== %f", width);
+	
+	////
+	CGFloat leading, ascent, descent, offset, offset2;
+	
+	offset	= CTLineGetOffsetForStringIndex(line, range.location, NULL);
+	offset2 = CTLineGetOffsetForStringIndex(line, range.length, NULL);
+	NSLog(@"===== %f - %f", offset, offset2);
+	CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+	NSLog(@"------ %f - %f - %f", ascent, descent, leading);
 	
 	/// 绘制
 	CTLineDraw(line, context);
