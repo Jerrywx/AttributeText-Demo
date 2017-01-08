@@ -93,9 +93,25 @@
 	
 	offset	= CTLineGetOffsetForStringIndex(line, range.location, NULL);
 	offset2 = CTLineGetOffsetForStringIndex(line, range.length, NULL);
-	NSLog(@"===== %f - %f", offset, offset2);
+//	NSLog(@"===== %f - %f", offset, offset2);
 	CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
-	NSLog(@"------ %f - %f - %f", ascent, descent, leading);
+//	NSLog(@"------ %f - %f - %f", ascent, descent, leading);
+	
+	////
+	
+	CFMutableAttributedStringRef attriString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
+ 
+	// Copy the textString into the newly created attrString
+	CFAttributedStringReplaceString (attriString, CFRangeMake(0, 0),
+									 string);
+	
+	CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(
+									(CFAttributedStringRef)attriString);
+	CFRange rangeToSize = CFRangeMake(0, [@"Where are you：这个设。CA" length]);
+	CGSize constraints = CGSizeMake(SCREEN_W - 40, MAXFLOAT);
+	CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, rangeToSize, NULL, constraints, NULL);
+	NSLog(@"========= %f - %f", suggestedSize.width, suggestedSize.height);
+	
 	
 	/// 绘制
 	CTLineDraw(line, context);

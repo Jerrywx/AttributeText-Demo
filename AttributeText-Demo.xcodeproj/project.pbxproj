@@ -159,6 +159,7 @@
 		C48275591D91947B0032EE10 /* JRButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRButton.m; sourceTree = "<group>"; };
 		C482755F1D919EFC0032EE10 /* JRForumDetialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRForumDetialController.h; sourceTree = "<group>"; };
 		C48275601D919EFC0032EE10 /* JRForumDetialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRForumDetialController.m; sourceTree = "<group>"; };
+		C4835A761E215C9A0096CE0D /* jr_CFAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CFAttributedString.h; sourceTree = "<group>"; };
 		C498687F1D92C693009223A1 /* JRThreadDetialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRThreadDetialController.h; sourceTree = "<group>"; };
 		C49868801D92C693009223A1 /* JRThreadDetialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRThreadDetialController.m; sourceTree = "<group>"; };
 		C49868831D92C693009223A1 /* JRThreadHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRThreadHeader.h; sourceTree = "<group>"; };
@@ -372,6 +373,7 @@
 			children = (
 				C42E98941E16A45C004A6159 /* jr_CFString.h */,
 				C42668FD1E17509D00D945B3 /* jr_CFDictionary.h */,
+				C4835A761E215C9A0096CE0D /* jr_CFAttributedString.h */,
 			);
 			path = CoreFoundation;
 			sourceTree = "<group>";

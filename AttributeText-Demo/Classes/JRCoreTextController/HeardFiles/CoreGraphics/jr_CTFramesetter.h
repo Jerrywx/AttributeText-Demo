@@ -96,7 +96,7 @@ CTFramesetterRef CTFramesetterCreateWithAttributedString(
  
 	@result		This function will return a reference to a new CTFrame object.
  */
-
+/// Creates an immutable frame from a framesetter.
 CTFrameRef CTFramesetterCreateFrame(
 									CTFramesetterRef framesetter,
 									CFRange stringRange,

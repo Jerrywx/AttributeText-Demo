@@ -32,7 +32,7 @@
 	CGRect bounds = CGRectMake(0.0, 0.0, rect.size.width, rect.size.height);
 	CGPathAddRect(path, NULL, bounds );
 	// 6. 创建 CFStringRef 字符串
-	CFStringRef textString = CFSTR("Hello, World! I know nothing in the world that has as much power as a word. Sometimes I write one, and I look at it, until it begins to shine.");
+	CFStringRef textString = CFSTR("Hello, World! I know nothing in the world that has as much power as a word. Sometimes I write one, and I look at it, until it begins to shine.Sometimes I write one, and I look a是啊啊撒是按时按时啊是按时");
  
 	// Create a mutable attributed string with a max length of 0.
 	// The max length is a hint as to how much internal storage to reserve.
@@ -72,6 +72,49 @@
 	// Draw the specified frame in the given context.
 	CTFrameDraw(frame, context);
  
+	////////////////////////////////////////////////////////////////////////////
+	// 获取 CFLineRef 数组
+	CFArrayRef lines = CTFrameGetLines(frame);
+	// 获取最后一个 CFLineRef
+	CTLineRef lastVisibleLine = CFArrayGetValueAtIndex(lines, CFArrayGetCount(lines) - 1);
+	// 获取最后一个 CFLineRef 的 CFRange
+	CFRange rangeToLayout = CTLineGetStringRange(lastVisibleLine);
+	NSLog(@"CFRange: %zd   %zd - %zd", CFArrayGetCount(lines),
+		  rangeToLayout.location, rangeToLayout.length);
+	// 获取 CGSize
+	CGSize constraints	 = CGSizeMake(SCREEN_W - 40, MAXFLOAT);
+	CFRange rangeToSize  = CFRangeMake(0, rangeToLayout.location + rangeToLayout.length);
+	CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, rangeToSize, NULL, constraints, NULL);
+	NSLog(@"CGSize: %f - %f", suggestedSize.width, suggestedSize.height);
+	
+	// 获取每个 CTLineRef 的 CGPoint
+	CGPoint lineOrigins[CFArrayGetCount(lines)];
+	CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), lineOrigins);
+	for (int i=0; i<CFArrayGetCount(lines); i++) {
+		CGPoint p = lineOrigins[i];
+		
+		CTLineRef line = CFArrayGetValueAtIndex(lines, i);
+		CGFloat lineAscent;
+		CGFloat lineDescent;
+		CGFloat lineLeading;
+		CTLineGetTypographicBounds(line, &lineAscent, &lineDescent, &lineLeading);
+		CFArrayRef runs = CTLineGetGlyphRuns(line);
+		NSLog(@"point: %f - %f  %f %f %f --- %ld", p.x, p.y, lineAscent,
+			  lineDescent, lineLeading, CFArrayGetCount(runs));
+		
+		for (int j = 0; j < CFArrayGetCount(runs); j++) {
+			CTRunRef run = CFArrayGetValueAtIndex(runs, j);
+			// run的属性字典
+			NSDictionary* attributes = (NSDictionary*)CTRunGetAttributes(run);
+//			NSLog(@"-------d %@", attributes);
+			CGFloat runAscent;
+			CGFloat runDescent;
+			CGFloat runWidth  = CTRunGetTypographicBounds(run, CFRangeMake(0,0), &runAscent, &runDescent, NULL);
+			NSLog(@"-------d %f - %f - %f", runAscent, runDescent, runWidth);
+		}
+		
+	}
+	
 	// Release the objects we used.
 	CFRelease(frame);
 	CFRelease(path);
