@@ -656,14 +656,15 @@ CG_EXTERN void CGContextSetRenderingIntent(CGContextRef cg_nullable c,
 										   CGColorRenderingIntent intent)
 CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 
+
+/* --------------------------------------------------------------------------- */
 /** Image functions. **/
+/* --------------------------------------------------------------------------- */
 
-/* Draw `image' in the rectangular area specified by `rect' in the context
- `c'. The image is scaled, if necessary, to fit into `rect'. */
-
-CG_EXTERN void CGContextDrawImage(CGContextRef cg_nullable c, CGRect rect,
-								  CGImageRef cg_nullable image)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+/// 绘制图片
+void CGContextDrawImage(CGContextRef cg_nullable c,
+						CGRect rect, 
+						CGImageRef cg_nullable image);
 
 /* Draw `image' tiled in the context `c'. The image is scaled to the size
  specified by `rect' in user space, positioned at the origin of `rect' in
@@ -672,9 +673,9 @@ CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
  Unlike patterns, the image is tiled in user space, so transformations
  applied to the CTM affect the final result. */
 
-CG_EXTERN void CGContextDrawTiledImage(CGContextRef cg_nullable c, CGRect rect,
-									   CGImageRef cg_nullable image)
-CG_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
+CG_EXTERN void CGContextDrawTiledImage(CGContextRef cg_nullable c,
+									   CGRect rect,
+									   CGImageRef cg_nullable image);
 
 /* Return the interpolation quality for image rendering of `context'. The
  interpolation quality is a gstate parameter which controls the level of
@@ -689,10 +690,11 @@ CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 /* Set the interpolation quality of `context' to `quality'. */
 
 CG_EXTERN void CGContextSetInterpolationQuality(CGContextRef cg_nullable c,
-												CGInterpolationQuality quality)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+												CGInterpolationQuality quality);
 
+/* --------------------------------------------------------------------------- */
 /** Shadow support. **/
+/* --------------------------------------------------------------------------- */
 
 /* Set the shadow parameters in `context'. `offset' specifies a translation
  in base-space; `blur' is a non-negative number specifying the amount of
@@ -806,15 +808,18 @@ CG_EXTERN void CGContextShowGlyphsAtPositions(CGContextRef cg_nullable c,
 											  size_t count)
 CG_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
 
+/* --------------------------------------------------------------------------- */
 /** PDF functions. **/
+/* --------------------------------------------------------------------------- */
 
 /* Draw `page' in the current user space of the context `c'. */
 
 CG_EXTERN void CGContextDrawPDFPage(CGContextRef cg_nullable c,
-									CGPDFPageRef cg_nullable page)
-CG_AVAILABLE_STARTING(__MAC_10_3, __IPHONE_2_0);
+									CGPDFPageRef cg_nullable page);
 
+/* --------------------------------------------------------------------------- */
 /** Output page functions. **/
+/* --------------------------------------------------------------------------- */
 
 /* Begin a new page. */
 
@@ -827,7 +832,9 @@ CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 CG_EXTERN void CGContextEndPage(CGContextRef cg_nullable c)
 CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 
+/* --------------------------------------------------------------------------- */
 /** Context functions. **/
+/* --------------------------------------------------------------------------- */
 
 /* Equivalent to `CFRetain(c)'. */
 
@@ -849,34 +856,32 @@ CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 CG_EXTERN void CGContextSynchronize(CGContextRef cg_nullable c)
 CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 
+/* --------------------------------------------------------------------------- */
 /** Antialiasing functions. **/
+/* --------------------------------------------------------------------------- */
 
 /* Turn on antialiasing if `shouldAntialias' is true; turn it off otherwise.
  This parameter is part of the graphics state. */
 
-CG_EXTERN void CGContextSetShouldAntialias(CGContextRef cg_nullable c,
-										   bool shouldAntialias)
-CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+CG_EXTERN void CGContextSetShouldAntialias(CGContextRef cg_nullable c, bool shouldAntialias);
 
 /* Allow antialiasing in `context' if `allowsAntialiasing' is true; don't
  allow it otherwise. This parameter is not part of the graphics state. A
  context will perform antialiasing if both `allowsAntialiasing' and the
  graphics state parameter `shouldAntialias' are true. */
 
-CG_EXTERN void CGContextSetAllowsAntialiasing(CGContextRef cg_nullable c,
-											  bool allowsAntialiasing)
-CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
+CG_EXTERN void CGContextSetAllowsAntialiasing(CGContextRef cg_nullable c, bool allowsAntialiasing);
 
+/* --------------------------------------------------------------------------- */
 /** Font display functions. **/
+/* --------------------------------------------------------------------------- */
 
 /* Turn on font smoothing if `shouldSmoothFonts' is true; turn it off
  otherwise. This parameter is part of the graphics state. Note that this
  doesn't guarantee that font smoothing will occur: not all destination
  contexts support font smoothing. */
 
-CG_EXTERN void CGContextSetShouldSmoothFonts(CGContextRef cg_nullable c,
-											 bool shouldSmoothFonts)
-CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
+CG_EXTERN void CGContextSetShouldSmoothFonts(CGContextRef cg_nullable c, bool shouldSmoothFonts);
 
 /* If `allowsFontSmoothing' is true, then allow font smoothing when
  displaying text in `context'; otherwise, don't allow font smoothing. This
@@ -885,8 +890,7 @@ CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
  graphics state parameter `shouldSmoothFonts' are true. */
 
 CG_EXTERN void CGContextSetAllowsFontSmoothing(CGContextRef cg_nullable c,
-											   bool allowsFontSmoothing)
-CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
+											   bool allowsFontSmoothing);
 
 /* If `shouldSubpixelPositionFonts' is true, then glyphs may be placed at
  subpixel positions (if allowed) when displaying text in `context';
@@ -894,8 +898,7 @@ CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
  parameter is part of the graphics state. */
 
 CG_EXTERN void CGContextSetShouldSubpixelPositionFonts(
-													   CGContextRef cg_nullable c, bool shouldSubpixelPositionFonts)
-CG_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
+													   CGContextRef cg_nullable c, bool shouldSubpixelPositionFonts);
 
 /* If `allowsFontSubpixelPositioning' is true, then allow font subpixel
  positioning when displaying text in `context'; otherwise, don't allow
@@ -925,10 +928,11 @@ CG_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
  state parameter `shouldSubpixelQuantizeFonts' are both true. */
 
 CG_EXTERN void CGContextSetAllowsFontSubpixelQuantization(
-														  CGContextRef cg_nullable c, bool allowsFontSubpixelQuantization)
-CG_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
+														  CGContextRef cg_nullable c, bool allowsFontSubpixelQuantization);
 
+/* --------------------------------------------------------------------------- */
 /** Transparency layer support. **/
+/* --------------------------------------------------------------------------- */
 
 /* Begin a transparency layer in `context'. All subsequent drawing
  operations until a corresponding `CGContextEndTransparencyLayer' are
@@ -963,38 +967,35 @@ CG_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
 CG_EXTERN void CGContextEndTransparencyLayer(CGContextRef cg_nullable c)
 CG_AVAILABLE_STARTING(__MAC_10_3, __IPHONE_2_0);
 
+/* --------------------------------------------------------------------------- */
 /** User space to device space tranformations. **/
+/* --------------------------------------------------------------------------- */
 
 /* Return the affine transform mapping the user space (abstract coordinates)
  of `context' to device space (pixels). */
 
 CG_EXTERN CGAffineTransform
-CGContextGetUserSpaceToDeviceSpaceTransform(CGContextRef cg_nullable c)
-CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
+CGContextGetUserSpaceToDeviceSpaceTransform(CGContextRef cg_nullable c);
 
 /* Transform `point' from the user space of `context' to device space. */
 
 CG_EXTERN CGPoint CGContextConvertPointToDeviceSpace(CGContextRef cg_nullable c,
-													 CGPoint point)
-CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
+													 CGPoint point);
 
 /* Transform `point' from device space to the user space of `context'. */
 
 CG_EXTERN CGPoint CGContextConvertPointToUserSpace(CGContextRef cg_nullable c,
-												   CGPoint point)
-CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
+												   CGPoint point);
 
 /* Transform `size' from the user space of `context' to device space. */
 
 CG_EXTERN CGSize CGContextConvertSizeToDeviceSpace(CGContextRef cg_nullable c,
-												   CGSize size)
-CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
+												   CGSize size);
 
 /* Transform `size' from device space to the user space of `context'. */
 
 CG_EXTERN CGSize CGContextConvertSizeToUserSpace(CGContextRef cg_nullable c,
-												 CGSize size)
-CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
+												 CGSize size);
 
 /* Transform `rect' from the user space of `context' to device space. Since
  affine transforms do not preserve rectangles in general, this function
@@ -1011,10 +1012,11 @@ CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
  points of `rect'. */
 
 CG_EXTERN CGRect CGContextConvertRectToUserSpace(CGContextRef cg_nullable c,
-												 CGRect rect)
-CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
+												 CGRect rect);
 
-/** Deprecated functions. **/
+/* --------------------------------------------------------------------------- */
+/** Deprecated functions. 放弃**/
+/* --------------------------------------------------------------------------- */
 
 /* DEPRECATED; use the CoreText API instead. */
 
@@ -1065,12 +1067,6 @@ CG_EXTERN void CGContextDrawPDFDocument(CGContextRef cg_nullable c, CGRect rect,
 										CGPDFDocumentRef cg_nullable document, int page)
 CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_5,
 							__IPHONE_NA, __IPHONE_NA);
-
-CF_ASSUME_NONNULL_END
-
-CF_IMPLICIT_BRIDGING_DISABLED
-
-#endif /* CGCONTEXT_H_ */
 
 
 

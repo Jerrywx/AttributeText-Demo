@@ -10,20 +10,6 @@
 #define jr_CTFont_h
 
 
-#ifndef __CTFONT__
-#define __CTFONT__
-
-#include <CoreText/CTDefines.h>
-#include <CoreText/CTFontDescriptor.h>
-
-#include <CoreGraphics/CGFont.h>
-#include <CoreGraphics/CGPath.h>
-#include <CoreGraphics/CGContext.h>
-
-CF_IMPLICIT_BRIDGING_ENABLED
-CF_EXTERN_C_BEGIN
-CF_ASSUME_NONNULL_BEGIN
-
 /*! --------------------------------------------------------------------------
  @group Font Types
  *///--------------------------------------------------------------------------

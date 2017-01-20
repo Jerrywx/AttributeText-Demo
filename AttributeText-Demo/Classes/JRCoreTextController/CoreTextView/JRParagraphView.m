@@ -11,9 +11,6 @@
 @implementation JRParagraphView
 
 
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 	
@@ -34,9 +31,6 @@
 	// 6. 创建 CFStringRef 字符串
 	CFStringRef textString = CFSTR("Hello, World! I know nothing in the world that has as much power as a word. Sometimes I write one, and I look at it, until it begins to shine.Sometimes I write one, and I look a是啊啊撒是按时按时啊是按时");
  
-	// Create a mutable attributed string with a max length of 0.
-	// The max length is a hint as to how much internal storage to reserve.
-	// 0 means no hint.
 	///
 	CFMutableAttributedStringRef attrString =
 	CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);

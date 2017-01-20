@@ -92,6 +92,8 @@
 					@"controller"	: @"JRCoreFoundationController"},
 				  @{@"title"		: @"CoreText-Demo",
 					@"controller"	: @"JRCoreTextController"},
+				  @{@"title"		: @"CoreText",
+					@"controller"	: @"JRCoreViewController"},
 				  ];
 	
 	return _dataList;

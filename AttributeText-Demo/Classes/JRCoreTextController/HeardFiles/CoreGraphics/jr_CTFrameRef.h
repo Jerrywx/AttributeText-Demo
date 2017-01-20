@@ -243,37 +243,7 @@ CFArrayRef CTFrameGetLines(
 						   CTFrameRef frame ) CT_AVAILABLE(10_5, 3_2);
 
 
-/*!
-	@function	CTFrameGetLineOrigins
-	@abstract	Copies a range of line origins for a frame.
- 
-	@discussion	This function will copy a range of CGPoint structures. Each
- CGPoint is the origin of the corresponding line in the array of
- lines returned by CTFrameGetLines, relative to the origin of the
- frame's path. The maximum number of line origins returned by
- this function is the count of the array of lines.
- 
-	@param		frame
- The frame that you want to obtain the line origin array from.
- 
-	@param		range
- The range of line origins you wish to copy. If the length of the
- range is set to 0, then the copy operation will continue from
- the range's start index to the last line origin.
- 
-	@param		origins
- The buffer to which the origins will be copied. The buffer must
- have at least as many elements as specified by range's length.
- When using the origins to calculate measurements for a frame's
- contents, remember that line origins do not always correspond to
- line metrics; paragraph style settings can affect line origins,
- for one. The overall typographic bounds of a frame may generally
- be calculated as the difference between the top of the frame and
- the descent of the last line. This will obviously exclude any
- spacing following the last line, but such spacing has no effect
- on framesetting in the first place.
- */
-
+/// 获取所有 CTLine 的显示点 CTFrameGetLineOrigins
 void CTFrameGetLineOrigins(
 						   CTFrameRef frame,
 						   CFRange range,

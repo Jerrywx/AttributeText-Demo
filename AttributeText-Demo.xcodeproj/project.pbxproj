@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */; };
 		304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C31E08D987004BDE4A /* JRTextViewViewController.m */; };
 		304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */; };
 		3087D4A51E1DEBB700D3CADA /* JRSimpleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3087D4A41E1DEBB700D3CADA /* JRSimpleTextView.m */; };
@@ -67,6 +68,9 @@
 
 /* Begin PBXFileReference section */
 		248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		3032F0E01E31B6EA0091F0BC /* JRCoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreViewController.h; sourceTree = "<group>"; };
+		3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreViewController.m; sourceTree = "<group>"; };
+		3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFontManager.h; sourceTree = "<group>"; };
 		304288C21E08D987004BDE4A /* JRTextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextViewViewController.h; sourceTree = "<group>"; };
 		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
 		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
@@ -183,6 +187,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3032F0DB1E31B6120091F0BC /* JRBaseCoreController */ = {
+			isa = PBXGroup;
+			children = (
+				3032F0DF1E31B6EA0091F0BC /* Controllers */,
+				3032F0E21E31B6EA0091F0BC /* Views */,
+			);
+			path = JRBaseCoreController;
+			sourceTree = "<group>";
+		};
+		3032F0DF1E31B6EA0091F0BC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3032F0E01E31B6EA0091F0BC /* JRCoreViewController.h */,
+				3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3032F0E21E31B6EA0091F0BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		30CD5E091E13589800E0F2E9 /* HeardFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +232,7 @@
 				3087D4B31E1E1C2C00D3CADA /* jr_CTStringAttributes.h */,
 				3087D4B41E1E2D3B00D3CADA /* jr_CTLine.h */,
 				C43741971E1FF3E700FAD830 /* jr_CTFrame.h */,
+				3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */,
 			);
 			path = CoreGraphics;
 			sourceTree = "<group>";
@@ -226,6 +256,7 @@
 				C43EDF721E0A862C00893611 /* JRBlurViewController */,
 				C41D53B01E0D6DF600DEDFF9 /* JRCoreImageController */,
 				C42600121E115C530022C4D5 /* JRCoreTextController */,
+				3032F0DB1E31B6120091F0BC /* JRBaseCoreController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -655,6 +686,7 @@
 				C41D53B31E0D6E1100DEDFF9 /* JRCoreImageController.m in Sources */,
 				3087D4A81E1DEC0100D3CADA /* JRColumnarLayoutView.m in Sources */,
 				C42E98971E16A99E004A6159 /* JRCoreFoundationController.m in Sources */,
+				3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */,
 				C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */,
 				C48275641D919EFC0032EE10 /* JRForumDetialController.m in Sources */,
 				30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */,
