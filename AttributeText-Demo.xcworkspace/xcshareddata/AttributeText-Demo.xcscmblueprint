@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "52F5E93CC67AE66DFD03DF9B7A922F598682933A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "33E9C9F5E8D69D30A16D121CCE085D7F7AA442F3" : 9223372036854775807,
+    "52F5E93CC67AE66DFD03DF9B7A922F598682933A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5A13497E-78B7-4DA4-B7E2-0580CBB74311",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "33E9C9F5E8D69D30A16D121CCE085D7F7AA442F3" : "AttributeText-Demo\/AttributeText-Demo\/Classes\/FrameWorks\/preview-transition\/",
+    "52F5E93CC67AE66DFD03DF9B7A922F598682933A" : "AttributeText-Demo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AttributeText-Demo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AttributeText-Demo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Ramotion\/preview-transition.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "33E9C9F5E8D69D30A16D121CCE085D7F7AA442F3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jerrywx\/AttributeText-Demo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "52F5E93CC67AE66DFD03DF9B7A922F598682933A"
+    }
+  ]
+}

@@ -12,7 +12,7 @@
 ///
 #import <MBProgressHUD.h>
 ///
-#import <YYText.h>
+#import "YYText.h"
 ///
 #import <colours.h>
 ///
