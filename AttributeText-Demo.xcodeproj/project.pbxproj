@@ -799,7 +799,7 @@
 				TargetAttributes = {
 					C40D94721D7FAE0900E512ED = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = B5SJ8JYP65;
+						DevelopmentTeam = 58VU78V7N6;
 					};
 				};
 			};
@@ -1089,12 +1089,12 @@
 			baseConfigurationReference = 248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B5SJ8JYP65;
+				DEVELOPMENT_TEAM = 58VU78V7N6;
 				GCC_PREFIX_HEADER = "AttributeText-Demo/PrefixHeader.pch";
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jerry.AttributeText-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.youranmuye2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1104,12 +1104,12 @@
 			baseConfigurationReference = 519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B5SJ8JYP65;
+				DEVELOPMENT_TEAM = 58VU78V7N6;
 				GCC_PREFIX_HEADER = "AttributeText-Demo/PrefixHeader.pch";
 				INFOPLIST_FILE = "AttributeText-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jerry.AttributeText-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.youranmuye2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

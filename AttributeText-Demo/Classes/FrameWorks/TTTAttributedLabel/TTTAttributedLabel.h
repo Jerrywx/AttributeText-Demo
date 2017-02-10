@@ -31,9 +31,7 @@ FOUNDATION_EXPORT const unsigned char TTTAttributedLabelVersionString[];
 
 @class TTTAttributedLabelLink;
 
-/**
- Vertical alignment for text in a label whose bounds are larger than its text bounds
- */
+/// 垂直对齐方式
 typedef NS_ENUM(NSInteger, TTTAttributedLabelVerticalAlignment) {
     TTTAttributedLabelVerticalAlignmentCenter   = 0,
     TTTAttributedLabelVerticalAlignmentTop      = 1,
@@ -106,59 +104,30 @@ IB_DESIGNABLE
  */
 @interface TTTAttributedLabel : UILabel <TTTAttributedLabel, UIGestureRecognizerDelegate>
 
-/**
- * The designated initializers are @c initWithFrame: and @c initWithCoder:.
- * init will not properly initialize many required properties and other configuration.
- */
 - (instancetype) init NS_UNAVAILABLE;
 
 ///-----------------------------
 /// @name Accessing the Delegate
 ///-----------------------------
 
-/**
- The receiver's delegate.
- 
- @discussion A `TTTAttributedLabel` delegate responds to messages sent by tapping on links in the label. You can use the delegate to respond to links referencing a URL, address, phone number, date, or date with a specified time zone and duration.
- */
+/// The receiver's delegate.
 @property (nonatomic, unsafe_unretained) IBOutlet id <TTTAttributedLabelDelegate> delegate;
 
 ///--------------------------------------------
 /// @name Detecting, Accessing, & Styling Links
 ///--------------------------------------------
 
-/**
- A bitmask of `NSTextCheckingType` which are used to automatically detect links in the label text.
-
- @warning You must specify `enabledTextCheckingTypes` before setting the `text`, with either `setText:` or `setText:afterInheritingLabelAttributesAndConfiguringWithBlock:`.
- */
+/// 类型
 @property (nonatomic, assign) NSTextCheckingTypes enabledTextCheckingTypes;
-
-/**
- An array of `NSTextCheckingResult` objects for links detected or manually added to the label text.
- */
+/// NSTextCheckingResult 链接数组
 @property (readonly, nonatomic, strong) NSArray *links;
-
-/**
- A dictionary containing the default `NSAttributedString` attributes to be applied to links detected or manually added to the label text. The default link style is blue and underlined.
- 
- @warning You must specify `linkAttributes` before setting autodecting or manually-adding links for these attributes to be applied.
- */
+/// 链接属性
 @property (nonatomic, strong) NSDictionary *linkAttributes;
 
-/**
- A dictionary containing the default `NSAttributedString` attributes to be applied to links when they are in the active state. If `nil` or an empty `NSDictionary`, active links will not be styled. The default active link style is red and underlined.
- */
 @property (nonatomic, strong) NSDictionary *activeLinkAttributes;
 
-/**
- A dictionary containing the default `NSAttributedString` attributes to be applied to links when they are in the inactive state, which is triggered by a change in `tintColor` in iOS 7 and later. If `nil` or an empty `NSDictionary`, inactive links will not be styled. The default inactive link style is gray and unadorned.
- */
 @property (nonatomic, strong) NSDictionary *inactiveLinkAttributes;
 
-/**
- The edge inset for the background of a link. The default value is `{0, -1, 0, -1}`.
- */
 @property (nonatomic, assign) UIEdgeInsets linkBackgroundEdgeInset;
 
 /**
@@ -172,53 +141,29 @@ IB_DESIGNABLE
 /// @name Acccessing Text Style Attributes
 ///---------------------------------------
 
-/**
- The shadow blur radius for the label. A value of 0 indicates no blur, while larger values produce correspondingly larger blurring. This value must not be negative. The default value is 0. 
- */
+/// 影子
 @property (nonatomic, assign) IBInspectable CGFloat shadowRadius;
-
-/** 
- The shadow blur radius for the label when the label's `highlighted` property is `YES`. A value of 0 indicates no blur, while larger values produce correspondingly larger blurring. This value must not be negative. The default value is 0.
- */
 @property (nonatomic, assign) IBInspectable CGFloat highlightedShadowRadius;
-/** 
- The shadow offset for the label when the label's `highlighted` property is `YES`. A size of {0, 0} indicates no offset, with positive values extending down and to the right. The default size is {0, 0}.
- */
 @property (nonatomic, assign) IBInspectable CGSize highlightedShadowOffset;
-/** 
- The shadow color for the label when the label's `highlighted` property is `YES`. The default value is `nil` (no shadow color).
- */
 @property (nonatomic, strong) IBInspectable UIColor *highlightedShadowColor;
 
-/**
- The amount to kern the next character. Default is standard kerning. If this attribute is set to 0.0, no kerning is done at all.
- */
+/// 字间距
 @property (nonatomic, assign) IBInspectable CGFloat kern;
 
 ///--------------------------------------------
 /// @name Acccessing Paragraph Style Attributes
 ///--------------------------------------------
 
-/**
- The distance, in points, from the leading margin of a frame to the beginning of the 
- paragraph's first line. This value is always nonnegative, and is 0.0 by default. 
- This applies to the full text, rather than any specific paragraph metrics.
- */
+/// 首行缩进
 @property (nonatomic, assign) IBInspectable CGFloat firstLineIndent;
 
-/**
- The space in points added between lines within the paragraph. This value is always nonnegative and is 0.0 by default.
- */
+/// 行间距
 @property (nonatomic, assign) IBInspectable CGFloat lineSpacing;
 
-/**
- The minimum line height within the paragraph. If the value is 0.0, the minimum line height is set to the line height of the `font`. 0.0 by default.
- */
+/// 最小行高度
 @property (nonatomic, assign) IBInspectable CGFloat minimumLineHeight;
 
-/**
- The maximum line height within the paragraph. If the value is 0.0, the maximum line height is set to the line height of the `font`. 0.0 by default.
- */
+/// 最大行高度
 @property (nonatomic, assign) IBInspectable CGFloat maximumLineHeight;
 
 /**
@@ -233,9 +178,7 @@ IB_DESIGNABLE
  */
 @property (nonatomic, assign) IBInspectable UIEdgeInsets textInsets;
 
-/**
- The vertical text alignment for the label, for when the frame size is greater than the text rect size. The vertical alignment is `TTTAttributedLabelVerticalAlignmentCenter` by default.
- */
+/// 垂直对齐方式
 @property (nonatomic, assign) TTTAttributedLabelVerticalAlignment verticalAlignment;
 
 ///--------------------------------------------
@@ -276,166 +219,63 @@ IB_DESIGNABLE
 ///----------------------------------
 /// @name Setting the Text Attributes
 ///----------------------------------
-
-/**
- Sets the text displayed by the label.
- 
- @param text An `NSString` or `NSAttributedString` object to be displayed by the label. If the specified text is an `NSString`, the label will display the text like a `UILabel`, inheriting the text styles of the label. If the specified text is an `NSAttributedString`, the label text styles will be overridden by the styles specified in the attributed string.
-  
- @discussion This method overrides `UILabel -setText:` to accept both `NSString` and `NSAttributedString` objects. This string is `nil` by default.
- */
+/// 设置文本
 - (void)setText:(id)text;
-
-/**
- Sets the text displayed by the label, after configuring an attributed string containing the text attributes inherited from the label in a block.
- 
- @param text An `NSString` or `NSAttributedString` object to be displayed by the label.
- @param block A block object that returns an `NSMutableAttributedString` object and takes a single argument, which is an `NSMutableAttributedString` object with the text from the first parameter, and the text attributes inherited from the label text styles. For example, if you specified the `font` of the label to be `[UIFont boldSystemFontOfSize:14]` and `textColor` to be `[UIColor redColor]`, the `NSAttributedString` argument of the block would be contain the `NSAttributedString` attribute equivalents of those properties. In this block, you can set further attributes on particular ranges.
- 
- @discussion This string is `nil` by default.
- */
+/// 设置文本
 - (void)setText:(id)text
 afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString *(^)(NSMutableAttributedString *mutableAttributedString))block;
 
 ///------------------------------------
 /// @name Accessing the Text Attributes
 ///------------------------------------
-
-/**
- A copy of the label's current attributedText. This returns `nil` if an attributed string has never been set on the label.
- 
- @warning Do not set this property directly. Instead, set @c text to an @c NSAttributedString.
- */
+/// 属性字符串
 @property (readwrite, nonatomic, copy) NSAttributedString *attributedText;
 
 ///-------------------
 /// @name Adding Links
 ///-------------------
 
-/**
- Adds a link. You can customize an individual link's appearance and accessibility value by creating your own @c TTTAttributedLabelLink and passing it to this method. The other methods for adding links will use the label's default attributes.
- 
- @warning Modifying the link's attribute dictionaries must be done before calling this method.
- 
- @param link A @c TTTAttributedLabelLink object.
- */
+/// 添加链接
 - (void)addLink:(TTTAttributedLabelLink *)link;
 
-/**
- Adds a link to an @c NSTextCheckingResult.
- 
- @param result An @c NSTextCheckingResult representing the link's location and type.
- 
- @return The newly added link object.
- */
+/// Adds a link to an @c NSTextCheckingResult.
 - (TTTAttributedLabelLink *)addLinkWithTextCheckingResult:(NSTextCheckingResult *)result;
 
-/**
- Adds a link to an @c NSTextCheckingResult.
- 
- @param result An @c NSTextCheckingResult representing the link's location and type.
- @param attributes The attributes to be added to the text in the range of the specified link. If set, the label's @c activeAttributes and @c inactiveAttributes will be applied to the link. If `nil`, no attributes are added to the link.
- 
- @return The newly added link object.
- */
+/// Adds a link to an @c NSTextCheckingResult.
 - (TTTAttributedLabelLink *)addLinkWithTextCheckingResult:(NSTextCheckingResult *)result
                                                attributes:(NSDictionary *)attributes;
-
-/**
- Adds a link to a URL for a specified range in the label text.
- 
- @param url The url to be linked to
- @param range The range in the label text of the link. The range must not exceed the bounds of the receiver.
- 
- @return The newly added link object.
- */
+/// 添加url
 - (TTTAttributedLabelLink *)addLinkToURL:(NSURL *)url
                                withRange:(NSRange)range;
-
-/**
- Adds a link to an address for a specified range in the label text.
- 
- @param addressComponents A dictionary of address components for the address to be linked to
- @param range The range in the label text of the link. The range must not exceed the bounds of the receiver.
- 
- @discussion The address component dictionary keys are described in `NSTextCheckingResult`'s "Keys for Address Components." 
- 
- @return The newly added link object.
- */
+/// 添加地址
 - (TTTAttributedLabelLink *)addLinkToAddress:(NSDictionary *)addressComponents
                                    withRange:(NSRange)range;
 
-/**
- Adds a link to a phone number for a specified range in the label text.
- 
- @param phoneNumber The phone number to be linked to.
- @param range The range in the label text of the link. The range must not exceed the bounds of the receiver.
- 
- @return The newly added link object.
- */
+/// 添加号码
 - (TTTAttributedLabelLink *)addLinkToPhoneNumber:(NSString *)phoneNumber
                                        withRange:(NSRange)range;
 
-/**
- Adds a link to a date for a specified range in the label text.
- 
- @param date The date to be linked to.
- @param range The range in the label text of the link. The range must not exceed the bounds of the receiver.
- 
- @return The newly added link object.
- */
+/// 添加时间
 - (TTTAttributedLabelLink *)addLinkToDate:(NSDate *)date
                                 withRange:(NSRange)range;
-
-/**
- Adds a link to a date with a particular time zone and duration for a specified range in the label text.
- 
- @param date The date to be linked to.
- @param timeZone The time zone of the specified date.
- @param duration The duration, in seconds from the specified date.
- @param range The range in the label text of the link. The range must not exceed the bounds of the receiver.
- 
- @return The newly added link object.
- */
+/// 添加时间
 - (TTTAttributedLabelLink *)addLinkToDate:(NSDate *)date
                                  timeZone:(NSTimeZone *)timeZone
                                  duration:(NSTimeInterval)duration
                                 withRange:(NSRange)range;
-
-/**
- Adds a link to transit information for a specified range in the label text.
-
- @param components A dictionary containing the transit components. The currently supported keys are `NSTextCheckingAirlineKey` and `NSTextCheckingFlightKey`.
- @param range The range in the label text of the link. The range must not exceed the bounds of the receiver.
- 
- @return The newly added link object.
- */
+///
 - (TTTAttributedLabelLink *)addLinkToTransitInformation:(NSDictionary *)components
                                               withRange:(NSRange)range;
 
-/**
- Returns whether an @c NSTextCheckingResult is found at the give point.
- 
- @discussion This can be used together with @c UITapGestureRecognizer to tap interactions with overlapping views.
- 
- @param point The point inside the label.
- */
+/// 检测是否有链接
 - (BOOL)containslinkAtPoint:(CGPoint)point;
 
-/**
- Returns the @c TTTAttributedLabelLink at the give point if it exists.
- 
- @discussion This can be used together with @c UIViewControllerPreviewingDelegate to peek into links.
- 
- @param point The point inside the label.
- */
+/// 根据点获取链接
 - (TTTAttributedLabelLink *)linkAtPoint:(CGPoint)point;
 
 @end
 
-/**
- The `TTTAttributedLabelDelegate` protocol defines the messages sent to an attributed label delegate when links are tapped. All of the methods of this protocol are optional.
- */
+/// 点击链接代理
 @protocol TTTAttributedLabelDelegate <NSObject>
 
 ///-----------------------------------
@@ -443,41 +283,17 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
 ///-----------------------------------
 @optional
 
-/**
- Tells the delegate that the user did select a link to a URL.
- 
- @param label The label whose link was selected.
- @param url The URL for the selected link.
- */
-- (void)attributedLabel:(TTTAttributedLabel *)label
-   didSelectLinkWithURL:(NSURL *)url;
+/// 点击链接代理
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url;
 
-/**
- Tells the delegate that the user did select a link to an address.
- 
- @param label The label whose link was selected.
- @param addressComponents The components of the address for the selected link.
- */
-- (void)attributedLabel:(TTTAttributedLabel *)label
-didSelectLinkWithAddress:(NSDictionary *)addressComponents;
+/// 点击地址代理
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithAddress:(NSDictionary *)addressComponents;
 
-/**
- Tells the delegate that the user did select a link to a phone number.
- 
- @param label The label whose link was selected.
- @param phoneNumber The phone number for the selected link.
- */
-- (void)attributedLabel:(TTTAttributedLabel *)label
-didSelectLinkWithPhoneNumber:(NSString *)phoneNumber;
+/// 点击电话代理
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber;
 
-/**
- Tells the delegate that the user did select a link to a date.
- 
- @param label The label whose link was selected.
- @param date The datefor the selected link.
- */
-- (void)attributedLabel:(TTTAttributedLabel *)label
-  didSelectLinkWithDate:(NSDate *)date;
+/// 点击时间代理
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithDate:(NSDate *)date;
 
 /**
  Tells the delegate that the user did select a link to a date with a time zone and duration.
@@ -516,72 +332,31 @@ didSelectLinkWithTextCheckingResult:(NSTextCheckingResult *)result;
 /// @name Responding to Long Presses
 ///---------------------------------
 
-/**
- *  Long-press delegate methods include the CGPoint tapped within the label's coordinate space.
- *  This may be useful on iPad to present a popover from a specific origin point.
- */
-
-/**
- Tells the delegate that the user long-pressed a link to a URL.
- 
- @param label The label whose link was long pressed.
- @param url The URL for the link.
- @param point the point pressed, in the label's coordinate space
- */
+/// 长按链接
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithURL:(NSURL *)url
                 atPoint:(CGPoint)point;
 
-/**
- Tells the delegate that the user long-pressed a link to an address.
- 
- @param label The label whose link was long pressed.
- @param addressComponents The components of the address for the link.
- @param point the point pressed, in the label's coordinate space
- */
+/// 长按地址
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithAddress:(NSDictionary *)addressComponents
                 atPoint:(CGPoint)point;
 
-/**
- Tells the delegate that the user long-pressed a link to a phone number.
- 
- @param label The label whose link was long pressed.
- @param phoneNumber The phone number for the link.
- @param point the point pressed, in the label's coordinate space
- */
+/// 长按号码
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithPhoneNumber:(NSString *)phoneNumber
                 atPoint:(CGPoint)point;
 
-
-/**
- Tells the delegate that the user long-pressed a link to a date.
- 
- @param label The label whose link was long pressed.
- @param date The date for the selected link.
- @param point the point pressed, in the label's coordinate space
- */
+//// 长按时间
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithDate:(NSDate *)date
                 atPoint:(CGPoint)point;
-
-
-/**
- Tells the delegate that the user long-pressed a link to a date with a time zone and duration.
- 
- @param label The label whose link was long pressed.
- @param date The date for the link.
- @param timeZone The time zone of the date for the link.
- @param duration The duration, in seconds from the date for the link.
- @param point the point pressed, in the label's coordinate space
- */
+///
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didLongPressLinkWithDate:(NSDate *)date
                timeZone:(NSTimeZone *)timeZone
                duration:(NSTimeInterval)duration
                 atPoint:(CGPoint)point;
-
 
 /**
  Tells the delegate that the user long-pressed a link to transit information.
@@ -609,72 +384,32 @@ didLongPressLinkWithTextCheckingResult:(NSTextCheckingResult *)result
 
 @end
 
+/// 链接类
 @interface TTTAttributedLabelLink : NSObject <NSCoding>
 
 typedef void (^TTTAttributedLabelLinkBlock) (TTTAttributedLabel *, TTTAttributedLabelLink *);
-
-/**
- An `NSTextCheckingResult` representing the link's location and type.
- */
+/// 类型 链接、电话....
 @property (readonly, nonatomic, strong) NSTextCheckingResult *result;
-
-/**
- A dictionary containing the @c NSAttributedString attributes to be applied to the link.
- */
+/// 链接属性
 @property (readonly, nonatomic, copy) NSDictionary *attributes;
-
-/**
- A dictionary containing the @c NSAttributedString attributes to be applied to the link when it is in the active state.
- */
+/// 点击属性
 @property (readonly, nonatomic, copy) NSDictionary *activeAttributes;
-
-/**
- A dictionary containing the @c NSAttributedString attributes to be applied to the link when it is in the inactive state, which is triggered by a change in `tintColor` in iOS 7 and later.
- */
+/// 不活跃属性
 @property (readonly, nonatomic, copy) NSDictionary *inactiveAttributes;
-
-/**
- Additional information about a link for VoiceOver users. Has default values if the link's @c result is @c NSTextCheckingTypeLink, @c NSTextCheckingTypePhoneNumber, or @c NSTextCheckingTypeDate.
- */
+/// 显示文字
 @property (nonatomic, copy) NSString *accessibilityValue;
-
-/**
- A block called when this link is tapped.
- If non-nil, tapping on this link will call this block instead of the 
- @c TTTAttributedLabelDelegate tap methods, which will not be called for this link.
- */
+/// 点击事件
 @property (nonatomic, copy) TTTAttributedLabelLinkBlock linkTapBlock;
-
-/**
- A block called when this link is long-pressed.
- If non-nil, long pressing on this link will call this block instead of the
- @c TTTAttributedLabelDelegate long press methods, which will not be called for this link.
- */
+/// 长按事件
 @property (nonatomic, copy) TTTAttributedLabelLinkBlock linkLongPressBlock;
 
-/**
- Initializes a link using the attribute dictionaries specified.
- 
- @param attributes         The @c attributes property for the link.
- @param activeAttributes   The @c activeAttributes property for the link.
- @param inactiveAttributes The @c inactiveAttributes property for the link.
- @param result             An @c NSTextCheckingResult representing the link's location and type.
- 
- @return The initialized link object.
- */
+/// 初始化
 - (instancetype)initWithAttributes:(NSDictionary *)attributes
                   activeAttributes:(NSDictionary *)activeAttributes
                 inactiveAttributes:(NSDictionary *)inactiveAttributes
                 textCheckingResult:(NSTextCheckingResult *)result;
 
-/**
- Initializes a link using the attribute dictionaries set on a specified label.
- 
- @param label  The attributed label from which to inherit attribute dictionaries.
- @param result An @c NSTextCheckingResult representing the link's location and type.
- 
- @return The initialized link object.
- */
+/// 初始化
 - (instancetype)initWithAttributesFromLabel:(TTTAttributedLabel*)label
                          textCheckingResult:(NSTextCheckingResult *)result;
 
