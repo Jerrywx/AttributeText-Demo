@@ -17,46 +17,12 @@ CF_ASSUME_NONNULL_BEGIN
 /* CFAttributedStringRef Attribute Prototypes */
 /* --------------------------------------------------------------------------- */
 
-/*!
- @const      kCTFontAttributeName
- @abstract   The font.
- 
- @discussion Value must be a CTFontRef. Default is Helvetica 12.
- */
-CT_EXPORT const CFStringRef kCTFontAttributeName CT_AVAILABLE(10_5, 3_2);
-
-
-/*!
- @const      kCTForegroundColorFromContextAttributeName
- @abstract   Never set a foreground color in the CGContext; use what is set as
- the context's fill color.
- 
- @discussion Value must be a CFBooleanRef. Default is false. The reason
- why this exists is because an NSAttributedString defaults to a
- black color if no color attribute is set. This forces CoreText to
- set the color in the context. This will allow developers to
- sidestep this, making CoreText set nothing but font information
- in the CGContext. If set, this attribute also determines the
- color used by kCTUnderlineStyleAttributeName, in which case it
- overrides the foreground color.
- */
-CT_EXPORT const CFStringRef kCTForegroundColorFromContextAttributeName CT_AVAILABLE(10_5, 3_2);
-
-
-/*!
- @const      kCTKernAttributeName
- @abstract   A kerning adjustment.
- 
- @discussion Value must be a CFNumberRef float. Default is standard kerning.
- The kerning attribute indicate how many points the following
- character should be shifted from its default offset as defined
- by the current character's font in points; a positive kern
- indicates a shift farther along and a negative kern indicates a
- shift closer to the current character. If this attribute is not
- present, standard kerning will be used. If this attribute is
- set to 0.0, no kerning will be done at all.
- */
-CT_EXPORT const CFStringRef kCTKernAttributeName CT_AVAILABLE(10_5, 3_2);
+/// 字体属性
+CT_EXPORT const CFStringRef kCTFontAttributeName;
+/// 文字颜色
+CT_EXPORT const CFStringRef kCTForegroundColorFromContextAttributeName;
+/// 文字间距
+CT_EXPORT const CFStringRef kCTKernAttributeName;
 
 
 /*!
@@ -81,8 +47,7 @@ CT_EXPORT const CFStringRef kCTKernAttributeName CT_AVAILABLE(10_5, 3_2);
  the font lacks AAT or OpenType shaping tables, but as of 6.0
  shaping tables (or the lack thereof) are treated as definitive.
  */
-CT_EXPORT const CFStringRef kCTLigatureAttributeName CT_AVAILABLE(10_5, 3_2);
-
+CT_EXPORT const CFStringRef kCTLigatureAttributeName;
 
 /*!
  @const      kCTForegroundColorAttributeName
@@ -90,33 +55,12 @@ CT_EXPORT const CFStringRef kCTLigatureAttributeName CT_AVAILABLE(10_5, 3_2);
  
  @discussion Value must be a CGColorRef. Default value is black.
  */
-
+///
 CT_EXPORT const CFStringRef kCTForegroundColorAttributeName CT_AVAILABLE(10_5, 3_2);
-
-/*!
- @const      kCTBackgroundColorAttributeName
- @abstract   The background color.
- 
- @discussion Value must be a CGColorRef. Default is no background color.
- */
-
-CT_EXPORT const CFStringRef kCTBackgroundColorAttributeName CT_AVAILABLE(10_12, 10_0);
-
-
-/*!
- @const      kCTParagraphStyleAttributeName
- @abstract   A CTParagraphStyle object which is used to specify things like
- line alignment, tab rulers, writing direction, etc.
- 
- @discussion Value must be a CTParagraphStyleRef. Default is an empty
- CTParagraphStyle object: see CTParagraphStyle.h for more
- information. The value of this attribute must be uniform over
- the range of any paragraphs to which it is applied.
- 
- @seealso    CFStringGetParagraphBounds
- */
-
-CT_EXPORT const CFStringRef kCTParagraphStyleAttributeName CT_AVAILABLE(10_5, 3_2);
+/// 背景色
+CT_EXPORT const CFStringRef kCTBackgroundColorAttributeName;
+/// 段落样式 CTParagraphStyle
+CT_EXPORT const CFStringRef kCTParagraphStyleAttributeName;
 
 
 /*!

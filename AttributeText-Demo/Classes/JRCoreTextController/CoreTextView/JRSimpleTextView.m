@@ -28,8 +28,9 @@
 	CGContextScaleCTM(context, 1.0, -1.0);
 	
 	/// 创建属性字典
-	CFStringRef keys[] = { kCTFontAttributeName };
-	CFTypeRef values[] = { font };
+	
+	CFStringRef keys[] = { kCTFontAttributeName, kCTForegroundColorAttributeName, kCTBackgroundColorAttributeName };
+	CFTypeRef values[] = { font , [UIColor redColor].CGColor, [UIColor orangeColor].CGColor};
 	CFDictionaryRef attributes = CFDictionaryCreate(kCFAllocatorDefault,
 													(const void**)&keys,
 													(const void**)&values,

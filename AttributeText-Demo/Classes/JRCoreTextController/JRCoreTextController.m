@@ -74,6 +74,7 @@
 	CFStringRef string = CFSTR("按时阿萨德阿萨德是");
 	NSString *s = (__bridge NSString *)(string);
 	NSLog(@"%@", s);
+//	CTFontDescriptorRef
 }
 
 

@@ -11,8 +11,6 @@
 @implementation JRColumnarLayoutView
 
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 	
@@ -36,19 +34,10 @@
  
 	CFAttributedStringRef attrString =
 	CFAttributedStringCreate(kCFAllocatorDefault, string, attributes);
-	
-	
-	
-	// Initialize a graphics context in iOS.
-	//	CGContextRef context = UIGraphicsGetCurrentContext();
- 
+
 	// Flip the context coordinates in iOS only.
 	CGContextTranslateCTM(context, 0, self.bounds.size.height);
 	CGContextScaleCTM(context, 1.0, -1.0);
- 
-	// Initializing a graphic context in OS X is different:
-	// CGContextRef context =
-	//     (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
  
 	// Set the text matrix.
 	CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -57,8 +46,6 @@
 	CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(
 																		   (CFAttributedStringRef)attrString);
  
-	// Call createColumnsWithColumnCount function to create an array of
-	// three paths (columns).
 	CFArrayRef columnPaths = [self createColumnsWithColumnCount:3];
  
 	CFIndex pathCount = CFArrayGetCount(columnPaths);

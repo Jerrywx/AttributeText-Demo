@@ -196,6 +196,7 @@
 		30ADD5E21E4D505F001012E5 /* YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYText.h; sourceTree = "<group>"; };
 		30ADD5E31E4D505F001012E5 /* YYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextView.h; sourceTree = "<group>"; };
 		30ADD5E41E4D505F001012E5 /* YYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextView.m; sourceTree = "<group>"; };
+		30ADD5FD1E4D641E001012E5 /* jr_ CGPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jr_ CGPath.h"; sourceTree = "<group>"; };
 		30CD5E0B1E13589800E0F2E9 /* jr_CGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_CGContext.h; sourceTree = "<group>"; };
 		30FE49F41E15033700ED9F47 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
 		30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
@@ -465,6 +466,7 @@
 				3087D4B41E1E2D3B00D3CADA /* jr_CTLine.h */,
 				C43741971E1FF3E700FAD830 /* jr_CTFrame.h */,
 				3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */,
+				30ADD5FD1E4D641E001012E5 /* jr_ CGPath.h */,
 			);
 			path = CoreGraphics;
 			sourceTree = "<group>";
