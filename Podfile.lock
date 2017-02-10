@@ -37,14 +37,12 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - TTTAttributedLabel (2.0.0)
-  - TYAttributedLabel (2.6.2)
   - VVBlurPresentation (0.1.1)
   - YLGIFImage (0.11)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
   - YYImage/Core (1.0.4)
-  - YYText (1.0.7)
+  - YYModel (1.0.4)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.2.0)
@@ -65,12 +63,10 @@ DEPENDENCIES:
   - pop (~> 1.0)
   - RegexKitLite (~> 4.0)
   - SDWebImage (~> 3.8.1)
-  - TTTAttributedLabel
-  - TYAttributedLabel (~> 2.6.1)
   - VVBlurPresentation
   - YLGIFImage
   - YYImage (~> 1.0.3)
-  - YYText (~> 1.0.7)
+  - YYModel (~> 1.0.4)
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -91,13 +87,11 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
-  TYAttributedLabel: 1c1f1e7604043ba584e005d4fd3aee8a1a7a2020
   VVBlurPresentation: 62c0a9d6ac22f9bed99c0c5735e7eae8156bc618
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
-  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 9858a9534a7df7558ec88d74fbf37ea41a8f5baa
+PODFILE CHECKSUM: c6e7f90df714c65b2d701012bff1c97203937bfd
 
 COCOAPODS: 1.1.1

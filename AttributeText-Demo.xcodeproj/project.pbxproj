@@ -212,6 +212,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		30ADD4841E4D4EEC001012E5 /* FrameWorks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FrameWorks;
+			sourceTree = "<group>";
+		};
 		30CD5E091E13589800E0F2E9 /* HeardFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +255,7 @@
 		C40448AA1D82653A0039A815 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				30ADD4841E4D4EEC001012E5 /* FrameWorks */,
 				C482750D1D91748D0032EE10 /* JRTools */,
 				C48275081D9172EF0032EE10 /* JRDemoClasses */,
 				C40448AB1D82653A0039A815 /* JRBaseClasses */,
