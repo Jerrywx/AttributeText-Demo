@@ -15,6 +15,8 @@
 		3087D4AB1E1DED3600D3CADA /* JRManualLineBreakingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3087D4AA1E1DED3600D3CADA /* JRManualLineBreakingView.m */; };
 		3087D4AE1E1DFFE000D3CADA /* JRParagraphStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3087D4AD1E1DFFE000D3CADA /* JRParagraphStyleView.m */; };
 		3087D4B11E1E027B00D3CADA /* JRNonrectangularRegionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3087D4B01E1E027B00D3CADA /* JRNonrectangularRegionView.m */; };
+		308E87461E51AB6300600176 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 308E87421E51AB6300600176 /* MGSwipeButton.m */; };
+		308E87471E51AB6300600176 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308E87441E51AB6300600176 /* MGSwipeTableCell.m */; };
 		30ADD5901E4D502D001012E5 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ADD58F1E4D502D001012E5 /* TTTAttributedLabel.m */; };
 		30ADD5A61E4D5053001012E5 /* NSMutableAttributedString+TY.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ADD5931E4D5053001012E5 /* NSMutableAttributedString+TY.m */; };
 		30ADD5A71E4D5053001012E5 /* TYAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ADD5951E4D5053001012E5 /* TYAttributedLabel.m */; };
@@ -124,6 +126,10 @@
 		3087D4B31E1E1C2C00D3CADA /* jr_CTStringAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTStringAttributes.h; sourceTree = "<group>"; };
 		3087D4B41E1E2D3B00D3CADA /* jr_CTLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTLine.h; sourceTree = "<group>"; };
 		308AC7221E137CA000B54AAE /* jr_CGAffineTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CGAffineTransform.h; sourceTree = "<group>"; };
+		308E87411E51AB6300600176 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		308E87421E51AB6300600176 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		308E87431E51AB6300600176 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		308E87441E51AB6300600176 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		309CCFE01E08FDE000B23A4D /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
 		30ADD58E1E4D502D001012E5 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		30ADD58F1E4D502D001012E5 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
@@ -319,12 +325,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		308E873F1E51AB6300600176 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				308E87411E51AB6300600176 /* MGSwipeButton.h */,
+				308E87421E51AB6300600176 /* MGSwipeButton.m */,
+				308E87431E51AB6300600176 /* MGSwipeTableCell.h */,
+				308E87441E51AB6300600176 /* MGSwipeTableCell.m */,
+			);
+			path = MGSwipeTableCell;
+			sourceTree = "<group>";
+		};
 		30ADD4841E4D4EEC001012E5 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
 				30ADD5B01E4D505F001012E5 /* YYText */,
 				30ADD5911E4D5053001012E5 /* TYAttributedLabel */,
 				30ADD58D1E4D502D001012E5 /* TTTAttributedLabel */,
+				308E873F1E51AB6300600176 /* MGSwipeTableCell */,
 			);
 			path = FrameWorks;
 			sourceTree = "<group>";
@@ -960,6 +978,7 @@
 				C4064EF81D940EE100B197A7 /* JRThreadModel.m in Sources */,
 				30ADD5FA1E4D5060001012E5 /* YYTextWeakProxy.m in Sources */,
 				30ADD5A81E4D5053001012E5 /* TYDrawStorage.m in Sources */,
+				308E87471E51AB6300600176 /* MGSwipeTableCell.m in Sources */,
 				C42600151E115CB80022C4D5 /* JRCoreTextController.m in Sources */,
 				30ADD5A91E4D5053001012E5 /* TYImageCache.m in Sources */,
 				30ADD5AE1E4D5053001012E5 /* TYTextStorage.m in Sources */,
@@ -969,6 +988,7 @@
 				C48275571D9187DF0032EE10 /* JRViewController.m in Sources */,
 				30ADD5AC1E4D5053001012E5 /* TYTextContainer+Extended.m in Sources */,
 				3087D4B11E1E027B00D3CADA /* JRNonrectangularRegionView.m in Sources */,
+				308E87461E51AB6300600176 /* MGSwipeButton.m in Sources */,
 				C40D947B1D7FAE0900E512ED /* AppDelegate.m in Sources */,
 				C49868891D92D679009223A1 /* JRImageView.m in Sources */,
 				C400712F1D901ED100220BB9 /* TextViewController.m in Sources */,
