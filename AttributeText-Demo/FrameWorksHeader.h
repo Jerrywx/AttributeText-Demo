@@ -20,8 +20,8 @@
 ///
 #import <Masonry.h>
 
-#import <YYImage.h>
-#import <YYAnimatedImageView.h>
+#import "YYImage.h"
+#import "YYAnimatedImageView.h"
 
 
 //////

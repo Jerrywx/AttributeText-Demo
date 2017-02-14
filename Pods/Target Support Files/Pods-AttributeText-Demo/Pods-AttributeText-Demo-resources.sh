@@ -74,12 +74,12 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "DateTools/DateTools/DateTools.bundle"
+  install_resource "DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
   install_resource "JCAlertView/JCAlertView/JCAlertView.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "DateTools/DateTools/DateTools.bundle"
+  install_resource "DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
   install_resource "JCAlertView/JCAlertView/JCAlertView.bundle"
 fi
