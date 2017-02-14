@@ -7,7 +7,7 @@ target 'AttributeText-Demo' do
 	#pod 'YYText' , 				'~> 1.0.7'
 	pod 'YYImage', '~> 1.0.3'
 	pod 'YYModel', '~> 1.0.4'
-	pod 'SDWebImage', 			'~> 3.8.1'
+	#pod 'SDWebImage'	#, 			'~> 3.8.1'
 	#pod 'TYAttributedLabel', 	'~> 2.6.1'
 	pod 'pop',					'~> 1.0'
 	pod 'MBProgressHUD'

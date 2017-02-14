@@ -16,7 +16,7 @@
 ///
 #import <colours.h>
 ///
-#import <SDWebImage/SDWebImageManager.h>
+#import "SDWebImageManager.h"
 ///
 #import <Masonry.h>
 
