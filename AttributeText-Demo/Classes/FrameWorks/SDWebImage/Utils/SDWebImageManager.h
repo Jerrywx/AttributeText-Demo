@@ -12,74 +12,49 @@
 #import "SDImageCache.h"
 
 typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
-    /**
-     * By default, when a URL fail to be downloaded, the URL is blacklisted so the library won't keep trying.
-     * This flag disable this blacklisting.
-     */
+	
+	/*
+	 *	默认情况下,如果一个url在下载的时候失败了,那么这个url会被加入黑名单并且library不会尝试再次下载,这个flag会阻止library把失败的url加入黑名单(简单来说如果选择了这个flag,那么即使某个url下载失败了,sdwebimage还是会尝试再次下载他.)
+	 */
     SDWebImageRetryFailed = 1 << 0,
-
-    /**
-     * By default, image downloads are started during UI interactions, this flags disable this feature,
-     * leading to delayed download on UIScrollView deceleration for instance.
-     */
+	/**
+	 *默认情况下,图片会在交互发生的时候下载(例如你滑动tableview的时候),这个flag会禁止这个特性,导致的结果就是在scrollview减速的时候
+	 *才会开始下载(也就是你滑动的时候scrollview不下载,你手从屏幕上移走,scrollview开始减速的时候才会开始下载图片)
+	 */
     SDWebImageLowPriority = 1 << 1,
-
-    /**
-     * This flag disables on-disk caching
-     */
+    // 这个flag禁止磁盘缓存,只有内存缓存
     SDWebImageCacheMemoryOnly = 1 << 2,
-
-    /**
-     * This flag enables progressive download, the image is displayed progressively during download as a browser would do.
-     * By default, the image is only displayed once completely downloaded.
-     */
+	// 这个flag会在图片下载的时候就显示(就像你用浏览器浏览网页的时候那种图片下载,一截一截的显示(待确认))
     SDWebImageProgressiveDownload = 1 << 3,
-
-    /**
-     * Even if the image is cached, respect the HTTP response cache control, and refresh the image from remote location if needed.
-     * The disk caching will be handled by NSURLCache instead of SDWebImage leading to slight performance degradation.
-     * This option helps deal with images changing behind the same request URL, e.g. Facebook graph api profile pics.
-     * If a cached image is refreshed, the completion block is called once with the cached image and again with the final image.
-     *
-     * Use this flag only if you can't make your URLs static with embedded cache busting parameter.
-     */
+	// 这个选项的意思看的不是很懂,大意是即使一个图片缓存了,还是会重新请求.并且缓存侧略依据NSURLCache而不是SDWebImage.
     SDWebImageRefreshCached = 1 << 4,
-
-    /**
-     * In iOS 4+, continue the download of the image if the app goes to background. This is achieved by asking the system for
-     * extra time in background to let the request finish. If the background task expires the operation will be cancelled.
-     */
+	// 启动后台下载,加入你进入一个页面,有一张图片正在下载这时候你让app进入后台,图片还是会继续下载(这个估计要开backgroundfetch才有用)
     SDWebImageContinueInBackground = 1 << 5,
 
-    /**
-     * Handles cookies stored in NSHTTPCookieStore by setting
-     * NSMutableURLRequest.HTTPShouldHandleCookies = YES;
-     */
+	/*
+	 *可以控制存在NSHTTPCookieStore的cookies.(我没用过,等用过的人过来解释一下)
+	 */
     SDWebImageHandleCookies = 1 << 6,
 
-    /**
-     * Enable to allow untrusted SSL certificates.
-     * Useful for testing purposes. Use with caution in production.
-     */
+	/*
+	 *允许不安全的SSL证书,在正式环境中慎用
+	 */
     SDWebImageAllowInvalidSSLCertificates = 1 << 7,
 
-    /**
-     * By default, images are loaded in the order in which they were queued. This flag moves them to
-     * the front of the queue.
-     */
+	/*
+	 *默认情况下,image在装载的时候是按照他们在队列中的顺序装载的(就是先进先出).这个flag会把他们移动到队列的前端,并且立刻装载
+	 *而不是等到当前队列装载的时候再装载.
+	 */
     SDWebImageHighPriority = 1 << 8,
-    
-    /**
-     * By default, placeholder images are loaded while the image is loading. This flag will delay the loading
-     * of the placeholder image until after the image has finished loading.
-     */
+
+	/*
+	 *默认情况下,占位图会在图片下载的时候显示.这个flag开启会延迟占位图显示的时间,等到图片下载完成之后才会显示占位图.(等图片显示完了我干嘛还显示占位图?或许是我理解错了?)
+	 */
     SDWebImageDelayPlaceholder = 1 << 9,
 
-    /**
-     * We usually don't call transformDownloadedImage delegate method on animated images,
-     * as most transformation code would mangle it.
-     * Use this flag to transform them anyway.
-     */
+	/*
+	 *是否transform图片(没用过,还要再看,但是据我估计,是否是图片有可能方向不对需要调整方向,例如采用iPhone拍摄的照片如果不纠正方向,那么图片是向左旋转90度的.可能很多人不知道iPhone的摄像头并不是竖直的,而是向左偏了90度.具体请google.)
+	 */
     SDWebImageTransformAnimatedImage = 1 << 10,
     
     /**
@@ -90,10 +65,11 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
     SDWebImageAvoidAutoSetImage = 1 << 11
 };
 
+// 操作完成的回调，被上层的扩展调用。
 typedef void(^SDWebImageCompletionBlock)(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL);
-
+// 被SDWebImageManager调用。如果使用了SDWebImageProgressiveDownload标记，这个block可能会被重复调用，直到图片完全下载结束，finished=true,再最后调用一次这个block。
 typedef void(^SDWebImageCompletionWithFinishedBlock)(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL);
-
+// SDWebImageManager每次把URL转换为cache key的时候调用，可以删除一些image URL中的动态部分。
 typedef NSString *(^SDWebImageCacheKeyFilterBlock)(NSURL *url);
 
 
@@ -105,7 +81,7 @@ typedef NSString *(^SDWebImageCacheKeyFilterBlock)(NSURL *url);
 
 /**
  * Controls which image should be downloaded when the image is not found in the cache.
- *
+ * 控制在cache中没有找到image时 是否应该去下载。
  * @param imageManager The current `SDWebImageManager`
  * @param imageURL     The url of the image to be downloaded
  *
@@ -116,7 +92,7 @@ typedef NSString *(^SDWebImageCacheKeyFilterBlock)(NSURL *url);
 /**
  * Allows to transform the image immediately after it has been downloaded and just before to cache it on disk and memory.
  * NOTE: This method is called from a global queue in order to not to block the main thread.
- *
+ * 在下载之后，缓存之前转换图片。在全局队列中操作，不阻塞主线程
  * @param imageManager The current `SDWebImageManager`
  * @param image        The image to transform
  * @param imageURL     The url of the image to transform
@@ -150,10 +126,11 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
  * @endcode
  */
 @interface SDWebImageManager : NSObject
-
+/// 代理对象
 @property (weak, nonatomic) id <SDWebImageManagerDelegate> delegate;
-
+/// 图片缓存
 @property (strong, nonatomic, readonly) SDImageCache *imageCache;
+/// 图片下载
 @property (strong, nonatomic, readonly) SDWebImageDownloader *imageDownloader;
 
 /**
@@ -174,11 +151,7 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
  */
 @property (nonatomic, copy) SDWebImageCacheKeyFilterBlock cacheKeyFilter;
 
-/**
- * Returns global SDWebImageManager instance.
- *
- * @return SDWebImageManager shared instance
- */
+/// Returns global SDWebImageManager instance.
 + (SDWebImageManager *)sharedManager;
 
 /**
@@ -221,7 +194,6 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
  * @param url   The URL to the image
  *
  */
-
 - (void)saveImageToCache:(UIImage *)image forURL:(NSURL *)url;
 
 /**

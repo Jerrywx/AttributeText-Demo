@@ -119,20 +119,19 @@
     // Invoking this method without a completedBlock is pointless
     NSAssert(completedBlock != nil, @"If you mean to prefetch the image, use -[SDWebImagePrefetcher prefetchURLs] instead");
 
-    // Very common mistake is to send the URL using NSString object instead of NSURL. For some strange reason, XCode won't
-    // throw any warning for this type mismatch. Here we failsafe this error by allowing URLs to be passed as NSString.
+	// 判断URL合法性
     if ([url isKindOfClass:NSString.class]) {
         url = [NSURL URLWithString:(NSString *)url];
     }
-
-    // Prevents app crashing on argument type error like sending NSNull instead of NSURL
     if (![url isKindOfClass:NSURL.class]) {
         url = nil;
     }
 
-    __block SDWebImageCombinedOperation *operation = [SDWebImageCombinedOperation new];
+	///
+    __block SDWebImageCombinedOperation *operation	  = [SDWebImageCombinedOperation new];
     __weak SDWebImageCombinedOperation *weakOperation = operation;
 
+	/// failedURLs 中保存失败的URL
     BOOL isFailedUrl = NO;
     @synchronized (self.failedURLs) {
         isFailedUrl = [self.failedURLs containsObject:url];
@@ -140,15 +139,19 @@
 
     if (url.absoluteString.length == 0 || (!(options & SDWebImageRetryFailed) && isFailedUrl)) {
         dispatch_main_sync_safe(^{
-            NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:nil];
+            NSError *error = [NSError errorWithDomain:NSURLErrorDomain
+												 code:NSURLErrorFileDoesNotExist
+											 userInfo:nil];
             completedBlock(nil, error, SDImageCacheTypeNone, YES, url);
         });
         return operation;
     }
 
+	// runningOperations是一个可变数组，保存所有的operation，主要用来监测是否有operation在执行，即判断running 状态。
     @synchronized (self.runningOperations) {
         [self.runningOperations addObject:operation];
     }
+	// 根据url 获取key
     NSString *key = [self cacheKeyForURL:url];
 
     operation.cacheOperation = [self.imageCache queryDiskCacheForKey:key done:^(UIImage *image, SDImageCacheType cacheType) {
