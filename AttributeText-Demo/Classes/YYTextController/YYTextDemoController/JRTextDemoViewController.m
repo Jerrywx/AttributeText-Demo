@@ -53,6 +53,18 @@
 	border.insets = UIEdgeInsetsMake(1, 1, 1, 1);
 	[aString yy_setTextBorder:border range:NSMakeRange(0, aString.length)];
 	
+	/// 点击事件
+	YYTextHighlight * act = [[YYTextHighlight alloc] init];
+	[act setColor:[UIColor redColor]];
+	act.tapAction = ^(UIView * _Nonnull containerView, 
+					  NSAttributedString * _Nonnull text, 
+					  NSRange range, 
+					  CGRect rect) {
+		NSLog(@"----------- %@", text.string);
+	};
+
+	[aString yy_setTextHighlight:act range:NSMakeRange(0, aString.length)];
+	
 	self.label.attributedText = aString;
 	[self.view addSubview:self.label];
 	self.label.backgroundColor = [UIColor yellowColor];
