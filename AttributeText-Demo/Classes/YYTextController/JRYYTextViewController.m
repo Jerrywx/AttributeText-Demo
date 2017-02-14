@@ -83,13 +83,15 @@
 	}
 	
 	_dataList = @[
-				  @{@"title"		: @"YYLabel-Demo",
+				  @{@"title"		: @"YYText测试" ,
+					@"controller"	: @"JRTextDemoViewController"},
+				  @{@"title"		: @"YYLabel-Demo" ,
 					@"controller"	: @"TextViewController"},
 				  @{@"title"		: @"文字排版",
 					@"controller"	: @"JRTextViewViewController"},
-				  @{@"title"		: @"纵横圈子-圈子详情",
+				  @{@"title"		: @"AAAA",
 					@"controller"	: @"JRForumDetialController"},
-				  @{@"title"		: @"纵横圈子-帖子详情",
+				  @{@"title"		: @"BBBB",
 					@"controller"	: @"JRThreadDetialController"},
 				  @{@"title"		: @"Core_Image",
 					@"controller"	: @"JRCoreImageController"},

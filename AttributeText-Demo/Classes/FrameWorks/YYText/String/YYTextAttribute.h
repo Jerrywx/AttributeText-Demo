@@ -26,9 +26,7 @@ typedef NS_OPTIONS(NSInteger, YYTextAttributeType) {
 /// Get the attribute type from an attribute name.
 extern YYTextAttributeType YYTextAttributeGetType(NSString *attributeName);
 
-/**
- Line style in YYText (similar to NSUnderlineStyle).
- */
+// Line style in YYText (similar to NSUnderlineStyle).
 typedef NS_OPTIONS (NSInteger, YYTextLineStyle) {
     // basic style (bitmask:0xFF)
     YYTextLineStyleNone       = 0x00, ///< (        ) Do not draw a line (Default).
@@ -45,18 +43,14 @@ typedef NS_OPTIONS (NSInteger, YYTextLineStyle) {
     YYTextLineStylePatternCircleDot  = 0x900, ///< (••••••••••••) Draw a line of small circle dots.
 };
 
-/**
- Text vertical alignment.
- */
+/// Text vertical alignment.
 typedef NS_ENUM(NSInteger, YYTextVerticalAlignment) {
     YYTextVerticalAlignmentTop =    0, ///< Top alignment.
     YYTextVerticalAlignmentCenter = 1, ///< Center alignment.
     YYTextVerticalAlignmentBottom = 2, ///< Bottom alignment.
 };
 
-/**
- The direction define in YYText.
- */
+/// The direction define in YYText.
 typedef NS_OPTIONS(NSUInteger, YYTextDirection) {
     YYTextDirectionNone   = 0,
     YYTextDirectionTop    = 1 << 0,
@@ -65,23 +59,17 @@ typedef NS_OPTIONS(NSUInteger, YYTextDirection) {
     YYTextDirectionLeft   = 1 << 3,
 };
 
-/**
- The trunction type, tells the truncation engine which type of truncation is being requested.
- */
+/// The trunction type, tells the truncation engine which type of truncation is being requested.
 typedef NS_ENUM (NSUInteger, YYTextTruncationType) {
     /// No truncate.
     YYTextTruncationTypeNone   = 0,
-    
     /// Truncate at the beginning of the line, leaving the end portion visible.
     YYTextTruncationTypeStart  = 1,
-    
     /// Truncate at the end of the line, leaving the start portion visible.
     YYTextTruncationTypeEnd    = 2,
-    
     /// Truncate in the middle of the line, leaving both the start and the end portions visible.
     YYTextTruncationTypeMiddle = 3,
 };
-
 
 
 #pragma mark - Attribute Name Defined in YYText
@@ -212,7 +200,6 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 + (instancetype)shadowWithNSShadow:(NSShadow *)nsShadow; ///< convert NSShadow to YYTextShadow
 - (NSShadow *)nsShadow; ///< convert YYTextShadow to NSShadow
 @end
-
 
 /**
  YYTextDecorationLine objects are used by the NSAttributedString class cluster

@@ -10,6 +10,7 @@
 		3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */; };
 		304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C31E08D987004BDE4A /* JRTextViewViewController.m */; };
 		304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */; };
+		3086EDED1E52FD8200791CB7 /* JRTextDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3086EDEC1E52FD8200791CB7 /* JRTextDemoViewController.m */; };
 		3087D4A51E1DEBB700D3CADA /* JRSimpleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3087D4A41E1DEBB700D3CADA /* JRSimpleTextView.m */; };
 		3087D4A81E1DEC0100D3CADA /* JRColumnarLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3087D4A71E1DEC0100D3CADA /* JRColumnarLayoutView.m */; };
 		3087D4AB1E1DED3600D3CADA /* JRManualLineBreakingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3087D4AA1E1DED3600D3CADA /* JRManualLineBreakingView.m */; };
@@ -148,6 +149,8 @@
 		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
 		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
 		304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+JRExtension.m"; sourceTree = "<group>"; };
+		3086EDEB1E52FD8200791CB7 /* JRTextDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextDemoViewController.h; sourceTree = "<group>"; };
+		3086EDEC1E52FD8200791CB7 /* JRTextDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextDemoViewController.m; sourceTree = "<group>"; };
 		3087D4A31E1DEBB700D3CADA /* JRSimpleTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpleTextView.h; sourceTree = "<group>"; };
 		3087D4A41E1DEBB700D3CADA /* JRSimpleTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpleTextView.m; sourceTree = "<group>"; };
 		3087D4A61E1DEC0100D3CADA /* JRColumnarLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRColumnarLayoutView.h; sourceTree = "<group>"; };
@@ -446,6 +449,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		3086EDEA1E52FD6200791CB7 /* YYTextDemoController */ = {
+			isa = PBXGroup;
+			children = (
+				3086EDEB1E52FD8200791CB7 /* JRTextDemoViewController.h */,
+				3086EDEC1E52FD8200791CB7 /* JRTextDemoViewController.m */,
+			);
+			path = YYTextDemoController;
+			sourceTree = "<group>";
+		};
 		308E873F1E51AB6300600176 /* MGSwipeTableCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,9 +653,9 @@
 				30ADD5B11E4D505F001012E5 /* Component */,
 				30ADD5C41E4D505F001012E5 /* String */,
 				30ADD5CF1E4D505F001012E5 /* Utility */,
+				30ADD5E21E4D505F001012E5 /* YYText.h */,
 				30ADD5E01E4D505F001012E5 /* YYLabel.h */,
 				30ADD5E11E4D505F001012E5 /* YYLabel.m */,
-				30ADD5E21E4D505F001012E5 /* YYText.h */,
 				30ADD5E31E4D505F001012E5 /* YYTextView.h */,
 				30ADD5E41E4D505F001012E5 /* YYTextView.m */,
 			);
@@ -929,6 +941,7 @@
 			children = (
 				C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */,
 				C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */,
+				3086EDEA1E52FD6200791CB7 /* YYTextDemoController */,
 				C400712D1D901ED100220BB9 /* TextViewController.h */,
 				C400712E1D901ED100220BB9 /* TextViewController.m */,
 				304288C21E08D987004BDE4A /* JRTextViewViewController.h */,
@@ -1239,6 +1252,7 @@
 				30A3C6E21E52F7F6002424FA /* YYAnimatedImageView.m in Sources */,
 				30ADD5A61E4D5053001012E5 /* NSMutableAttributedString+TY.m in Sources */,
 				30ADD5F71E4D5060001012E5 /* YYTextAsyncLayer.m in Sources */,
+				3086EDED1E52FD8200791CB7 /* JRTextDemoViewController.m in Sources */,
 				C49868861D92C693009223A1 /* JRThreadHeader.m in Sources */,
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
 				30A3C6D51E52F605002424FA /* NSObject+YYModel.m in Sources */,
