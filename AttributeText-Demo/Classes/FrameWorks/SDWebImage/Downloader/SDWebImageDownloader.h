@@ -10,6 +10,7 @@
 #import "SDWebImageCompat.h"
 #import "SDWebImageOperation.h"
 
+/// 现在选项
 typedef NS_OPTIONS(NSUInteger, SDWebImageDownloaderOptions) {
     SDWebImageDownloaderLowPriority = 1 << 0,
     SDWebImageDownloaderProgressiveDownload = 1 << 1,
@@ -18,6 +19,7 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageDownloaderOptions) {
      * By default, request prevent the use of NSURLCache. With this flag, NSURLCache
      * is used with default policies.
      */
+	/// 默认的使用模式,前往下载,返回进度block信息,完成时调用completedBlock
     SDWebImageDownloaderUseNSURLCache = 1 << 2,
 
     /**
@@ -50,26 +52,24 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageDownloaderOptions) {
      */
     SDWebImageDownloaderHighPriority = 1 << 7,
 };
-
+/// 下载队列 [队列/栈]
 typedef NS_ENUM(NSInteger, SDWebImageDownloaderExecutionOrder) {
-    /**
-     * Default value. All download operations will execute in queue style (first-in-first-out).
-     */
+    /// 默认 队列方式
     SDWebImageDownloaderFIFOExecutionOrder,
-
-    /**
-     * All download operations will execute in stack style (last-in-first-out).
-     */
+	/// 以栈的方式管理
     SDWebImageDownloaderLIFOExecutionOrder
 };
 
+/// 下载 开始/停止 通知
 extern NSString *const SDWebImageDownloadStartNotification;
 extern NSString *const SDWebImageDownloadStopNotification;
 
+/// 下载回调
+// 下载进度回调(返回已经接收的图片数据的大小,未接收的图片数据的大小)
 typedef void(^SDWebImageDownloaderProgressBlock)(NSInteger receivedSize, NSInteger expectedSize);
-
+// 下载完成回调，返回图片数据或错误
 typedef void(^SDWebImageDownloaderCompletedBlock)(UIImage *image, NSData *data, NSError *error, BOOL finished);
-
+// 过滤HTTP请求的Header
 typedef NSDictionary *(^SDWebImageDownloaderHeadersFilterBlock)(NSURL *url, NSDictionary *headers);
 
 /**
