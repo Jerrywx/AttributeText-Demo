@@ -87,11 +87,30 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-	[[TZImageManager manager] getAllAlbums:true allowPickingImage:true completion:^(NSArray<TZAlbumModel *> *models) {
-		for (TZAlbumModel *m in models) {
-			NSLog(@"%@ - %zd", m.name, m.count);
-		}
+//	[[TZImageManager manager] getAllAlbums:true allowPickingImage:true completion:^(NSArray<TZAlbumModel *> *models) {
+//		for (TZAlbumModel *m in models) {
+//			NSLog(@"%@ - %zd == %@", m.name, m.count, [m.result class]);
+//		}
+//	}];
+	
+	NSLog(@"=============================");
+	
+	[[TZImageManager manager] getCameraRollAlbum:true 
+							   allowPickingImage:true 
+									  completion:^(TZAlbumModel *m) {
+		NSLog(@"%@ - %zd == %@", m.name, m.count, [m.result class]);
+		NSLog(@"%@", m.models);
+		
+		[[TZImageManager manager] getAssetsFromFetchResult:m.result 
+										 allowPickingVideo:true 
+										 allowPickingImage:true completion:^(NSArray<TZAssetModel *> *models) {
+//			PHAsset
+											 for (TZAssetModel *model in models) {
+//												 NSLog(@"%@ - %@", model.timeLength, model.asset);
+											 }
+		}];
 	}];
+	
 }
 
 @end

@@ -211,7 +211,12 @@ static CGFloat TZScreenScale;
 
 ///  Get asset at index 获得下标为index的单个照片
 ///  if index beyond bounds, return nil in callback 如果索引越界, 在回调中返回 nil
-- (void)getAssetFromFetchResult:(id)result atIndex:(NSInteger)index allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(TZAssetModel *))completion {
+- (void)getAssetFromFetchResult:(id)result 
+						atIndex:(NSInteger)index 
+			  allowPickingVideo:(BOOL)allowPickingVideo 
+			  allowPickingImage:(BOOL)allowPickingImage 
+					 completion:(void (^)(TZAssetModel *))completion {
+	
     if ([result isKindOfClass:[PHFetchResult class]]) {
         PHFetchResult *fetchResult = (PHFetchResult *)result;
         PHAsset *asset;
