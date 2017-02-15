@@ -8,8 +8,9 @@
 
 #import "JRTextDemoViewController.h"
 #import "TZAssetModel.h"
+#import "TZImagePickerController.h"
 
-@interface JRTextDemoViewController ()
+@interface JRTextDemoViewController () <TZImagePickerControllerDelegate>
 
 @property (nonatomic, strong) YYLabel	*label;
 
@@ -87,30 +88,93 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//	[[TZImageManager manager] getAllAlbums:true allowPickingImage:true completion:^(NSArray<TZAlbumModel *> *models) {
-//		for (TZAlbumModel *m in models) {
-//			NSLog(@"%@ - %zd == %@", m.name, m.count, [m.result class]);
+	
+	[self pushImagePickerController];
+//	[self photoAlbum];
+//	NSLog(@"=============================== %zd", [PHPhotoLibrary authorizationStatus]);
+//	[self imageTest];
+//	[self imageTest2];
+}
+
+- (void)photoAlbum {
+	
+	/// 获取相册
+	PHFetchOptions *option	= [[PHFetchOptions alloc] init];
+//	option.predicate		= [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
+//	option.predicate		= [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeVideo];
+	PHFetchResult *res		= [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+																   subtype:PHAssetCollectionSubtypeAlbumRegular
+																   options:nil];
+	for (PHAssetCollection *colc in res) {
+		PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:colc options:option];
+		if (fetchResult.count > 0) {
+			NSLog(@"%@ -- %zd", colc.localizedTitle, fetchResult.count);
+		}
+	}
+	
+//	res	= [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
+//													subtype:PHAssetCollectionSubtypeAlbumRegular
+//													options:nil];
+//	for (PHAssetCollection *colc in res) {
+//		PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:colc options:option];
+//		if (fetchResult.count > 0) {
+//			NSLog(@"%@ -- %zd", colc.localizedTitle, fetchResult.count);
 //		}
-//	}];
+//	}
 	
-	NSLog(@"=============================");
-	
-	[[TZImageManager manager] getCameraRollAlbum:true 
-							   allowPickingImage:true 
-									  completion:^(TZAlbumModel *m) {
-		NSLog(@"%@ - %zd == %@", m.name, m.count, [m.result class]);
-		NSLog(@"%@", m.models);
-		
-		[[TZImageManager manager] getAssetsFromFetchResult:m.result 
-										 allowPickingVideo:true 
-										 allowPickingImage:true completion:^(NSArray<TZAssetModel *> *models) {
-//			PHAsset
-											 for (TZAssetModel *model in models) {
-//												 NSLog(@"%@ - %@", model.timeLength, model.asset);
-											 }
-		}];
+}
+
+- (void)imageTest {
+	[[TZImageManager manager] getAllAlbums:true allowPickingImage:true completion:^(NSArray<TZAlbumModel *> *models) {
+		for (TZAlbumModel *m in models) {
+			NSLog(@"%@ - %zd == %@", m.name, m.count, [m.result class]);
+		}
 	}];
 	
+}
+
+- (void)imageTest2 {
+	
+	[[TZImageManager manager] getCameraRollAlbum:true allowPickingImage:true completion:^(TZAlbumModel *m) {
+		NSLog(@"%@ - %zd == %@", m.name, m.count, [m.result class]);
+	}];
+}
+
+
+
+
+/// 选择图片
+- (void)pushImagePickerController {
+
+	TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9
+																						columnNumber:4 
+																							delegate:self 
+																				   pushPhotoPickerVc:YES];
+	
+	
+#pragma mark - 四类个性化设置，这些参数都可以不传，此时会走默认设置
+	imagePickerVc.isSelectOriginalPhoto = YES;
+	imagePickerVc.allowTakePicture		= YES; // 在内部显示拍照按钮
+
+	imagePickerVc.allowPickingGif		= YES;
+	imagePickerVc.allowPickingVideo		= YES;
+	imagePickerVc.allowPickingImage		= YES;
+	imagePickerVc.allowPickingOriginalPhoto			= YES;
+	imagePickerVc.sortAscendingByModificationDate	= YES;
+
+	/// 5. 单选模式,maxImagesCount为1时才生效
+	imagePickerVc.allowCrop			= YES;
+	imagePickerVc.showSelectBtn		= NO;
+	imagePickerVc.needCircleCrop	= YES;
+	imagePickerVc.circleCropRadius	= 100;
+	
+	// You can get the photos by block, the same as by delegate.
+	// 你可以通过block或者代理，来得到用户选择的照片.
+	[imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+		
+	}];
+	
+	[self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
 @end

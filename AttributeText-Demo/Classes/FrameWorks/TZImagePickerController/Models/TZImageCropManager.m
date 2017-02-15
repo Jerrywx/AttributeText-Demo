@@ -14,7 +14,11 @@
 @implementation TZImageCropManager
 
 /// 裁剪框背景的处理
-+ (void)overlayClippingWithView:(UIView *)view cropRect:(CGRect)cropRect containerView:(UIView *)containerView needCircleCrop:(BOOL)needCircleCrop {
++ (void)overlayClippingWithView:(UIView *)view 
+					   cropRect:(CGRect)cropRect 
+				  containerView:(UIView *)containerView 
+				 needCircleCrop:(BOOL)needCircleCrop {
+
     UIBezierPath *path= [UIBezierPath bezierPathWithRect:[UIScreen mainScreen].bounds];
     CAShapeLayer *layer = [CAShapeLayer layer];
     if (needCircleCrop) { // 圆形裁剪框
@@ -30,7 +34,11 @@
 }
 
 /// 获得裁剪后的图片
-+ (UIImage *)cropImageView:(UIImageView *)imageView toRect:(CGRect)rect zoomScale:(double)zoomScale containerView:(UIView *)containerView {
++ (UIImage *)cropImageView:(UIImageView *)imageView 
+					toRect:(CGRect)rect 
+				 zoomScale:(double)zoomScale 
+			 containerView:(UIView *)containerView {
+
     CGAffineTransform transform = CGAffineTransformIdentity;
     // 平移的处理
     CGRect imageViewRect = [imageView convertRect:imageView.bounds toView:containerView];
@@ -54,7 +62,13 @@
     return cropedImage;
 }
 
-+ (CGImageRef)newTransformedImage:(CGAffineTransform)transform sourceImage:(CGImageRef)sourceImage sourceSize:(CGSize)sourceSize  outputWidth:(CGFloat)outputWidth cropSize:(CGSize)cropSize imageViewSize:(CGSize)imageViewSize {
++ (CGImageRef)newTransformedImage:(CGAffineTransform)transform 
+					  sourceImage:(CGImageRef)sourceImage 
+					   sourceSize:(CGSize)sourceSize  
+					  outputWidth:(CGFloat)outputWidth 
+						 cropSize:(CGSize)cropSize 
+					imageViewSize:(CGSize)imageViewSize {
+
     CGImageRef source = [self newScaledImage:sourceImage toSize:sourceSize];
     
     CGFloat aspect = cropSize.height/cropSize.width;

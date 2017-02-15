@@ -12,7 +12,10 @@
 @interface TZImageCropManager : NSObject
 
 /// 裁剪框背景的处理
-+ (void)overlayClippingWithView:(UIView *)view cropRect:(CGRect)cropRect containerView:(UIView *)containerView needCircleCrop:(BOOL)needCircleCrop;
++ (void)overlayClippingWithView:(UIView *)view 
+					   cropRect:(CGRect)cropRect 
+				  containerView:(UIView *)containerView 
+				 needCircleCrop:(BOOL)needCircleCrop;
 
 /*
  1.7.2 为了解决多位同学对于图片裁剪的需求，我这两天有空便在研究图片裁剪
@@ -22,7 +25,10 @@
  PhotoTweaks库的github链接：https://github.com/itouch2/PhotoTweaks
  */
 /// 获得裁剪后的图片
-+ (UIImage *)cropImageView:(UIImageView *)imageView toRect:(CGRect)rect zoomScale:(double)zoomScale containerView:(UIView *)containerView;
++ (UIImage *)cropImageView:(UIImageView *)imageView 
+					toRect:(CGRect)rect 
+				 zoomScale:(double)zoomScale 
+			 containerView:(UIView *)containerView;
 
 /// 获取圆形图片
 + (UIImage *)circularClipImage:(UIImage *)image;

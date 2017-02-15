@@ -145,6 +145,11 @@
 		3032F0E01E31B6EA0091F0BC /* JRCoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreViewController.h; sourceTree = "<group>"; };
 		3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreViewController.m; sourceTree = "<group>"; };
 		3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFontManager.h; sourceTree = "<group>"; };
+		3036033B1E540EA4009BAA82 /* jr_PHCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHCollection.h; sourceTree = "<group>"; };
+		3036033C1E54232F009BAA82 /* jr_PHFetchResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHFetchResult.h; sourceTree = "<group>"; };
+		3036033D1E54507D009BAA82 /* jr_PHPhotoLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHPhotoLibrary.h; sourceTree = "<group>"; };
+		3036033E1E545A5E009BAA82 /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
+		3036033F1E545A5F009BAA82 /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		304288C21E08D987004BDE4A /* JRTextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextViewViewController.h; sourceTree = "<group>"; };
 		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
 		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
@@ -176,6 +181,9 @@
 		30828D591E53EBDF000316E2 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
 		30828D5A1E53EBDF000316E2 /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
 		30828D5B1E53EBDF000316E2 /* TZProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZProgressView.m; sourceTree = "<group>"; };
+		30828D6B1E53EC41000316E2 /* jr_PHAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHAsset.h; sourceTree = "<group>"; };
+		30828D6C1E53F455000316E2 /* jr_PHImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHImageManager.h; sourceTree = "<group>"; };
+		30828D6D1E540672000316E2 /* jr_PHFetchOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHFetchOptions.h; sourceTree = "<group>"; };
 		3086EDEB1E52FD8200791CB7 /* JRTextDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextDemoViewController.h; sourceTree = "<group>"; };
 		3086EDEC1E52FD8200791CB7 /* JRTextDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextDemoViewController.m; sourceTree = "<group>"; };
 		3087D4A31E1DEBB700D3CADA /* JRSimpleTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpleTextView.h; sourceTree = "<group>"; };
@@ -504,6 +512,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		30828D6A1E53EC1F000316E2 /* headerFiles */ = {
+			isa = PBXGroup;
+			children = (
+				30828D6B1E53EC41000316E2 /* jr_PHAsset.h */,
+				30828D6C1E53F455000316E2 /* jr_PHImageManager.h */,
+				30828D6D1E540672000316E2 /* jr_PHFetchOptions.h */,
+				3036033B1E540EA4009BAA82 /* jr_PHCollection.h */,
+				3036033C1E54232F009BAA82 /* jr_PHFetchResult.h */,
+				3036033D1E54507D009BAA82 /* jr_PHPhotoLibrary.h */,
+			);
+			path = headerFiles;
+			sourceTree = "<group>";
+		};
 		3086EDEA1E52FD6200791CB7 /* YYTextDemoController */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,6 +612,7 @@
 		30A3C6951E52F605002424FA /* TZImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
+				30828D6A1E53EC1F000316E2 /* headerFiles */,
 				30828D3D1E53EBDF000316E2 /* Category */,
 				30828D421E53EBDF000316E2 /* Controllers */,
 				30828D4D1E53EBDF000316E2 /* Models */,
@@ -1126,7 +1148,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = C40D946A1D7FAE0900E512ED;
@@ -1341,6 +1362,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C40D94801D7FAE0900E512ED /* Base */,
+				3036033E1E545A5E009BAA82 /* zh-Hans-CN */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1349,6 +1371,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C40D94851D7FAE0900E512ED /* Base */,
+				3036033F1E545A5F009BAA82 /* zh-Hans-CN */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1360,6 +1383,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1405,6 +1429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

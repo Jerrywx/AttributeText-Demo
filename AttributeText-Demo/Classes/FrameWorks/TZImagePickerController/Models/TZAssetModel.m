@@ -9,35 +9,38 @@
 #import "TZAssetModel.h"
 #import "TZImageManager.h"
 
+/// 资源
 @implementation TZAssetModel
 
 + (instancetype)modelWithAsset:(id)asset type:(TZAssetModelMediaType)type{
     TZAssetModel *model = [[TZAssetModel alloc] init];
-    model.asset = asset;
-    model.isSelected = NO;
-    model.type = type;
+	model.type			= type;
+    model.asset			= asset;
+    model.isSelected	= NO;
     return model;
 }
 
-+ (instancetype)modelWithAsset:(id)asset type:(TZAssetModelMediaType)type timeLength:(NSString *)timeLength {
++ (instancetype)modelWithAsset:(id)asset type:(TZAssetModelMediaType)type 
+					timeLength:(NSString *)timeLength {
     TZAssetModel *model = [self modelWithAsset:asset type:type];
-    model.timeLength = timeLength;
+    model.timeLength	= timeLength;
     return model;
 }
 
 @end
 
-
-
+/// 相册
 @implementation TZAlbumModel
 
 - (void)setResult:(id)result {
     _result = result;
     BOOL allowPickingImage = [[[NSUserDefaults standardUserDefaults] objectForKey:@"tz_allowPickingImage"] isEqualToString:@"1"];
     BOOL allowPickingVideo = [[[NSUserDefaults standardUserDefaults] objectForKey:@"tz_allowPickingVideo"] isEqualToString:@"1"];
+	
     [[TZImageManager manager] getAssetsFromFetchResult:result allowPickingVideo:allowPickingVideo allowPickingImage:allowPickingImage completion:^(NSArray<TZAssetModel *> *models) {
         _models = models;
         if (_selectedModels) {
+			/// 检查选中
             [self checkSelectedModels];
         }
     }];
@@ -49,18 +52,23 @@
         [self checkSelectedModels];
     }
 }
-
+/// 检查选中资源
 - (void)checkSelectedModels {
     self.selectedCount = 0;
+	
     NSMutableArray *selectedAssets = [NSMutableArray array];
+	
     for (TZAssetModel *model in _selectedModels) {
         [selectedAssets addObject:model.asset];
     }
+
     for (TZAssetModel *model in _models) {
-        if ([[TZImageManager manager] isAssetsArray:selectedAssets containAsset:model.asset]) {
+        if ([[TZImageManager manager] isAssetsArray:selectedAssets
+									   containAsset:model.asset]) {
             self.selectedCount ++;
         }
     }
 }
 
 @end
+
