@@ -21,187 +21,73 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- Get pre-defined attributes from attributed string.
- All properties defined in UIKit, CoreText and YYText are included.
- */
 @interface NSAttributedString (YYText)
 
-/**
- Archive the string to data.
- @return Returns nil if an error occurs.
- */
+/// Archive the string to data.
 - (nullable NSData *)yy_archiveToData;
-
-/**
- Unarchive string from data.
- @param data  The archived attributed string data.
- @return Returns nil if an error occurs.
- */
+/// Unarchive string from data.
 + (nullable instancetype)yy_unarchiveFromData:(NSData *)data;
-
-
 
 #pragma mark - Retrieving character attribute information
 ///=============================================================================
 /// @name Retrieving character attribute information
 ///=============================================================================
 
-/**
- Returns the attributes at first charactor.
- */
+/// Returns the attributes at first charactor.
 @property (nullable, nonatomic, copy, readonly) NSDictionary<NSString *, id> *yy_attributes;
 
-/**
- Returns the attributes for the character at a given index.
- 
- @discussion Raises an `NSRangeException` if index lies beyond the end of the 
- receiver's characters.
- 
- @param index  The index for which to return attributes. 
- This value must lie within the bounds of the receiver.
- 
- @return The attributes for the character at index.
- */
+/// Returns the attributes for the character at a given index.
 - (nullable NSDictionary<NSString *, id> *)yy_attributesAtIndex:(NSUInteger)index;
 
-/**
- Returns the value for an attribute with a given name of the character at a given index.
- 
- @discussion Raises an `NSRangeException` if index lies beyond the end of the
- receiver's characters.
- 
- @param attributeName  The name of an attribute.
- @param index          The index for which to return attributes. 
- This value must not exceed the bounds of the receiver.
- 
- @return The value for the attribute named `attributeName` of the character at 
- index `index`, or nil if there is no such attribute.
- */
+/// Returns the value for an attribute with a given name of the character at a given index.
 - (nullable id)yy_attribute:(NSString *)attributeName atIndex:(NSUInteger)index;
-
 
 #pragma mark - Get character attribute as property
 ///=============================================================================
 /// @name Get character attribute as property
 ///=============================================================================
 
-/**
- The font of the text. (read-only)
- 
- @discussion Default is Helvetica (Neue) 12.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:3.2  UIKit:6.0  YYText:6.0
- */
+/// The font of the text. (read-only)
 @property (nullable, nonatomic, strong, readonly) UIFont *yy_font;
 - (nullable UIFont *)yy_fontAtIndex:(NSUInteger)index;
 
-/**
- A kerning adjustment. (read-only)
- 
- @discussion Default is standard kerning. The kerning attribute indicate how many 
- points the following character should be shifted from its default offset as 
- defined by the current character's font in points; a positive kern indicates a 
- shift farther along and a negative kern indicates a shift closer to the current 
- character. If this attribute is not present, standard kerning will be used. 
- If this attribute is set to 0.0, no kerning will be done at all.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:3.2  UIKit:6.0  YYText:6.0
- */
+/// A kerning adjustment. (read-only) 字间距
 @property (nullable, nonatomic, strong, readonly) NSNumber *yy_kern;
 - (nullable NSNumber *)yy_kernAtIndex:(NSUInteger)index;
 
-/**
- The foreground color. (read-only)
- 
- @discussion Default is Black.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:3.2  UIKit:6.0  YYText:6.0
- */
+/// The foreground color. (read-only) 文字颜色
 @property (nullable, nonatomic, strong, readonly) UIColor *yy_color;
 - (nullable UIColor *)yy_colorAtIndex:(NSUInteger)index;
 
-/**
- The background color. (read-only)
- 
- @discussion Default is nil (or no background).
- @discussion Get this property returns the first character's attribute.
- @since UIKit:6.0
- */
+/// The background color. (read-only)
 @property (nullable, nonatomic, strong, readonly) UIColor *yy_backgroundColor;
 - (nullable UIColor *)yy_backgroundColorAtIndex:(NSUInteger)index;
 
-/**
- The stroke width. (read-only)
- 
- @discussion Default value is 0.0 (no stroke). This attribute, interpreted as
- a percentage of font point size, controls the text drawing mode: positive 
- values effect drawing with stroke only; negative values are for stroke and fill.
- A typical value for outlined text is 3.0.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:3.2  UIKit:6.0
- */
+/// The stroke width. (read-only)
 @property (nullable, nonatomic, strong, readonly) NSNumber *yy_strokeWidth;
 - (nullable NSNumber *)yy_strokeWidthAtIndex:(NSUInteger)index;
 
-/**
- The stroke color. (read-only)
- 
- @discussion Default value is nil (same as foreground color).
- @discussion Get this property returns the first character's attribute.
- @since CoreText:3.2  UIKit:6.0
- */
+/// The stroke color. (read-only)
 @property (nullable, nonatomic, strong, readonly) UIColor *yy_strokeColor;
 - (nullable UIColor *)yy_strokeColorAtIndex:(NSUInteger)index;
 
-/**
- The text shadow. (read-only)
- 
- @discussion Default value is nil (no shadow).
- @discussion Get this property returns the first character's attribute.
- @since UIKit:6.0  YYText:6.0
- */
+/// The text shadow. (read-only)
 @property (nullable, nonatomic, strong, readonly) NSShadow *yy_shadow;
 - (nullable NSShadow *)yy_shadowAtIndex:(NSUInteger)index;
 
-/**
- The strikethrough style. (read-only)
- 
- @discussion Default value is NSUnderlineStyleNone (no strikethrough).
- @discussion Get this property returns the first character's attribute.
- @since UIKit:6.0
- */
+/// The strikethrough style. (read-only) 点击下划线
 @property (nonatomic, readonly) NSUnderlineStyle yy_strikethroughStyle;
 - (NSUnderlineStyle)yy_strikethroughStyleAtIndex:(NSUInteger)index;
 
-/**
- The strikethrough color. (read-only)
- 
- @discussion Default value is nil (same as foreground color).
- @discussion Get this property returns the first character's attribute.
- @since UIKit:7.0
- */
+/// The strikethrough color. (read-only) 点击颜色
 @property (nullable, nonatomic, strong, readonly) UIColor *yy_strikethroughColor;
 - (nullable UIColor *)yy_strikethroughColorAtIndex:(NSUInteger)index;
 
-/**
- The underline style. (read-only)
- 
- @discussion Default value is NSUnderlineStyleNone (no underline).
- @discussion Get this property returns the first character's attribute.
- @since CoreText:3.2  UIKit:6.0
- */
+/// The underline style. (read-only) 下划线
 @property (nonatomic, readonly) NSUnderlineStyle yy_underlineStyle;
 - (NSUnderlineStyle)yy_underlineStyleAtIndex:(NSUInteger)index;
 
-/**
- The underline color. (read-only)
- 
- @discussion Default value is nil (same as foreground color).
- @discussion Get this property returns the first character's attribute.
- @since CoreText:3.2  UIKit:7.0
- */
+/// The underline color. (read-only) 下划线颜色
 @property (nullable, nonatomic, strong, readonly) UIColor *yy_underlineColor;
 - (nullable UIColor *)yy_underlineColorAtIndex:(NSUInteger)index;
 
@@ -310,53 +196,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Get paragraph attribute as property
 ///=============================================================================
 
-/**
- The text alignment (A wrapper for NSParagraphStyle). (read-only)
- 
- @discussion Natural text alignment is realized as left or right alignment 
- depending on the line sweep direction of the first script contained in the paragraph.
- @discussion Default is NSTextAlignmentNatural.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:6.0  UIKit:6.0  YYText:6.0
- */
+/// The text alignment (A wrapper for NSParagraphStyle). (read-only)
 @property (nonatomic, readonly) NSTextAlignment yy_alignment;
 - (NSTextAlignment)yy_alignmentAtIndex:(NSUInteger)index;
 
-/**
- The mode that should be used to break lines (A wrapper for NSParagraphStyle). (read-only)
- 
- @discussion This property contains the line break mode to be used laying out the paragraph's text.
- @discussion Default is NSLineBreakByWordWrapping.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:6.0  UIKit:6.0  YYText:6.0
- */
+/// The mode that should be used to break lines (A wrapper for NSParagraphStyle). (read-only)
 @property (nonatomic, readonly) NSLineBreakMode yy_lineBreakMode;
 - (NSLineBreakMode)yy_lineBreakModeAtIndex:(NSUInteger)index;
 
-/**
- The distance in points between the bottom of one line fragment and the top of the next.
- (A wrapper for NSParagraphStyle) (read-only)
- 
- @discussion This value is always nonnegative. This value is included in the line 
- fragment heights in the layout manager.
- @discussion Default is 0.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:6.0  UIKit:6.0  YYText:6.0
- */
+/// 行间距
 @property (nonatomic, readonly) CGFloat yy_lineSpacing;
 - (CGFloat)yy_lineSpacingAtIndex:(NSUInteger)index;
 
-/**
- The space after the end of the paragraph (A wrapper for NSParagraphStyle). (read-only)
- 
- @discussion This property contains the space (measured in points) added at the 
- end of the paragraph to separate it from the following paragraph. This value must
- be nonnegative. The space between paragraphs is determined by adding the previous 
- paragraph's paragraphSpacing and the current paragraph's paragraphSpacingBefore.
- @discussion Default is 0.
- @discussion Get this property returns the first character's attribute.
- @since CoreText:6.0  UIKit:6.0  YYText:6.0
- */
+/// 段落间距
 @property (nonatomic, readonly) CGFloat yy_paragraphSpacing;
 - (CGFloat)yy_paragraphSpacingAtIndex:(NSUInteger)index;
 
@@ -691,9 +543,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)yy_canDrawWithUIKit;
 
 @end
-
-
-
 
 /**
  Set pre-defined attributes to attributed string.

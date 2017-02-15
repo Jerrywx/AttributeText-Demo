@@ -27,7 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface YYTextLine : NSObject
 
-+ (instancetype)lineWithCTLine:(CTLineRef)CTLine position:(CGPoint)position vertical:(BOOL)isVertical;
++ (instancetype)lineWithCTLine:(CTLineRef)CTLine
+					  position:(CGPoint)position
+					  vertical:(BOOL)isVertical;
 
 @property (nonatomic) NSUInteger index;     ///< line index
 @property (nonatomic) NSUInteger row;       ///< line row

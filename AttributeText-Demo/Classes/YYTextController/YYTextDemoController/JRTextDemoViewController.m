@@ -7,6 +7,7 @@
 //
 
 #import "JRTextDemoViewController.h"
+#import "TZAssetModel.h"
 
 @interface JRTextDemoViewController ()
 
@@ -65,10 +66,32 @@
 
 	[aString yy_setTextHighlight:act range:NSMakeRange(0, aString.length)];
 	
+	
+	YYTextRubyAnnotation *ruby = [YYTextRubyAnnotation new];
+	ruby.textBefore = @"zhù yīn";
+	CTRubyAnnotationRef ctRuby = ruby.CTRubyAnnotation;
+	if (ctRuby) {
+		/// add to attributed string
+		[aString yy_setTextRubyAnnotation:ruby range:NSMakeRange(0, aString.length)];
+		
+		CFRelease(ctRuby);
+	}
+	
+	
+	
+	
 	self.label.attributedText = aString;
 	[self.view addSubview:self.label];
 	self.label.backgroundColor = [UIColor yellowColor];
 	
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	[[TZImageManager manager] getAllAlbums:true allowPickingImage:true completion:^(NSArray<TZAlbumModel *> *models) {
+		for (TZAlbumModel *m in models) {
+			NSLog(@"%@ - %zd", m.name, m.count);
+		}
+	}];
 }
 
 @end

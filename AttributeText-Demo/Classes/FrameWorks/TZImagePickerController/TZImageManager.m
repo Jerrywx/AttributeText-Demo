@@ -72,7 +72,10 @@ static CGFloat TZScreenScale;
 #pragma mark - Get Album
 
 /// Get Album 获得相册/相册数组
-- (void)getCameraRollAlbum:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(TZAlbumModel *))completion{
+- (void)getCameraRollAlbum:(BOOL)allowPickingVideo 
+		 allowPickingImage:(BOOL)allowPickingImage 
+				completion:(void (^)(TZAlbumModel *))completion{
+	
     __block TZAlbumModel *model;
     if (iOS8Later) {
         PHFetchOptions *option = [[PHFetchOptions alloc] init];

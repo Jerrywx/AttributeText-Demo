@@ -28,13 +28,27 @@
 @interface TZImagePickerController : UINavigationController
 
 /// Use this init method / 用这个初始化方法
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate;
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber delegate:(id<TZImagePickerControllerDelegate>)delegate;
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber delegate:(id<TZImagePickerControllerDelegate>)delegate pushPhotoPickerVc:(BOOL)pushPhotoPickerVc;
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount
+							  delegate:(id<TZImagePickerControllerDelegate>)delegate;
+
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount 
+						  columnNumber:(NSInteger)columnNumber 
+							  delegate:(id<TZImagePickerControllerDelegate>)delegate;
+
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount 
+						  columnNumber:(NSInteger)columnNumber 
+							  delegate:(id<TZImagePickerControllerDelegate>)delegate 
+					 pushPhotoPickerVc:(BOOL)pushPhotoPickerVc;
+
 /// This init method just for previewing photos / 用这个初始化方法以预览图片
-- (instancetype)initWithSelectedAssets:(NSMutableArray *)selectedAssets selectedPhotos:(NSMutableArray *)selectedPhotos index:(NSInteger)index;
+- (instancetype)initWithSelectedAssets:(NSMutableArray *)selectedAssets 
+						selectedPhotos:(NSMutableArray *)selectedPhotos 
+								 index:(NSInteger)index;
+
 /// This init method for crop photo / 用这个初始化方法以裁剪图片
-- (instancetype)initCropTypeWithAsset:(id)asset photo:(UIImage *)photo completion:(void (^)(UIImage *cropImage,id asset))completion;
+- (instancetype)initCropTypeWithAsset:(id)asset 
+								photo:(UIImage *)photo 
+						   completion:(void (^)(UIImage *cropImage,id asset))completion;
 
 /// Default is 9 / 默认最大可选9张图片
 @property (nonatomic, assign) NSInteger maxImagesCount;

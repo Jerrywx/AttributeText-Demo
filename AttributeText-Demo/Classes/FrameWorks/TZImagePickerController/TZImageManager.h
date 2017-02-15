@@ -43,7 +43,11 @@
 
 /// Get Album 获得相册/相册数组
 - (void)getCameraRollAlbum:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(TZAlbumModel *model))completion;
-- (void)getAllAlbums:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<TZAlbumModel *> *models))completion;
+
+- (void)getAllAlbums:(BOOL)allowPickingVideo 
+   allowPickingImage:(BOOL)allowPickingImage 
+		  completion:(void (^)(NSArray<TZAlbumModel *> *models))completion;
+
 
 /// Get Assets 获得Asset数组
 - (void)getAssetsFromFetchResult:(id)result allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<TZAssetModel *> *models))completion;

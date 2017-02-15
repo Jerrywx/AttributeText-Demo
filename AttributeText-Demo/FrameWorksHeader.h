@@ -23,6 +23,7 @@
 #import "YYImage.h"
 #import "YYAnimatedImageView.h"
 
+#import "TZImageManager.h"
 
 //////
 #import "JRButton.h"
