@@ -7,6 +7,7 @@
 //
 
 #import "JRCoreViewController.h"
+#import "JRPageViewController.h"
 
 @interface JRCoreViewController ()
 
@@ -21,6 +22,8 @@
 	self.view.backgroundColor = [UIColor whiteColor];
 	
 }
+
+
 
 
 

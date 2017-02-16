@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "JRCoreFoundationController.h"
+#import "JRPageDemoController.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -94,6 +95,10 @@
 					@"controller"	: @"JRCoreTextController"},
 				  @{@"title"		: @"CoreText",
 					@"controller"	: @"JRCoreViewController"},
+				  @{@"title"		: @"UIPage",
+					@"controller"	: @"JRPageDemoController"},
+				  @{@"title"		: @"Reader",
+					@"controller"	: @"JRReaderViewController"},
 				  ];
 	
 	return _dataList;

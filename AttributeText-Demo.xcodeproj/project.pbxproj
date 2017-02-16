@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */; };
+		303603431E5557F9009BAA82 /* JRPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603421E5557F9009BAA82 /* JRPageViewController.m */; };
+		303603471E55600F009BAA82 /* JRPageDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603461E55600F009BAA82 /* JRPageDemoController.m */; };
 		304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C31E08D987004BDE4A /* JRTextViewViewController.m */; };
 		304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */; };
 		30828D5C1E53EBDF000316E2 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 30828D3F1E53EBDF000316E2 /* NSBundle+TZImagePicker.m */; };
@@ -89,6 +91,20 @@
 		30ADD5FA1E4D5060001012E5 /* YYTextWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ADD5DF1E4D505F001012E5 /* YYTextWeakProxy.m */; };
 		30ADD5FB1E4D5060001012E5 /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ADD5E11E4D505F001012E5 /* YYLabel.m */; };
 		30ADD5FC1E4D5060001012E5 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ADD5E41E4D505F001012E5 /* YYTextView.m */; };
+		30AF1B151E558B04005BEB4B /* JRReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AF1B141E558B04005BEB4B /* JRReaderViewController.m */; };
+		30CC054D1E559801009C1BDD /* JRCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC054C1E559801009C1BDD /* JRCollectionViewCell.m */; };
+		30CC05681E55A825009C1BDD /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05511E55A825009C1BDD /* NSArray+Log.m */; };
+		30CC05691E55A825009C1BDD /* NSAttributedString+CZAdditon.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05531E55A825009C1BDD /* NSAttributedString+CZAdditon.m */; };
+		30CC056A1E55A825009C1BDD /* NSObject+CZRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05551E55A825009C1BDD /* NSObject+CZRuntime.m */; };
+		30CC056B1E55A825009C1BDD /* NSString+CZBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05571E55A825009C1BDD /* NSString+CZBase64.m */; };
+		30CC056C1E55A825009C1BDD /* NSString+CZHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05591E55A825009C1BDD /* NSString+CZHash.m */; };
+		30CC056D1E55A825009C1BDD /* NSString+CZPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC055B1E55A825009C1BDD /* NSString+CZPath.m */; };
+		30CC056E1E55A825009C1BDD /* UIButton+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC055D1E55A825009C1BDD /* UIButton+CZAddition.m */; };
+		30CC056F1E55A825009C1BDD /* UIColor+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC055F1E55A825009C1BDD /* UIColor+CZAddition.m */; };
+		30CC05701E55A825009C1BDD /* UILabel+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05611E55A825009C1BDD /* UILabel+CZAddition.m */; };
+		30CC05711E55A825009C1BDD /* UIScreen+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05631E55A825009C1BDD /* UIScreen+CZAddition.m */; };
+		30CC05721E55A825009C1BDD /* UIView+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05651E55A825009C1BDD /* UIView+CZAddition.m */; };
+		30CC05731E55A825009C1BDD /* UIViewController+CZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CC05671E55A825009C1BDD /* UIViewController+CZAddition.m */; };
 		30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
@@ -150,6 +166,11 @@
 		3036033D1E54507D009BAA82 /* jr_PHPhotoLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHPhotoLibrary.h; sourceTree = "<group>"; };
 		3036033E1E545A5E009BAA82 /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
 		3036033F1E545A5F009BAA82 /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		303603411E5557F9009BAA82 /* JRPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPageViewController.h; sourceTree = "<group>"; };
+		303603421E5557F9009BAA82 /* JRPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPageViewController.m; sourceTree = "<group>"; };
+		303603441E5558DA009BAA82 /* jr_UIPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_UIPageViewController.h; sourceTree = "<group>"; };
+		303603451E55600F009BAA82 /* JRPageDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPageDemoController.h; sourceTree = "<group>"; };
+		303603461E55600F009BAA82 /* JRPageDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPageDemoController.m; sourceTree = "<group>"; };
 		304288C21E08D987004BDE4A /* JRTextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextViewViewController.h; sourceTree = "<group>"; };
 		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
 		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
@@ -322,6 +343,35 @@
 		30ADD5E31E4D505F001012E5 /* YYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextView.h; sourceTree = "<group>"; };
 		30ADD5E41E4D505F001012E5 /* YYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextView.m; sourceTree = "<group>"; };
 		30ADD5FD1E4D641E001012E5 /* jr_ CGPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jr_ CGPath.h"; sourceTree = "<group>"; };
+		30AF1B131E558B04005BEB4B /* JRReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRReaderViewController.h; sourceTree = "<group>"; };
+		30AF1B141E558B04005BEB4B /* JRReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRReaderViewController.m; sourceTree = "<group>"; };
+		30CC054B1E559801009C1BDD /* JRCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCollectionViewCell.h; sourceTree = "<group>"; };
+		30CC054C1E559801009C1BDD /* JRCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCollectionViewCell.m; sourceTree = "<group>"; };
+		30CC054F1E55A825009C1BDD /* CZAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZAdditions.h; sourceTree = "<group>"; };
+		30CC05501E55A825009C1BDD /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
+		30CC05511E55A825009C1BDD /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
+		30CC05521E55A825009C1BDD /* NSAttributedString+CZAdditon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CZAdditon.h"; sourceTree = "<group>"; };
+		30CC05531E55A825009C1BDD /* NSAttributedString+CZAdditon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CZAdditon.m"; sourceTree = "<group>"; };
+		30CC05541E55A825009C1BDD /* NSObject+CZRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CZRuntime.h"; sourceTree = "<group>"; };
+		30CC05551E55A825009C1BDD /* NSObject+CZRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CZRuntime.m"; sourceTree = "<group>"; };
+		30CC05561E55A825009C1BDD /* NSString+CZBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZBase64.h"; sourceTree = "<group>"; };
+		30CC05571E55A825009C1BDD /* NSString+CZBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZBase64.m"; sourceTree = "<group>"; };
+		30CC05581E55A825009C1BDD /* NSString+CZHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZHash.h"; sourceTree = "<group>"; };
+		30CC05591E55A825009C1BDD /* NSString+CZHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZHash.m"; sourceTree = "<group>"; };
+		30CC055A1E55A825009C1BDD /* NSString+CZPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CZPath.h"; sourceTree = "<group>"; };
+		30CC055B1E55A825009C1BDD /* NSString+CZPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CZPath.m"; sourceTree = "<group>"; };
+		30CC055C1E55A825009C1BDD /* UIButton+CZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CZAddition.h"; sourceTree = "<group>"; };
+		30CC055D1E55A825009C1BDD /* UIButton+CZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CZAddition.m"; sourceTree = "<group>"; };
+		30CC055E1E55A825009C1BDD /* UIColor+CZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CZAddition.h"; sourceTree = "<group>"; };
+		30CC055F1E55A825009C1BDD /* UIColor+CZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CZAddition.m"; sourceTree = "<group>"; };
+		30CC05601E55A825009C1BDD /* UILabel+CZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+CZAddition.h"; sourceTree = "<group>"; };
+		30CC05611E55A825009C1BDD /* UILabel+CZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+CZAddition.m"; sourceTree = "<group>"; };
+		30CC05621E55A825009C1BDD /* UIScreen+CZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+CZAddition.h"; sourceTree = "<group>"; };
+		30CC05631E55A825009C1BDD /* UIScreen+CZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+CZAddition.m"; sourceTree = "<group>"; };
+		30CC05641E55A825009C1BDD /* UIView+CZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CZAddition.h"; sourceTree = "<group>"; };
+		30CC05651E55A825009C1BDD /* UIView+CZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CZAddition.m"; sourceTree = "<group>"; };
+		30CC05661E55A825009C1BDD /* UIViewController+CZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CZAddition.h"; sourceTree = "<group>"; };
+		30CC05671E55A825009C1BDD /* UIViewController+CZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CZAddition.m"; sourceTree = "<group>"; };
 		30CD5E0B1E13589800E0F2E9 /* jr_CGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_CGContext.h; sourceTree = "<group>"; };
 		30FE49F41E15033700ED9F47 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
 		30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
@@ -443,6 +493,18 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		303603401E5557D7009BAA82 /* JRPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				303603451E55600F009BAA82 /* JRPageDemoController.h */,
+				303603461E55600F009BAA82 /* JRPageDemoController.m */,
+				303603441E5558DA009BAA82 /* jr_UIPageViewController.h */,
+				303603411E5557F9009BAA82 /* JRPageViewController.h */,
+				303603421E5557F9009BAA82 /* JRPageViewController.m */,
+			);
+			path = JRPageViewController;
 			sourceTree = "<group>";
 		};
 		305F58C91E52AFFC000E6627 /* SDWebImage */ = {
@@ -653,6 +715,7 @@
 		30ADD4841E4D4EEC001012E5 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				30CC054E1E55A825009C1BDD /* Additions */,
 				30A3C6D71E52F7F6002424FA /* YYImage */,
 				30A3C6951E52F605002424FA /* TZImagePickerController */,
 				30A3C6BC1E52F605002424FA /* YYModel */,
@@ -781,6 +844,49 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		30AF1B121E558B04005BEB4B /* JRReaderController */ = {
+			isa = PBXGroup;
+			children = (
+				30AF1B131E558B04005BEB4B /* JRReaderViewController.h */,
+				30AF1B141E558B04005BEB4B /* JRReaderViewController.m */,
+				30CC054B1E559801009C1BDD /* JRCollectionViewCell.h */,
+				30CC054C1E559801009C1BDD /* JRCollectionViewCell.m */,
+			);
+			path = JRReaderController;
+			sourceTree = "<group>";
+		};
+		30CC054E1E55A825009C1BDD /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				30CC054F1E55A825009C1BDD /* CZAdditions.h */,
+				30CC05501E55A825009C1BDD /* NSArray+Log.h */,
+				30CC05511E55A825009C1BDD /* NSArray+Log.m */,
+				30CC05521E55A825009C1BDD /* NSAttributedString+CZAdditon.h */,
+				30CC05531E55A825009C1BDD /* NSAttributedString+CZAdditon.m */,
+				30CC05541E55A825009C1BDD /* NSObject+CZRuntime.h */,
+				30CC05551E55A825009C1BDD /* NSObject+CZRuntime.m */,
+				30CC05561E55A825009C1BDD /* NSString+CZBase64.h */,
+				30CC05571E55A825009C1BDD /* NSString+CZBase64.m */,
+				30CC05581E55A825009C1BDD /* NSString+CZHash.h */,
+				30CC05591E55A825009C1BDD /* NSString+CZHash.m */,
+				30CC055A1E55A825009C1BDD /* NSString+CZPath.h */,
+				30CC055B1E55A825009C1BDD /* NSString+CZPath.m */,
+				30CC055C1E55A825009C1BDD /* UIButton+CZAddition.h */,
+				30CC055D1E55A825009C1BDD /* UIButton+CZAddition.m */,
+				30CC055E1E55A825009C1BDD /* UIColor+CZAddition.h */,
+				30CC055F1E55A825009C1BDD /* UIColor+CZAddition.m */,
+				30CC05601E55A825009C1BDD /* UILabel+CZAddition.h */,
+				30CC05611E55A825009C1BDD /* UILabel+CZAddition.m */,
+				30CC05621E55A825009C1BDD /* UIScreen+CZAddition.h */,
+				30CC05631E55A825009C1BDD /* UIScreen+CZAddition.m */,
+				30CC05641E55A825009C1BDD /* UIView+CZAddition.h */,
+				30CC05651E55A825009C1BDD /* UIView+CZAddition.m */,
+				30CC05661E55A825009C1BDD /* UIViewController+CZAddition.h */,
+				30CC05671E55A825009C1BDD /* UIViewController+CZAddition.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
 		30CD5E091E13589800E0F2E9 /* HeardFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,6 +935,8 @@
 				C41D53B01E0D6DF600DEDFF9 /* JRCoreImageController */,
 				C42600121E115C530022C4D5 /* JRCoreTextController */,
 				3032F0DB1E31B6120091F0BC /* JRBaseCoreController */,
+				303603401E5557D7009BAA82 /* JRPageViewController */,
+				30AF1B121E558B04005BEB4B /* JRReaderController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1256,6 +1364,7 @@
 				3087D4A51E1DEBB700D3CADA /* JRSimpleTextView.m in Sources */,
 				C49868851D92C693009223A1 /* JRThreadDetialController.m in Sources */,
 				30ADD5F91E4D5060001012E5 /* YYTextUtilities.m in Sources */,
+				30CC05721E55A825009C1BDD /* UIView+CZAddition.m in Sources */,
 				C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */,
 				30828D5D1E53EBDF000316E2 /* UIView+Layout.m in Sources */,
 				30A3C6E41E52F7F6002424FA /* YYImage.m in Sources */,
@@ -1265,6 +1374,7 @@
 				3087D4AB1E1DED3600D3CADA /* JRManualLineBreakingView.m in Sources */,
 				C42600181E115EBA0022C4D5 /* JRCoreTextView.m in Sources */,
 				30A3C6921E52B3E8002424FA /* SDWebImageDecoder.m in Sources */,
+				30CC054D1E559801009C1BDD /* JRCollectionViewCell.m in Sources */,
 				30ADD5F51E4D5060001012E5 /* UIPasteboard+YYText.m in Sources */,
 				30A3C6D61E52F605002424FA /* YYClassInfo.m in Sources */,
 				30828D621E53EBDF000316E2 /* TZVideoPlayerController.m in Sources */,
@@ -1276,6 +1386,7 @@
 				3087D4A81E1DEC0100D3CADA /* JRColumnarLayoutView.m in Sources */,
 				C42E98971E16A99E004A6159 /* JRCoreFoundationController.m in Sources */,
 				30A3C68B1E52B3E8002424FA /* UIImage+MultiFormat.m in Sources */,
+				30CC056E1E55A825009C1BDD /* UIButton+CZAddition.m in Sources */,
 				30ADD5AB1E4D5053001012E5 /* TYLinkTextStorage.m in Sources */,
 				30A3C68A1E52B3E8002424FA /* UIImage+GIF.m in Sources */,
 				30ADD5EE1E4D5060001012E5 /* YYTextArchiver.m in Sources */,
@@ -1284,6 +1395,7 @@
 				30ADD5E91E4D505F001012E5 /* YYTextKeyboardManager.m in Sources */,
 				30A3C68E1E52B3E8002424FA /* UIView+WebCacheOperation.m in Sources */,
 				30ADD5ED1E4D505F001012E5 /* YYTextSelectionView.m in Sources */,
+				30CC05711E55A825009C1BDD /* UIScreen+CZAddition.m in Sources */,
 				3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */,
 				30ADD5F01E4D5060001012E5 /* YYTextParser.m in Sources */,
 				30A3C6871E52B3E8002424FA /* SDImageCache.m in Sources */,
@@ -1295,10 +1407,12 @@
 				30A3C68D1E52B3E8002424FA /* UIImageView+WebCache.m in Sources */,
 				30ADD5FB1E4D5060001012E5 /* YYLabel.m in Sources */,
 				30ADD5F81E4D5060001012E5 /* YYTextTransaction.m in Sources */,
+				30CC056D1E55A825009C1BDD /* NSString+CZPath.m in Sources */,
 				C48275641D919EFC0032EE10 /* JRForumDetialController.m in Sources */,
 				30ADD5AF1E4D5053001012E5 /* TYViewStorage.m in Sources */,
 				30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */,
 				3087D4AE1E1DFFE000D3CADA /* JRParagraphStyleView.m in Sources */,
+				30CC05701E55A825009C1BDD /* UILabel+CZAddition.m in Sources */,
 				30ADD5E71E4D505F001012E5 /* YYTextEffectWindow.m in Sources */,
 				30ADD5AA1E4D5053001012E5 /* TYImageStorage.m in Sources */,
 				30A3C6E21E52F7F6002424FA /* YYAnimatedImageView.m in Sources */,
@@ -1311,25 +1425,34 @@
 				30A3C6D51E52F605002424FA /* NSObject+YYModel.m in Sources */,
 				C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */,
 				30A3C68F1E52B3E8002424FA /* SDWebImageDownloader.m in Sources */,
+				30CC056B1E55A825009C1BDD /* NSString+CZBase64.m in Sources */,
 				C482755A1D91947B0032EE10 /* JRButton.m in Sources */,
 				30ADD5E51E4D505F001012E5 /* YYTextContainerView.m in Sources */,
 				30A3C6941E52B3E8002424FA /* SDWebImagePrefetcher.m in Sources */,
 				30ADD5EA1E4D505F001012E5 /* YYTextLayout.m in Sources */,
 				30828D5C1E53EBDF000316E2 /* NSBundle+TZImagePicker.m in Sources */,
+				303603471E55600F009BAA82 /* JRPageDemoController.m in Sources */,
 				30ADD5F31E4D5060001012E5 /* NSAttributedString+YYText.m in Sources */,
 				C4064EF81D940EE100B197A7 /* JRThreadModel.m in Sources */,
 				30A3C68C1E52B3E8002424FA /* UIImageView+HighlightedWebCache.m in Sources */,
+				30AF1B151E558B04005BEB4B /* JRReaderViewController.m in Sources */,
+				30CC056A1E55A825009C1BDD /* NSObject+CZRuntime.m in Sources */,
+				30CC05691E55A825009C1BDD /* NSAttributedString+CZAdditon.m in Sources */,
 				30A3C6901E52B3E8002424FA /* SDWebImageDownloaderOperation.m in Sources */,
 				30A3C6891E52B3E8002424FA /* UIButton+WebCache.m in Sources */,
 				30A3C6E51E52F7F6002424FA /* YYImageCoder.m in Sources */,
 				30A3C6911E52B3E8002424FA /* SDWebImageCompat.m in Sources */,
+				30CC056C1E55A825009C1BDD /* NSString+CZHash.m in Sources */,
 				30ADD5FA1E4D5060001012E5 /* YYTextWeakProxy.m in Sources */,
 				30ADD5A81E4D5053001012E5 /* TYDrawStorage.m in Sources */,
+				30CC056F1E55A825009C1BDD /* UIColor+CZAddition.m in Sources */,
 				308E87471E51AB6300600176 /* MGSwipeTableCell.m in Sources */,
 				C42600151E115CB80022C4D5 /* JRCoreTextController.m in Sources */,
+				30CC05681E55A825009C1BDD /* NSArray+Log.m in Sources */,
 				30ADD5A91E4D5053001012E5 /* TYImageCache.m in Sources */,
 				30828D601E53EBDF000316E2 /* TZPhotoPickerController.m in Sources */,
 				30ADD5AE1E4D5053001012E5 /* TYTextStorage.m in Sources */,
+				30CC05731E55A825009C1BDD /* UIViewController+CZAddition.m in Sources */,
 				30ADD5EC1E4D505F001012E5 /* YYTextMagnifier.m in Sources */,
 				30828D631E53EBDF000316E2 /* TZAssetModel.m in Sources */,
 				304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */,
@@ -1346,6 +1469,7 @@
 				30828D681E53EBDF000316E2 /* TZPhotoPreviewCell.m in Sources */,
 				C400712F1D901ED100220BB9 /* TextViewController.m in Sources */,
 				C498688C1D92D69B009223A1 /* JRUserHeader.m in Sources */,
+				303603431E5557F9009BAA82 /* JRPageViewController.m in Sources */,
 				30ADD5E61E4D505F001012E5 /* YYTextDebugOption.m in Sources */,
 				C40D94781D7FAE0900E512ED /* main.m in Sources */,
 				C40448B21D82655A0039A815 /* MainViewController.m in Sources */,

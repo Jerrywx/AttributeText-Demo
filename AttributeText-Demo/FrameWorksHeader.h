@@ -20,6 +20,7 @@
 ///
 #import <Masonry.h>
 
+#import "CZAdditions.h"
 #import "YYImage.h"
 #import "YYAnimatedImageView.h"
 
