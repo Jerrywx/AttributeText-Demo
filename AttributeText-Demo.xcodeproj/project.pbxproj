@@ -10,6 +10,7 @@
 		3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */; };
 		303603431E5557F9009BAA82 /* JRPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603421E5557F9009BAA82 /* JRPageViewController.m */; };
 		303603471E55600F009BAA82 /* JRPageDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603461E55600F009BAA82 /* JRPageDemoController.m */; };
+		3038A92D1E56E3B000B7F931 /* JRImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3038A92C1E56E3B000B7F931 /* JRImageManager.m */; };
 		304288C41E08D987004BDE4A /* JRTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C31E08D987004BDE4A /* JRTextViewViewController.m */; };
 		304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */; };
 		30828D5C1E53EBDF000316E2 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 30828D3F1E53EBDF000316E2 /* NSBundle+TZImagePicker.m */; };
@@ -171,6 +172,9 @@
 		303603441E5558DA009BAA82 /* jr_UIPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_UIPageViewController.h; sourceTree = "<group>"; };
 		303603451E55600F009BAA82 /* JRPageDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPageDemoController.h; sourceTree = "<group>"; };
 		303603461E55600F009BAA82 /* JRPageDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPageDemoController.m; sourceTree = "<group>"; };
+		3038A92B1E56E3B000B7F931 /* JRImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRImageManager.h; sourceTree = "<group>"; };
+		3038A92C1E56E3B000B7F931 /* JRImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRImageManager.m; sourceTree = "<group>"; };
+		3038A92E1E56FCAF00B7F931 /* jr_PhotosTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PhotosTypes.h; sourceTree = "<group>"; };
 		304288C21E08D987004BDE4A /* JRTextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextViewViewController.h; sourceTree = "<group>"; };
 		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
 		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
@@ -507,6 +511,15 @@
 			path = JRPageViewController;
 			sourceTree = "<group>";
 		};
+		3038A92A1E56E36800B7F931 /* JRImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				3038A92B1E56E3B000B7F931 /* JRImageManager.h */,
+				3038A92C1E56E3B000B7F931 /* JRImageManager.m */,
+			);
+			path = JRImagePicker;
+			sourceTree = "<group>";
+		};
 		305F58C91E52AFFC000E6627 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +596,7 @@
 				3036033B1E540EA4009BAA82 /* jr_PHCollection.h */,
 				3036033C1E54232F009BAA82 /* jr_PHFetchResult.h */,
 				3036033D1E54507D009BAA82 /* jr_PHPhotoLibrary.h */,
+				3038A92E1E56FCAF00B7F931 /* jr_PhotosTypes.h */,
 			);
 			path = headerFiles;
 			sourceTree = "<group>";
@@ -1126,6 +1140,7 @@
 		C482750D1D91748D0032EE10 /* JRTools */ = {
 			isa = PBXGroup;
 			children = (
+				3038A92A1E56E36800B7F931 /* JRImagePicker */,
 				C48275111D9174F40032EE10 /* JRExtension */,
 			);
 			path = JRTools;
@@ -1458,6 +1473,7 @@
 				304288C71E08DCA2004BDE4A /* NSAttributedString+JRExtension.m in Sources */,
 				30A3C6931E52B3E8002424FA /* SDWebImageManager.m in Sources */,
 				30828D651E53EBDF000316E2 /* TZImageManager.m in Sources */,
+				3038A92D1E56E3B000B7F931 /* JRImageManager.m in Sources */,
 				C42A193F1E133E9500268F1C /* JRTranslateCTMView.m in Sources */,
 				C48275571D9187DF0032EE10 /* JRViewController.m in Sources */,
 				30ADD5AC1E4D5053001012E5 /* TYTextContainer+Extended.m in Sources */,

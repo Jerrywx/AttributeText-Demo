@@ -88,6 +88,11 @@ static CGFloat TZScreenScale;
 	PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
 																		  subtype:PHAssetCollectionSubtypeAlbumRegular
 																		  options:nil];
+
+	[smartAlbums enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+		
+	}];
+	
 	for (PHAssetCollection *collection in smartAlbums) {
 		
 		// 有可能是PHCollectionList类的的对象，过滤掉

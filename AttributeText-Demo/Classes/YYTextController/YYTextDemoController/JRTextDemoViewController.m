@@ -9,6 +9,7 @@
 #import "JRTextDemoViewController.h"
 #import "TZAssetModel.h"
 #import "TZImagePickerController.h"
+#import "JRImageManager.h"
 
 @interface JRTextDemoViewController () <TZImagePickerControllerDelegate>
 
@@ -78,18 +79,19 @@
 		CFRelease(ctRuby);
 	}
 	
-	
-	
-	
 	self.label.attributedText = aString;
 	[self.view addSubview:self.label];
 	self.label.backgroundColor = [UIColor yellowColor];
-	
 }
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 	
-	[self pushImagePickerController];
+	///
+	[JRImageManager getAllAlbum];
+	
+	
+//	[self pushImagePickerController];
 //	[self photoAlbum];
 //	NSLog(@"=============================== %zd", [PHPhotoLibrary authorizationStatus]);
 //	[self imageTest];
@@ -139,8 +141,6 @@
 		NSLog(@"%@ - %zd == %@", m.name, m.count, [m.result class]);
 	}];
 }
-
-
 
 
 /// 选择图片

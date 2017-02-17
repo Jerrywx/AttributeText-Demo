@@ -36,4 +36,4 @@
 // Defaults to YES
 @property (nonatomic, assign) BOOL wantsIncrementalChangeDetails;
 
-#endif /* jr_PHFetchOptions_h */
+#endif
