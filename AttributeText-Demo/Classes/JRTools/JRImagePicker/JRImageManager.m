@@ -13,7 +13,7 @@
 
 /// 获取所有相册
 + (void)getAllAlbum {
-	
+//	PHPhotoLibrary
 	/// 根据类型获取相册
 //	[self getAlbumWithType];
 //	[self getAlbumWithLocation];

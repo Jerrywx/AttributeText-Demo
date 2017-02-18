@@ -459,6 +459,9 @@
 		C498688A1D92D69B009223A1 /* JRUserHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRUserHeader.h; sourceTree = "<group>"; };
 		C498688B1D92D69B009223A1 /* JRUserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRUserHeader.m; sourceTree = "<group>"; };
 		C4991A4F1E1D5D45004FE84A /* jr_CTFramesetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFramesetter.h; sourceTree = "<group>"; };
+		C4BA7DC61E57CD5B00A5EFF9 /* jr_Photo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_Photo.h; sourceTree = "<group>"; };
+		C4BA7DC71E57DA8B00A5EFF9 /* jr_PHChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHChange.h; sourceTree = "<group>"; };
+		C4BA7DC81E58388600A5EFF9 /* jr_PHLivePhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHLivePhoto.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -590,6 +593,7 @@
 		30828D6A1E53EC1F000316E2 /* headerFiles */ = {
 			isa = PBXGroup;
 			children = (
+				C4BA7DC61E57CD5B00A5EFF9 /* jr_Photo.h */,
 				30828D6B1E53EC41000316E2 /* jr_PHAsset.h */,
 				30828D6C1E53F455000316E2 /* jr_PHImageManager.h */,
 				30828D6D1E540672000316E2 /* jr_PHFetchOptions.h */,
@@ -597,6 +601,8 @@
 				3036033C1E54232F009BAA82 /* jr_PHFetchResult.h */,
 				3036033D1E54507D009BAA82 /* jr_PHPhotoLibrary.h */,
 				3038A92E1E56FCAF00B7F931 /* jr_PhotosTypes.h */,
+				C4BA7DC71E57DA8B00A5EFF9 /* jr_PHChange.h */,
+				C4BA7DC81E58388600A5EFF9 /* jr_PHLivePhoto.h */,
 			);
 			path = headerFiles;
 			sourceTree = "<group>";

@@ -141,9 +141,5 @@
 #endif /* jr_PHCollection_h */
 
 
-
-
-
-
 //PHAssetCollectionChangeRequest
 
