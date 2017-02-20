@@ -29,23 +29,34 @@
 	
 	/// 普通字符串
 	{
-		NSString *string = @"这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高度";
-		NSAttributedString *aString = [[NSAttributedString alloc] initWithString:string];
+		NSString *string = @"这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高度\n这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高n这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高度\n这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高度这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高度\n这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高n这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高度\n这是一个测试字符串...... ！！！！！！用于文本排版 计算文本的高度";
+//		NSAttributedString *aString = [[NSAttributedString alloc] initWithString:string];
+		NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:string];
+		[aString yy_setFont:[UIFont systemFontOfSize:14] range:NSMakeRange(0, string.length)];
+		[aString yy_setBackgroundColor:[UIColor yellowColor] range:NSMakeRange(20,222)];
+		
 		
 		self.label					= [[UILabel alloc] init];
-		self.label.frame			= CGRectMake(20, 100, SCREEN_W - 40, 0);
+		self.label.frame			= CGRectMake(0, 80, SCREEN_W - 0, 440);
 		self.label.numberOfLines	= 0;
-		self.label.attributedText	= aString;
+		
 //		self.label.text				= string;
-		[self.label sizeToFit];
+//		[self.label sizeToFit];
 		self.label.backgroundColor	= [UIColor lightGrayColor];
 		[self.view addSubview:self.label];
 		
-		CGSize size = [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, MAXFLOAT)];
 		
-		CGRect frame = self.label.frame;
-		frame.size.height = size.height;
-		self.label.frame = frame;
+		self.label.attributedText	= aString;
+		
+		
+//		CGSize size = [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, MAXFLOAT)];
+//		
+//		CGRect frame = self.label.frame;
+//		frame.size.height = size.height;
+//		self.label.frame = frame;
+		
+		
+		
 		
 		
 		/// YYTextLayout
@@ -87,6 +98,7 @@
 									 };
 		_label02.attributedText = [[NSAttributedString alloc] initWithString: ligatureStr attributes: attrDict2];
 	}
+	
 }
 
 @end

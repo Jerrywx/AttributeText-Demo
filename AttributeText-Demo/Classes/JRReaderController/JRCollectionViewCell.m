@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) UIView	*headerView;
 @property (nonatomic, strong) UIView	*footerView;
-@property (nonatomic, strong) TYAttributedLabel	*contentLabel;
+@property (nonatomic, strong) YYLabel	*contentLabel;
 
 @end
 
@@ -44,40 +44,47 @@
 	[self.contentView addSubview:self.footerView];
 	
 	////
-	self.contentLabel				= [[TYAttributedLabel alloc] initWithFrame:CGRectMake(0, height, 
-																						  SCREEN_W, 
-																						  SCREEN_H - height * 2)];
+	self.contentLabel = [[YYLabel alloc] initWithFrame:CGRectMake(0, height,
+																  SCREEN_W,
+																  SCREEN_H - height * 2)];
 	self.contentLabel.numberOfLines = 0;
-	self.contentLabel.delegate		= self;
+	
+	__weak JRCollectionViewCell *weakSelf = self;
+	self.contentLabel.textLongPressAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+		
+		for (JRHModel *hm in weakSelf.model.array) {
+			if (NSLocationInRange(range.location, hm.range)) {
+				
+				NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithAttributedString:text];
+				
+				NSDictionary *attri = [text yy_attributesAtIndex:range.location];
+				
+				UIColor *color = [attri objectForKey:NSForegroundColorAttributeName];
+				if ([color isEqual:[UIColor yellowColor]]) {
+					/// 被选中
+					[aString yy_setColor:[UIColor blackColor] range:hm.range];
+				} else {
+					/// 未被选中
+					[aString yy_setColor:[UIColor yellowColor] range:hm.range];
+				}
+				
+//				NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:weakSelf.model.string];
+//				[aString yy_setFont:[UIFont systemFontOfSize:18] range:NSMakeRange(0, weakSelf.model.string.length)];
+//				[aString yy_setColor:[UIColor yellowColor] range:hm.range];
+				weakSelf.contentLabel.attributedText = aString;
+			}
+		}
+	};
+	
 	[self.contentView addSubview:self.contentLabel];
 }
 
 - (void)setModel:(JRCModel *)model {
 	_model = model;
 	
-	NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:self.model.string];
-	[aString yy_setFont:[UIFont systemFontOfSize:18] range:NSMakeRange(0, self.model.string.length)];
-	[aString yy_setBackgroundColor:[UIColor yellowColor] range:NSMakeRange(20, 200)];
-	
-	self.contentLabel.attributedText = aString;//model.content;
+	self.contentLabel.attributedText = model.content;
 }
 
-#pragma mark - TYAttributedLabelDelegate
-- (void)attributedLabel:(TYAttributedLabel *)attributedLabel 
- textStorageLongPressed:(id<TYTextStorageProtocol>)textStorage 
-				onState:(UIGestureRecognizerState)state 
-				atPoint:(CGPoint)point {
-	
-	NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:self.model.string];
-	[aString yy_setFont:[UIFont systemFontOfSize:18] range:NSMakeRange(0, self.model.string.length)];
-//	[aString yy_setBackgroundColor:[UIColor yellowColor] range:self.]
-	NSLog(@"==== %zd - %zd", point.x, point.y);
-	
-	
-}
-
-- (void)attributedLabel:(TYAttributedLabel *)attributedLabel textStorageClicked:(id<TYTextStorageProtocol>)textStorage atPoint:(CGPoint)point {
-	NSLog(@"asdasdasdasdas");
-}
+/// inferred
 
 @end
