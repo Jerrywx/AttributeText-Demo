@@ -12,13 +12,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 
-#if __has_include(<YYText/YYText.h>)
-#import <YYText/YYTextAttribute.h>
-#import <YYText/YYTextRubyAnnotation.h>
-#else
+//#if __has_include(<YYText/YYText.h>)
+//#import <YYText/YYTextAttribute.h>
+//#import <YYText/YYTextRubyAnnotation.h>
+//#else
 #import "YYTextAttribute.h"
 #import "YYTextRubyAnnotation.h"
-#endif
+//#endif
 
 NS_ASSUME_NONNULL_BEGIN
 @interface NSAttributedString (YYText)
