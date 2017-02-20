@@ -44,7 +44,7 @@
 	/// 添加点击手势
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
 																		  action:@selector(tapAct)];
-//	[self.view addGestureRecognizer:tap];
+	[self.view addGestureRecognizer:tap];
 	
 	/// 创建 UICollectionView
 	self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds

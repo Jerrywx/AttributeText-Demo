@@ -35,6 +35,14 @@
 	NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:@"TEST"];
 	[aString yy_setFont:[UIFont systemFontOfSize:38] range:NSMakeRange(0, aString.length)];
 	
+	/// 表情！！		没起作用
+//	YYTextBackedString *backed = [YYTextBackedString stringWithString:@":)"];
+//	[aString yy_setTextBackedString:backed range:NSMakeRange(0, 2)];
+	
+	/// 删除线		没起作用
+//	YYTextBinding *binding = [YYTextBinding bindingWithDeleteConfirm:YES];
+//	[aString yy_setTextBinding:binding range:NSMakeRange(0, aString.length)];
+
 	// 设置阴影
 	YYTextShadow *shadow = [[YYTextShadow alloc] init];
 	shadow.color = [UIColor redColor];
@@ -54,7 +62,7 @@
 	border.strokeColor = [UIColor redColor];
 	border.strokeWidth = 1;
 	border.insets = UIEdgeInsetsMake(1, 1, 1, 1);
-	[aString yy_setTextBorder:border range:NSMakeRange(0, aString.length)];
+//	[aString yy_setTextBorder:border range:NSMakeRange(0, aString.length)];
 	
 	/// 点击事件
 	YYTextHighlight * act = [[YYTextHighlight alloc] init];
@@ -66,7 +74,7 @@
 		NSLog(@"----------- %@", text.string);
 	};
 
-	[aString yy_setTextHighlight:act range:NSMakeRange(0, aString.length)];
+//	[aString yy_setTextHighlight:act range:NSMakeRange(0, aString.length)];
 	
 	
 	YYTextRubyAnnotation *ruby = [YYTextRubyAnnotation new];
@@ -74,8 +82,7 @@
 	CTRubyAnnotationRef ctRuby = ruby.CTRubyAnnotation;
 	if (ctRuby) {
 		/// add to attributed string
-		[aString yy_setTextRubyAnnotation:ruby range:NSMakeRange(0, aString.length)];
-		
+//		[aString yy_setTextRubyAnnotation:ruby range:NSMakeRange(0, aString.length)];
 		CFRelease(ctRuby);
 	}
 	
@@ -88,7 +95,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 	
 	///
-	[JRImageManager getAllAlbum];
+//	[JRImageManager getAllAlbum];
 	
 	
 //	[self pushImagePickerController];
