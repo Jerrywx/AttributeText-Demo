@@ -8,6 +8,7 @@
 
 #import "JRPageDemoController.h"
 #import "JRPageViewController.h"
+#import "JRSubView.h"
 
 @interface JRPageDemoController ()
 
@@ -18,12 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.view.backgroundColor = [UIColor yellowColor];
+	self.view.backgroundColor = [UIColor whiteColor];
+	
+	JRSubView *sView = [[JRSubView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+	sView.backgroundColor = [UIColor redColor];
+	[self.view addSubview:sView];
+	
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-	JRPageViewController *pageVC = [JRPageViewController new];
-	[self.navigationController pushViewController:pageVC animated:YES];
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//	JRPageViewController *pageVC = [JRPageViewController new];
+//	[self.navigationController pushViewController:pageVC animated:YES];
+//}
 
 @end
