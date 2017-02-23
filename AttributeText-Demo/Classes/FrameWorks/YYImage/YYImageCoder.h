@@ -13,9 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Image file type.
- */
+/// Image file type.
 typedef NS_ENUM(NSUInteger, YYImageType) {
     YYImageTypeUnknown = 0, ///< unknown
     YYImageTypeJPEG,        ///< jpeg, jpg
@@ -74,10 +72,10 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
     YYImageBlendOver,
 };
 
-/**
- An image frame object.
- */
+
+/// An image frame object.
 @interface YYImageFrame : NSObject <NSCopying>
+
 @property (nonatomic) NSUInteger index;    ///< Frame index (zero based)
 @property (nonatomic) NSUInteger width;    ///< Frame width
 @property (nonatomic) NSUInteger height;   ///< Frame height
@@ -88,6 +86,7 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
 @property (nonatomic) YYImageBlendOperation blend;      ///< Frame blend operation.
 @property (nullable, nonatomic, strong) UIImage *image; ///< The image.
 + (instancetype)frameWithImage:(UIImage *)image;
+
 @end
 
 
@@ -95,7 +94,7 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
 
 /**
  An image decoder to decode image data.
- 
+ 图片解码
  @discussion This class supports decoding animated WebP, APNG, GIF and system
  image format such as PNG, JPG, JP2, BMP, TIFF, PIC, ICNS and ICO. It can be used 
  to decode complete image data, or to decode incremental image data during image 
@@ -126,21 +125,16 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
  */
 @interface YYImageDecoder : NSObject
 
-@property (nullable, nonatomic, readonly) NSData *data;    ///< Image data.
-@property (nonatomic, readonly) YYImageType type;          ///< Image data type.
-@property (nonatomic, readonly) CGFloat scale;             ///< Image scale.
-@property (nonatomic, readonly) NSUInteger frameCount;     ///< Image frame count.
-@property (nonatomic, readonly) NSUInteger loopCount;      ///< Image loop count, 0 means infinite.
-@property (nonatomic, readonly) NSUInteger width;          ///< Image canvas width.
-@property (nonatomic, readonly) NSUInteger height;         ///< Image canvas height.
+@property (nullable, nonatomic, readonly) NSData *data;			///< Image data.
+@property (nonatomic, readonly) YYImageType type;				///< Image data type.
+@property (nonatomic, readonly) CGFloat		scale;				///< Image scale.
+@property (nonatomic, readonly) NSUInteger	frameCount;			///< Image frame count.
+@property (nonatomic, readonly) NSUInteger	loopCount;			///< Image loop count, 0 means infinite.
+@property (nonatomic, readonly) NSUInteger	width;				///< Image canvas width.
+@property (nonatomic, readonly) NSUInteger	height;				///< Image canvas height.
 @property (nonatomic, readonly, getter=isFinalized) BOOL finalized;
 
-/**
- Creates an image decoder.
- 
- @param scale  Image's scale.
- @return An image decoder.
- */
+/// 创建一个文件编码器
 - (instancetype)initWithScale:(CGFloat)scale NS_DESIGNATED_INITIALIZER;
 
 /**
@@ -162,12 +156,7 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
  */
 - (BOOL)updateData:(nullable NSData *)data final:(BOOL)final;
 
-/**
- Convenience method to create a decoder with specified data.
- @param data  Image data.
- @param scale Image's scale.
- @return A new decoder, or nil if an error occurs.
- */
+/// 根据图片数据创建图片解码器
 + (nullable instancetype)decoderWithData:(NSData *)data scale:(CGFloat)scale;
 
 /**
@@ -179,26 +168,13 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
  */
 - (nullable YYImageFrame *)frameAtIndex:(NSUInteger)index decodeForDisplay:(BOOL)decodeForDisplay;
 
-/**
- Returns the frame duration from a specified index.
- @param index  Frame image (zero-based).
- @return Duration in seconds.
- */
+/// 获取每一帧的时间
 - (NSTimeInterval)frameDurationAtIndex:(NSUInteger)index;
 
-/**
- Returns the frame's properties. See "CGImageProperties.h" in ImageIO.framework
- for more information.
- 
- @param index  Frame image index (zero-based).
- @return The ImageIO frame property.
- */
+/// 获取每一帧的属性 See "CGImageProperties.h" in ImageIO.framework for more information.
 - (nullable NSDictionary *)framePropertiesAtIndex:(NSUInteger)index;
 
-/**
- Returns the image's properties. See "CGImageProperties.h" in ImageIO.framework
- for more information.
- */
+/// 获取图片属性 See "CGImageProperties.h" in ImageIO.framework for more information.
 - (nullable NSDictionary *)imageProperties;
 
 @end
@@ -209,7 +185,7 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
 
 /**
  An image encoder to encode image to data.
- 
+ 图片编码
  @discussion It supports encoding single frame image with the type defined in YYImageType.
  It also supports encoding multi-frame image with GIF, APNG and WebP.
  
@@ -233,10 +209,10 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
  */
 @interface YYImageEncoder : NSObject
 
-@property (nonatomic, readonly) YYImageType type; ///< Image type.
-@property (nonatomic) NSUInteger loopCount;       ///< Loop count, 0 means infinit, only available for GIF/APNG/WebP.
-@property (nonatomic) BOOL lossless;              ///< Lossless, only available for WebP.
-@property (nonatomic) CGFloat quality;            ///< Compress quality, 0.0~1.0, only available for JPG/JP2/WebP.
+@property (nonatomic, readonly) YYImageType type;	///< Image type.
+@property (nonatomic) NSUInteger	loopCount;      ///< Loop count, 0 means infinit, only available for GIF/APNG/WebP.
+@property (nonatomic) BOOL			lossless;       ///< Lossless, only available for WebP.
+@property (nonatomic) CGFloat		quality;        ///< Compress quality, 0.0~1.0, only available for JPG/JP2/WebP.
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
@@ -308,8 +284,8 @@ typedef NS_ENUM(NSUInteger, YYImageBlendOperation) {
 @interface UIImage (YYImageCoder)
 
 /**
- Decompress this image to bitmap, so when the image is displayed on screen, 
- the main thread won't be blocked by additional decode. If the image has already
+ Decompress(压缩) this image to bitmap, so when the image is displayed on screen,
+ the main thread won't be blocked by additional(额外的) decode. If the image has already
  been decoded or unable to decode, it just returns itself.
  
  @return an image decoded, or just return itself if no needed.
