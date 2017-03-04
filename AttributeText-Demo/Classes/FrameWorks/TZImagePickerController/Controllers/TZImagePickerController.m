@@ -15,33 +15,37 @@
 #import "TZImageManager.h"
 
 @interface TZImagePickerController () {
-    NSTimer *_timer;
-    UILabel *_tipLable;
-    UIButton *_settingBtn;
-    BOOL _pushPhotoPickerVc;
-    BOOL _didPushPhotoPickerVc;
+    NSTimer		*_timer;
+    UILabel		*_tipLable;
+    UIButton	*_settingBtn;
+    BOOL		_pushPhotoPickerVc;
+    BOOL		_didPushPhotoPickerVc;
     
-    UIButton *_progressHUD;
-    UIView *_HUDContainer;
+    UIButton	*_progressHUD;
+    UIView		*_HUDContainer;
     UIActivityIndicatorView *_HUDIndicatorView;
     UILabel *_HUDLable;
     
     UIStatusBarStyle _originStatusBarStyle;
 }
-/// Default is 4, Use in photos collectionView in TZPhotoPickerController
+
 /// 默认4列, TZPhotoPickerController中的照片collectionView
 @property (nonatomic, assign) NSInteger columnNumber;
+
 @end
 
 @implementation TZImagePickerController
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor	= [UIColor whiteColor];
     self.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationBar.translucent = YES;
+    self.navigationBar.translucent = YES;					/// 半透明效果
+	
+	/// 图片选择器
     [TZImageManager manager].shouldFixOrientation = NO;
 
     // Default appearance, you can reset these after this method
@@ -62,16 +66,6 @@
         self.navigationBar.tintColor = [UIColor whiteColor];
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-}
-
-- (void)setBarItemTextFont:(UIFont *)barItemTextFont {
-    _barItemTextFont = barItemTextFont;
-    [self configBarButtonItemAppearance];
-}
-
-- (void)setBarItemTextColor:(UIColor *)barItemTextColor {
-    _barItemTextColor = barItemTextColor;
-    [self configBarButtonItemAppearance];
 }
 
 - (void)configBarButtonItemAppearance {
@@ -99,12 +93,25 @@
     [self hideProgressHUD];
 }
 
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate {
-    return [self initWithMaxImagesCount:maxImagesCount columnNumber:4 delegate:delegate pushPhotoPickerVc:YES];
+#pragma mark - 初始化选择器
+
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount
+							  delegate:(id<TZImagePickerControllerDelegate>)delegate {
+	
+    return [self initWithMaxImagesCount:maxImagesCount 
+						   columnNumber:4 
+							   delegate:delegate 
+					  pushPhotoPickerVc:YES];
 }
 
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber delegate:(id<TZImagePickerControllerDelegate>)delegate {
-    return [self initWithMaxImagesCount:maxImagesCount columnNumber:columnNumber delegate:delegate pushPhotoPickerVc:YES];
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount 
+						  columnNumber:(NSInteger)columnNumber 
+							  delegate:(id<TZImagePickerControllerDelegate>)delegate {
+	
+    return [self initWithMaxImagesCount:maxImagesCount 
+						   columnNumber:columnNumber 
+							   delegate:delegate 
+					  pushPhotoPickerVc:YES];
 }
 
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount
@@ -125,15 +132,16 @@
         // Allow user picking original photo and video, you also can set No after this method
         // 默认准许用户选择原图和视频, 你也可以在这个方法后置为NO
         self.allowPickingOriginalPhoto = YES;
-        self.allowPickingVideo = YES;
-        self.allowPickingImage = YES;
-        self.allowTakePicture = YES;
+        self.allowPickingVideo	= YES;
+        self.allowPickingImage	= YES;
+        self.allowTakePicture	= YES;
         self.sortAscendingByModificationDate = YES;
         self.autoDismiss = YES;
         self.columnNumber = columnNumber;
         [self configDefaultSetting];
         
         if (![[TZImageManager manager] authorizationStatusAuthorized]) {
+			/// 无权限
             _tipLable = [[UILabel alloc] init];
             _tipLable.frame = CGRectMake(8, 120, self.view.tz_width - 16, 60);
             _tipLable.textAlignment = NSTextAlignmentCenter;
@@ -155,6 +163,7 @@
             
             _timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(observeAuthrizationStatusChange) userInfo:nil repeats:YES];
         } else {
+			/// 有权限
             [self pushPhotoPickerVc];
         }
     }
@@ -162,7 +171,10 @@
 }
 
 /// This init method just for previewing photos / 用这个初始化方法以预览图片
-- (instancetype)initWithSelectedAssets:(NSMutableArray *)selectedAssets selectedPhotos:(NSMutableArray *)selectedPhotos index:(NSInteger)index{
+- (instancetype)initWithSelectedAssets:(NSMutableArray *)selectedAssets
+						selectedPhotos:(NSMutableArray *)selectedPhotos
+								 index:(NSInteger)index{
+	
     TZPhotoPreviewController *previewVc = [[TZPhotoPreviewController alloc] init];
     self = [super initWithRootViewController:previewVc];
     if (self) {
@@ -185,7 +197,10 @@
 }
 
 /// This init method for crop photo / 用这个初始化方法以裁剪图片
-- (instancetype)initCropTypeWithAsset:(id)asset photo:(UIImage *)photo completion:(void (^)(UIImage *cropImage,id asset))completion {
+- (instancetype)initCropTypeWithAsset:(id)asset
+								photo:(UIImage *)photo 
+						   completion:(void (^)(UIImage *cropImage,id asset))completion {
+
     TZPhotoPreviewController *previewVc = [[TZPhotoPreviewController alloc] init];
     self = [super initWithRootViewController:previewVc];
     if (self) {
@@ -209,35 +224,41 @@
     return self;
 }
 
+#pragma mark -
+/// 初始化设置
 - (void)configDefaultSetting {
-    self.timeout = 15;
-    self.photoWidth = 828.0;
+
+	/// 默认属性
+    self.timeout			= 15;
+    self.photoWidth			= 828.0;
+	self.allowPreview		= YES;
+	self.barItemTextFont	= [UIFont systemFontOfSize:15];
+	self.barItemTextColor	= [UIColor whiteColor];
     self.photoPreviewMaxWidth = 600;
-    self.barItemTextFont = [UIFont systemFontOfSize:15];
-    self.barItemTextColor = [UIColor whiteColor];
-    self.allowPreview = YES;
-    
+	/// 默认图片名称
     [self configDefaultImageName];
+	/// 默认按钮标题
     [self configDefaultBtnTitle];
 }
 
+/// 设置默认图片名称
 - (void)configDefaultImageName {
-    self.takePictureImageName = @"takePicture.png";
-    self.photoSelImageName = @"photo_sel_photoPickerVc.png";
-    self.photoDefImageName = @"photo_def_photoPickerVc.png";
-    self.photoNumberIconImageName = @"photo_number_icon.png";
+    self.photoSelImageName				= @"photo_sel_photoPickerVc.png";
+    self.photoDefImageName				= @"photo_def_photoPickerVc.png";
+	self.takePictureImageName			= @"takePicture.png";
+	self.photoOriginDefImageName		= @"photo_original_def.png";
+	self.photoOriginSelImageName		= @"photo_original_sel.png";
+    self.photoNumberIconImageName		= @"photo_number_icon.png";
     self.photoPreviewOriginDefImageName = @"preview_original_def.png";
-    self.photoOriginDefImageName = @"photo_original_def.png";
-    self.photoOriginSelImageName = @"photo_original_sel.png";
 }
-
+/// 默认按钮标题
 - (void)configDefaultBtnTitle {
-    self.doneBtnTitleStr = [NSBundle tz_localizedStringForKey:@"Done"];
-    self.cancelBtnTitleStr = [NSBundle tz_localizedStringForKey:@"Cancel"];
-    self.previewBtnTitleStr = [NSBundle tz_localizedStringForKey:@"Preview"];
-    self.fullImageBtnTitleStr = [NSBundle tz_localizedStringForKey:@"Full image"];
-    self.settingBtnTitleStr = [NSBundle tz_localizedStringForKey:@"Setting"];
-    self.processHintStr = [NSBundle tz_localizedStringForKey:@"Processing..."];
+	self.processHintStr			= [NSBundle tz_localizedStringForKey:@"Processing..."];
+    self.doneBtnTitleStr		= [NSBundle tz_localizedStringForKey:@"Done"];
+    self.cancelBtnTitleStr		= [NSBundle tz_localizedStringForKey:@"Cancel"];
+    self.previewBtnTitleStr		= [NSBundle tz_localizedStringForKey:@"Preview"];
+	self.settingBtnTitleStr		= [NSBundle tz_localizedStringForKey:@"Setting"];
+    self.fullImageBtnTitleStr	= [NSBundle tz_localizedStringForKey:@"Full image"];
 }
 
 - (void)observeAuthrizationStatusChange {
@@ -250,13 +271,15 @@
     }
 }
 
+/// 弹出图片选择器
 - (void)pushPhotoPickerVc {
     _didPushPhotoPickerVc = NO;
+	
     // 1.6.8 判断是否需要push到照片选择页，如果_pushPhotoPickerVc为NO,则不push
     if (!_didPushPhotoPickerVc && _pushPhotoPickerVc) {
         TZPhotoPickerController *photoPickerVc = [[TZPhotoPickerController alloc] init];
         photoPickerVc.isFirstAppear = YES;
-        photoPickerVc.columnNumber = self.columnNumber;
+        photoPickerVc.columnNumber	= self.columnNumber;
         [[TZImageManager manager] getCameraRollAlbum:self.allowPickingVideo
 								   allowPickingImage:self.allowPickingImage
 										  completion:^(TZAlbumModel *model) {
@@ -267,14 +290,15 @@
     }
 }
 
+
 - (void)showAlertWithTitle:(NSString *)title {
-    if (iOS8Later) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:[NSBundle tz_localizedStringForKey:@"OK"] style:UIAlertActionStyleDefault handler:nil]];
-        [self presentViewController:alertController animated:YES completion:nil];
-    } else {
-        [[[UIAlertView alloc] initWithTitle:title message:nil delegate:nil cancelButtonTitle:[NSBundle tz_localizedStringForKey:@"OK"] otherButtonTitles:nil, nil] show];
-    }
+	UIAlertController *alertController
+			= [UIAlertController alertControllerWithTitle:title 
+												  message:nil 
+										   preferredStyle:UIAlertControllerStyleAlert];
+	
+	[alertController addAction:[UIAlertAction actionWithTitle:[NSBundle tz_localizedStringForKey:@"OK"] style:UIAlertActionStyleDefault handler:nil]];
+	[self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)showProgressHUD {
@@ -356,6 +380,8 @@
     return CGRectMake(0, (self.view.tz_height - self.view.tz_width) / 2, cropViewWH, cropViewWH);
 }
 
+#pragma mark - Serrer Methond
+/// 设置超时时间 (5 ~ 60)
 - (void)setTimeout:(NSInteger)timeout {
     _timeout = timeout;
     if (timeout < 5) {
@@ -363,6 +389,26 @@
     } else if (_timeout > 60) {
         _timeout = 60;
     }
+}
+/// 设置 TabBar 字体
+- (void)setBarItemTextFont:(UIFont *)barItemTextFont {
+	_barItemTextFont = barItemTextFont;
+	[self configBarButtonItemAppearance];
+}
+/// 设置 TabBar 字体颜色
+- (void)setBarItemTextColor:(UIColor *)barItemTextColor {
+	_barItemTextColor = barItemTextColor;
+	[self configBarButtonItemAppearance];
+}
+/// 设置最大图片宽度 (500 ~ 800)
+- (void)setPhotoPreviewMaxWidth:(CGFloat)photoPreviewMaxWidth {
+	_photoPreviewMaxWidth = photoPreviewMaxWidth;
+	if (photoPreviewMaxWidth > 800) {
+		_photoPreviewMaxWidth = 800;
+	} else if (photoPreviewMaxWidth < 500) {
+		_photoPreviewMaxWidth = 500;
+	}
+	[TZImageManager manager].photoPreviewMaxWidth = _photoPreviewMaxWidth;
 }
 
 - (void)setColumnNumber:(NSInteger)columnNumber {
@@ -391,16 +437,6 @@
 - (void)setHideWhenCanNotSelect:(BOOL)hideWhenCanNotSelect {
     _hideWhenCanNotSelect = hideWhenCanNotSelect;
     [TZImageManager manager].hideWhenCanNotSelect = hideWhenCanNotSelect;
-}
-
-- (void)setPhotoPreviewMaxWidth:(CGFloat)photoPreviewMaxWidth {
-    _photoPreviewMaxWidth = photoPreviewMaxWidth;
-    if (photoPreviewMaxWidth > 800) {
-        _photoPreviewMaxWidth = 800;
-    } else if (photoPreviewMaxWidth < 500) {
-        _photoPreviewMaxWidth = 500;
-    }
-    [TZImageManager manager].photoPreviewMaxWidth = _photoPreviewMaxWidth;
 }
 
 - (void)setSelectedAssets:(NSMutableArray *)selectedAssets {
