@@ -11,15 +11,9 @@
 
 #import <UIKit/UIKit.h>
 
-#if __has_include(<YYText/YYText.h>)
-#import <YYText/YYTextParser.h>
-#import <YYText/YYTextLayout.h>
-#import <YYText/YYTextAttribute.h>
-#else
 #import "YYTextParser.h"
 #import "YYTextLayout.h"
 #import "YYTextAttribute.h"
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -47,53 +41,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Accessing the Text Attributes
 ///=============================================================================
 
-/**
- The text displayed by the label. Default is nil.
- Set a new value to this property also replaces the text in `attributedText`.
- Get the value returns the plain text in `attributedText`.
- */
 @property (nullable, nonatomic, copy) NSString *text;
 
-/**
- The font of the text. Default is 17-point system font.
- Set a new value to this property also causes the new font to be applied to the entire `attributedText`.
- Get the value returns the font at the head of `attributedText`.
- */
 @property (null_resettable, nonatomic, strong) UIFont *font;
 
-/**
- The color of the text. Default is black.
- Set a new value to this property also causes the new color to be applied to the entire `attributedText`.
- Get the value returns the color at the head of `attributedText`.
- */
 @property (null_resettable, nonatomic, strong) UIColor *textColor;
 
-/**
- The shadow color of the text. Default is nil.
- Set a new value to this property also causes the shadow color to be applied to the entire `attributedText`.
- Get the value returns the shadow color at the head of `attributedText`.
- */
 @property (nullable, nonatomic, strong) UIColor *shadowColor;
 
-/**
- The shadow offset of the text. Default is CGSizeZero.
- Set a new value to this property also causes the shadow offset to be applied to the entire `attributedText`.
- Get the value returns the shadow offset at the head of `attributedText`.
- */
 @property (nonatomic) CGSize shadowOffset;
 
-/**
- The shadow blur of the text. Default is 0.
- Set a new value to this property also causes the shadow blur to be applied to the entire `attributedText`.
- Get the value returns the shadow blur at the head of `attributedText`.
- */
 @property (nonatomic) CGFloat shadowBlurRadius;
 
-/**
- The technique to use for aligning the text. Default is NSTextAlignmentNatural.
- Set a new value to this property also causes the new alignment to be applied to the entire `attributedText`.
- Get the value returns the alignment at the head of `attributedText`.
- */
 @property (nonatomic) NSTextAlignment textAlignment;
 
 /**
@@ -101,32 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic) YYTextVerticalAlignment textVerticalAlignment;
 
-/**
- The styled text displayed by the label.
- Set a new value to this property also replaces the value of the `text`, `font`, `textColor`,
- `textAlignment` and other properties in label.
- 
- @discussion It only support the attributes declared in CoreText and YYTextAttribute.
- See `NSAttributedString+YYText` for more convenience methods to set the attributes.
- */
 @property (nullable, nonatomic, copy) NSAttributedString *attributedText;
 
-/**
- The technique to use for wrapping and truncating the label's text.
- Default is NSLineBreakByTruncatingTail.
- */
 @property (nonatomic) NSLineBreakMode lineBreakMode;
 
-/**
- The truncation token string used when text is truncated. Default is nil.
- When the value is nil, the label use "…" as default truncation token.
- */
 @property (nullable, nonatomic, copy) NSAttributedString *truncationToken;
 
-/**
- The maximum number of lines to use for rendering text. Default value is 1.
- 0 means no limit.
- */
 @property (nonatomic) NSUInteger numberOfLines;
 
 /**
@@ -205,35 +144,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat preferredMaxLayoutWidth;
 
 
-#pragma mark - Interacting with Text Data
+#pragma mark -   with Text Data
 ///=============================================================================
 /// @name Interacting with Text Data
 ///=============================================================================
 
-/**
- When user tap the label, this action will be called (similar to tap gesture).
- The default value is nil.
- */
 @property (nullable, nonatomic, copy) YYTextAction textTapAction;
 
-/**
- When user long press the label, this action will be called (similar to long press gesture).
- The default value is nil.
- */
 @property (nullable, nonatomic, copy) YYTextAction textLongPressAction;
 
-/**
- When user tap the highlight range of text, this action will be called.
- The default value is nil.
- */
 @property (nullable, nonatomic, copy) YYTextAction highlightTapAction;
 
-/**
- When user long press the highlight range of text, this action will be called.
- The default value is nil. 
- */
 @property (nullable, nonatomic, copy) YYTextAction highlightLongPressAction;
-
 
 #pragma mark - Configuring the Display Mode
 ///=============================================================================

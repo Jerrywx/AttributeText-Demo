@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  A subclass of `NSKeyedArchiver` which implement `NSKeyedArchiverDelegate` protocol.
- 
+ 归档
  The archiver can encode the object which contains
  CGColor/CGImage/CTRunDelegateRef/.. (such as NSAttributedString).
  */
@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /**
+ 解挡
  A subclass of `NSKeyedUnarchiver` which implement `NSKeyedUnarchiverDelegate` 
  protocol. The unarchiver can decode the data which is encoded by 
  `YYTextArchiver` or `NSKeyedArchiver`.

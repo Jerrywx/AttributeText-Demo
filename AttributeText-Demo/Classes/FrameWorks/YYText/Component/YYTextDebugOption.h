@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Add a debug target.
- 
+ 添加调试目标
  @discussion When `setSharedDebugOption:` is called, all added debug target will 
  receive `setDebugOption:` in main thread. It maintains an unsafe_unretained
  reference to this target. The target must to removed before dealloc.
@@ -67,14 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Remove a debug target which is added by `addDebugTarget:`.
- 
+ 删除调试目标
  @param target A debug target.
  */
 + (void)removeDebugTarget:(id<YYTextDebugTarget>)target;
 
 /**
  Returns the shared debug option.
- 
+ 调试选项
  @return The shared debug option, default is nil.
  */
 + (nullable YYTextDebugOption *)sharedDebugOption;
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set a debug option as shared debug option.
  This method must be called on main thread.
- 
+ 设置调试选项
  @discussion When call this method, the new option will set to all debug target
  which is added by `addDebugTarget:`.
  

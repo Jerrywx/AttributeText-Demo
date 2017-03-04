@@ -82,8 +82,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-
 /**
  The YYAnimatedImage protocol declares the required methods for animated image
  display with YYAnimatedImageView.
@@ -96,29 +94,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol YYAnimatedImage <NSObject>
 @required
-/// Total animated frame count.
-/// It the frame count is less than 1, then the methods below will be ignored.
+/// 获取图片帧数
 - (NSUInteger)animatedImageFrameCount;
-
-/// Animation loop count, 0 means infinite looping.
+/// 播放循环次数
 - (NSUInteger)animatedImageLoopCount;
-
-/// Bytes per frame (in memory). It may used to optimize memory buffer size.
+/// 每帧的大小
 - (NSUInteger)animatedImageBytesPerFrame;
-
-/// Returns the frame image from a specified index.
-/// This method may be called on background thread.
-/// @param index  Frame index (zero based).
+/// 根据索引获取帧
 - (nullable UIImage *)animatedImageFrameAtIndex:(NSUInteger)index;
-
-/// Returns the frames's duration from a specified index.
-/// @param index  Frame index (zero based).
+/// 获取每一帧的播放时间
 - (NSTimeInterval)animatedImageDurationAtIndex:(NSUInteger)index;
 
 @optional
-/// A rectangle in image coordinates defining the subrectangle of the image that
-/// will be displayed. The rectangle should not outside the image's bounds.
-/// It may used to display sprite animation with a single image (sprite sheet).
+/// 动画区域????
 - (CGRect)animatedImageContentsRectAtIndex:(NSUInteger)index;
 @end
 

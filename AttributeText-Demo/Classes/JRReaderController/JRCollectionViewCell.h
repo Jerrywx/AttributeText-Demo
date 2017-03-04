@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class JRCModel;
 @interface JRCollectionViewCell : UICollectionViewCell
 
 /// 内容
 @property (nonatomic, strong) NSDictionary	*contentDic;
+
+@property (nonatomic, strong) JRCModel	*model;
 
 @end

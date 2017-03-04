@@ -115,28 +115,43 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
 }
 
 #pragma mark - Private
-
+/**
+ layer 内容渲染
+ @param async 是否异步渲染
+ */
 - (void)_displayAsync:(BOOL)async {
+	
     __strong id<YYTextAsyncLayerDelegate> delegate = (id)self.delegate;
     YYTextAsyncLayerDisplayTask *task = [delegate newAsyncDisplayTask];
+	
+	/// 渲染layer 内容的回调
     if (!task.display) {
+		/// 执行将要渲染任务
         if (task.willDisplay) task.willDisplay(self);
         self.contents = nil;
+		/// 执行渲染完成
         if (task.didDisplay) task.didDisplay(self, YES);
         return;
     }
-    
+	
+	/// 异步渲染
     if (async) {
+		/// 如果有渲染前回调 调用 渲染前回调
         if (task.willDisplay) task.willDisplay(self);
+		
         _YYTextSentinel *sentinel = _sentinel;
         int32_t value = sentinel.value;
         BOOL (^isCancelled)() = ^BOOL() {
             return value != sentinel.value;
         };
-        CGSize size = self.bounds.size;
-        BOOL opaque = self.opaque;
-        CGFloat scale = self.contentsScale;
-        CGColorRef backgroundColor = (opaque && self.backgroundColor) ? CGColorRetain(self.backgroundColor) : NULL;
+        CGSize size		= self.bounds.size;
+        BOOL opaque		= self.opaque;
+        CGFloat scale	= self.contentsScale;
+        CGColorRef backgroundColor = (opaque && self.backgroundColor)
+										? CGColorRetain(self.backgroundColor) : NULL;
+		
+		backgroundColor = [UIColor redColor].CGColor;
+		
         if (size.width < 1 || size.height < 1) {
             CGImageRef image = (__bridge_retained CGImageRef)(self.contents);
             self.contents = nil;
@@ -197,7 +212,10 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
                 }
             });
         });
-    } else {
+    }
+	/// 同步渲染
+	else {
+		
         [_sentinel increase];
         if (task.willDisplay) task.willDisplay(self);
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, self.contentsScale);

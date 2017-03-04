@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface YYTextAsyncLayer : CALayer
 /// Whether the render code is executed in background. Default is YES.
+/// 是否异步渲染
 @property BOOL displaysAsynchronously;
 @end
 
@@ -35,13 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol YYTextAsyncLayerDelegate <NSObject>
 @required
 /// This method is called to return a new display task when the layer's contents need update.
+/// 当 layer 的内容需要更新时, 返回一个渲染任务
 - (YYTextAsyncLayerDisplayTask *)newAsyncDisplayTask;
 @end
 
 
-/**
- A display task used by YYTextAsyncLayer to render the contents in background queue.
- */
+
+/// A display task used by YYTextAsyncLayer to render the contents in background queue.
+/// 渲染任务
 @interface YYTextAsyncLayerDisplayTask : NSObject
 
 /**
@@ -54,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  This block is called to draw the layer's contents.
- 
+ 渲染layer的 block 回调
  @discussion This block may be called on main thread or background thread,
  so is should be thread-safe.
  

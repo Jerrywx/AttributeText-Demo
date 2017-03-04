@@ -2769,15 +2769,24 @@ CGImageRef YYCGImageCreateWithWebPData(CFDataRef webpData,
 
 @implementation UIImage (YYImageCoder)
 
+/// 图片压缩
 - (instancetype)yy_imageByDecoded {
+	
     if (self.yy_isDecodedForDisplay) return self;
+	
     CGImageRef imageRef = self.CGImage;
     if (!imageRef) return self;
+	
     CGImageRef newImageRef = YYCGImageCreateDecodedCopy(imageRef, YES);
     if (!newImageRef) return self;
-    UIImage *newImage = [[self.class alloc] initWithCGImage:newImageRef scale:self.scale orientation:self.imageOrientation];
+	
+    UIImage *newImage = [[self.class alloc] initWithCGImage:newImageRef 
+													  scale:self.scale 
+												orientation:self.imageOrientation];
+	
     CGImageRelease(newImageRef);
     if (!newImage) newImage = self; // decode failed, return self.
+	
     newImage.yy_isDecodedForDisplay = YES;
     return newImage;
 }

@@ -1375,13 +1375,17 @@ return style. _attr_;
     }];
 }
 
+/// 清除属性字符串属性
 - (void)yy_removeDiscontinuousAttributesInRange:(NSRange)range {
+	/// 获取属性字符串的属性
     NSArray *keys = [NSMutableAttributedString yy_allDiscontinuousAttributeKeys];
+	
     for (NSString *key in keys) {
         [self removeAttribute:key range:range];
     }
 }
 
+/// 获取属性列表
 + (NSArray *)yy_allDiscontinuousAttributeKeys {
     static NSMutableArray *keys;
     static dispatch_once_t onceToken;
