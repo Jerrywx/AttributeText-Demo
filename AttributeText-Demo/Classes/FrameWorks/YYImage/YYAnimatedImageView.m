@@ -110,8 +110,6 @@ static int64_t _YYDeviceMemoryFree() {
 @end
 
 
-
-
 typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     YYAnimatedImageTypeNone = 0,
     YYAnimatedImageTypeImage,
@@ -209,6 +207,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     return self;
 }
 
+///
 - (instancetype)initWithImage:(UIImage *)image {
     self = [super init];
     _runloopMode = NSRunLoopCommonModes;
@@ -670,3 +669,4 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 }
 
 @end
+
