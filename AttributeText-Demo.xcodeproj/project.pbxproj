@@ -144,6 +144,11 @@
 		30D8ACE01E763CFC00CDC4BA /* UIView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACBE1E763CFC00CDC4BA /* UIView+BlocksKit.m */; };
 		30D8ACE11E763CFC00CDC4BA /* UIWebView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACC01E763CFC00CDC4BA /* UIWebView+BlocksKit.m */; };
 		30D8ACE51E7648E800CDC4BA /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */; };
+		30D8ACF41E76670E00CDC4BA /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACEA1E76670E00CDC4BA /* FMDatabase.m */; };
+		30D8ACF51E76670E00CDC4BA /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACEC1E76670E00CDC4BA /* FMDatabaseAdditions.m */; };
+		30D8ACF61E76670E00CDC4BA /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACEE1E76670E00CDC4BA /* FMDatabasePool.m */; };
+		30D8ACF71E76670E00CDC4BA /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF01E76670E00CDC4BA /* FMDatabaseQueue.m */; };
+		30D8ACF81E76670E00CDC4BA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF31E76670E00CDC4BA /* FMResultSet.m */; };
 		30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
@@ -495,6 +500,17 @@
 		30D8ACE31E7648E800CDC4BA /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
 		30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
 		30D8ACE71E764BAD00CDC4BA /* jr_NSArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_NSArray.h; sourceTree = "<group>"; };
+		30D8ACE91E76670E00CDC4BA /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		30D8ACEA1E76670E00CDC4BA /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		30D8ACEB1E76670E00CDC4BA /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		30D8ACEC1E76670E00CDC4BA /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		30D8ACED1E76670E00CDC4BA /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		30D8ACEE1E76670E00CDC4BA /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		30D8ACEF1E76670E00CDC4BA /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		30D8ACF01E76670E00CDC4BA /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		30D8ACF11E76670E00CDC4BA /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		30D8ACF21E76670E00CDC4BA /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		30D8ACF31E76670E00CDC4BA /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		30FE49F41E15033700ED9F47 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
 		30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -855,6 +871,7 @@
 		30ADD4841E4D4EEC001012E5 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				30D8ACE81E76670E00CDC4BA /* fmdb */,
 				30D8AC751E763CFC00CDC4BA /* BlocksKit */,
 				30CC054E1E55A825009C1BDD /* Additions */,
 				30A3C6D71E52F7F6002424FA /* YYImage */,
@@ -1191,6 +1208,24 @@
 				30D8ACE71E764BAD00CDC4BA /* jr_NSArray.h */,
 			);
 			path = header;
+			sourceTree = "<group>";
+		};
+		30D8ACE81E76670E00CDC4BA /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				30D8ACE91E76670E00CDC4BA /* FMDatabase.h */,
+				30D8ACEA1E76670E00CDC4BA /* FMDatabase.m */,
+				30D8ACEB1E76670E00CDC4BA /* FMDatabaseAdditions.h */,
+				30D8ACEC1E76670E00CDC4BA /* FMDatabaseAdditions.m */,
+				30D8ACED1E76670E00CDC4BA /* FMDatabasePool.h */,
+				30D8ACEE1E76670E00CDC4BA /* FMDatabasePool.m */,
+				30D8ACEF1E76670E00CDC4BA /* FMDatabaseQueue.h */,
+				30D8ACF01E76670E00CDC4BA /* FMDatabaseQueue.m */,
+				30D8ACF11E76670E00CDC4BA /* FMDB.h */,
+				30D8ACF21E76670E00CDC4BA /* FMResultSet.h */,
+				30D8ACF31E76670E00CDC4BA /* FMResultSet.m */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 		7D5D91122C51F49A0CFF4206 /* Frameworks */ = {
@@ -1718,6 +1753,7 @@
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
 				30D8ACD01E763CFC00CDC4BA /* A2BlockInvocation.m in Sources */,
 				30D8ACD21E763CFC00CDC4BA /* NSCache+BlocksKit.m in Sources */,
+				30D8ACF61E76670E00CDC4BA /* FMDatabasePool.m in Sources */,
 				30A3C6D51E52F605002424FA /* NSObject+YYModel.m in Sources */,
 				C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */,
 				30D8ACC31E763CFC00CDC4BA /* NSIndexSet+BlocksKit.m in Sources */,
@@ -1742,12 +1778,14 @@
 				30CC05691E55A825009C1BDD /* NSAttributedString+CZAdditon.m in Sources */,
 				30A3C6901E52B3E8002424FA /* SDWebImageDownloaderOperation.m in Sources */,
 				30A3C6891E52B3E8002424FA /* UIButton+WebCache.m in Sources */,
+				30D8ACF51E76670E00CDC4BA /* FMDatabaseAdditions.m in Sources */,
 				30A3C6E51E52F7F6002424FA /* YYImageCoder.m in Sources */,
 				30D8ACDF1E763CFC00CDC4BA /* UITextField+BlocksKit.m in Sources */,
 				30A3C6911E52B3E8002424FA /* SDWebImageCompat.m in Sources */,
 				30CC056C1E55A825009C1BDD /* NSString+CZHash.m in Sources */,
 				30D8ACCA1E763CFC00CDC4BA /* NSObject+BKAssociatedObjects.m in Sources */,
 				30D8ACDB1E763CFC00CDC4BA /* UIControl+BlocksKit.m in Sources */,
+				30D8ACF41E76670E00CDC4BA /* FMDatabase.m in Sources */,
 				30ADD5FA1E4D5060001012E5 /* YYTextWeakProxy.m in Sources */,
 				30ADD5A81E4D5053001012E5 /* TYDrawStorage.m in Sources */,
 				30CC056F1E55A825009C1BDD /* UIColor+CZAddition.m in Sources */,
@@ -1788,6 +1826,8 @@
 				30828D681E53EBDF000316E2 /* TZPhotoPreviewCell.m in Sources */,
 				C400712F1D901ED100220BB9 /* TextViewController.m in Sources */,
 				30D8ACCB1E763CFC00CDC4BA /* NSObject+BKBlockExecution.m in Sources */,
+				30D8ACF81E76670E00CDC4BA /* FMResultSet.m in Sources */,
+				30D8ACF71E76670E00CDC4BA /* FMDatabaseQueue.m in Sources */,
 				C498688C1D92D69B009223A1 /* JRUserHeader.m in Sources */,
 				303603431E5557F9009BAA82 /* JRPageViewController.m in Sources */,
 				30ADD5E61E4D505F001012E5 /* YYTextDebugOption.m in Sources */,

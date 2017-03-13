@@ -23,6 +23,7 @@ target 'AttributeText-Demo' do
 	pod 'YLGIFImage'
 	pod 'Masonry'
 	
+	#pod 'FMDB', '~> 2.6.2'
 	#pod 'SABlurImageView'
 	#pod 'TTTAttributedLabel'
 	#pod 'BlocksKit', '~> 2.2.5'
