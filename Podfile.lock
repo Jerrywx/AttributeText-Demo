@@ -1,21 +1,6 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - BFNavigationBarDrawer (1.0.2)
-  - BlocksKit (2.2.5):
-    - BlocksKit/All (= 2.2.5)
-  - BlocksKit/All (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
-    - BlocksKit/MessageUI
-    - BlocksKit/UIKit
-  - BlocksKit/Core (2.2.5)
-  - BlocksKit/DynamicDelegate (2.2.5)
-  - BlocksKit/MessageUI (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
-  - BlocksKit/UIKit (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
   - Colours (5.13.0):
     - Colours/ObjC (= 5.13.0)
   - Colours/ObjC (5.13.0)
@@ -40,7 +25,6 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.2.0)
   - BFNavigationBarDrawer
-  - BlocksKit (~> 2.2.5)
   - Colours
   - DateTools
   - DZNEmptyDataSet
@@ -61,7 +45,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   BFNavigationBarDrawer: 7114305b2eb64f796aeee63029a037e30bf37a93
-  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Colours: f24220c38f13deac88612667e9b4a7fb96b871d4
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -79,6 +62,6 @@ SPEC CHECKSUMS:
   VVBlurPresentation: 62c0a9d6ac22f9bed99c0c5735e7eae8156bc618
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
-PODFILE CHECKSUM: 9f7dffbda03fa957d2655902a36c85ac506789ca
+PODFILE CHECKSUM: a6b0fba81c7a87679c638e14380ae2631e49cecb
 
 COCOAPODS: 1.1.1
