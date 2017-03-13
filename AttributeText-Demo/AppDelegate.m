@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "JRBlockViewController.h"
+#import "JRDataStorageController.h"
 
 @interface AppDelegate ()
 
@@ -33,10 +34,17 @@
 	/// 2.
 	JRBlockViewController *twoVC	= [[JRBlockViewController alloc] init];
 	UINavigationController *twoNav	= [[UINavigationController alloc] initWithRootViewController:twoVC];
-	twoNav.tabBarItem.title			= @"Two";
+	twoVC.title						= @"Two";
 	
-	tabVC.viewControllers = @[oneNav, twoNav];
+	/// 3.
+	JRDataStorageController *threeVC = [[JRDataStorageController alloc] init];
+	UINavigationController *threeNav	= [[UINavigationController alloc] initWithRootViewController:threeVC];
+	threeVC.title			= @"Three";
 	
+	/// 添加控制器
+	tabVC.viewControllers = @[oneNav, twoNav, threeNav];
+	
+	/// 显示
 	self.window.rootViewController = tabVC;
 	[self.window makeKeyAndVisible];
 	

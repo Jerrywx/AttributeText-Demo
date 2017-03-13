@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
 	self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -27,13 +28,6 @@
 	[self.list bk_each:^(id obj) {
 		NSLog(@"--- %@",obj);
 	}];
-	
-	NSArray *array = @[@"one", @"two", @"three"];
-	NSInteger length = array.count;			/// 3
-	
-	NSString *item = [array objectAtIndex:1];	/// two
-	NSString *item2 = array[0];		/// one
-	
 }
 
 ///
