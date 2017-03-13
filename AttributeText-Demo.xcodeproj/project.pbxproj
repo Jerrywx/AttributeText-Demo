@@ -143,6 +143,7 @@
 		30D8ACDF1E763CFC00CDC4BA /* UITextField+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACBC1E763CFC00CDC4BA /* UITextField+BlocksKit.m */; };
 		30D8ACE01E763CFC00CDC4BA /* UIView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACBE1E763CFC00CDC4BA /* UIView+BlocksKit.m */; };
 		30D8ACE11E763CFC00CDC4BA /* UIWebView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACC01E763CFC00CDC4BA /* UIWebView+BlocksKit.m */; };
+		30D8ACE51E7648E800CDC4BA /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */; };
 		30FE49F61E15033700ED9F47 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
@@ -491,6 +492,9 @@
 		30D8ACBE1E763CFC00CDC4BA /* UIView+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlocksKit.m"; sourceTree = "<group>"; };
 		30D8ACBF1E763CFC00CDC4BA /* UIWebView+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+BlocksKit.h"; sourceTree = "<group>"; };
 		30D8ACC01E763CFC00CDC4BA /* UIWebView+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+BlocksKit.m"; sourceTree = "<group>"; };
+		30D8ACE31E7648E800CDC4BA /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
+		30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
+		30D8ACE71E764BAD00CDC4BA /* jr_NSArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_NSArray.h; sourceTree = "<group>"; };
 		30FE49F41E15033700ED9F47 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
 		30FE49F51E15033700ED9F47 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -1064,6 +1068,7 @@
 				30D8AC991E763CFC00CDC4BA /* DynamicDelegate */,
 				30D8ACA71E763CFC00CDC4BA /* MessageUI */,
 				30D8ACAC1E763CFC00CDC4BA /* UIKit */,
+				30D8ACE61E764B9F00CDC4BA /* header */,
 			);
 			path = BlocksKit;
 			sourceTree = "<group>";
@@ -1171,6 +1176,23 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		30D8ACE21E7648B200CDC4BA /* JRBlockController */ = {
+			isa = PBXGroup;
+			children = (
+				30D8ACE31E7648E800CDC4BA /* JRBlockViewController.h */,
+				30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */,
+			);
+			path = JRBlockController;
+			sourceTree = "<group>";
+		};
+		30D8ACE61E764B9F00CDC4BA /* header */ = {
+			isa = PBXGroup;
+			children = (
+				30D8ACE71E764BAD00CDC4BA /* jr_NSArray.h */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
 		7D5D91122C51F49A0CFF4206 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1195,6 +1217,7 @@
 				3032F0DB1E31B6120091F0BC /* JRBaseCoreController */,
 				303603401E5557D7009BAA82 /* JRPageViewController */,
 				30AF1B121E558B04005BEB4B /* JRReaderController */,
+				30D8ACE21E7648B200CDC4BA /* JRBlockController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1668,6 +1691,7 @@
 				30D8ACC41E763CFC00CDC4BA /* NSInvocation+BlocksKit.m in Sources */,
 				30ADD5F01E4D5060001012E5 /* YYTextParser.m in Sources */,
 				30A3C6871E52B3E8002424FA /* SDImageCache.m in Sources */,
+				30D8ACE51E7648E800CDC4BA /* JRBlockViewController.m in Sources */,
 				30828D691E53EBDF000316E2 /* TZProgressView.m in Sources */,
 				C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */,
 				30ADD5F21E4D5060001012E5 /* YYTextRunDelegate.m in Sources */,
