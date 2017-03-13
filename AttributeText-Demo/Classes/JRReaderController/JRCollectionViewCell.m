@@ -48,7 +48,6 @@
 																  SCREEN_W,
 																  SCREEN_H - height * 2)];
 	self.contentLabel.numberOfLines = 0;
-	
 	__weak JRCollectionViewCell *weakSelf = self;
 	self.contentLabel.textLongPressAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
 		

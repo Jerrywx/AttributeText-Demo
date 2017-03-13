@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "JRBlockViewController.h"
+#import "JRDataStorageController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +21,33 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
 	/// 提交代码测试
-	[self setWindow];
+//	[self setWindow];
+	
+	self.window					= [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	UITabBarController	*tabVC	= [[UITabBarController alloc] init];
+	
+	/// 1.
+	MainViewController *oneVC		= [[MainViewController alloc] init];
+	UINavigationController *oneNav = [[UINavigationController alloc] initWithRootViewController:oneVC];
+	oneNav.tabBarItem.title			= @"One";
+	
+	/// 2.
+	JRBlockViewController *twoVC	= [[JRBlockViewController alloc] init];
+	UINavigationController *twoNav	= [[UINavigationController alloc] initWithRootViewController:twoVC];
+	twoVC.title						= @"Two";
+	
+	/// 3.
+	JRDataStorageController *threeVC = [[JRDataStorageController alloc] init];
+	UINavigationController *threeNav	= [[UINavigationController alloc] initWithRootViewController:threeVC];
+	threeVC.title			= @"Three";
+	
+	/// 添加控制器
+	tabVC.viewControllers = @[oneNav, twoNav, threeNav];
+	
+	/// 显示
+	self.window.rootViewController = tabVC;
+	[self.window makeKeyAndVisible];
+	
 	
 	return YES;
 }

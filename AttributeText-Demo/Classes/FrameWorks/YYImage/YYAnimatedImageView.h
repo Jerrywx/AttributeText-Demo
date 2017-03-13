@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  An image view for displaying animated image.
  
  @discussion It is a fully compatible `UIImageView` subclass.
- If the `image` or `highlightedImage` property adopt to the `YYAnimatedImage` protocol,
+ If the `image` or `highlightedImage` property adopt(选择) to the `YYAnimatedImage` protocol,
  then it can be used to play the multi-frame animation. The animation can also be 
  controlled with the UIImageView methods `-startAnimating`, `-stopAnimating` and `-isAnimating`.
  
@@ -34,34 +34,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface YYAnimatedImageView : UIImageView
 
-/**
- If the image has more than one frame, set this value to `YES` will automatically 
- play/stop the animation when the view become visible/invisible.
- 
- The default value is `YES`.
- */
+/// 如果是动画 自动暂停/播放
 @property (nonatomic) BOOL autoPlayAnimatedImage;
 
-/**
- Index of the currently displayed frame (index from 0).
- 
- Set a new value to this property will cause to display the new frame immediately.
- If the new value is invalid, this method has no effect.
- 
- You can add an observer to this property to observe the playing status.
- */
+/// 获取当前帧的索引
 @property (nonatomic) NSUInteger currentAnimatedImageIndex;
 
 /**
  Whether the image view is playing animation currently.
- 
+ 当前图片是否正在动画
  You can add an observer to this property to observe the playing status.
  */
 @property (nonatomic, readonly) BOOL currentIsPlayingAnimation;
 
 /**
  The animation timer's runloop mode, default is `NSRunLoopCommonModes`.
- 
+ 获取动画的运行循环状态
  Set this property to `NSDefaultRunLoopMode` will make the animation pause during
  UIScrollView scrolling.
  */
