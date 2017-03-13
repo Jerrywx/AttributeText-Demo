@@ -34,7 +34,6 @@
 	NSString *item = [array objectAtIndex:1];	/// two
 	NSString *item2 = array[0];		/// one
 	
-	NSMutableArray
 }
 
 ///
