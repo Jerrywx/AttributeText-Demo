@@ -8,10 +8,17 @@
 
 #import "JRCoreImageController.h"
 #import "UIView+YYAdd.h"
+#import "JRMotionBlurController.h"
 
-@interface JRCoreImageController ()
+@interface JRCoreImageController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) YYLabel	*label;
+
+/// UITableView
+@property (nonatomic, strong) UITableView	*tableView;
+
+@property (nonatomic, strong) NSArray<NSString *>	*imageList;
+
 @end
 
 @implementation JRCoreImageController
@@ -19,50 +26,83 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	/// Setup UI
 	[self setupView];
 }
 
+#pragma mark - Setup UI
 - (void)setupView {
 
+	/// 设置控制器
 	self.title = @"Core Image";
 	self.view.backgroundColor = [UIColor whiteColor];
-
-	self.label = [YYLabel new];
-	self.label.textVerticalAlignment = YYTextVerticalAlignmentTop;
-	self.label.size		= CGSizeMake(SCREEN_W - 40, MAXFLOAT);
-	self.label.centerX	= SCREEN_W * 0.5;
-	self.label.centerY	= 200;
-	self.label.font		= [UIFont systemFontOfSize:18];
-
-	NSString *string = @"http://m.zongheng.com/h5/book?bookid=635757《绝品邪帝》来访求各位朋友们眼熟！！";
 	
-	NSAttributedString *aString = [NSAttributedString attributedString:string 
-															 textColor:[UIColor grayColor] 
-															  textFont:[UIFont systemFontOfSize:16] 
-														 textLineSpace:6];
-//	self.label.attributedText	= aString;
-	self.label.text				= string;
-	self.label.numberOfLines	= 0;
+	/// 添加 tableView
+	[self.view addSubview:self.tableView];
+	[self.tableView reloadData];
+}
+
+#pragma mark - UItableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return self.imageList.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+	
+	cell.textLabel.text = self.imageList[indexPath.row];
+	
+	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	JRMotionBlurController *blurVC = [[JRMotionBlurController alloc] init];
+	blurVC.title = self.imageList[indexPath.row];
+	[self.navigationController pushViewController:blurVC animated:YES];
+}
+
+#pragma mark - Getter Methond
+- (UITableView *)tableView {
+	
+	if (_tableView) {
+		return _tableView;
+	}
+	
+	_tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds
+											  style:UITableViewStyleGrouped];
+	_tableView.dataSource	= self;
+	_tableView.delegate		= self;
+	_tableView.rowHeight	= 44;
+	[_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+	return _tableView;
+}
+
+- (NSArray<NSString *> *)imageList {
+	if (_imageList) {
+		return _imageList;
+	}
+	
+	_imageList = @[@"动态模糊"];
+	
+	return _imageList;
+}
+
+#pragma mark - Abandon
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
+	NSAttributedString *aString = [self getAttributedString];
+	self.label.height			= MAXFLOAT;
+	self.label.numberOfLines	= 3;
+	self.label.attributedText	= aString;
+
 	CGSize size					= [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, 0)];
 	self.label.size				= size;
 	self.label.centerY			= 200;
-	self.label.backgroundColor	= [UIColor orangeColor];
-	[self.view addSubview:self.label];
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-
-//	NSAttributedString *aString = [self getAttributedString];
-//	self.label.height			= MAXFLOAT;
-//	self.label.numberOfLines	= 3;
-//	self.label.attributedText	= aString;
-//
-//	CGSize size					= [self.label sizeThatFits:CGSizeMake(SCREEN_W - 40, 0)];
-//	self.label.size				= size;
-//	self.label.centerY			= 200;
 //	NSLog(@"------- %f - %f = %zd", size.width, size.height, aString.string.length);
 }
-
 ///
 - (NSAttributedString *)getAttributedString {
 	
@@ -101,7 +141,6 @@
 	
 	return aString;
 }
-
 ////
 - (void)demo1 {
 	
@@ -126,7 +165,6 @@
 	
 	
 }
-
 - (UIImage *)compressOriginalImage:(UIImage *)image toSize:(CGSize)size{
 	
 	CGSize ss = CGSizeMake(5, 5);

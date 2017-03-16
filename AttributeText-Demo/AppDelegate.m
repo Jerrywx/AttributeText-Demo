@@ -37,12 +37,18 @@
 	twoVC.title						= @"Two";
 	
 	/// 3.
-	JRDataStorageController *threeVC = [[JRDataStorageController alloc] init];
+	JRDataStorageController *threeVC	= [[JRDataStorageController alloc] init];
 	UINavigationController *threeNav	= [[UINavigationController alloc] initWithRootViewController:threeVC];
 	threeVC.title			= @"Three";
 	
+//	JRCoreImageController
+	/// 4.
+	JRCoreImageController *fourVC	= [[JRCoreImageController alloc] init];
+	UINavigationController *fourNav	= [[UINavigationController alloc] initWithRootViewController:fourVC];
+	fourVC.title			= @"Four";
+	
 	/// 添加控制器
-	tabVC.viewControllers = @[oneNav, twoNav, threeNav];
+	tabVC.viewControllers = @[oneNav, twoNav, threeNav, fourNav];
 	
 	/// 显示
 	self.window.rootViewController = tabVC;

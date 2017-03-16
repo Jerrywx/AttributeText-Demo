@@ -25,6 +25,7 @@
 #import "YYAnimatedImageView.h"
 
 #import "TZImageManager.h"
+#import "JRCoreImageController.h"
 
 //////
 #import "JRButton.h"
