@@ -589,6 +589,9 @@
 		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRYYTextViewController.m; sourceTree = "<group>"; };
 		C451C3591E7EAEEF001DCA36 /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
 		C451C35A1E7EAEEF001DCA36 /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
+		C451C35F1E7EB409001DCA36 /* jr_ UICollectionViewLayoutAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jr_ UICollectionViewLayoutAttributes.h"; sourceTree = "<group>"; };
+		C451C3601E7EB409001DCA36 /* jr_UICollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionView.h; sourceTree = "<group>"; };
+		C451C3611E7EB409001DCA36 /* jr_UICollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionViewLayout.h; sourceTree = "<group>"; };
 		C48275121D9174F40032EE10 /* UIColor+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JRExtension.h"; sourceTree = "<group>"; };
 		C48275131D9174F40032EE10 /* UIColor+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JRExtension.m"; sourceTree = "<group>"; };
 		C48275551D9187DF0032EE10 /* JRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRViewController.h; sourceTree = "<group>"; };
@@ -1509,6 +1512,9 @@
 		C451C35B1E7EAEEF001DCA36 /* header */ = {
 			isa = PBXGroup;
 			children = (
+				C451C35F1E7EB409001DCA36 /* jr_ UICollectionViewLayoutAttributes.h */,
+				C451C3601E7EB409001DCA36 /* jr_UICollectionView.h */,
+				C451C3611E7EB409001DCA36 /* jr_UICollectionViewLayout.h */,
 			);
 			path = header;
 			sourceTree = "<group>";
