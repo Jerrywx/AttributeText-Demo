@@ -35,12 +35,14 @@
 	
 	///
 	self.collectionView = ({
+		
 		UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds
 															  collectionViewLayout:self.layout];
-		collectionView.delegate		= self;
-		collectionView.dataSource	= self;
-		collectionView.backgroundColor = [UIColor charcoalColor];
-		collectionView.allowsMultipleSelection = YES;
+		collectionView.delegate			 = self;
+		collectionView.dataSource		 = self;
+		collectionView.backgroundColor   = [UIColor charcoalColor];
+		collectionView.collectionViewLayout		= self.layout;
+		collectionView.allowsMultipleSelection	= YES;
 		[collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"item"];
 		[self.view addSubview:collectionView];
 		collectionView;

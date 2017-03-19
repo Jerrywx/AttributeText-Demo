@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, UICollectionViewScrollDirection) {
 @end
 
 
-///
+/// UICollection 流式布局代理方法
 @protocol UICollectionViewDelegateFlowLayout <UICollectionViewDelegate>
 @optional
 
