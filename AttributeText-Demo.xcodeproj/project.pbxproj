@@ -147,7 +147,6 @@
 		30D8ACDF1E763CFC00CDC4BA /* UITextField+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACBC1E763CFC00CDC4BA /* UITextField+BlocksKit.m */; };
 		30D8ACE01E763CFC00CDC4BA /* UIView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACBE1E763CFC00CDC4BA /* UIView+BlocksKit.m */; };
 		30D8ACE11E763CFC00CDC4BA /* UIWebView+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACC01E763CFC00CDC4BA /* UIWebView+BlocksKit.m */; };
-		30D8ACE51E7648E800CDC4BA /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */; };
 		30D8ACF41E76670E00CDC4BA /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACEA1E76670E00CDC4BA /* FMDatabase.m */; };
 		30D8ACF51E76670E00CDC4BA /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACEC1E76670E00CDC4BA /* FMDatabaseAdditions.m */; };
 		30D8ACF61E76670E00CDC4BA /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACEE1E76670E00CDC4BA /* FMDatabasePool.m */; };
@@ -194,6 +193,7 @@
 		C42E98971E16A99E004A6159 /* JRCoreFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E98961E16A99E004A6159 /* JRCoreFoundationController.m */; };
 		C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43EDF741E0A863A00893611 /* JRBlurViewController.m */; };
 		C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */; };
+		C451C35E1E7EAEEF001DCA36 /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C451C35A1E7EAEEF001DCA36 /* JRBlockViewController.m */; };
 		C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275131D9174F40032EE10 /* UIColor+JRExtension.m */; };
 		C48275571D9187DF0032EE10 /* JRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275561D9187DF0032EE10 /* JRViewController.m */; };
 		C482755A1D91947B0032EE10 /* JRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275591D91947B0032EE10 /* JRButton.m */; };
@@ -511,8 +511,6 @@
 		30D8ACBE1E763CFC00CDC4BA /* UIView+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlocksKit.m"; sourceTree = "<group>"; };
 		30D8ACBF1E763CFC00CDC4BA /* UIWebView+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+BlocksKit.h"; sourceTree = "<group>"; };
 		30D8ACC01E763CFC00CDC4BA /* UIWebView+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+BlocksKit.m"; sourceTree = "<group>"; };
-		30D8ACE31E7648E800CDC4BA /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
-		30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
 		30D8ACE71E764BAD00CDC4BA /* jr_NSArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_NSArray.h; sourceTree = "<group>"; };
 		30D8ACE91E76670E00CDC4BA /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		30D8ACEA1E76670E00CDC4BA /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
@@ -589,6 +587,8 @@
 		C43EDF741E0A863A00893611 /* JRBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlurViewController.m; sourceTree = "<group>"; };
 		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
 		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRYYTextViewController.m; sourceTree = "<group>"; };
+		C451C3591E7EAEEF001DCA36 /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
+		C451C35A1E7EAEEF001DCA36 /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
 		C48275121D9174F40032EE10 /* UIColor+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JRExtension.h"; sourceTree = "<group>"; };
 		C48275131D9174F40032EE10 /* UIColor+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JRExtension.m"; sourceTree = "<group>"; };
 		C48275551D9187DF0032EE10 /* JRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRViewController.h; sourceTree = "<group>"; };
@@ -1249,8 +1249,10 @@
 		30D8ACE21E7648B200CDC4BA /* JRBlockController */ = {
 			isa = PBXGroup;
 			children = (
-				30D8ACE31E7648E800CDC4BA /* JRBlockViewController.h */,
-				30D8ACE41E7648E800CDC4BA /* JRBlockViewController.m */,
+				C451C3581E7EAEEF001DCA36 /* Controllers */,
+				C451C35B1E7EAEEF001DCA36 /* header */,
+				C451C35C1E7EAEEF001DCA36 /* Models */,
+				C451C35D1E7EAEEF001DCA36 /* Views */,
 			);
 			path = JRBlockController;
 			sourceTree = "<group>";
@@ -1493,6 +1495,36 @@
 				309CCFE01E08FDE000B23A4D /* NSAttributedString.h */,
 			);
 			path = YYTextController;
+			sourceTree = "<group>";
+		};
+		C451C3581E7EAEEF001DCA36 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C451C3591E7EAEEF001DCA36 /* JRBlockViewController.h */,
+				C451C35A1E7EAEEF001DCA36 /* JRBlockViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C451C35B1E7EAEEF001DCA36 /* header */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
+		C451C35C1E7EAEEF001DCA36 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C451C35D1E7EAEEF001DCA36 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C48275081D9172EF0032EE10 /* JRDemoClasses */ = {
@@ -1791,7 +1823,6 @@
 				30ADD5F01E4D5060001012E5 /* YYTextParser.m in Sources */,
 				305B31761E7A5D9200B546AB /* UIView+YYAdd.m in Sources */,
 				30A3C6871E52B3E8002424FA /* SDImageCache.m in Sources */,
-				30D8ACE51E7648E800CDC4BA /* JRBlockViewController.m in Sources */,
 				30828D691E53EBDF000316E2 /* TZProgressView.m in Sources */,
 				C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */,
 				30ADD5F21E4D5060001012E5 /* YYTextRunDelegate.m in Sources */,
@@ -1809,6 +1840,7 @@
 				30ADD5E71E4D505F001012E5 /* YYTextEffectWindow.m in Sources */,
 				30ADD5AA1E4D5053001012E5 /* TYImageStorage.m in Sources */,
 				30A3C6E21E52F7F6002424FA /* YYAnimatedImageView.m in Sources */,
+				C451C35E1E7EAEEF001DCA36 /* JRBlockViewController.m in Sources */,
 				30ADD5A61E4D5053001012E5 /* NSMutableAttributedString+TY.m in Sources */,
 				30ADD5F71E4D5060001012E5 /* YYTextAsyncLayer.m in Sources */,
 				3086EDED1E52FD8200791CB7 /* JRTextDemoViewController.m in Sources */,
