@@ -153,9 +153,9 @@
 		30D8ACF61E76670E00CDC4BA /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACEE1E76670E00CDC4BA /* FMDatabasePool.m */; };
 		30D8ACF71E76670E00CDC4BA /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF01E76670E00CDC4BA /* FMDatabaseQueue.m */; };
 		30D8ACF81E76670E00CDC4BA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF31E76670E00CDC4BA /* FMResultSet.m */; };
-		30D8ACFC1E76682D00CDC4BA /* JRDataStorageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACFB1E76682D00CDC4BA /* JRDataStorageController.m */; };
 		30D8ACFE1E7668E200CDC4BA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */; };
-		30D8AD011E766A7300CDC4BA /* JRFMDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8AD001E766A7300CDC4BA /* JRFMDBController.m */; };
+		34593D8E1E824E8800259DF2 /* JRDataStorageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D891E824E8800259DF2 /* JRDataStorageController.m */; };
+		34593D8F1E824E8800259DF2 /* JRFMDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D8C1E824E8800259DF2 /* JRFMDBController.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
 		C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448AE1D82654D0039A815 /* JRBaseViewController.m */; };
@@ -526,11 +526,11 @@
 		30D8ACF11E76670E00CDC4BA /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		30D8ACF21E76670E00CDC4BA /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		30D8ACF31E76670E00CDC4BA /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		30D8ACFA1E76682D00CDC4BA /* JRDataStorageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRDataStorageController.h; sourceTree = "<group>"; };
-		30D8ACFB1E76682D00CDC4BA /* JRDataStorageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRDataStorageController.m; sourceTree = "<group>"; };
 		30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		30D8ACFF1E766A7300CDC4BA /* JRFMDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFMDBController.h; sourceTree = "<group>"; };
-		30D8AD001E766A7300CDC4BA /* JRFMDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFMDBController.m; sourceTree = "<group>"; };
+		34593D881E824E8800259DF2 /* JRDataStorageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRDataStorageController.h; sourceTree = "<group>"; };
+		34593D891E824E8800259DF2 /* JRDataStorageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRDataStorageController.m; sourceTree = "<group>"; };
+		34593D8B1E824E8800259DF2 /* JRFMDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFMDBController.h; sourceTree = "<group>"; };
+		34593D8C1E824E8800259DF2 /* JRFMDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFMDBController.m; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
@@ -1293,12 +1293,36 @@
 		30D8ACF91E76681100CDC4BA /* JRDataStorageModule */ = {
 			isa = PBXGroup;
 			children = (
-				30D8ACFA1E76682D00CDC4BA /* JRDataStorageController.h */,
-				30D8ACFB1E76682D00CDC4BA /* JRDataStorageController.m */,
-				30D8ACFF1E766A7300CDC4BA /* JRFMDBController.h */,
-				30D8AD001E766A7300CDC4BA /* JRFMDBController.m */,
+				34593D871E824E8800259DF2 /* Controllers */,
+				34593D8A1E824E8800259DF2 /* FMDBDemo */,
+				34593D8D1E824E8800259DF2 /* ZHForumLog */,
 			);
 			path = JRDataStorageModule;
+			sourceTree = "<group>";
+		};
+		34593D871E824E8800259DF2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				34593D881E824E8800259DF2 /* JRDataStorageController.h */,
+				34593D891E824E8800259DF2 /* JRDataStorageController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		34593D8A1E824E8800259DF2 /* FMDBDemo */ = {
+			isa = PBXGroup;
+			children = (
+				34593D8B1E824E8800259DF2 /* JRFMDBController.h */,
+				34593D8C1E824E8800259DF2 /* JRFMDBController.m */,
+			);
+			path = FMDBDemo;
+			sourceTree = "<group>";
+		};
+		34593D8D1E824E8800259DF2 /* ZHForumLog */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ZHForumLog;
 			sourceTree = "<group>";
 		};
 		7D5D91122C51F49A0CFF4206 /* Frameworks */ = {
@@ -1799,6 +1823,7 @@
 				C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */,
 				30828D5D1E53EBDF000316E2 /* UIView+Layout.m in Sources */,
 				30A3C6E41E52F7F6002424FA /* YYImage.m in Sources */,
+				34593D8E1E824E8800259DF2 /* JRDataStorageController.m in Sources */,
 				C426001C1E1175790022C4D5 /* JRParagraphView.m in Sources */,
 				30ADD5901E4D502D001012E5 /* TTTAttributedLabel.m in Sources */,
 				30D8ACD61E763CFC00CDC4BA /* MFMailComposeViewController+BlocksKit.m in Sources */,
@@ -1879,6 +1904,7 @@
 				30D8ACC51E763CFC00CDC4BA /* NSMutableArray+BlocksKit.m in Sources */,
 				30D8ACC21E763CFC00CDC4BA /* NSDictionary+BlocksKit.m in Sources */,
 				C4064EF81D940EE100B197A7 /* JRThreadModel.m in Sources */,
+				34593D8F1E824E8800259DF2 /* JRFMDBController.m in Sources */,
 				303ACF5C1E5AB6BF0079B74A /* JRHModel.m in Sources */,
 				30A3C68C1E52B3E8002424FA /* UIImageView+HighlightedWebCache.m in Sources */,
 				30D8ACCF1E763CFC00CDC4BA /* NSTimer+BlocksKit.m in Sources */,
@@ -1899,7 +1925,6 @@
 				30ADD5A81E4D5053001012E5 /* TYDrawStorage.m in Sources */,
 				30CC056F1E55A825009C1BDD /* UIColor+CZAddition.m in Sources */,
 				308E87471E51AB6300600176 /* MGSwipeTableCell.m in Sources */,
-				30D8ACFC1E76682D00CDC4BA /* JRDataStorageController.m in Sources */,
 				30D8ACDA1E763CFC00CDC4BA /* UIBarButtonItem+BlocksKit.m in Sources */,
 				C42600151E115CB80022C4D5 /* JRCoreTextController.m in Sources */,
 				30CC05681E55A825009C1BDD /* NSArray+Log.m in Sources */,
@@ -1924,7 +1949,6 @@
 				30D8ACC71E763CFC00CDC4BA /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				305B31741E7A5D9200B546AB /* JRCoreImageController.m in Sources */,
 				30D8ACDD1E763CFC00CDC4BA /* UIImagePickerController+BlocksKit.m in Sources */,
-				30D8AD011E766A7300CDC4BA /* JRFMDBController.m in Sources */,
 				C48275571D9187DF0032EE10 /* JRViewController.m in Sources */,
 				30D8ACCD1E763CFC00CDC4BA /* NSOrderedSet+BlocksKit.m in Sources */,
 				30ADD5AC1E4D5053001012E5 /* TYTextContainer+Extended.m in Sources */,
