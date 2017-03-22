@@ -7,8 +7,14 @@
 //
 
 #import "JRCollectionController.h"
+#import "JRBlockViewController.h"
 
-@interface JRCollectionController ()
+@interface JRCollectionController () <UITableViewDataSource, UITableViewDelegate>
+
+/// tableView
+@property (nonatomic, strong) UITableView   *tableView;
+/// dataSource
+@property (nonatomic, strong) NSArray   *dataSource;
 
 @end
 
@@ -16,22 +22,65 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setupUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+/// 设置UI
+- (void)setupUI {
+    
+    self.tableView = ({
+        UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds
+                                                              style:UITableViewStyleGrouped];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [self.view addSubview:tableView];
+        tableView;
+    });
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataSource.count;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    cell.textLabel.text = self.dataSource[indexPath.row];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.row) {
+        case 0: {
+            JRBlockViewController *vc = [[JRBlockViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+#pragma mark -
+- (NSArray *)dataSource {
+    if (_dataSource) {
+        return _dataSource;
+    }
+    
+    _dataSource = @[@"普通UICollection",
+                    @"普通UICollection2"];
+    
+    return _dataSource;
+}
 
 @end

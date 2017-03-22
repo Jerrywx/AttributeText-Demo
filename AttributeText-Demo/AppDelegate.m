@@ -31,9 +31,9 @@
 	oneNav.tabBarItem.title			= @"One";
 	
 	/// 2.
-	JRBlockViewController *twoVC	= [[JRBlockViewController alloc] init];
+	JRCollectionController *twoVC	= [[JRCollectionController alloc] init];
 	UINavigationController *twoNav	= [[UINavigationController alloc] initWithRootViewController:twoVC];
-	twoVC.title						= @"Two";
+	twoVC.title						= @"克莱克";
 	
 	/// 3.
 	JRDataStorageController *threeVC	= [[JRDataStorageController alloc] init];
