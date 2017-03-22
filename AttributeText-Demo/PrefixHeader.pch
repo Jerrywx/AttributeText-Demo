@@ -16,6 +16,7 @@
 #import "JRYYTextViewController.h"
 #import "BlocksKit.h"
 #import <Colours.h>
+#import "FMDB.h"
 
 //////
 #define SCREEN_W ([UIScreen mainScreen].bounds.size.width)
