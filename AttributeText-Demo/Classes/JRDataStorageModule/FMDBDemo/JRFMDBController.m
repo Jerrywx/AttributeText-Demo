@@ -146,6 +146,8 @@
 
 	return success;
 }
+
+
 /// 更新数据
 - (BOOL)updateForumLog:(NSString *)bookId lastTime:(NSString *)time {
 	

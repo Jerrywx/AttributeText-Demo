@@ -156,6 +156,7 @@
 		30D8ACFE1E7668E200CDC4BA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */; };
 		34593D8E1E824E8800259DF2 /* JRDataStorageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D891E824E8800259DF2 /* JRDataStorageController.m */; };
 		34593D8F1E824E8800259DF2 /* JRFMDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D8C1E824E8800259DF2 /* JRFMDBController.m */; };
+		34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D911E824FDD00259DF2 /* ZHForumLog.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
 		C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448AE1D82654D0039A815 /* JRBaseViewController.m */; };
@@ -531,6 +532,8 @@
 		34593D891E824E8800259DF2 /* JRDataStorageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRDataStorageController.m; sourceTree = "<group>"; };
 		34593D8B1E824E8800259DF2 /* JRFMDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFMDBController.h; sourceTree = "<group>"; };
 		34593D8C1E824E8800259DF2 /* JRFMDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFMDBController.m; sourceTree = "<group>"; };
+		34593D901E824FDD00259DF2 /* ZHForumLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHForumLog.h; sourceTree = "<group>"; };
+		34593D911E824FDD00259DF2 /* ZHForumLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHForumLog.m; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
@@ -1321,6 +1324,8 @@
 		34593D8D1E824E8800259DF2 /* ZHForumLog */ = {
 			isa = PBXGroup;
 			children = (
+				34593D901E824FDD00259DF2 /* ZHForumLog.h */,
+				34593D911E824FDD00259DF2 /* ZHForumLog.m */,
 			);
 			path = ZHForumLog;
 			sourceTree = "<group>";
@@ -1848,6 +1853,7 @@
 				30A3C68B1E52B3E8002424FA /* UIImage+MultiFormat.m in Sources */,
 				30CC056E1E55A825009C1BDD /* UIButton+CZAddition.m in Sources */,
 				30ADD5AB1E4D5053001012E5 /* TYLinkTextStorage.m in Sources */,
+				34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */,
 				30A3C68A1E52B3E8002424FA /* UIImage+GIF.m in Sources */,
 				30ADD5EE1E4D5060001012E5 /* YYTextArchiver.m in Sources */,
 				30ADD5FC1E4D5060001012E5 /* YYTextView.m in Sources */,
