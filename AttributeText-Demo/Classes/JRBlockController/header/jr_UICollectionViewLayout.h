@@ -109,11 +109,15 @@ typedef NS_ENUM(NSInteger, UICollectionUpdateAction) {
 // The collection view calls -prepareLayout again after layout is invalidated and before requerying the layout information.
 // Subclasses should always call super if they override.
 - (void)prepareLayout;
+
+
 // UICollectionView calls these four methods to determine the layout information.
 // Implement -layoutAttributesForElementsInRect: to return layout attributes for for supplementary or decoration views, or to perform layout in an as-needed-on-screen fashion.
 // Additionally, all layout subclasses should implement -layoutAttributesForItemAtIndexPath: to return layout attributes instances on demand for specific index paths.
 // If the layout supports any supplementary or decoration view types, it should also implement the respective atIndexPath: methods for those types.
 - (nullable NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect; // return an array layout attributes instances for all the views in the given rect
+
+
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 
@@ -149,7 +153,6 @@ typedef NS_ENUM(NSInteger, UICollectionUpdateAction) {
 - (void)registerNib:(nullable UINib *)nib forDecorationViewOfKind:(NSString *)elementKind;
 
 @end
-
 
 /// UICollectionViewLayout
 @interface UICollectionViewLayout (UISubclassingHooks)
