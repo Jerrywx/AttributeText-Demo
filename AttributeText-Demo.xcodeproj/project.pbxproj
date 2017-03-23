@@ -158,6 +158,7 @@
 		34593D8F1E824E8800259DF2 /* JRFMDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D8C1E824E8800259DF2 /* JRFMDBController.m */; };
 		34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D911E824FDD00259DF2 /* ZHForumLog.m */; };
 		34D31C311E8362A500F71735 /* ZHFProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D31C301E8362A500F71735 /* ZHFProgressHUD.m */; };
+		34DB4C2B1E836A5200F95E1D /* ZHShop_loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 34DB4C2A1E836A5200F95E1D /* ZHShop_loading.gif */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
 		C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448AE1D82654D0039A815 /* JRBaseViewController.m */; };
@@ -537,6 +538,7 @@
 		34593D911E824FDD00259DF2 /* ZHForumLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHForumLog.m; sourceTree = "<group>"; };
 		34D31C2F1E8362A500F71735 /* ZHFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFProgressHUD.h; sourceTree = "<group>"; };
 		34D31C301E8362A500F71735 /* ZHFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFProgressHUD.m; sourceTree = "<group>"; };
+		34DB4C2A1E836A5200F95E1D /* ZHShop_loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZHShop_loading.gif; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
@@ -1342,6 +1344,14 @@
 			path = ZHFProgressHUD;
 			sourceTree = "<group>";
 		};
+		34DB4C291E836A4700F95E1D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				34DB4C2A1E836A5200F95E1D /* ZHShop_loading.gif */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		7D5D91122C51F49A0CFF4206 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1416,6 +1426,7 @@
 				C40D947A1D7FAE0900E512ED /* AppDelegate.m */,
 				C40448AA1D82653A0039A815 /* Classes */,
 				C429A5761D8167BA00A430A6 /* data */,
+				34DB4C291E836A4700F95E1D /* Resource */,
 				C40D94761D7FAE0900E512ED /* Supporting Files */,
 			);
 			path = "AttributeText-Demo";
@@ -1766,6 +1777,7 @@
 				C429A59E1D8167BA00A430A6 /* data7.json in Resources */,
 				C429A5951D8167BA00A430A6 /* data17.json in Resources */,
 				305B31751E7A5D9200B546AB /* apple.jpg in Resources */,
+				34DB4C2B1E836A5200F95E1D /* ZHShop_loading.gif in Resources */,
 				C429A5981D8167BA00A430A6 /* data2.json in Resources */,
 				C429A59B1D8167BA00A430A6 /* data4.json in Resources */,
 				C429A58F1D8167BA00A430A6 /* data11.json in Resources */,

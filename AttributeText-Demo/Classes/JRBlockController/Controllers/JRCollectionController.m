@@ -32,7 +32,7 @@
     self.tableView = ({
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds
                                                               style:UITableViewStyleGrouped];
-        tableView.delegate = self;
+        tableView.delegate	 = self;
         tableView.dataSource = self;
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [self.view addSubview:tableView];
@@ -64,7 +64,16 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-            
+			
+		case 1: {
+			
+			[ZHFProgressHUD showHUDAddedTo:self.view];
+			
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				[ZHFProgressHUD hideHUDForView:self.view];
+			});
+		}
+	
         default:
             break;
     }

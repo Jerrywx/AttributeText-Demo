@@ -29,6 +29,12 @@
 	if (hide) [self hideHUDForView:view];
 	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view
 											  animated:animated];
+	
+	hud.mode = MBProgressHUDModeCustomView;
+	hud.customView = [ZHFProgressHUD customLoading];
+	hud.bezelView.color = [UIColor clearColor];
+	hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+
 	hud.userInteractionEnabled = NO;
 	return hud;
 }
@@ -182,5 +188,21 @@
 	[hud hideAnimated:YES afterDelay:delay];
 	return hud;
 }
+
+#pragma mark - 获取自定义 Loading
++ (UIView *)customLoading {
+	
+	CGRect frame = CGRectMake(0, 0, 55, 55);
+	
+	UIImageView *loading = [[UIImageView alloc] initWithFrame:frame];
+	loading.image = [UIImage imageNamed:@"ZHShop_loading_bac"];
+
+	YYAnimatedImageView *img  = [[YYAnimatedImageView alloc] initWithFrame:frame];
+	img.image = [YYImage imageNamed:@"ZHShop_loading.gif"];
+	[loading addSubview:img];
+	
+	return loading;
+}
+
 
 @end
