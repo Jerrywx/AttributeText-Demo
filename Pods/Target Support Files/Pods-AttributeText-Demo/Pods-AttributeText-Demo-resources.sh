@@ -18,6 +18,9 @@ case "${TARGETED_DEVICE_FAMILY}" in
   2)
     TARGET_DEVICE_ARGS="--target-device ipad"
     ;;
+  3)
+    TARGET_DEVICE_ARGS="--target-device tv"
+    ;;
   *)
     TARGET_DEVICE_ARGS="--target-device mac"
     ;;
@@ -77,11 +80,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
   install_resource "JCAlertView/JCAlertView/JCAlertView.bundle"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "DateTools/DateTools/DateTools/DateTools.bundle"
   install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
   install_resource "JCAlertView/JCAlertView/JCAlertView.bundle"
+  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

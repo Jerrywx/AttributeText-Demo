@@ -10,7 +10,7 @@ target 'AttributeText-Demo' do
 	pod 'RegexKitLite'				, '~> 4.0'
 	pod 'MDRadialProgress'
 	pod 'BFNavigationBarDrawer'
-	
+	pod 'MJRefresh'					, '~> 3.1.12'
 	pod 'ActionSheetPicker-3.0'		, '~> 2.2.0'
 	pod 'LinqToObjectiveC'			, '~> 2.1.0'
 	pod 'NetworkEye'				, '~> 1.0.1'
