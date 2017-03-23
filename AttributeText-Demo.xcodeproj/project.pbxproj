@@ -157,6 +157,7 @@
 		34593D8E1E824E8800259DF2 /* JRDataStorageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D891E824E8800259DF2 /* JRDataStorageController.m */; };
 		34593D8F1E824E8800259DF2 /* JRFMDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D8C1E824E8800259DF2 /* JRFMDBController.m */; };
 		34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D911E824FDD00259DF2 /* ZHForumLog.m */; };
+		34D31C311E8362A500F71735 /* ZHFProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D31C301E8362A500F71735 /* ZHFProgressHUD.m */; };
 		A38A5692A08EBBB8274388A8 /* libPods-AttributeText-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */; };
 		C400712F1D901ED100220BB9 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C400712E1D901ED100220BB9 /* TextViewController.m */; };
 		C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40448AE1D82654D0039A815 /* JRBaseViewController.m */; };
@@ -534,6 +535,8 @@
 		34593D8C1E824E8800259DF2 /* JRFMDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFMDBController.m; sourceTree = "<group>"; };
 		34593D901E824FDD00259DF2 /* ZHForumLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHForumLog.h; sourceTree = "<group>"; };
 		34593D911E824FDD00259DF2 /* ZHForumLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHForumLog.m; sourceTree = "<group>"; };
+		34D31C2F1E8362A500F71735 /* ZHFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFProgressHUD.h; sourceTree = "<group>"; };
+		34D31C301E8362A500F71735 /* ZHFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFProgressHUD.m; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
@@ -1330,6 +1333,15 @@
 			path = ZHForumLog;
 			sourceTree = "<group>";
 		};
+		34D31C2E1E8362A500F71735 /* ZHFProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				34D31C2F1E8362A500F71735 /* ZHFProgressHUD.h */,
+				34D31C301E8362A500F71735 /* ZHFProgressHUD.m */,
+			);
+			path = ZHFProgressHUD;
+			sourceTree = "<group>";
+		};
 		7D5D91122C51F49A0CFF4206 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1582,6 +1594,7 @@
 		C482750D1D91748D0032EE10 /* JRTools */ = {
 			isa = PBXGroup;
 			children = (
+				34D31C2E1E8362A500F71735 /* ZHFProgressHUD */,
 				3038A92A1E56E36800B7F931 /* JRImagePicker */,
 				C48275111D9174F40032EE10 /* JRExtension */,
 			);
@@ -1856,6 +1869,7 @@
 				34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */,
 				30A3C68A1E52B3E8002424FA /* UIImage+GIF.m in Sources */,
 				30ADD5EE1E4D5060001012E5 /* YYTextArchiver.m in Sources */,
+				34D31C311E8362A500F71735 /* ZHFProgressHUD.m in Sources */,
 				30ADD5FC1E4D5060001012E5 /* YYTextView.m in Sources */,
 				30ADD5EB1E4D505F001012E5 /* YYTextLine.m in Sources */,
 				30ADD5E91E4D505F001012E5 /* YYTextKeyboardManager.m in Sources */,
