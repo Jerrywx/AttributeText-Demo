@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3006BCDD1E7FE2CC002BE800 /* JRCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3006BCDC1E7FE2CC002BE800 /* JRCollectionController.m */; };
 		3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */; };
 		303603431E5557F9009BAA82 /* JRPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603421E5557F9009BAA82 /* JRPageViewController.m */; };
 		303603471E55600F009BAA82 /* JRPageDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603461E55600F009BAA82 /* JRPageDemoController.m */; };
@@ -154,6 +153,8 @@
 		30D8ACF71E76670E00CDC4BA /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF01E76670E00CDC4BA /* FMDatabaseQueue.m */; };
 		30D8ACF81E76670E00CDC4BA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF31E76670E00CDC4BA /* FMResultSet.m */; };
 		30D8ACFE1E7668E200CDC4BA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */; };
+		344DDB151E84B9B600127E1C /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344DDB0D1E84B9B600127E1C /* JRBlockViewController.m */; };
+		344DDB161E84B9B600127E1C /* JRCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344DDB0F1E84B9B600127E1C /* JRCollectionController.m */; };
 		34593D8E1E824E8800259DF2 /* JRDataStorageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D891E824E8800259DF2 /* JRDataStorageController.m */; };
 		34593D8F1E824E8800259DF2 /* JRFMDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D8C1E824E8800259DF2 /* JRFMDBController.m */; };
 		34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D911E824FDD00259DF2 /* ZHForumLog.m */; };
@@ -198,7 +199,6 @@
 		C42E98971E16A99E004A6159 /* JRCoreFoundationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C42E98961E16A99E004A6159 /* JRCoreFoundationController.m */; };
 		C43EDF751E0A863A00893611 /* JRBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43EDF741E0A863A00893611 /* JRBlurViewController.m */; };
 		C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */; };
-		C451C35E1E7EAEEF001DCA36 /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C451C35A1E7EAEEF001DCA36 /* JRBlockViewController.m */; };
 		C48275141D9174F40032EE10 /* UIColor+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275131D9174F40032EE10 /* UIColor+JRExtension.m */; };
 		C48275571D9187DF0032EE10 /* JRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275561D9187DF0032EE10 /* JRViewController.m */; };
 		C482755A1D91947B0032EE10 /* JRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C48275591D91947B0032EE10 /* JRButton.m */; };
@@ -211,8 +211,6 @@
 
 /* Begin PBXFileReference section */
 		248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		3006BCDB1E7FE2CC002BE800 /* JRCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCollectionController.h; sourceTree = "<group>"; };
-		3006BCDC1E7FE2CC002BE800 /* JRCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCollectionController.m; sourceTree = "<group>"; };
 		3032F0E01E31B6EA0091F0BC /* JRCoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreViewController.h; sourceTree = "<group>"; };
 		3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreViewController.m; sourceTree = "<group>"; };
 		3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFontManager.h; sourceTree = "<group>"; };
@@ -531,6 +529,14 @@
 		30D8ACF21E76670E00CDC4BA /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		30D8ACF31E76670E00CDC4BA /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		344DDB0C1E84B9B600127E1C /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
+		344DDB0D1E84B9B600127E1C /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
+		344DDB0E1E84B9B600127E1C /* JRCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCollectionController.h; sourceTree = "<group>"; };
+		344DDB0F1E84B9B600127E1C /* JRCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCollectionController.m; sourceTree = "<group>"; };
+		344DDB111E84B9B600127E1C /* jr_ UICollectionViewLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "jr_ UICollectionViewLayoutAttributes.h"; sourceTree = "<group>"; };
+		344DDB121E84B9B600127E1C /* jr_UICollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionView.h; sourceTree = "<group>"; };
+		344DDB131E84B9B600127E1C /* jr_UICollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		344DDB141E84B9B600127E1C /* jr_UICollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionViewLayout.h; sourceTree = "<group>"; };
 		34593D881E824E8800259DF2 /* JRDataStorageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRDataStorageController.h; sourceTree = "<group>"; };
 		34593D891E824E8800259DF2 /* JRDataStorageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRDataStorageController.m; sourceTree = "<group>"; };
 		34593D8B1E824E8800259DF2 /* JRFMDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFMDBController.h; sourceTree = "<group>"; };
@@ -601,12 +607,6 @@
 		C43EDF741E0A863A00893611 /* JRBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlurViewController.m; sourceTree = "<group>"; };
 		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
 		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRYYTextViewController.m; sourceTree = "<group>"; };
-		C451C3591E7EAEEF001DCA36 /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
-		C451C35A1E7EAEEF001DCA36 /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
-		C451C35F1E7EB409001DCA36 /* jr_ UICollectionViewLayoutAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jr_ UICollectionViewLayoutAttributes.h"; sourceTree = "<group>"; };
-		C451C3601E7EB409001DCA36 /* jr_UICollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionView.h; sourceTree = "<group>"; };
-		C451C3611E7EB409001DCA36 /* jr_UICollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionViewLayout.h; sourceTree = "<group>"; };
-		C451C3621E7EB9D3001DCA36 /* jr_UICollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		C48275121D9174F40032EE10 /* UIColor+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JRExtension.h"; sourceTree = "<group>"; };
 		C48275131D9174F40032EE10 /* UIColor+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JRExtension.m"; sourceTree = "<group>"; };
 		C48275551D9187DF0032EE10 /* JRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRViewController.h; sourceTree = "<group>"; };
@@ -1264,17 +1264,6 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		30D8ACE21E7648B200CDC4BA /* JRBlockController */ = {
-			isa = PBXGroup;
-			children = (
-				C451C3581E7EAEEF001DCA36 /* Controllers */,
-				C451C35B1E7EAEEF001DCA36 /* header */,
-				C451C35C1E7EAEEF001DCA36 /* Models */,
-				C451C35D1E7EAEEF001DCA36 /* Views */,
-			);
-			path = JRBlockController;
-			sourceTree = "<group>";
-		};
 		30D8ACE61E764B9F00CDC4BA /* header */ = {
 			isa = PBXGroup;
 			children = (
@@ -1309,6 +1298,37 @@
 				34593D8D1E824E8800259DF2 /* ZHForumLog */,
 			);
 			path = JRDataStorageModule;
+			sourceTree = "<group>";
+		};
+		344DDB0A1E84B9B600127E1C /* JRCollectionController */ = {
+			isa = PBXGroup;
+			children = (
+				344DDB0B1E84B9B600127E1C /* Controllers */,
+				344DDB101E84B9B600127E1C /* header */,
+			);
+			path = JRCollectionController;
+			sourceTree = "<group>";
+		};
+		344DDB0B1E84B9B600127E1C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				344DDB0C1E84B9B600127E1C /* JRBlockViewController.h */,
+				344DDB0D1E84B9B600127E1C /* JRBlockViewController.m */,
+				344DDB0E1E84B9B600127E1C /* JRCollectionController.h */,
+				344DDB0F1E84B9B600127E1C /* JRCollectionController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		344DDB101E84B9B600127E1C /* header */ = {
+			isa = PBXGroup;
+			children = (
+				344DDB111E84B9B600127E1C /* jr_ UICollectionViewLayoutAttributes.h */,
+				344DDB121E84B9B600127E1C /* jr_UICollectionView.h */,
+				344DDB131E84B9B600127E1C /* jr_UICollectionViewFlowLayout.h */,
+				344DDB141E84B9B600127E1C /* jr_UICollectionViewLayout.h */,
+			);
+			path = header;
 			sourceTree = "<group>";
 		};
 		34593D871E824E8800259DF2 /* Controllers */ = {
@@ -1389,8 +1409,8 @@
 				3032F0DB1E31B6120091F0BC /* JRBaseCoreController */,
 				303603401E5557D7009BAA82 /* JRPageViewController */,
 				30AF1B121E558B04005BEB4B /* JRReaderController */,
-				30D8ACE21E7648B200CDC4BA /* JRBlockController */,
 				30D8ACF91E76681100CDC4BA /* JRDataStorageModule */,
+				344DDB0A1E84B9B600127E1C /* JRCollectionController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1566,42 +1586,6 @@
 				309CCFE01E08FDE000B23A4D /* NSAttributedString.h */,
 			);
 			path = YYTextController;
-			sourceTree = "<group>";
-		};
-		C451C3581E7EAEEF001DCA36 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				C451C3591E7EAEEF001DCA36 /* JRBlockViewController.h */,
-				C451C35A1E7EAEEF001DCA36 /* JRBlockViewController.m */,
-				3006BCDB1E7FE2CC002BE800 /* JRCollectionController.h */,
-				3006BCDC1E7FE2CC002BE800 /* JRCollectionController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		C451C35B1E7EAEEF001DCA36 /* header */ = {
-			isa = PBXGroup;
-			children = (
-				C451C35F1E7EB409001DCA36 /* jr_ UICollectionViewLayoutAttributes.h */,
-				C451C3601E7EB409001DCA36 /* jr_UICollectionView.h */,
-				C451C3611E7EB409001DCA36 /* jr_UICollectionViewLayout.h */,
-				C451C3621E7EB9D3001DCA36 /* jr_UICollectionViewFlowLayout.h */,
-			);
-			path = header;
-			sourceTree = "<group>";
-		};
-		C451C35C1E7EAEEF001DCA36 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		C451C35D1E7EAEEF001DCA36 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		C48275081D9172EF0032EE10 /* JRDemoClasses */ = {
@@ -1917,13 +1901,13 @@
 				30CC056D1E55A825009C1BDD /* NSString+CZPath.m in Sources */,
 				C48275641D919EFC0032EE10 /* JRForumDetialController.m in Sources */,
 				30ADD5AF1E4D5053001012E5 /* TYViewStorage.m in Sources */,
+				344DDB151E84B9B600127E1C /* JRBlockViewController.m in Sources */,
 				30D8ACD71E763CFC00CDC4BA /* MFMessageComposeViewController+BlocksKit.m in Sources */,
 				3087D4AE1E1DFFE000D3CADA /* JRParagraphStyleView.m in Sources */,
 				30CC05701E55A825009C1BDD /* UILabel+CZAddition.m in Sources */,
 				30ADD5E71E4D505F001012E5 /* YYTextEffectWindow.m in Sources */,
 				30ADD5AA1E4D5053001012E5 /* TYImageStorage.m in Sources */,
 				30A3C6E21E52F7F6002424FA /* YYAnimatedImageView.m in Sources */,
-				C451C35E1E7EAEEF001DCA36 /* JRBlockViewController.m in Sources */,
 				30ADD5A61E4D5053001012E5 /* NSMutableAttributedString+TY.m in Sources */,
 				30ADD5F71E4D5060001012E5 /* YYTextAsyncLayer.m in Sources */,
 				3086EDED1E52FD8200791CB7 /* JRTextDemoViewController.m in Sources */,
@@ -2003,11 +1987,11 @@
 				30D8ACD31E763CFC00CDC4BA /* NSURLConnection+BlocksKit.m in Sources */,
 				308E87461E51AB6300600176 /* MGSwipeButton.m in Sources */,
 				30D8ACE11E763CFC00CDC4BA /* UIWebView+BlocksKit.m in Sources */,
-				3006BCDD1E7FE2CC002BE800 /* JRCollectionController.m in Sources */,
 				305B31791E7A64B100B546AB /* JRMotionBlurController.m in Sources */,
 				C40D947B1D7FAE0900E512ED /* AppDelegate.m in Sources */,
 				C49868891D92D679009223A1 /* JRImageView.m in Sources */,
 				30828D681E53EBDF000316E2 /* TZPhotoPreviewCell.m in Sources */,
+				344DDB161E84B9B600127E1C /* JRCollectionController.m in Sources */,
 				C400712F1D901ED100220BB9 /* TextViewController.m in Sources */,
 				30D8ACCB1E763CFC00CDC4BA /* NSObject+BKBlockExecution.m in Sources */,
 				30D8ACF81E76670E00CDC4BA /* FMResultSet.m in Sources */,
