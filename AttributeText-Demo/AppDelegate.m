@@ -21,7 +21,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
 	/// 提交代码测试
-//	[self setWindow];
 	self.window					= [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	UITabBarController	*tabVC	= [[UITabBarController alloc] init];
 	
