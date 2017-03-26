@@ -240,29 +240,29 @@ withReuseIdentifier:(NSString *)identifier;
 
 
 /* --------------------------------------------------------------------------- */
-/*  (Reordering Items Interactively) */
+/*  (Reordering Items Interactively) NS_AVAILABLE_IOS(9_0) */
 /* --------------------------------------------------------------------------- */
 // Support for reordering
 // returns NO if reordering was prevented from beginning - otherwise YES
-- (BOOL)beginInteractiveMovementForItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(9_0);
-- (void)updateInteractiveMovementTargetPosition:(CGPoint)targetPosition NS_AVAILABLE_IOS(9_0);
-- (void)endInteractiveMovement NS_AVAILABLE_IOS(9_0);
-- (void)cancelInteractiveMovement NS_AVAILABLE_IOS(9_0);
-
+- (BOOL)beginInteractiveMovementForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)updateInteractiveMovementTargetPosition:(CGPoint)targetPosition;
+- (void)endInteractiveMovement;
+- (void)cancelInteractiveMovement;
 
 /* --------------------------------------------------------------------------- */
 /*  (Managing the Selection) */
 /* --------------------------------------------------------------------------- */
-// These properties control whether items can be selected, and if so, whether multiple items can be simultaneously selected.
-@property (nonatomic) BOOL allowsSelection; // default is YES
-@property (nonatomic) BOOL allowsMultipleSelection; // default is NO
-
-- (nullable NSArray<NSIndexPath *> *)indexPathsForSelectedItems; // returns nil or an array of selected index paths
-
+/// default is YES
+@property (nonatomic) BOOL allowsSelection;
+/// default is NO
+@property (nonatomic) BOOL allowsMultipleSelection;
+///
+- (nullable NSArray<NSIndexPath *> *)indexPathsForSelectedItems;
+///
 - (void)selectItemAtIndexPath:(nullable NSIndexPath *)indexPath
 					 animated:(BOOL)animated
 			   scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
-
+///
 - (void)deselectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
 
 
@@ -270,18 +270,25 @@ withReuseIdentifier:(NSString *)identifier;
 /*  (Managing Focus) */
 /* --------------------------------------------------------------------------- */
 // Support for Focus
-@property (nonatomic) BOOL remembersLastFocusedIndexPath NS_AVAILABLE_IOS(9_0); // defaults to NO. If YES, when focusing on a collection view the last focused index path is focused automatically. If the collection view has never been focused, then the preferred focused index path is used.
-
+@property (nonatomic) BOOL remembersLastFocusedIndexPath NS_AVAILABLE_IOS(9_0);
+// defaults to NO. If YES, when focusing on a collection view the last focused index path is focused automatically. If the collection view has never been focused, then the preferred focused index path is used.
 
 /* --------------------------------------------------------------------------- */
 /* Locating Items and Views in the Collection View */
 /* --------------------------------------------------------------------------- */
+/// 根据点 获取 索引
 - (nullable NSIndexPath *)indexPathForItemAtPoint:(CGPoint)point;
+/// 获取显示的 Cell
 @property (nonatomic, readonly) NSArray<NSIndexPath *> *indexPathsForVisibleItems;
+/// 获取 cell 的索引
 - (nullable NSIndexPath *)indexPathForCell:(UICollectionViewCell *)cell;
+/// 根据索引 获取 cell
 - (nullable UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+
 - (NSArray<NSIndexPath *> *)indexPathsForVisibleSupplementaryElementsOfKind:(NSString *)elementKind NS_AVAILABLE_IOS(9_0);
+
 - (nullable UICollectionReusableView *)supplementaryViewForElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(9_0);
+
 - (NSArray<UICollectionReusableView *> *)visibleSupplementaryViewsOfKind:(NSString *)elementKind NS_AVAILABLE_IOS(9_0);
 
 
@@ -293,18 +300,21 @@ withReuseIdentifier:(NSString *)identifier;
 
 - (nullable UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
 
-
 /* --------------------------------------------------------------------------- */
 /* Scrolling an Item Into View */
 /* --------------------------------------------------------------------------- */
-- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
+///
+- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath
+			   atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
+					   animated:(BOOL)animated;
 
 
 /* --------------------------------------------------------------------------- */
 /* Animating Multiple Changes to the Collection View */
 /* --------------------------------------------------------------------------- */
 // allows multiple insert/delete/reload/move calls to be animated simultaneously. Nestable.
-- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion;
+- (void)performBatchUpdates:(void (^ __nullable)(void))updates
+				 completion:(void (^ __nullable)(BOOL finished))completion;
 
 
 @end

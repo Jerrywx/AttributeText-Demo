@@ -7,7 +7,7 @@
 //
 
 #import "JRCollectionController.h"
-#import "JRBlockViewController.h"
+#import "JRSimpCollectionController.h"
 
 @interface JRCollectionController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -60,7 +60,7 @@
     
     switch (indexPath.row) {
         case 0: {
-            JRBlockViewController *vc = [[JRBlockViewController alloc] init];
+            JRSimpCollectionController *vc = [[JRSimpCollectionController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -68,7 +68,6 @@
 		case 1: {
 			
 			[ZHFProgressHUD showHUDAddedTo:self.view];
-			
 			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 				[ZHFProgressHUD hideHUDForView:self.view];
 			});
