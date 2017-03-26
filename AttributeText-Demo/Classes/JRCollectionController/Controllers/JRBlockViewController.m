@@ -14,7 +14,9 @@
 @property (nonatomic, strong) UICollectionView	*collectionView;
 /// layout
 @property (nonatomic, strong) UICollectionViewFlowLayout	*layout;
-
+/// layout
+@property (nonatomic, strong) UICollectionViewFlowLayout	*layout2;
+/// 模型
 @property (nonatomic, strong) NSArray	*list;
 
 @end
@@ -33,6 +35,8 @@
 /// 设置 UI
 - (void)setupUI {
 	
+	self.title = @"UICollection";
+	
 	///
 	self.collectionView = ({
 		
@@ -47,6 +51,34 @@
 		[self.view addSubview:collectionView];
 		collectionView;
 	});
+	
+	UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"change" style:UIBarButtonItemStylePlain target:self action:@selector(changeAct)];
+	
+	self.navigationItem.rightBarButtonItem = barButton;
+}
+
+- (void)changeAct {
+//	NSLog(@"changeAct");
+//	[self.collectionView setCollectionViewLayout:self.layout2];
+
+//
+	
+//	UICollectionViewFlowLayout *la = [[UICollectionViewFlowLayout alloc] init];
+//	la.itemSize = CGSizeMake(100, 100);
+//	
+//	
+//	[self.collectionView.collectionViewLayout invalidateLayout];
+////	[self.collectionView setCollectionViewLayout:la animated:NO];
+//	self.collectionView.collectionViewLayout = self.layout2;
+//	[self.collectionView reloadData];
+	
+	
+	UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+	
+	layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+	
+	// 重新设置布局
+	[self.collectionView setCollectionViewLayout:layout animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -156,11 +188,26 @@ minimumLineSpacingForSectionAtIndex: (NSInteger)section{
 	
 	CGFloat w = (SCREEN_W - 20) / 2;
 	_layout = [[UICollectionViewFlowLayout alloc] init];
-	_layout.itemSize				= CGSizeMake(w, 200);
+	_layout.itemSize				= CGSizeMake(w, w);
 	_layout.minimumLineSpacing		= 10;
 	_layout.minimumInteritemSpacing = 20;
 
 	return _layout;
+}
+
+- (UICollectionViewFlowLayout *)layout2 {
+	
+	if (_layout2) {
+		return _layout2;
+	}
+	
+	CGFloat w = (SCREEN_W - 30) / 3;
+	_layout2 = [[UICollectionViewFlowLayout alloc] init];
+	_layout2.itemSize				 = CGSizeMake(w, w);
+	_layout2.minimumLineSpacing		 = 10;
+	_layout2.minimumInteritemSpacing = 20;
+	
+	return _layout2;
 }
 
 

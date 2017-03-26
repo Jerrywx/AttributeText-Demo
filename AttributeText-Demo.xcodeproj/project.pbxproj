@@ -1303,8 +1303,8 @@
 		344DDB0A1E84B9B600127E1C /* JRCollectionController */ = {
 			isa = PBXGroup;
 			children = (
-				344DDB0B1E84B9B600127E1C /* Controllers */,
 				344DDB101E84B9B600127E1C /* header */,
+				344DDB0B1E84B9B600127E1C /* Controllers */,
 			);
 			path = JRCollectionController;
 			sourceTree = "<group>";

@@ -160,24 +160,20 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(9_0);
 @property (nonatomic, getter=isPrefetchingEnabled) BOOL prefetchingEnabled NS_AVAILABLE_IOS(10_0);
 
 
-/// Creating Collection View Cells
 /* --------------------------------------------------------------------------- */
 /* 创建cell (Creating Collection View Cells) */
 /* --------------------------------------------------------------------------- */
-
+/// Cell
 - (void)registerClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
-
 - (void)registerNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier;
-
-- (void)registerClass:(nullable Class)viewClass forSupplementaryViewOfKind:(NSString *)elementKind
-  withReuseIdentifier:(NSString *)identifier;
-
-- (void)registerNib:(nullable UINib *)nib forSupplementaryViewOfKind:(NSString *)kind
-withReuseIdentifier:(NSString *)identifier;
-
 - (__kindof UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier
 															 forIndexPath:(NSIndexPath *)indexPath;
 
+/// Supplementary
+- (void)registerClass:(nullable Class)viewClass forSupplementaryViewOfKind:(NSString *)elementKind
+  withReuseIdentifier:(NSString *)identifier;
+- (void)registerNib:(nullable UINib *)nib forSupplementaryViewOfKind:(NSString *)kind
+withReuseIdentifier:(NSString *)identifier;
 - (__kindof UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind
 														  withReuseIdentifier:(NSString *)identifier
 																 forIndexPath:(NSIndexPath *)indexPath;
@@ -187,17 +183,17 @@ withReuseIdentifier:(NSString *)identifier;
 /* 修改布局 (Changing the Layout) */
 /* --------------------------------------------------------------------------- */
 
-//// The layout used to organize the collected view’s items.
+//// UICollectionViewLayout
 @property (nonatomic, strong) UICollectionViewLayout *collectionViewLayout;
 
-//// transition from one layout to another
+//// 设置 UICollectionViewLayout 动画
 - (void)setCollectionViewLayout:(UICollectionViewLayout *)layout animated:(BOOL)animated;
-//// Changes the collection view’s layout and notifies you when the animations complete.
+//// 设置 UICollectionViewLayout 动画 回调
 - (void)setCollectionViewLayout:(UICollectionViewLayout *)layout animated:(BOOL)animated
 					 completion:(void (^ __nullable)(BOOL finished))completion;
 
 //// Changes the collection view’s current layout using an interactive transition effect.
-- (UICollectionViewTransitionLayout *)startInteractiveTransitionToCollectionViewLayout:(UICollectionViewLayout *)layout completion:(nullable UICollectionViewLayoutInteractiveTransitionCompletion)completion NS_AVAILABLE_IOS(7_0);
+- (UICollectionViewTransitionLayout *)startInteractiveTransitionToCollectionViewLayout:(UICollectionViewLayout *)layout completion:(nullable UICollectionViewLayoutInteractiveTransitionCompletion)completion;
 
 //// Tells the collection view to finish an interactive transition by installing the intended target layout.
 - (void)finishInteractiveTransition;
@@ -323,4 +319,4 @@ withReuseIdentifier:(NSString *)identifier;
 
 @end
 
-#endif /* jr_UICollectionView_h */
+#endif
