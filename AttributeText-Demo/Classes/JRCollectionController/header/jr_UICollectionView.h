@@ -9,7 +9,6 @@
 #ifndef jr_UICollectionView_h
 #define jr_UICollectionView_h
 
-
 typedef NS_OPTIONS(NSUInteger, UICollectionViewScrollPosition) {
 	UICollectionViewScrollPositionNone                 = 0,
 	UICollectionViewScrollPositionTop                  = 1 << 0,
@@ -20,19 +19,11 @@ typedef NS_OPTIONS(NSUInteger, UICollectionViewScrollPosition) {
 	UICollectionViewScrollPositionRight                = 1 << 5
 };
 
-@class UICollectionView;
-@class UICollectionViewCell;
-@class UICollectionViewLayout;
-@class UICollectionViewTransitionLayout;
-@class UICollectionViewLayoutAttributes;
-@class UITouch;
-@class UINib;
-@class UICollectionReusableView;
-
 // layout transition block signature
 typedef void (^UICollectionViewLayoutInteractiveTransitionCompletion)(BOOL completed, BOOL finished);
 
-NS_CLASS_AVAILABLE_IOS(9_0) @interface UICollectionViewFocusUpdateContext : UIFocusUpdateContext
+NS_CLASS_AVAILABLE_IOS(9_0)
+@interface UICollectionViewFocusUpdateContext : UIFocusUpdateContext
 
 @property (nonatomic, strong, readonly, nullable) NSIndexPath *previouslyFocusedIndexPath;
 @property (nonatomic, strong, readonly, nullable) NSIndexPath *nextFocusedIndexPath;
@@ -58,6 +49,7 @@ NS_CLASS_AVAILABLE_IOS(9_0) @interface UICollectionViewFocusUpdateContext : UIFo
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
 		   viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
 
+////
 - (BOOL)collectionView:(UICollectionView *)collectionView
 canMoveItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(9_0);
 
@@ -83,35 +75,40 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(9_0);
 //// UICollectionViewDelegate
 @protocol UICollectionViewDelegate <UIScrollViewDelegate>
 @optional
-
-// Methods for notification of selection/deselection and highlight/unhighlight events.
-// The sequence of calls leading to selection from a user touch is:
-//
-// (when the touch begins)
-// 1. -collectionView:shouldHighlightItemAtIndexPath:
-// 2. -collectionView:didHighlightItemAtIndexPath:
-//
-// (when the touch lifts)
-// 3. -collectionView:shouldSelectItemAtIndexPath: or -collectionView:shouldDeselectItemAtIndexPath:
-// 4. -collectionView:didSelectItemAtIndexPath: or -collectionView:didDeselectItemAtIndexPath:
-// 5. -collectionView:didUnhighlightItemAtIndexPath:
+/// 是否可以高亮
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath;
+/// 高亮回调
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath;
+/// 取消高亮回调
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath;
+/// 是否可点击
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+/// 是否可取消点击
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath; // called when the user taps on an already-selected item in multi-select mode
+/// 选择回调
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+/// 取消玄色回调
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath;
+/// cell 将要显示
+- (void)collectionView:(UICollectionView *)collectionView 
+	   willDisplayCell:(UICollectionViewCell *)cell 
+	forItemAtIndexPath:(NSIndexPath *)indexPath;
+/// SupplementaryView 将要显示
+- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath;
+/// cell 显示完成回调
+- (void)collectionView:(UICollectionView *)collectionView 
+  didEndDisplayingCell:(UICollectionViewCell *)cell 
+	forItemAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0);
-- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0);
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
+/// SupplementaryView 显示完成回调
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingSupplementaryView:(UICollectionReusableView *)view forElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath;
 
 // These methods provide support for copy/paste actions on cells.
 // All three should be implemented if any are.
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath;
+
 - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender;
+
 - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender;
 
 // support for custom transition layout

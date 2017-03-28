@@ -10,14 +10,10 @@
 #define jr__UICollectionViewLayoutAttributes_h
 
 typedef NS_ENUM(NSUInteger, UICollectionElementCategory) {
-	UICollectionElementCategoryCell,
-	UICollectionElementCategorySupplementaryView,
-	UICollectionElementCategoryDecorationView
+	UICollectionElementCategoryCell,				//
+	UICollectionElementCategorySupplementaryView,	//
+	UICollectionElementCategoryDecorationView		//
 };
-
-@class UICollectionViewLayoutAttributes;
-@class UICollectionView;
-@class UINib;
 
 @interface UICollectionViewLayoutAttributes : NSObject <NSCopying, UIDynamicItem>
 
@@ -29,19 +25,24 @@ typedef NS_ENUM(NSUInteger, UICollectionElementCategory) {
 @property (nonatomic) CGAffineTransform transform;
 @property (nonatomic) CGFloat alpha;
 @property (nonatomic) NSInteger zIndex; // default is 0
-@property (nonatomic, getter=isHidden) BOOL hidden; // As an optimization, UICollectionView might not create a view for items whose hidden attribute is YES
+@property (nonatomic, getter=isHidden) BOOL hidden;
+// As an optimization, UICollectionView might not create a view for items whose hidden attribute is YES
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 @property (nonatomic, readonly) UICollectionElementCategory representedElementCategory;
-@property (nonatomic, readonly, nullable) NSString *representedElementKind; // nil when representedElementCategory is UICollectionElementCategoryCell
+
+@property (nonatomic, readonly, nullable) NSString *representedElementKind;
+// nil when representedElementCategory is UICollectionElementCategoryCell
 
 + (instancetype)layoutAttributesForCellWithIndexPath:(NSIndexPath *)indexPath;
-+ (instancetype)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind withIndexPath:(NSIndexPath *)indexPath;
-+ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind withIndexPath:(NSIndexPath *)indexPath;
+
++ (instancetype)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind
+											 withIndexPath:(NSIndexPath *)indexPath;
+
++ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind
+										  withIndexPath:(NSIndexPath *)indexPath;
 
 @end
-
-
 
 typedef NS_ENUM(NSInteger, UICollectionUpdateAction) {
 	UICollectionUpdateActionInsert,
@@ -142,21 +143,28 @@ typedef NS_ENUM(NSInteger, UICollectionUpdateAction) {
 
 @end
 
+///
 @interface UICollectionViewLayout (UIUpdateSupportHooks)
 
 // This method is called when there is an update with deletes/inserts to the collection view.
 // It will be called prior to calling the initial/final layout attribute methods below to give the layout an opportunity to do batch computations for the insertion and deletion layout attributes.
 // The updateItems parameter is an array of UICollectionViewUpdateItem instances for each element that is moving to a new index path.
+///
 - (void)prepareForCollectionViewUpdates:(NSArray<UICollectionViewUpdateItem *> *)updateItems;
+
 - (void)finalizeCollectionViewUpdates; // called inside an animation block after the update
 
 - (void)prepareForAnimatedBoundsChange:(CGRect)oldBounds; // UICollectionView calls this when its bounds have changed inside an animation block before displaying cells in its new bounds
 - (void)finalizeAnimatedBoundsChange; // also called inside the animation block
 
 // UICollectionView calls this when prior the layout transition animation on the incoming and outgoing layout
-- (void)prepareForTransitionToLayout:(UICollectionViewLayout *)newLayout NS_AVAILABLE_IOS(7_0);
-- (void)prepareForTransitionFromLayout:(UICollectionViewLayout *)oldLayout NS_AVAILABLE_IOS(7_0);
-- (void)finalizeLayoutTransition NS_AVAILABLE_IOS(7_0);  // called inside an animation block after the transition
+- (void)prepareForTransitionToLayout:(UICollectionViewLayout *)newLayout;
+
+- (void)prepareForTransitionFromLayout:(UICollectionViewLayout *)oldLayout;
+
+// called inside an animation block after the transition
+- (void)finalizeLayoutTransition;
+
 
 
 // This set of methods is called when the collection view undergoes an animated transition such as a batch update block or an animated bounds change.
