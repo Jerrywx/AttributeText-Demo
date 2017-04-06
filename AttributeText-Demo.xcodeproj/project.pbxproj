@@ -617,7 +617,7 @@
 		C42A193D1E133E9500268F1C /* JRTranslateCTMView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTranslateCTMView.h; sourceTree = "<group>"; };
 		C42A193E1E133E9500268F1C /* JRTranslateCTMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTranslateCTMView.m; sourceTree = "<group>"; };
 		C42E98941E16A45C004A6159 /* jr_CFString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CFString.h; sourceTree = "<group>"; };
-		C43741971E1FF3E700FAD830 /* jr_CTFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFrame.h; sourceTree = "<group>"; };
+		C43741971E1FF3E700FAD830 /* jr_CTRunRef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTRunRef.h; sourceTree = "<group>"; };
 		C43EDF731E0A863A00893611 /* JRBlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlurViewController.h; sourceTree = "<group>"; };
 		C43EDF741E0A863A00893611 /* JRBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlurViewController.m; sourceTree = "<group>"; };
 		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
@@ -1166,7 +1166,7 @@
 				3087D4B21E1E10F100D3CADA /* jr_CTFont.h */,
 				3087D4B31E1E1C2C00D3CADA /* jr_CTStringAttributes.h */,
 				3087D4B41E1E2D3B00D3CADA /* jr_CTLine.h */,
-				C43741971E1FF3E700FAD830 /* jr_CTFrame.h */,
+				C43741971E1FF3E700FAD830 /* jr_CTRunRef.h */,
 				3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */,
 				30ADD5FD1E4D641E001012E5 /* jr_ CGPath.h */,
 			);

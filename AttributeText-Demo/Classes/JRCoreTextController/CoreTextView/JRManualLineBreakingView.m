@@ -17,7 +17,7 @@
 	double width; CGContextRef context; CGPoint textPosition; CFMutableAttributedStringRef attrString;
 	// Initialize those variables.
 	
-	width = rect.size.width;
+	width = rect.size.width * 0.5;
 	textPosition = CGPointMake(0, rect.size.height * 0.5);
 	context = UIGraphicsGetCurrentContext();
 	
@@ -31,7 +31,7 @@
 	// 0 means no hint.
 	///
 	attrString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
- 
+
 	// Copy the textString into the newly created attrString
 	CFAttributedStringReplaceString (attrString, CFRangeMake(0, 0),
 									 textString);
@@ -47,7 +47,7 @@
 	CTLineRef line = CTTypesetterCreateLine(typesetter, CFRangeMake(start, count));
  
 	// Get the offset needed to center the line.
-	float flush = 0.5; // centered
+	float flush = 20.1; // centered
 	double penOffset = CTLineGetPenOffsetForFlush(line, flush, width);
  
 	// Move the given text drawing position by the calculated offset and draw the line.
@@ -55,10 +55,7 @@
 	CTLineDraw(line, context);
  
 	// Move the index beyond the line break.
-	start += count;
-
-	
+	start += count;	
 }
-
 
 @end
