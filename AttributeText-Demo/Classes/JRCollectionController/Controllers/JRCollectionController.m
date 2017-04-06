@@ -8,6 +8,7 @@
 
 #import "JRCollectionController.h"
 #import "JRSimpCollectionController.h"
+#import "JRSimpCollectionController2.h"
 
 @interface JRCollectionController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -67,17 +68,19 @@
 			
 		case 1: {
 			
-			[ZHFProgressHUD showHUDAddedTo:self.view];
-			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-				[ZHFProgressHUD hideHUDForView:self.view];
-			});
+//			[ZHFProgressHUD showHUDAddedTo:self.view];
+//			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//				[ZHFProgressHUD hideHUDForView:self.view];
+//			});
+			
+			JRSimpCollectionController2 *vc = [[JRSimpCollectionController2 alloc] init];
+			[self.navigationController pushViewController:vc animated:YES];
 		}
 	
         default:
             break;
     }
 }
-
 
 #pragma mark -
 - (NSArray *)dataSource {

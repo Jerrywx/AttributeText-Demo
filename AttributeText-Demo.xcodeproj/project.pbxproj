@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3015F38F1E87D616006B213D /* JRSimpCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3015F38E1E87D616006B213D /* JRSimpCollectionController.m */; };
+		3015F3921E880B3A006B213D /* JRSimpCollectionController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3015F3911E880B3A006B213D /* JRSimpCollectionController2.m */; };
 		3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */; };
 		303603431E5557F9009BAA82 /* JRPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603421E5557F9009BAA82 /* JRPageViewController.m */; };
 		303603471E55600F009BAA82 /* JRPageDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603461E55600F009BAA82 /* JRPageDemoController.m */; };
@@ -215,6 +216,8 @@
 		248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		3015F38D1E87D616006B213D /* JRSimpCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpCollectionController.h; sourceTree = "<group>"; };
 		3015F38E1E87D616006B213D /* JRSimpCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpCollectionController.m; sourceTree = "<group>"; };
+		3015F3901E880B3A006B213D /* JRSimpCollectionController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpCollectionController2.h; sourceTree = "<group>"; };
+		3015F3911E880B3A006B213D /* JRSimpCollectionController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpCollectionController2.m; sourceTree = "<group>"; };
 		3032F0E01E31B6EA0091F0BC /* JRCoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreViewController.h; sourceTree = "<group>"; };
 		3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreViewController.m; sourceTree = "<group>"; };
 		3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFontManager.h; sourceTree = "<group>"; };
@@ -655,6 +658,8 @@
 			children = (
 				3015F38D1E87D616006B213D /* JRSimpCollectionController.h */,
 				3015F38E1E87D616006B213D /* JRSimpCollectionController.m */,
+				3015F3901E880B3A006B213D /* JRSimpCollectionController2.h */,
+				3015F3911E880B3A006B213D /* JRSimpCollectionController2.m */,
 			);
 			path = CollectionControllers;
 			sourceTree = "<group>";
@@ -1964,6 +1969,7 @@
 				30A3C6901E52B3E8002424FA /* SDWebImageDownloaderOperation.m in Sources */,
 				30A3C6891E52B3E8002424FA /* UIButton+WebCache.m in Sources */,
 				30D8ACF51E76670E00CDC4BA /* FMDatabaseAdditions.m in Sources */,
+				3015F3921E880B3A006B213D /* JRSimpCollectionController2.m in Sources */,
 				30A3C6E51E52F7F6002424FA /* YYImageCoder.m in Sources */,
 				30D8ACDF1E763CFC00CDC4BA /* UITextField+BlocksKit.m in Sources */,
 				30A3C6911E52B3E8002424FA /* SDWebImageCompat.m in Sources */,
