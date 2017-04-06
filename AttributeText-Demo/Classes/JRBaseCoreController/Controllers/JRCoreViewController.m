@@ -7,9 +7,11 @@
 //
 
 #import "JRCoreViewController.h"
-#import "JRPageViewController.h"
+#import "JRSimpleViewController.h"
 
 @interface JRCoreViewController ()
+
+@property (nonatomic, strong) JRTableView	*tableView;
 
 @end
 
@@ -18,15 +20,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.title = @"😀CoreText😎";
-	self.view.backgroundColor = [UIColor whiteColor];
-	
+	[self setupUI];
 }
 
+#pragma mark -
+- (void)setupUI {
+	self.title = @"😀Core😎";
+	
+	__weak JRCoreViewController *weakSelf = self;
+	self.tableView = [[JRTableView alloc] initWithFrame:self.view.bounds
+												  style:UITableViewStyleGrouped];
+	
+	[self.view addSubview:self.tableView];
+	self.tableView.dataList = @[@"qwe", @"asd", @"zxc"];
+	self.tableView.didSelectedCell = ^(UITableView *tableView, NSIndexPath *indexPath) {
+		[weakSelf tableDidSelected:tableView indexPath:indexPath];
+	};
+}
 
+///
+- (void)tableDidSelected:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
 
-
-
-
+	switch (indexPath.row) {
+		case 0: {
+			JRSimpleViewController *vc = [JRSimpleViewController new];
+			[self.navigationController pushViewController:vc animated:YES];
+		}
+			break;
+			
+		default:
+			break;
+	}
+	
+}
 
 @end

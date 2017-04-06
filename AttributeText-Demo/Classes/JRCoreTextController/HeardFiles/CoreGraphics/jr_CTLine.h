@@ -38,7 +38,6 @@ typedef CF_ENUM(uint32_t, CTLineTruncationType) {
  @function   CTLineGetTypeID
  @abstract   Returns the CFType of the line object
  */
-
 CFTypeID CTLineGetTypeID( void ) CT_AVAILABLE(10_5, 3_2);
 
 
@@ -46,9 +45,11 @@ CFTypeID CTLineGetTypeID( void ) CT_AVAILABLE(10_5, 3_2);
 /* Line Creation */
 /* --------------------------------------------------------------------------- */
 /// Creates a single immutable line object directly from an attributed string.
+/// 使用属性字符串创建 CTLine
 CTLineRef CTLineCreateWithAttributedString(CFAttributedStringRef attrString );
 
 /// Creates a truncated line from an existing line.
+/// 创建一个删节内容
 CTLineRef __nullable CTLineCreateTruncatedLine(
 											   CTLineRef line,
 											   double width,
@@ -66,13 +67,15 @@ CTLineRef __nullable CTLineCreateJustifiedLine(
 /* Line Access */
 /* --------------------------------------------------------------------------- */
 /// Returns the total glyph count for the line object.
+/// 获取显示文本数量
 CFIndex CTLineGetGlyphCount(CTLineRef line );
 
-
 /// Returns the array of glyph runs that make up the line object.
+/// 获取 CTLineRef 中的 runs
 CFArrayRef CTLineGetGlyphRuns(CTLineRef line );
 
 /// Gets the range of characters that originally spawned the glyphs in the line.
+/// 获取文本显示范围
 CFRange CTLineGetStringRange(CTLineRef line );
 
 
