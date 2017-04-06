@@ -13,6 +13,7 @@
 /// 数据源
 @property (nonatomic, strong) NSArray	*dataList;
 
+/// tableView 点击回调
 @property (nonatomic, copy) void(^didSelectedCell)(UITableView *tableView, NSIndexPath *indexPath);
 
 @end
