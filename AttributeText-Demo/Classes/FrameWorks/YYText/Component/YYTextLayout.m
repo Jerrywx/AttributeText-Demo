@@ -22,6 +22,7 @@ typedef struct {
     CGFloat foot;
 } YYRowEdge;
 
+/// 检测size 是否超出最大范围
 static inline CGSize YYTextClipCGSize(CGSize size) {
     if (size.width > YYTextContainerMaxSize.width) size.width = YYTextContainerMaxSize.width;
     if (size.height > YYTextContainerMaxSize.height) size.height = YYTextContainerMaxSize.height;
@@ -55,6 +56,7 @@ static CGColorRef YYTextGetCGColor(CGColorRef color) {
 }
 
 @implementation YYTextLinePositionSimpleModifier
+
 - (void)modifyLines:(NSArray *)lines fromText:(NSAttributedString *)text inContainer:(YYTextContainer *)container {
     if (container.verticalForm) {
         for (NSUInteger i = 0, max = lines.count; i < max; i++) {
@@ -78,9 +80,13 @@ static CGColorRef YYTextGetCGColor(CGColorRef color) {
     one.fixedLineHeight = _fixedLineHeight;
     return one;
 }
+
 @end
 
 
+/**
+ YYTextContainer
+ */
 @implementation YYTextContainer {
     @package
     BOOL _readonly; ///< used only in YYTextLayout.implementation
@@ -2218,13 +2224,34 @@ static void YYTextGetRunsMaxMetric(CFArrayRef runs, CGFloat *xHeight, CGFloat *u
     if (lineThickness) *lineThickness = maxLineThickness;
 }
 
-static void YYTextDrawRun(YYTextLine *line, CTRunRef run, CGContextRef context, CGSize size, BOOL isVertical, NSArray *runRanges, CGFloat verticalOffset) {
+/**
+ 绘制 CGRunRef
+
+ @param line CGLineRef
+ @param run CGRunRef
+ @param context 上下文
+ @param size <#size description#>
+ @param isVertical <#isVertical description#>
+ @param runRanges <#runRanges description#>
+ @param verticalOffset <#verticalOffset description#>
+ */
+static void YYTextDrawRun(YYTextLine *line, 
+						  CTRunRef run, 
+						  CGContextRef context, 
+						  CGSize size, 
+						  BOOL isVertical, 
+						  NSArray *runRanges, 
+						  CGFloat verticalOffset) {
+	
     CGAffineTransform runTextMatrix = CTRunGetTextMatrix(run);
     BOOL runTextMatrixIsID = CGAffineTransformIsIdentity(runTextMatrix);
     
     CFDictionaryRef runAttrs = CTRunGetAttributes(run);
     NSValue *glyphTransformValue = CFDictionaryGetValue(runAttrs, (__bridge const void *)(YYTextGlyphTransformAttributeName));
-    if (!isVertical && !glyphTransformValue) { // draw run
+	
+	// draw run
+    if (!isVertical && !glyphTransformValue) {
+		
         if (!runTextMatrixIsID) {
             CGContextSaveGState(context);
             CGAffineTransform trans = CGContextGetTextMatrix(context);
@@ -2234,7 +2261,9 @@ static void YYTextDrawRun(YYTextLine *line, CTRunRef run, CGContextRef context, 
         if (!runTextMatrixIsID) {
             CGContextRestoreGState(context);
         }
-    } else { // draw glyph
+    }
+	// draw glyph
+	else {
         CTFontRef runFont = CFDictionaryGetValue(runAttrs, kCTFontAttributeName);
         if (!runFont) return;
         NSUInteger glyphCount = CTRunGetGlyphCount(run);
@@ -2248,9 +2277,14 @@ static void YYTextDrawRun(YYTextLine *line, CTRunRef run, CGContextRef context, 
         CGColorRef fillColor = (CGColorRef)CFDictionaryGetValue(runAttrs, kCTForegroundColorAttributeName);
         fillColor = YYTextGetCGColor(fillColor);
         NSNumber *strokeWidth = CFDictionaryGetValue(runAttrs, kCTStrokeWidthAttributeName);
-        
-        CGContextSaveGState(context); {
+		
+		//// 入栈 上下文
+        CGContextSaveGState(context);
+
+		{
+			/// 设置绘制颜色
             CGContextSetFillColorWithColor(context, fillColor);
+			
             if (!strokeWidth || strokeWidth.floatValue == 0) {
                 CGContextSetTextDrawingMode(context, kCGTextFill);
             } else {
@@ -2317,7 +2351,9 @@ static void YYTextDrawRun(YYTextLine *line, CTRunRef run, CGContextRef context, 
                         } CGContextRestoreGState(context);
                     }
                 }
-            } else { // not vertical
+            }
+			// not vertical
+			else {
                 if (glyphTransformValue) {
                     CFIndex runStrIdx[glyphCount + 1];
                     CTRunGetStringIndices(run, CFRangeMake(0, 0), runStrIdx);
@@ -2360,7 +2396,9 @@ static void YYTextDrawRun(YYTextLine *line, CTRunRef run, CGContextRef context, 
                 }
             }
             
-        } CGContextRestoreGState(context);
+        }
+		/// 上下文出栈
+		CGContextRestoreGState(context);
     }
 }
 
@@ -2394,10 +2432,26 @@ static void YYTextSetLinePatternInContext(YYTextLineStyle style, CGFloat width, 
 }
 
 
-static void YYTextDrawBorderRects(CGContextRef context, CGSize size, YYTextBorder *border, NSArray *rects, BOOL isVertical) {
+/**
+ 绘制边框
+
+ @param context 上下文
+ @param size 尺寸
+ @param border 边框 YYTextBorder
+ @param rects frame
+ @param isVertical <#isVertical description#>
+ */
+static void YYTextDrawBorderRects(CGContextRef context, 
+								  CGSize size, 
+								  YYTextBorder *border, 
+								  NSArray *rects, 
+								  BOOL isVertical) {
+	
     if (rects.count == 0) return;
     
     YYTextShadow *shadow = border.shadow;
+	
+	/// 设置阴影
     if (shadow.color) {
         CGContextSaveGState(context);
         CGContextSetShadowWithColor(context, shadow.offset, shadow.radius, shadow.color.CGColor);
@@ -2413,7 +2467,8 @@ static void YYTextDrawBorderRects(CGContextRef context, CGSize size, YYTextBorde
             rect = UIEdgeInsetsInsetRect(rect, border.insets);
         }
         rect = YYTextCGRectPixelRound(rect);
-        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:border.cornerRadius];
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect
+														cornerRadius:border.cornerRadius];
         [path closePath];
         [paths addObject:path];
     }
@@ -2593,27 +2648,57 @@ static void YYTextDrawLineStyle(CGContextRef context, CGFloat length, CGFloat li
     } CGContextRestoreGState(context);
 }
 
-static void YYTextDrawText(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, BOOL (^cancel)(void)) {
-    CGContextSaveGState(context); {
-        
+/**
+ 绘制文本
+
+ @param layout 布局
+ @param context 上下文
+ @param size size
+ @param point <#point description#>
+ @param ^cancel <#^cancel description#>
+ */
+static void YYTextDrawText(YYTextLayout *layout, 
+						   CGContextRef context, 
+						   CGSize size, 
+						   CGPoint point, 
+						   BOOL (^cancel)(void)) {
+	
+	/// 上下文 入栈
+    CGContextSaveGState(context);
+	
+	{
+		/// 转换坐标系
         CGContextTranslateCTM(context, point.x, point.y);
         CGContextTranslateCTM(context, 0, size.height);
         CGContextScaleCTM(context, 1, -1);
         
         BOOL isVertical = layout.container.verticalForm;
         CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
-        
+		
+		/// 获取 CGLineRef 数组
         NSArray *lines = layout.lines;
+		
         for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
+			
+			/// 获取 CGLineRef
             YYTextLine *line = lines[l];
-            if (layout.truncatedLine && layout.truncatedLine.index == line.index) line = layout.truncatedLine;
+			
+            if (layout.truncatedLine && layout.truncatedLine.index == line.index)
+				line = layout.truncatedLine;
+			
             NSArray *lineRunRanges = line.verticalRotateRange;
             CGFloat posX = line.position.x + verticalOffset;
             CGFloat posY = size.height - line.position.y;
+			
+			/// 获取 CGRunRef 数组
             CFArrayRef runs = CTLineGetGlyphRuns(line.CTLine);
+			/// 遍历 CGRunRef
             for (NSUInteger r = 0, rMax = CFArrayGetCount(runs); r < rMax; r++) {
+				/// 获取 CGRunRef
                 CTRunRef run = CFArrayGetValueAtIndex(runs, r);
+				/// 初始化放射变化 !!!!
                 CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+				/// 设置渲染位置
                 CGContextSetTextPosition(context, posX, posY);
                 YYTextDrawRun(line, run, context, size, isVertical, lineRunRanges[r], verticalOffset);
             }
@@ -2627,24 +2712,49 @@ static void YYTextDrawText(YYTextLayout *layout, CGContextRef context, CGSize si
     } CGContextRestoreGState(context);
 }
 
-static void YYTextDrawBlockBorder(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, BOOL (^cancel)(void)) {
+/**
+ 绘制边框
+
+ @param layout <#layout description#>
+ @param context <#context description#>
+ @param size <#size description#>
+ @param point <#point description#>
+ @param ^cancel <#^cancel description#>
+ */
+static void YYTextDrawBlockBorder(YYTextLayout *layout, 
+								  CGContextRef context, 
+								  CGSize size, 
+								  CGPoint point, 
+								  BOOL (^cancel)(void)) {
+	
+	/// 上下文 入栈
     CGContextSaveGState(context);
+	/// 转换坐标系
     CGContextTranslateCTM(context, point.x, point.y);
     
     BOOL isVertical = layout.container.verticalForm;
+	
     CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
     
     NSArray *lines = layout.lines;
     for (NSInteger l = 0, lMax = lines.count; l < lMax; l++) {
         if (cancel && cancel()) break;
-        
+		
+		/// 获取 CTLinerRef
         YYTextLine *line = lines[l];
-        if (layout.truncatedLine && layout.truncatedLine.index == line.index) line = layout.truncatedLine;
+        if (layout.truncatedLine && layout.truncatedLine.index == line.index)
+			line = layout.truncatedLine;
+		
+		/// 获取 CTRunRef 数组
         CFArrayRef runs = CTLineGetGlyphRuns(line.CTLine);
+		
         for (NSInteger r = 0, rMax = CFArrayGetCount(runs); r < rMax; r++) {
+			/// 获取 CTRunRef、字形
             CTRunRef run = CFArrayGetValueAtIndex(runs, r);
             CFIndex glyphCount = CTRunGetGlyphCount(run);
+	
             if (glyphCount == 0) continue;
+			
             NSDictionary *attrs = (id)CTRunGetAttributes(run);
             YYTextBorder *border = attrs[YYTextBlockBorderAttributeName];
             if (!border) continue;
@@ -2669,7 +2779,8 @@ static void YYTextDrawBlockBorder(YYTextLayout *layout, CGContextRef context, CG
                 if (lineContinueIndex + 1 == lMax) break;
                 YYTextLine *next = lines[lineContinueIndex + 1];
                 if (next.row != lineContinueRow) {
-                    YYTextBorder *nextBorder = [layout.text yy_attribute:YYTextBlockBorderAttributeName atIndex:next.range.location];
+                    YYTextBorder *nextBorder = [layout.text yy_attribute:YYTextBlockBorderAttributeName
+																 atIndex:next.range.location];
                     if ([nextBorder isEqual:border]) {
                         lineContinueRow++;
                     } else {
@@ -2700,7 +2811,23 @@ static void YYTextDrawBlockBorder(YYTextLayout *layout, CGContextRef context, CG
     CGContextRestoreGState(context);
 }
 
-static void YYTextDrawBorder(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, YYTextBorderType type, BOOL (^cancel)(void)) {
+/**
+ 绘制边框
+
+ @param layout 布局
+ @param context 上下文
+ @param size <#size description#>
+ @param point <#point description#>
+ @param type <#type description#>
+ @param ^cancel <#^cancel description#>
+ */
+static void YYTextDrawBorder(YYTextLayout *layout, 
+							 CGContextRef context, 
+							 CGSize size, 
+							 CGPoint point, 
+							 YYTextBorderType type, 
+							 BOOL (^cancel)(void)) {
+	
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, point.x, point.y);
     
@@ -2830,7 +2957,13 @@ static void YYTextDrawBorder(YYTextLayout *layout, CGContextRef context, CGSize 
     CGContextRestoreGState(context);
 }
 
-static void YYTextDrawDecoration(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, YYTextDecorationType type, BOOL (^cancel)(void)) {
+static void YYTextDrawDecoration(YYTextLayout *layout, 
+								 CGContextRef context, 
+								 CGSize size, 
+								 CGPoint point, 
+								 YYTextDecorationType type, 
+								 BOOL (^cancel)(void)) {
+	
     NSArray *lines = layout.lines;
     
     CGContextSaveGState(context);
@@ -2957,7 +3090,24 @@ static void YYTextDrawDecoration(YYTextLayout *layout, CGContextRef context, CGS
     CGContextRestoreGState(context);
 }
 
-static void YYTextDrawAttachment(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, UIView *targetView, CALayer *targetLayer, BOOL (^cancel)(void)) {
+/**
+ 附件绘制
+
+ @param layout 布局
+ @param context 上下文
+ @param size <#size description#>
+ @param point <#point description#>
+ @param targetView <#targetView description#>
+ @param targetLayer <#targetLayer description#>
+ @param ^cancel <#^cancel description#>
+ */
+static void YYTextDrawAttachment(YYTextLayout *layout, 
+								 CGContextRef context, 
+								 CGSize size, 
+								 CGPoint point, 
+								 UIView *targetView, 
+								 CALayer *targetLayer, 
+								 BOOL (^cancel)(void)) {
     
     BOOL isVertical = layout.container.verticalForm;
     CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
@@ -3013,26 +3163,51 @@ static void YYTextDrawAttachment(YYTextLayout *layout, CGContextRef context, CGS
     }
 }
 
-static void YYTextDrawShadow(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, BOOL (^cancel)(void)) {
+/**
+ 绘制阴影
+
+ @param layout 布局
+ @param context <#context description#>
+ @param size <#size description#>
+ @param point <#point description#>
+ @param ^cancel <#^cancel description#>
+ */
+static void YYTextDrawShadow(YYTextLayout *layout, 
+							 CGContextRef context, 
+							 CGSize size, 
+							 CGPoint point, 
+							 BOOL (^cancel)(void)) {
+	
     //move out of context. (0xFFFF is just a random large number)
     CGFloat offsetAlterX = size.width + 0xFFFF;
     
     BOOL isVertical = layout.container.verticalForm;
     CGFloat verticalOffset = isVertical ? (size.width - layout.container.size.width) : 0;
-    
+	
+	/// 入栈上下文
     CGContextSaveGState(context); {
+		/// 坐标系
         CGContextTranslateCTM(context, point.x, point.y);
         CGContextTranslateCTM(context, 0, size.height);
         CGContextScaleCTM(context, 1, -1);
+		
         NSArray *lines = layout.lines;
+		
         for (NSUInteger l = 0, lMax = layout.lines.count; l < lMax; l++) {
+			
             if (cancel && cancel()) break;
+			
+			/// 获取 CGLineRef
             YYTextLine *line = lines[l];
-            if (layout.truncatedLine && layout.truncatedLine.index == line.index) line = layout.truncatedLine;
+            if (layout.truncatedLine && layout.truncatedLine.index == line.index)
+				line = layout.truncatedLine;
+			
             NSArray *lineRunRanges = line.verticalRotateRange;
             CGFloat linePosX = line.position.x;
             CGFloat linePosY = size.height - line.position.y;
             CFArrayRef runs = CTLineGetGlyphRuns(line.CTLine);
+			
+			/// 遍历 CGRunRef
             for (NSUInteger r = 0, rMax = CFArrayGetCount(runs); r < rMax; r++) {
                 CTRunRef run = CFArrayGetValueAtIndex(runs, r);
                 CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -3064,7 +3239,19 @@ static void YYTextDrawShadow(YYTextLayout *layout, CGContextRef context, CGSize 
     } CGContextRestoreGState(context);
 }
 
-static void YYTextDrawInnerShadow(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, BOOL (^cancel)(void)) {
+/**
+ 绘制内阴影
+
+ @param layout <#layout description#>
+ @param context <#context description#>
+ @param size <#size description#>
+ @param point <#point description#>
+ @param ^cancel <#^cancel description#>
+ */
+static void YYTextDrawInnerShadow(YYTextLayout *layout, 
+								  CGContextRef context, 
+								  CGSize size, CGPoint point, 
+								  BOOL (^cancel)(void)) {
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, point.x, point.y);
     CGContextTranslateCTM(context, 0, size.height);
@@ -3109,7 +3296,8 @@ static void YYTextDrawInnerShadow(YYTextLayout *layout, CGContextRef context, CG
                 }
                 
                 // text inner shadow
-                CGContextSaveGState(context); {
+                CGContextSaveGState(context);
+				{
                     CGContextSetBlendMode(context, shadow.blendMode);
                     CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
                     CGContextSetAlpha(context, CGColorGetAlpha(shadow.color.CGColor));
@@ -3136,7 +3324,21 @@ static void YYTextDrawInnerShadow(YYTextLayout *layout, CGContextRef context, CG
     CGContextRestoreGState(context);
 }
 
-static void YYTextDrawDebug(YYTextLayout *layout, CGContextRef context, CGSize size, CGPoint point, YYTextDebugOption *op) {
+/**
+ 绘制 debug内容
+
+ @param layout <#layout description#>
+ @param context <#context description#>
+ @param size <#size description#>
+ @param point <#point description#>
+ @param op <#op description#>
+ */
+static void YYTextDrawDebug(YYTextLayout *layout,
+							CGContextRef context,
+							CGSize size, 
+							CGPoint point, 
+							YYTextDebugOption *op) {
+	
     UIGraphicsPushContext(context);
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, point.x, point.y);
@@ -3328,43 +3530,62 @@ static void YYTextDrawDebug(YYTextLayout *layout, CGContextRef context, CGSize s
     UIGraphicsPopContext();
 }
 
+/**
+ 内容绘制
 
+ @param context 上下文
+ @param size 尺寸
+ @param point 点
+ @param view <#view description#>
+ @param layer <#layer description#>
+ @param debug <#debug description#>
+ @param cancel <#cancel description#>
+ */
 - (void)drawInContext:(CGContextRef)context
                  size:(CGSize)size
                 point:(CGPoint)point
                  view:(UIView *)view
                 layer:(CALayer *)layer
                 debug:(YYTextDebugOption *)debug
-                cancel:(BOOL (^)(void))cancel{
+                cancel:(BOOL (^)(void))cancel {
+	
     @autoreleasepool {
+		/// 绘制边框
         if (self.needDrawBlockBorder && context) {
             if (cancel && cancel()) return;
             YYTextDrawBlockBorder(self, context, size, point, cancel);
         }
+		/// 绘制背景色
         if (self.needDrawBackgroundBorder && context) {
             if (cancel && cancel()) return;
             YYTextDrawBorder(self, context, size, point, YYTextBorderTypeBackgound, cancel);
         }
+		/// 绘制阴影
         if (self.needDrawShadow && context) {
             if (cancel && cancel()) return;
             YYTextDrawShadow(self, context, size, point, cancel);
         }
+		/// 绘制下划线
         if (self.needDrawUnderline && context) {
             if (cancel && cancel()) return;
             YYTextDrawDecoration(self, context, size, point, YYTextDecorationTypeUnderline, cancel);
         }
+		/// 绘制文本
         if (self.needDrawText && context) {
             if (cancel && cancel()) return;
             YYTextDrawText(self, context, size, point, cancel);
         }
+		/// 绘制附件
         if (self.needDrawAttachment && (context || view || layer)) {
             if (cancel && cancel()) return;
             YYTextDrawAttachment(self, context, size, point, view, layer, cancel);
         }
+		/// 绘制内阴影
         if (self.needDrawInnerShadow && context) {
             if (cancel && cancel()) return;
             YYTextDrawInnerShadow(self, context, size, point, cancel);
         }
+		///
         if (self.needDrawStrikethrough && context) {
             if (cancel && cancel()) return;
             YYTextDrawDecoration(self, context, size, point, YYTextDecorationTypeStrikethrough, cancel);
@@ -3373,7 +3594,8 @@ static void YYTextDrawDebug(YYTextLayout *layout, CGContextRef context, CGSize s
             if (cancel && cancel()) return;
             YYTextDrawBorder(self, context, size, point, YYTextBorderTypeNormal, cancel);
         }
-        if (debug.needDrawDebug && context) {
+		/// 绘制debug
+        if (!debug.needDrawDebug && context) {
             if (cancel && cancel()) return;
             YYTextDrawDebug(self, context, size, point, debug);
         }
@@ -3388,7 +3610,13 @@ static void YYTextDrawDebug(YYTextLayout *layout, CGContextRef context, CGSize s
 
 - (void)addAttachmentToView:(UIView *)view layer:(CALayer *)layer {
     NSAssert([NSThread isMainThread], @"This method must be called on the main thread");
-    [self drawInContext:NULL size:CGSizeZero point:CGPointZero view:view layer:layer debug:nil cancel:nil];
+    [self drawInContext:NULL 
+				   size:CGSizeZero 
+				  point:CGPointZero 
+				   view:view 
+				  layer:layer 
+				  debug:nil 
+				 cancel:nil];
 }
 
 - (void)removeAttachmentFromViewAndLayer {

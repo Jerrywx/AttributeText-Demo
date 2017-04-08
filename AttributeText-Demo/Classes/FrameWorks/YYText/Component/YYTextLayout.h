@@ -58,7 +58,7 @@ extern const CGSize YYTextContainerMaxSize;
  */
 @interface YYTextContainer : NSObject <NSCoding, NSCopying>
 
-/// Creates a container with the specified size. @param size The size.
+/// 使用 
 + (instancetype)containerWithSize:(CGSize)size;
 
 /// Creates a container with the specified size and insets. @param size The size. @param insets The text insets.
@@ -130,7 +130,6 @@ extern const CGSize YYTextContainerMaxSize;
 @end
 
 
-
 /**
  YYTextLayout class is a readonly class stores text layout result.
  All the property in this class is readonly, and should not be changed.
@@ -156,56 +155,24 @@ extern const CGSize YYTextContainerMaxSize;
 /// @name Generate text layout
 ///=============================================================================
 
-/**
- Generate a layout with the given container size and text.
+/// 创建 YYTextLayout
++ (nullable YYTextLayout *)layoutWithContainerSize:(CGSize)size
+											  text:(NSAttributedString *)text;
 
- @param size The text container's size
- @param text The text (if nil, returns nil).
- @return A new layout, or nil when an error occurs.
-*/
-+ (nullable YYTextLayout *)layoutWithContainerSize:(CGSize)size text:(NSAttributedString *)text;
+/// 创建 YYTextLayout
++ (nullable YYTextLayout *)layoutWithContainer:(YYTextContainer *)container 
+										  text:(NSAttributedString *)text;
 
-/**
- Generate a layout with the given container and text.
- 
- @param container The text container (if nil, returns nil).
- @param text      The text (if nil, returns nil).
- @return A new layout, or nil when an error occurs.
- */
-+ (nullable YYTextLayout *)layoutWithContainer:(YYTextContainer *)container text:(NSAttributedString *)text;
+/// 创建 YYTextLayout
++ (nullable YYTextLayout *)layoutWithContainer:(YYTextContainer *)container 
+										  text:(NSAttributedString *)text 
+										 range:(NSRange)range;
 
-/**
- Generate a layout with the given container and text.
- 
- @param container The text container (if nil, returns nil).
- @param text      The text (if nil, returns nil).
- @param range     The text range (if out of range, returns nil). If the
-    length of the range is 0, it means the length is no limit.
- @return A new layout, or nil when an error occurs.
- */
-+ (nullable YYTextLayout *)layoutWithContainer:(YYTextContainer *)container text:(NSAttributedString *)text range:(NSRange)range;
-
-/**
- Generate layouts with the given containers and text.
- 
- @param containers An array of YYTextContainer object (if nil, returns nil).
- @param text       The text (if nil, returns nil).
- @return An array of YYTextLayout object (the count is same as containers),
-    or nil when an error occurs.
- */
+/// 创建 YYTextLayout
 + (nullable NSArray<YYTextLayout *> *)layoutWithContainers:(NSArray<YYTextContainer *> *)containers
                                                       text:(NSAttributedString *)text;
 
-/**
- Generate layouts with the given containers and text.
- 
- @param containers An array of YYTextContainer object (if nil, returns nil).
- @param text       The text (if nil, returns nil).
- @param range      The text range (if out of range, returns nil). If the
-    length of the range is 0, it means the length is no limit.
- @return An array of YYTextLayout object (the count is same as containers),
-    or nil when an error occurs.
- */
+/// 创建 YYTextLayout
 + (nullable NSArray<YYTextLayout *> *)layoutWithContainers:(NSArray<YYTextContainer *> *)containers
                                                       text:(NSAttributedString *)text
                                                      range:(NSRange)range;
@@ -241,9 +208,9 @@ extern const CGSize YYTextContainerMaxSize;
 @property (nullable, nonatomic, strong, readonly) NSArray<NSValue *> *attachmentRects;
 ///< Set of Attachment (UIImage/UIView/CALayer)
 @property (nullable, nonatomic, strong, readonly) NSSet *attachmentContentsSet;
-///< Number of rows
+/// 文本显示行数
 @property (nonatomic, readonly) NSUInteger rowCount;
-///< Visible text range
+/// 文本显示范围
 @property (nonatomic, readonly) NSRange visibleRange;
 ///< Bounding rect (glyphs)
 @property (nonatomic, readonly) CGRect textBoundingRect;

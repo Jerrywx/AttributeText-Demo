@@ -980,6 +980,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     }
 }
 
+/// 设置 TextLayout
 - (void)setTextLayout:(YYTextLayout *)textLayout {
     _innerLayout = textLayout;
     _shrinkInnerLayout = nil;
@@ -1147,8 +1148,15 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
             }
         }
         point = YYTextCGPointPixelRound(point);
-        [drawLayout drawInContext:context size:size point:point view:nil layer:nil debug:debug cancel:isCancelled];
+        [drawLayout drawInContext:context 
+							 size:size 
+							point:point 
+							 view:nil 
+							layer:nil 
+							debug:debug 
+						   cancel:isCancelled];
     };
+	
 	/// 渲染layer内容完成 回调
     task.didDisplay = ^(CALayer *layer, BOOL finished) {
         YYTextLayout *drawLayout = layout;
