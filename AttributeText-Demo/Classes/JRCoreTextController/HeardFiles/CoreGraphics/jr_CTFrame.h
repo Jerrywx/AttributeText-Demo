@@ -20,7 +20,6 @@ typedef const struct CF_BRIDGED_TYPE(id) __CTFrame * CTFrameRef;
 	@function	CTFrameGetTypeID
 	@abstract	Returns the CFType of the frame object
  */
-
 CFTypeID CTFrameGetTypeID( void ) CT_AVAILABLE(10_5, 3_2);
 
 
@@ -47,7 +46,6 @@ CFTypeID CTFrameGetTypeID( void ) CT_AVAILABLE(10_5, 3_2);
  @constant	kCTFrameProgressionLeftToRight
  Lines are stacked left to right for vertical text.
  */
-
 typedef CF_ENUM(uint32_t, CTFrameProgression) {
 	kCTFrameProgressionTopToBottom  = 0,
 	kCTFrameProgressionRightToLeft  = 1,
@@ -289,9 +287,8 @@ void CTFrameGetLineOrigins(CTFrameRef frame,
 	@discussion	If both the frame and the context are valid, the frame will be
  drawn in the context.
  */
-void CTFrameDraw(
-				 CTFrameRef frame,
-				 CGContextRef context ) CT_AVAILABLE(10_5, 3_2);
+void CTFrameDraw(CTFrameRef frame,
+				 CGContextRef context );
 
 
 #endif /* jr_CTFrame_h */

@@ -757,16 +757,24 @@ dispatch_semaphore_signal(_lock);
                 truncationTokenLine = CTLineCreateWithAttributedString((CFAttributedStringRef)truncationToken);
             }
 			
+			/// 内容删节位置
             if (truncationTokenLine) {
+				/// 获取 truncationType
                 CTLineTruncationType type = kCTLineTruncationEnd;
                 if (container.truncationType == YYTextTruncationTypeStart) {
                     type = kCTLineTruncationStart;
                 } else if (container.truncationType == YYTextTruncationTypeMiddle) {
                     type = kCTLineTruncationMiddle;
                 }
+				
+				///
                 NSMutableAttributedString *lastLineText = [text attributedSubstringFromRange:lastLine.range].mutableCopy;
+				
                 [lastLineText appendAttributedString:truncationToken];
+				
                 CTLineRef ctLastLineExtend = CTLineCreateWithAttributedString((CFAttributedStringRef)lastLineText);
+				
+				
                 if (ctLastLineExtend) {
                     CGFloat truncatedWidth = lastLine.width;
                     CGRect cgPathRect = CGRectZero;
@@ -777,7 +785,11 @@ dispatch_semaphore_signal(_lock);
                             truncatedWidth = cgPathRect.size.width;
                         }
                     }
-                    CTLineRef ctTruncatedLine = CTLineCreateTruncatedLine(ctLastLineExtend, truncatedWidth, type, truncationTokenLine);
+					/// 创建 删节 CTLine
+                    CTLineRef ctTruncatedLine = CTLineCreateTruncatedLine(ctLastLineExtend,
+																		  truncatedWidth,
+																		  type,
+																		  truncationTokenLine);
                     CFRelease(ctLastLineExtend);
                     if (ctTruncatedLine) {
                         truncatedLine = [YYTextLine lineWithCTLine:ctTruncatedLine
@@ -794,6 +806,7 @@ dispatch_semaphore_signal(_lock);
     }
     /// 是否垂直
     if (isVerticalForm) {
+		///
         NSCharacterSet *rotateCharset = YYTextVerticalFormRotateCharacterSet();
         NSCharacterSet *rotateMoveCharset = YYTextVerticalFormRotateAndMoveCharacterSet();
         
@@ -841,7 +854,8 @@ dispatch_semaphore_signal(_lock);
                     if (g == 0) {
                         prevMode = mode;
                     } else if (mode != prevMode) {
-                        YYTextRunGlyphRange *aRange = [YYTextRunGlyphRange rangeWithRange:NSMakeRange(prevIdx, g - prevIdx) drawMode:prevMode];
+                        YYTextRunGlyphRange *aRange = [YYTextRunGlyphRange rangeWithRange:NSMakeRange(prevIdx, g - prevIdx)
+																				 drawMode:prevMode];
                         [runRanges addObject:aRange];
                         prevIdx = g;
                         prevMode = mode;
@@ -875,9 +889,13 @@ dispatch_semaphore_signal(_lock);
             if (attrs[YYTextBorderAttributeName]) layout.needDrawBorder = YES;
         };
         
-        [layout.text enumerateAttributesInRange:visibleRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:block];
+        [layout.text enumerateAttributesInRange:visibleRange
+										options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+									 usingBlock:block];
         if (truncatedLine) {
-            [truncationToken enumerateAttributesInRange:NSMakeRange(0, truncationToken.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:block];
+            [truncationToken enumerateAttributesInRange:NSMakeRange(0, truncationToken.length)
+												options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
+											 usingBlock:block];
         }
     }
     
