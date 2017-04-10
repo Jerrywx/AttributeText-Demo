@@ -573,6 +573,7 @@
 		346ADEC71E95E55E00C6BE57 /* JRSimpleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpleViewController.m; sourceTree = "<group>"; };
 		346ADEC91E95E56C00C6BE57 /* JRSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpleView.h; sourceTree = "<group>"; };
 		346ADECA1E95E56C00C6BE57 /* JRSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpleView.m; sourceTree = "<group>"; };
+		348F3D7F1E9B278100D3AE45 /* jr_CTFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFrame.h; sourceTree = "<group>"; };
 		34D31C2F1E8362A500F71735 /* ZHFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFProgressHUD.h; sourceTree = "<group>"; };
 		34D31C301E8362A500F71735 /* ZHFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFProgressHUD.m; sourceTree = "<group>"; };
 		34DB4C2A1E836A5200F95E1D /* ZHShop_loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZHShop_loading.gif; sourceTree = "<group>"; };
@@ -1179,6 +1180,7 @@
 				C43741971E1FF3E700FAD830 /* jr_CTRunRef.h */,
 				3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */,
 				30ADD5FD1E4D641E001012E5 /* jr_ CGPath.h */,
+				348F3D7F1E9B278100D3AE45 /* jr_CTFrame.h */,
 			);
 			path = CoreGraphics;
 			sourceTree = "<group>";
@@ -1576,9 +1578,9 @@
 		C42600121E115C530022C4D5 /* JRCoreTextController */ = {
 			isa = PBXGroup;
 			children = (
+				30CD5E091E13589800E0F2E9 /* HeardFiles */,
 				346ADEC41E95DFC700C6BE57 /* CoreDemo */,
 				346ADEBA1E95DFB400C6BE57 /* Controllers */,
-				30CD5E091E13589800E0F2E9 /* HeardFiles */,
 				C42600191E1175500022C4D5 /* CoreTextView */,
 			);
 			path = JRCoreTextController;
@@ -1656,9 +1658,9 @@
 		C4478C4C1D8FC5410099EA3C /* YYTextController */ = {
 			isa = PBXGroup;
 			children = (
+				3086EDEA1E52FD6200791CB7 /* YYTextDemoController */,
 				C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */,
 				C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */,
-				3086EDEA1E52FD6200791CB7 /* YYTextDemoController */,
 				C400712D1D901ED100220BB9 /* TextViewController.h */,
 				C400712E1D901ED100220BB9 /* TextViewController.m */,
 				304288C21E08D987004BDE4A /* JRTextViewViewController.h */,

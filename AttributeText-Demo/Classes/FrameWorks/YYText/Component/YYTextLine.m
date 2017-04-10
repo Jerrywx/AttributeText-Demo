@@ -17,7 +17,9 @@
     CGFloat _firstGlyphPos; // first glyph position for baseline, typically 0.
 }
 
-+ (instancetype)lineWithCTLine:(CTLineRef)CTLine position:(CGPoint)position vertical:(BOOL)isVertical {
++ (instancetype)lineWithCTLine:(CTLineRef)CTLine 
+					  position:(CGPoint)position 
+					  vertical:(BOOL)isVertical {
     if (!CTLine) return nil;
     YYTextLine *line = [self new];
     line->_position = position;

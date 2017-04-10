@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) YYLabel	*label;
 
+@property (nonatomic, strong) YYLabel	*label2;
+
 @property (nonatomic, strong) NSMutableAttributedString *aString;
 
 @end

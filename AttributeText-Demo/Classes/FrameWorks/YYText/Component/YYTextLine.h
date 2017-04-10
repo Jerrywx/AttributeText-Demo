@@ -27,6 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface YYTextLine : NSObject
 
+/**
+ <#Description#>
+
+ @param CTLine <#CTLine description#>
+ @param position <#position description#>
+ @param isVertical <#isVertical description#>
+ @return <#return value description#>
+ */
 + (instancetype)lineWithCTLine:(CTLineRef)CTLine
 					  position:(CGPoint)position
 					  vertical:(BOOL)isVertical;

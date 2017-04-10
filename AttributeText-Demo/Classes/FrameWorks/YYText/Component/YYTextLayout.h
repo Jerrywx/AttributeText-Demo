@@ -58,25 +58,23 @@ extern const CGSize YYTextContainerMaxSize;
  */
 @interface YYTextContainer : NSObject <NSCoding, NSCopying>
 
-/// 使用 
+/// 创建 YYTextContainer
 + (instancetype)containerWithSize:(CGSize)size;
 
-/// Creates a container with the specified size and insets. @param size The size. @param insets The text insets.
 + (instancetype)containerWithSize:(CGSize)size insets:(UIEdgeInsets)insets;
 
-/// Creates a container with the specified path. @param size The path.
 + (instancetype)containerWithPath:(nullable UIBezierPath *)path;
 
-/// The constrained size. (if the size is larger than YYTextContainerMaxSize, it will be clipped)
+///
 @property CGSize size;
 
-/// The insets for constrained size. The inset value should not be negative. Default is UIEdgeInsetsZero.
+/// Default is UIEdgeInsetsZero.
 @property UIEdgeInsets insets;
 
-/// Custom constrained path. Set this property to ignore `size` and `insets`. Default is nil.
+/// Default is nil.
 @property (nullable, copy) UIBezierPath *path;
 
-/// An array of `UIBezierPath` for path exclusion. Default is nil.
+/// Default is nil.
 @property (nullable, copy) NSArray<UIBezierPath *> *exclusionPaths;
 
 /// Path line width. Default is 0;
@@ -117,7 +115,9 @@ extern const CGSize YYTextContainerMaxSize;
  @param text      The full text.
  @param container The layout container.
  */
-- (void)modifyLines:(NSArray<YYTextLine *> *)lines fromText:(NSAttributedString *)text inContainer:(YYTextContainer *)container;
+- (void)modifyLines:(NSArray<YYTextLine *> *)lines 
+		   fromText:(NSAttributedString *)text 
+		inContainer:(YYTextContainer *)container;
 @end
 
 
