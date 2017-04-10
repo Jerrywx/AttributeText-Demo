@@ -771,12 +771,26 @@ return style. _attr_;
     [self yy_setAttribute:name value:value range:NSMakeRange(0, self.length)];
 }
 
+/**
+ 设置属性
+
+ @param name 属性名称
+ @param value 属性值
+ @param range 设置范围
+ */
 - (void)yy_setAttribute:(NSString *)name value:(id)value range:(NSRange)range {
-    if (!name || [NSNull isEqual:name]) return;
-    if (value && ![NSNull isEqual:value]) [self addAttribute:name value:value range:range];
+    if (!name || [NSNull isEqual:name])
+		return;
+    if (value && ![NSNull isEqual:value])
+		[self addAttribute:name value:value range:range];
     else [self removeAttribute:name range:range];
 }
 
+/**
+ 清空指定范围的属性
+
+ @param range 指定范围
+ */
 - (void)yy_removeAttributesInRange:(NSRange)range {
     [self setAttributes:nil range:range];
 }

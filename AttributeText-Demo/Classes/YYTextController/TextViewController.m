@@ -38,19 +38,30 @@
 		label;
 	});
 	
-//	self.label2 = ({
-//		YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 200)];
-//		label.textVerticalAlignment = YYTextVerticalAlignmentTop;
-//		label.displaysAsynchronously = YES;
-//		label.backgroundColor = [UIColor lightGrayColor];
-//		[self.view addSubview:label];
-//		label;
-//	});
 	
-	YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(100, 100) text:self.aString];
+	YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(300, 100) text:self.aString];
 	self.label.textLayout = layout;
 	
 	NSLog(@"%@", NSStringFromCGRect(layout.textBoundingRect));
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	
+	NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:@"An NSAttributedString object manages character strings and associated sets of attributes (for example, font and kerning) that apply to individual characters..."];
+	[aString setYy_font:kFontSize_18];
+	[aString yy_setColor:[UIColor redColor] range:NSMakeRange(10, 40)];
+	self.label.attributedText = aString;
+	
+	
+//	[NSAttributedString attributedStringWithAttachment:<#(nonnull NSTextAttachment *)#>]
+//	CFAttributedStringCreate
+	
+	CFStringRef str = CFSTR("An NSAttributedString object manages character strings and associated sets of attributes (for example, font and kerning) that apply to individual characters...");
+	
+	CFAttributedStringRef cfaString = CFAttributedStringCreate(kCFAllocatorDefault, str, NULL);
+	CFIndex len = CFAttributedStringGetLength(cfaString);
+	NSLog(@"==== %zd", len);
+	
 }
 
 #pragma mark - 

@@ -94,7 +94,9 @@
         CFIndex glyphCount = CTRunGetGlyphCount(run);
         if (glyphCount == 0) continue;
         NSDictionary *attrs = (id)CTRunGetAttributes(run);
+		
         YYTextAttachment *attachment = attrs[YYTextAttachmentAttributeName];
+		/// 附件
         if (attachment) {
             CGPoint runPosition = CGPointZero;
             CTRunGetPositions(run, CFRangeMake(0, 1), &runPosition);

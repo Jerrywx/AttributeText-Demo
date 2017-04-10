@@ -191,8 +191,14 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 
 /// 边框
 @interface YYTextBorder : NSObject <NSCoding, NSCopying>
-+ (instancetype)borderWithLineStyle:(YYTextLineStyle)lineStyle lineWidth:(CGFloat)width strokeColor:(nullable UIColor *)color;
-+ (instancetype)borderWithFillColor:(nullable UIColor *)color cornerRadius:(CGFloat)cornerRadius;
+
++ (instancetype)borderWithLineStyle:(YYTextLineStyle)lineStyle 
+						  lineWidth:(CGFloat)width 
+						strokeColor:(nullable UIColor *)color;
+
++ (instancetype)borderWithFillColor:(nullable UIColor *)color 
+					   cornerRadius:(CGFloat)cornerRadius;
+
 @property (nonatomic) YYTextLineStyle lineStyle;              ///< border line style
 @property (nonatomic) CGFloat strokeWidth;                    ///< border line width
 @property (nullable, nonatomic, strong) UIColor *strokeColor; ///< border line color
@@ -201,6 +207,7 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 @property (nonatomic) CGFloat cornerRadius;                   ///< border corder radius
 @property (nullable, nonatomic, strong) YYTextShadow *shadow; ///< border shadow
 @property (nullable, nonatomic, strong) UIColor *fillColor;   ///< inner fill color
+
 @end
 
 /**

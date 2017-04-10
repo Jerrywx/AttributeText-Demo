@@ -355,14 +355,13 @@ static dispatch_queue_t get_m80_attributed_label_parse_queue() \
 }
 
 
-- (id)linkDataForPoint:(CGPoint)point
-{
+- (id)linkDataForPoint:(CGPoint)point {
     M80AttributedLabelURL *url = [self urlForPoint:point];
     return url ? url.linkData : nil;
 }
 
-- (CGAffineTransform)transformForCoreText
-{
+/// 坐标系转换
+- (CGAffineTransform)transformForCoreText {
     return CGAffineTransformScale(CGAffineTransformMakeTranslation(0, self.bounds.size.height), 1.f, -1.f);
 }
 
@@ -647,11 +646,9 @@ static dispatch_queue_t get_m80_attributed_label_parse_queue() \
 
 
 #pragma mark - 绘制方法
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    if (ctx == nil)
-    {
+    if (ctx == nil) {
         return;
     }
     CGContextSaveGState(ctx);
@@ -661,8 +658,7 @@ static dispatch_queue_t get_m80_attributed_label_parse_queue() \
     [self recomputeLinksIfNeeded];
     
     NSAttributedString *drawString = [self attributedStringForDraw];
-    if (drawString)
-    {
+    if (drawString) {
         [self prepareTextFrame:drawString rect:rect];
         [self drawHighlightWithRect:rect];
         [self drawAttachments];

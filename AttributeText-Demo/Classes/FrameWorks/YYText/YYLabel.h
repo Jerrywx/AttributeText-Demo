@@ -55,9 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSTextAlignment textAlignment;
 
-/**
- The text vertical aligmnent in container. Default is YYTextVerticalAlignmentCenter.
- */
 @property (nonatomic) YYTextVerticalAlignment textVerticalAlignment;
 
 @property (nullable, nonatomic, copy) NSAttributedString *attributedText;
