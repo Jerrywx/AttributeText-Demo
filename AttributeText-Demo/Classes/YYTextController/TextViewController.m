@@ -30,13 +30,22 @@
 	
 	///
 	self.label = ({
-		YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 200)];
+		YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 100)];
 		label.textVerticalAlignment = YYTextVerticalAlignmentTop;
 		label.displaysAsynchronously = YES;
 		label.backgroundColor = [UIColor lightGrayColor];
 		[self.view addSubview:label];
 		label;
 	});
+	
+//	self.label2 = ({
+//		YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 200)];
+//		label.textVerticalAlignment = YYTextVerticalAlignmentTop;
+//		label.displaysAsynchronously = YES;
+//		label.backgroundColor = [UIColor lightGrayColor];
+//		[self.view addSubview:label];
+//		label;
+//	});
 	
 	YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(100, 100) text:self.aString];
 	self.label.textLayout = layout;

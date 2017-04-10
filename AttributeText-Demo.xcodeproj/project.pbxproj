@@ -169,6 +169,10 @@
 		346ADEC31E95DFB400C6BE57 /* JRCoreTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346ADEC01E95DFB400C6BE57 /* JRCoreTextView.m */; };
 		346ADEC81E95E55E00C6BE57 /* JRSimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346ADEC71E95E55E00C6BE57 /* JRSimpleViewController.m */; };
 		346ADECB1E95E56C00C6BE57 /* JRSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 346ADECA1E95E56C00C6BE57 /* JRSimpleView.m */; };
+		348F3D8A1E9B377900D3AE45 /* M80AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F3D821E9B377900D3AE45 /* M80AttributedLabel.m */; };
+		348F3D8B1E9B377900D3AE45 /* M80AttributedLabelAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F3D841E9B377900D3AE45 /* M80AttributedLabelAttachment.m */; };
+		348F3D8C1E9B377900D3AE45 /* M80AttributedLabelURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F3D871E9B377900D3AE45 /* M80AttributedLabelURL.m */; };
+		348F3D8D1E9B377900D3AE45 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F3D891E9B377900D3AE45 /* NSMutableAttributedString+M80.m */; };
 		34D31C311E8362A500F71735 /* ZHFProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D31C301E8362A500F71735 /* ZHFProgressHUD.m */; };
 		34DB4C2B1E836A5200F95E1D /* ZHShop_loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 34DB4C2A1E836A5200F95E1D /* ZHShop_loading.gif */; };
 		34DB4C331E83A45300F95E1D /* ZHFRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DB4C321E83A45300F95E1D /* ZHFRefreshHeader.m */; };
@@ -574,6 +578,15 @@
 		346ADEC91E95E56C00C6BE57 /* JRSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpleView.h; sourceTree = "<group>"; };
 		346ADECA1E95E56C00C6BE57 /* JRSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpleView.m; sourceTree = "<group>"; };
 		348F3D7F1E9B278100D3AE45 /* jr_CTFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFrame.h; sourceTree = "<group>"; };
+		348F3D811E9B377900D3AE45 /* M80AttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabel.h; sourceTree = "<group>"; };
+		348F3D821E9B377900D3AE45 /* M80AttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabel.m; sourceTree = "<group>"; };
+		348F3D831E9B377900D3AE45 /* M80AttributedLabelAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabelAttachment.h; sourceTree = "<group>"; };
+		348F3D841E9B377900D3AE45 /* M80AttributedLabelAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabelAttachment.m; sourceTree = "<group>"; };
+		348F3D851E9B377900D3AE45 /* M80AttributedLabelDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabelDefines.h; sourceTree = "<group>"; };
+		348F3D861E9B377900D3AE45 /* M80AttributedLabelURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabelURL.h; sourceTree = "<group>"; };
+		348F3D871E9B377900D3AE45 /* M80AttributedLabelURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabelURL.m; sourceTree = "<group>"; };
+		348F3D881E9B377900D3AE45 /* NSMutableAttributedString+M80.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+M80.h"; sourceTree = "<group>"; };
+		348F3D891E9B377900D3AE45 /* NSMutableAttributedString+M80.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+M80.m"; sourceTree = "<group>"; };
 		34D31C2F1E8362A500F71735 /* ZHFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFProgressHUD.h; sourceTree = "<group>"; };
 		34D31C301E8362A500F71735 /* ZHFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFProgressHUD.m; sourceTree = "<group>"; };
 		34DB4C2A1E836A5200F95E1D /* ZHShop_loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZHShop_loading.gif; sourceTree = "<group>"; };
@@ -991,6 +1004,7 @@
 				30ADD58D1E4D502D001012E5 /* TTTAttributedLabel */,
 				308E873F1E51AB6300600176 /* MGSwipeTableCell */,
 				3455316F1E98E651003C7B08 /* YYAsyncLayer */,
+				348F3D801E9B377900D3AE45 /* M80AttributedLabel */,
 			);
 			path = FrameWorks;
 			sourceTree = "<group>";
@@ -1440,6 +1454,22 @@
 				346ADECA1E95E56C00C6BE57 /* JRSimpleView.m */,
 			);
 			path = SimpleText;
+			sourceTree = "<group>";
+		};
+		348F3D801E9B377900D3AE45 /* M80AttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				348F3D811E9B377900D3AE45 /* M80AttributedLabel.h */,
+				348F3D821E9B377900D3AE45 /* M80AttributedLabel.m */,
+				348F3D831E9B377900D3AE45 /* M80AttributedLabelAttachment.h */,
+				348F3D841E9B377900D3AE45 /* M80AttributedLabelAttachment.m */,
+				348F3D851E9B377900D3AE45 /* M80AttributedLabelDefines.h */,
+				348F3D861E9B377900D3AE45 /* M80AttributedLabelURL.h */,
+				348F3D871E9B377900D3AE45 /* M80AttributedLabelURL.m */,
+				348F3D881E9B377900D3AE45 /* NSMutableAttributedString+M80.h */,
+				348F3D891E9B377900D3AE45 /* NSMutableAttributedString+M80.m */,
+			);
+			path = M80AttributedLabel;
 			sourceTree = "<group>";
 		};
 		34D31C2E1E8362A500F71735 /* ZHFProgressHUD */ = {
@@ -1965,6 +1995,7 @@
 				34D31C311E8362A500F71735 /* ZHFProgressHUD.m in Sources */,
 				345531781E98E651003C7B08 /* YYTransaction.m in Sources */,
 				30ADD5FC1E4D5060001012E5 /* YYTextView.m in Sources */,
+				348F3D8B1E9B377900D3AE45 /* M80AttributedLabelAttachment.m in Sources */,
 				30ADD5EB1E4D505F001012E5 /* YYTextLine.m in Sources */,
 				30ADD5E91E4D505F001012E5 /* YYTextKeyboardManager.m in Sources */,
 				30A3C68E1E52B3E8002424FA /* UIView+WebCacheOperation.m in Sources */,
@@ -1981,6 +2012,7 @@
 				30ADD5EF1E4D5060001012E5 /* YYTextAttribute.m in Sources */,
 				30ADD5A71E4D5053001012E5 /* TYAttributedLabel.m in Sources */,
 				30A3C68D1E52B3E8002424FA /* UIImageView+WebCache.m in Sources */,
+				348F3D8A1E9B377900D3AE45 /* M80AttributedLabel.m in Sources */,
 				30ADD5FB1E4D5060001012E5 /* YYLabel.m in Sources */,
 				30ADD5F81E4D5060001012E5 /* YYTextTransaction.m in Sources */,
 				30CC056D1E55A825009C1BDD /* NSString+CZPath.m in Sources */,
@@ -2035,7 +2067,9 @@
 				3015F3921E880B3A006B213D /* JRSimpCollectionController2.m in Sources */,
 				30A3C6E51E52F7F6002424FA /* YYImageCoder.m in Sources */,
 				30D8ACDF1E763CFC00CDC4BA /* UITextField+BlocksKit.m in Sources */,
+				348F3D8C1E9B377900D3AE45 /* M80AttributedLabelURL.m in Sources */,
 				30A3C6911E52B3E8002424FA /* SDWebImageCompat.m in Sources */,
+				348F3D8D1E9B377900D3AE45 /* NSMutableAttributedString+M80.m in Sources */,
 				30CC056C1E55A825009C1BDD /* NSString+CZHash.m in Sources */,
 				30D8ACCA1E763CFC00CDC4BA /* NSObject+BKAssociatedObjects.m in Sources */,
 				30D8ACDB1E763CFC00CDC4BA /* UIControl+BlocksKit.m in Sources */,

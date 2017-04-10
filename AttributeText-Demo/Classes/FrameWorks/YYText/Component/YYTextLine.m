@@ -38,9 +38,13 @@
         if (_CTLine) CFRelease(_CTLine);
         _CTLine = CTLine;
         if (_CTLine) {
+			/// 文本显示宽度
             _lineWidth = CTLineGetTypographicBounds(_CTLine, &_ascent, &_descent, &_leading);
+			/// 文本显示范围
             CFRange range = CTLineGetStringRange(_CTLine);
             _range = NSMakeRange(range.location, range.length);
+			
+			///
             if (CTLineGetGlyphCount(_CTLine) > 0) {
                 CFArrayRef runs = CTLineGetGlyphRuns(_CTLine);
                 CTRunRef run = CFArrayGetValueAtIndex(runs, 0);
@@ -73,9 +77,10 @@
         _bounds.origin.x += _firstGlyphPos;
     }
     
-    _attachments = nil;
-    _attachmentRanges = nil;
-    _attachmentRects = nil;
+    _attachments		= nil;
+	_attachmentRects	= nil;
+    _attachmentRanges	= nil;
+
     if (!_CTLine) return;
     CFArrayRef runs = CTLineGetGlyphRuns(_CTLine);
     NSUInteger runCount = CFArrayGetCount(runs);

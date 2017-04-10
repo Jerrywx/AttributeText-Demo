@@ -1206,6 +1206,8 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         }
         point = YYTextCGPointPixelRound(point);
         [drawLayout drawInContext:nil size:size point:point view:view layer:layer debug:nil cancel:NULL];
+		
+		
         for (YYTextAttachment *a in drawLayout.attachments) {
             if ([a.content isKindOfClass:[UIView class]]) [attachmentViews addObject:a.content];
             else if ([a.content isKindOfClass:[CALayer class]]) [attachmentLayers addObject:a.content];

@@ -86,9 +86,13 @@ typedef NS_ENUM(NSUInteger, YYTextRunGlyphDrawMode) {
  A range in CTRun, used for vertical form.
  */
 @interface YYTextRunGlyphRange : NSObject
+
 @property (nonatomic) NSRange glyphRangeInRun;
+
 @property (nonatomic) YYTextRunGlyphDrawMode drawMode;
+
 + (instancetype)rangeWithRange:(NSRange)range drawMode:(YYTextRunGlyphDrawMode)mode;
+
 @end
 
 NS_ASSUME_NONNULL_END
