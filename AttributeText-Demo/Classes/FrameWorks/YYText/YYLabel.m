@@ -1234,7 +1234,6 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 @end
 
 
-
 @interface YYLabel(IBInspectableProperties)
 @end
 

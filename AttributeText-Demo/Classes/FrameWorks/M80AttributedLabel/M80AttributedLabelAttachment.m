@@ -8,23 +8,18 @@
 
 #import "M80AttributedLabelAttachment.h"
 
-void deallocCallback(void* ref)
-{
-    
+void deallocCallback(void* ref) {
 }
 
-CGFloat ascentCallback(void *ref)
-{
+CGFloat ascentCallback(void *ref) {
     M80AttributedLabelAttachment *image = (__bridge M80AttributedLabelAttachment *)ref;
     CGFloat ascent = 0;
     CGFloat height = [image boxSize].height;
-    switch (image.alignment)
-    {
+    switch (image.alignment) {
         case M80ImageAlignmentTop:
             ascent = image.fontAscent;
             break;
-        case M80ImageAlignmentCenter:
-        {
+        case M80ImageAlignmentCenter: {
             CGFloat fontAscent  = image.fontAscent;
             CGFloat fontDescent = image.fontDescent;
             CGFloat baseLine = (fontAscent + fontDescent) / 2 - fontDescent;
@@ -40,28 +35,24 @@ CGFloat ascentCallback(void *ref)
     return ascent;
 }
 
-CGFloat descentCallback(void *ref)
-{
+CGFloat descentCallback(void *ref) {
+	
     M80AttributedLabelAttachment *image = (__bridge M80AttributedLabelAttachment *)ref;
     CGFloat descent = 0;
     CGFloat height = [image boxSize].height;
-    switch (image.alignment)
-    {
-        case M80ImageAlignmentTop:
-        {
+    switch (image.alignment) {
+        case M80ImageAlignmentTop: {
             descent = height - image.fontAscent;
             break;
         }
-        case M80ImageAlignmentCenter:
-        {
+        case M80ImageAlignmentCenter: {
             CGFloat fontAscent  = image.fontAscent;
             CGFloat fontDescent = image.fontDescent;
             CGFloat baseLine = (fontAscent + fontDescent) / 2 - fontDescent;
             descent = height / 2 - baseLine;
         }
             break;
-        case M80ImageAlignmentBottom:
-        {
+        case M80ImageAlignmentBottom: {
             descent = image.fontDescent;
             break;
         }
@@ -73,8 +64,7 @@ CGFloat descentCallback(void *ref)
 
 }
 
-CGFloat widthCallback(void* ref)
-{
+CGFloat widthCallback(void* ref) {
     M80AttributedLabelAttachment *image  = (__bridge M80AttributedLabelAttachment *)ref;
     return [image boxSize].width;
 }
@@ -87,14 +77,10 @@ CGFloat widthCallback(void* ref)
 
 @implementation M80AttributedLabelAttachment
 
-
-
-
 + (M80AttributedLabelAttachment *)attachmentWith:(id)content
                                           margin:(UIEdgeInsets)margin
                                        alignment:(M80ImageAlignment)alignment
-                                         maxSize:(CGSize)maxSize
-{
+                                         maxSize:(CGSize)maxSize {
     M80AttributedLabelAttachment *attachment    = [[M80AttributedLabelAttachment alloc]init];
     attachment.content                          = content;
     attachment.margin                           = margin;
@@ -103,56 +89,48 @@ CGFloat widthCallback(void* ref)
     return attachment;
 }
 
-
-- (CGSize)boxSize
-{
+/// 回去尺寸
+- (CGSize)boxSize {
     CGSize contentSize = [self attachmentSize];
     if (_maxSize.width > 0 &&_maxSize.height > 0 &&
-        contentSize.width > 0 && contentSize.height > 0)
-    {
+        contentSize.width > 0 && contentSize.height > 0) {
         contentSize = [self calculateContentSize];
     }
     return CGSizeMake(contentSize.width + _margin.left + _margin.right,
                       contentSize.height+ _margin.top  + _margin.bottom);
 }
 
-
 #pragma mark - 辅助方法
-- (CGSize)calculateContentSize
-{
+/// 计算附件尺寸
+- (CGSize)calculateContentSize {
     CGSize attachmentSize   = [self attachmentSize];
     CGFloat width           = attachmentSize.width;
     CGFloat height          = attachmentSize.height;
     CGFloat newWidth        = _maxSize.width;
     CGFloat newHeight       = _maxSize.height;
-    if (width <= newWidth &&
-        height<= newHeight)
-    {
+    if (width <= newWidth && height<= newHeight) {
         return attachmentSize;
     }
     CGSize size;
-    if (width / height > newWidth / newHeight)
-    {
+    if (width / height > newWidth / newHeight) {
         size = CGSizeMake(newWidth, newWidth * height / width);
     }
-    else
-    {
+    else {
         size = CGSizeMake(newHeight * width / height, newHeight);
     }
     return size;
 }
 
-- (CGSize)attachmentSize
-{
+/// 获取附件尺寸
+- (CGSize)attachmentSize {
     CGSize size = CGSizeZero;
-    if ([_content isKindOfClass:[UIImage class]])
-    {
+    if ([_content isKindOfClass:[UIImage class]]) {
         size = [((UIImage *)_content) size];
     }
-    else if ([_content isKindOfClass:[UIView class]])
-    {
+    else if ([_content isKindOfClass:[UIView class]]) {
         size = [((UIView *)_content) bounds].size;
     }
     return size;
 }
+
 @end

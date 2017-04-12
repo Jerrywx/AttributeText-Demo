@@ -7,12 +7,15 @@
 //
 
 #import "TextViewController.h"
+#import "M80AttributedLabel.h"
 
 @interface TextViewController ()
 
 @property (nonatomic, strong) YYLabel	*label;
 
-@property (nonatomic, strong) YYLabel	*label2;
+//@property (nonatomic, strong) YYLabel	*label2;
+
+@property (nonatomic, strong) M80AttributedLabel *label2;
 
 @property (nonatomic, strong) NSMutableAttributedString *aString;
 
@@ -42,7 +45,22 @@
 	YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(300, 100) text:self.aString];
 	self.label.textLayout = layout;
 	
-	NSLog(@"%@", NSStringFromCGRect(layout.textBoundingRect));
+//	NSLog(@"%@", NSStringFromCGRect(layout.textBoundingRect));
+	
+	self.label2 = ({
+		M80AttributedLabel *label = [[M80AttributedLabel alloc] initWithFrame:CGRectMake(20, 200, SCREEN_W - 40, 100)];
+		label.backgroundColor = [UIColor yellowColor];
+		[self.view addSubview:label];
+		label;
+	});
+	
+	self.label2.text = @"这是一个测试";
+//	[self.label2 appendImage:[UIImage imageNamed:@"受惊"]];
+	[self.label2 appendText:@"margin"];
+	
+	[self.label2 appendImage:[UIImage imageNamed:@"受惊"] maxSize:CGSizeMake(15, 15) margin:UIEdgeInsetsMake(0, 4, 2, 4)];
+	[self.label2 appendText:@"测试结束"];
+	
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

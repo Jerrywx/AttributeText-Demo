@@ -32,8 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy,nullable)     NSString *text;                         //普通文本
 @property (nonatomic,copy,nullable)     NSAttributedString *attributedText;     //属性文本
 
-
-
 //添加文本
 - (void)appendText:(NSString *)text;
 - (void)appendAttributedText:(NSAttributedString *)attributedText;

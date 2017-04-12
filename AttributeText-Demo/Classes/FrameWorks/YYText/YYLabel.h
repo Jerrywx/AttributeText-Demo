@@ -65,13 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSUInteger numberOfLines;
 
-/**
- When `text` or `attributedText` is changed, the parser will be called to modify the text.
- It can be used to add code highlighting or emoticon replacement to text view. 
- The default value is nil.
- 
- See `YYTextParser` protocol for more information.
- */
+/// YYTextParser protocol
 @property (nullable, nonatomic, strong) id<YYTextParser> textParser;
 
 /// YYTextLayout
@@ -111,10 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy) id<YYTextLinePositionModifier> linePositionModifier;
 
-/**
- The debug option to display CoreText layout result.
- The default value is [YYTextDebugOption sharedDebugOption].
- */
+/// The default value is [YYTextDebugOption sharedDebugOption].
 @property (nullable, nonatomic, copy) YYTextDebugOption *debugOption;
 
 
