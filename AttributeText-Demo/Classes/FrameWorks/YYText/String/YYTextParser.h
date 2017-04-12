@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return If the 'text' is modified in this method, returns `YES`, otherwise returns `NO`.
  */
 - (BOOL)parseText:(nullable NSMutableAttributedString *)text selectedRange:(nullable NSRangePointer)selectedRange;
+
 @end
 
 

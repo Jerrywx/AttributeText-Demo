@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.title = @"YYText 使用";
+	
 	[self setupUI];
 	
 }

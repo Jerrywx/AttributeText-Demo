@@ -25,7 +25,6 @@ typedef CF_OPTIONS(CFOptionFlags, CTLineBoundsOptions) {
 	kCTLineBoundsIncludeLanguageExtents CT_ENUM_AVAILABLE(10_11, 8_0) = 1 << 5,
 };
 
-
 /// 内容截断类型
 typedef CF_ENUM(uint32_t, CTLineTruncationType) {
 	kCTLineTruncationStart  = 0,
@@ -38,7 +37,6 @@ typedef CF_ENUM(uint32_t, CTLineTruncationType) {
  @function   CTLineGetTypeID
  @abstract   Returns the CFType of the line object
  */
-
 CFTypeID CTLineGetTypeID( void ) CT_AVAILABLE(10_5, 3_2);
 
 
@@ -46,9 +44,11 @@ CFTypeID CTLineGetTypeID( void ) CT_AVAILABLE(10_5, 3_2);
 /* Line Creation */
 /* --------------------------------------------------------------------------- */
 /// Creates a single immutable line object directly from an attributed string.
+/// 使用属性字符串创建 CTLine
 CTLineRef CTLineCreateWithAttributedString(CFAttributedStringRef attrString );
 
 /// Creates a truncated line from an existing line.
+/// 创建一个删节内容
 CTLineRef __nullable CTLineCreateTruncatedLine(
 											   CTLineRef line,
 											   double width,
@@ -66,13 +66,15 @@ CTLineRef __nullable CTLineCreateJustifiedLine(
 /* Line Access */
 /* --------------------------------------------------------------------------- */
 /// Returns the total glyph count for the line object.
+/// 获取显示文本数量
 CFIndex CTLineGetGlyphCount(CTLineRef line );
 
-
 /// Returns the array of glyph runs that make up the line object.
+/// 获取 CTLineRef 中的 runs
 CFArrayRef CTLineGetGlyphRuns(CTLineRef line );
 
 /// Gets the range of characters that originally spawned the glyphs in the line.
+/// 获取文本显示范围
 CFRange CTLineGetStringRange(CTLineRef line );
 
 
@@ -96,9 +98,8 @@ CFRange CTLineGetStringRange(CTLineRef line );
  @result     A value which can be used to offset the current pen position for
  the flush operation.
  */
-
-double CTLineGetPenOffsetForFlush(
-								  CTLineRef line,
+/// 获取绘制偏移
+double CTLineGetPenOffsetForFlush(CTLineRef line,
 								  CGFloat flushFactor,
 								  double flushWidth ) CT_AVAILABLE(10_5, 3_2);
 
@@ -118,25 +119,10 @@ double CTLineGetTypographicBounds(
 								  CGFloat * __nullable leading );
 
 /// 根据 CTLineBoundsOptions 获取 bounds
-CGRect CTLineGetBoundsWithOptions(
-								  CTLineRef line,
+CGRect CTLineGetBoundsWithOptions(CTLineRef line,
 								  CTLineBoundsOptions options );
 
-/*!
- @function   CTLineGetTrailingWhitespaceWidth
- @abstract   Calculates the trailing whitespace width for a line.
- 
- @param      line
- The line that you want to calculate the trailing whitespace width
- for. Creating a line for a width can result in a line that is
- actually longer than the desired width due to trailing
- whitespace. Normally this is not an issue due to whitespace being
- invisible, but this function may be used to determine what amount
- of a line's width is due to trailing whitespace.
- 
- @result     The width of the line's trailing whitespace. If line is invalid,
- this function will always return zero.
- */
+/// 计算一行的尾随空白宽度。
 double CTLineGetTrailingWhitespaceWidth(CTLineRef line );
 
 /// 获取 image bounds
@@ -151,13 +137,9 @@ CGRect CTLineGetImageBounds( CTLineRef line, CGContextRef __nullable context );
 CFIndex CTLineGetStringIndexForPosition(CTLineRef line, CGPoint position );
 
 /// 根据索引 获取 偏移量
-CGFloat CTLineGetOffsetForStringIndex(
-									  CTLineRef line,
+CGFloat CTLineGetOffsetForStringIndex(CTLineRef line,
 									  CFIndex charIndex,
 									  CGFloat * __nullable secondaryOffset );
-
-
-#if defined(__BLOCKS__)
 
 /*!
  @function   CTLineEnumerateCaretOffsets

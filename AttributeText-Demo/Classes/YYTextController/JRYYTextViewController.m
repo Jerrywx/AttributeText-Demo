@@ -83,7 +83,7 @@
 	}
 	
 	_dataList = @[
-				  @{@"title"		: @"YYText测试" ,
+				  @{@"title"		: @"YYText使用" ,
 					@"controller"	: @"JRTextDemoViewController"},
 				  @{@"title"		: @"YYLabel-Demo" ,
 					@"controller"	: @"TextViewController"},

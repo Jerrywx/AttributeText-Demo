@@ -27,6 +27,7 @@ CFTypeID CTFramesetterGetTypeID( void );
 /* Framesetter Creation */
 /* --------------------------------------------------------------------------- */
 
+/// 使用属性字符串创建一个不可变的 CTFramesetterRef
 /// Creates an immutable framesetter object from an attributed string.
 CTFramesetterRef CTFramesetterCreateWithAttributedString(CFAttributedStringRef string );
 
@@ -34,7 +35,7 @@ CTFramesetterRef CTFramesetterCreateWithAttributedString(CFAttributedStringRef s
 /* --------------------------------------------------------------------------- */
 /* Frame Creation */
 /* --------------------------------------------------------------------------- */
-
+/// 使用 CTFramesetterRef 创建一个不可变的 CTFrameRef
 /// Creates an immutable frame from a framesetter.
 CTFrameRef CTFramesetterCreateFrame(
 									CTFramesetterRef framesetter,

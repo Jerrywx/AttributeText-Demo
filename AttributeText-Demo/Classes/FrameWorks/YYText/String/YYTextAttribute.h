@@ -141,32 +141,14 @@ UIKIT_EXTERN NSString *const YYTextTruncationToken; ///< Horizontal ellipsis (U+
 
 #pragma mark - Attribute Value Define
 
-/**
- 操作回调
- The tap/long press action callback defined in YYText.
- 
- @param containerView The text container view (such as YYLabel/YYTextView).
- @param text          The whole text.
- @param range         The text range in `text` (if no range, the range.location is NSNotFound).
- @param rect          The text frame in `containerView` (if no data, the rect is CGRectNull).
- */
+/// 操作回调
 typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect);
 
-
-/**
- 表情适配
- YYTextBackedString objects are used by the NSAttributedString class cluster
- as the values for text backed string attributes (stored in the attributed 
- string under the key named YYTextBackedStringAttributeName).
- 
- It may used for copy/paste plain text from attributed string.
- Example: If :) is replace by a custom emoji (such as😊), the backed string can be set to @":)".
- */
+/// 表情适配
 @interface YYTextBackedString : NSObject <NSCoding, NSCopying>
 + (instancetype)stringWithString:(nullable NSString *)string;
 @property (nullable, nonatomic, copy) NSString *string; ///< backed string
 @end
-
 
 /**
  YYTextBinding objects are used by the NSAttributedString class cluster
@@ -182,15 +164,7 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 @property (nonatomic) BOOL deleteConfirm; ///< confirm the range when delete in YYTextView
 @end
 
-
-/**
- 阴影
- YYTextShadow objects are used by the NSAttributedString class cluster
- as the values for shadow attributes (stored in the attributed string under
- the key named YYTextShadowAttributeName or YYTextInnerShadowAttributeName).
- 
- It's similar to `NSShadow`, but offers more options.
- */
+/// 阴影
 @interface YYTextShadow : NSObject <NSCoding, NSCopying>
 + (instancetype)shadowWithColor:(nullable UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius;
 
@@ -204,15 +178,7 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 - (NSShadow *)nsShadow; ///< convert YYTextShadow to NSShadow
 @end
 
-/**
- 下划线
- YYTextDecorationLine objects are used by the NSAttributedString class cluster
- as the values for decoration line attributes (stored in the attributed string under
- the key named YYTextUnderlineAttributeName or YYTextStrikethroughAttributeName).
- 
- When it's used as underline, the line is drawn below text glyphs;
- when it's used as strikethrough, the line is drawn above text glyphs.
- */
+/// 下划线
 @interface YYTextDecoration : NSObject <NSCoding, NSCopying>
 + (instancetype)decorationWithStyle:(YYTextLineStyle)style;
 + (instancetype)decorationWithStyle:(YYTextLineStyle)style width:(nullable NSNumber *)width color:(nullable UIColor *)color;
@@ -223,23 +189,16 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 @end
 
 
-/**
- 边框
- YYTextBorder objects are used by the NSAttributedString class cluster
- as the values for border attributes (stored in the attributed string under
- the key named YYTextBorderAttributeName or YYTextBackgroundBorderAttributeName).
- 
- It can be used to draw a border around a range of text, or draw a background
- to a range of text.
- 
- Example:
-    ╭──────╮
-    │ Text │
-    ╰──────╯
- */
+/// 边框
 @interface YYTextBorder : NSObject <NSCoding, NSCopying>
-+ (instancetype)borderWithLineStyle:(YYTextLineStyle)lineStyle lineWidth:(CGFloat)width strokeColor:(nullable UIColor *)color;
-+ (instancetype)borderWithFillColor:(nullable UIColor *)color cornerRadius:(CGFloat)cornerRadius;
+
++ (instancetype)borderWithLineStyle:(YYTextLineStyle)lineStyle 
+						  lineWidth:(CGFloat)width 
+						strokeColor:(nullable UIColor *)color;
+
++ (instancetype)borderWithFillColor:(nullable UIColor *)color 
+					   cornerRadius:(CGFloat)cornerRadius;
+
 @property (nonatomic) YYTextLineStyle lineStyle;              ///< border line style
 @property (nonatomic) CGFloat strokeWidth;                    ///< border line width
 @property (nullable, nonatomic, strong) UIColor *strokeColor; ///< border line color
@@ -248,8 +207,8 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 @property (nonatomic) CGFloat cornerRadius;                   ///< border corder radius
 @property (nullable, nonatomic, strong) YYTextShadow *shadow; ///< border shadow
 @property (nullable, nonatomic, strong) UIColor *fillColor;   ///< inner fill color
-@end
 
+@end
 
 /**
  YYTextAttachment objects are used by the NSAttributedString class cluster 
@@ -269,18 +228,7 @@ typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSR
 @property (nullable, nonatomic, strong) NSDictionary *userInfo; ///< The user information dictionary.
 @end
 
-
-/**
- 高亮
- YYTextHighlight objects are used by the NSAttributedString class cluster
- as the values for touchable highlight attributes (stored in the attributed string
- under the key named YYTextHighlightAttributeName).
- 
- When display an attributed string in `YYLabel` or `YYTextView`, the range of 
- highlight text can be toucheds down by users. If a range of text is turned into 
- highlighted state, the `attributes` in `YYTextHighlight` will be used to modify 
- (set or remove) the original attributes in the range for display.
- */
+/// 高亮
 @interface YYTextHighlight : NSObject <NSCoding, NSCopying>
 
 /**

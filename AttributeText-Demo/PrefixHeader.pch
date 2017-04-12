@@ -19,6 +19,7 @@
 #import <Colours.h>
 #import "FMDB.h"
 #import "ZHFProgressHUD.h"
+#import "YYModel.h"
 
 //////
 #define SCREEN_W ([UIScreen mainScreen].bounds.size.width)
@@ -36,7 +37,19 @@
 #define kFontSize_20  [UIFont systemFontOfSize:20]
 
 
+/// 基础组件
+#import "JRTableView.h"
 
+
+/// core Text View
+#import "JRCoreTextView.h"
+#import "JRParagraphView.h"
+#import "JRTranslateCTMView.h"
+#import "JRSimpleTextView.h"
+#import "JRColumnarLayoutView.h"
+#import "JRManualLineBreakingView.h"
+#import "JRParagraphStyleView.h"
+#import "JRNonrectangularRegionView.h"
 
 
 #endif /* PrefixHeader_pch */

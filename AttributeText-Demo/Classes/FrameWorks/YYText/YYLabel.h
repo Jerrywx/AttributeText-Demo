@@ -55,9 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSTextAlignment textAlignment;
 
-/**
- The text vertical aligmnent in container. Default is YYTextVerticalAlignmentCenter.
- */
 @property (nonatomic) YYTextVerticalAlignment textVerticalAlignment;
 
 @property (nullable, nonatomic, copy) NSAttributedString *attributedText;
@@ -68,20 +65,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSUInteger numberOfLines;
 
-/**
- When `text` or `attributedText` is changed, the parser will be called to modify the text.
- It can be used to add code highlighting or emoticon replacement to text view. 
- The default value is nil.
- 
- See `YYTextParser` protocol for more information.
- */
+/// YYTextParser protocol
 @property (nullable, nonatomic, strong) id<YYTextParser> textParser;
 
-/**
- The current text layout in text view. It can be used to query the text layout information.
- Set a new value to this property also replaces most properties in this label, such as `text`,
- `color`, `attributedText`, `lineBreakMode`, `textContainerPath`, `exclusionPaths` and so on.
- */
+/// YYTextLayout
 @property (nullable, nonatomic, strong) YYTextLayout *textLayout;
 
 
@@ -90,9 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Configuring the Text Container
 ///=============================================================================
 
-/**
- A UIBezierPath object that specifies the shape of the text frame. Default value is nil.
- */
+/// A UIBezierPath object that specifies the shape of the text frame. Default value is nil.
 @property (nullable, nonatomic, copy) UIBezierPath *textContainerPath;
 
 /**
@@ -120,10 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, copy) id<YYTextLinePositionModifier> linePositionModifier;
 
-/**
- The debug option to display CoreText layout result.
- The default value is [YYTextDebugOption sharedDebugOption].
- */
+/// The default value is [YYTextDebugOption sharedDebugOption].
 @property (nullable, nonatomic, copy) YYTextDebugOption *debugOption;
 
 
@@ -162,53 +144,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Configuring the Display Mode
 ///=============================================================================
 
-/**
- A Boolean value indicating whether the layout and rendering codes are running
- asynchronously on background threads. 
- 
- The default value is `NO`.
- */
+/// 异步渲染 默认NO
 @property (nonatomic) BOOL displaysAsynchronously;
 
-/**
- If the value is YES, and the layer is rendered asynchronously, then it will
- set label.layer.contents to nil before display. 
- 
- The default value is `YES`.
- 
- @discussion When the asynchronously display is enabled, the layer's content will
- be updated after the background render process finished. If the render process
- can not finished in a vsync time (1/60 second), the old content will be still kept
- for display. You may manually clear the content by set the layer.contents to nil 
- after you update the label's properties, or you can just set this property to YES.
- */
+/// 异步渲染前是否清空内容
 @property (nonatomic) BOOL clearContentsBeforeAsynchronouslyDisplay;
 
-/**
- If the value is YES, and the layer is rendered asynchronously, then it will add 
- a fade animation on layer when the contents of layer changed. 
- 
- The default value is `YES`.
- */
+/// 异步渲染动画
 @property (nonatomic) BOOL fadeOnAsynchronouslyDisplay;
 
-/**
- If the value is YES, then it will add a fade animation on layer when some range
- of text become highlighted. 
- 
- The default value is `YES`.
- */
+/// 高亮动画
 @property (nonatomic) BOOL fadeOnHighlight;
 
-/**
- Ignore common properties (such as text, font, textColor, attributedText...) and
- only use "textLayout" to display content. 
- 
- The default value is `NO`.
- 
- @discussion If you control the label content only through "textLayout", then
- you may set this value to YES for higher performance.
- */
+/// 忽略通用属性 例如:(such as text, font, textColor, attributedText...)
 @property (nonatomic) BOOL ignoreCommonProperties;
 
 /*

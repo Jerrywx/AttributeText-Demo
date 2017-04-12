@@ -113,7 +113,6 @@
 	CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, rangeToSize, NULL, constraints, NULL);
 	NSLog(@"========= %f - %f", suggestedSize.width, suggestedSize.height);
 	
-	
 	/// 绘制
 	CTLineDraw(line, context);
 	/// 释放

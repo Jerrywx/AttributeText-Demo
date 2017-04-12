@@ -140,7 +140,7 @@ CT_EXPORT const CFStringRef kCTFrameClippingPathsAttributeName CT_AVAILABLE(10_7
 	@seealso	kCTFrameClippingPathsAttributeName
  */
 
-CT_EXPORT const CFStringRef kCTFramePathClippingPathAttributeName CT_AVAILABLE(10_7, 4_3);
+CT_EXPORT const CFStringRef kCTFramePathClippingPathAttributeName;
 
 
 /* --------------------------------------------------------------------------- */
@@ -160,7 +160,7 @@ CT_EXPORT const CFStringRef kCTFramePathClippingPathAttributeName CT_AVAILABLE(1
  to fill the frame. If the function call is not successful,
  then an empty range will be returned.
  */
-
+/// 获取字符串范围
 CFRange CTFrameGetStringRange(CTFrameRef frame );
 
 
@@ -183,9 +183,8 @@ CFRange CTFrameGetStringRange(CTFrameRef frame );
  in the frame, then an empty range will be returned.
  */
 
-CFRange CTFrameGetVisibleStringRange(
-									 CTFrameRef frame ) CT_AVAILABLE(10_5, 3_2);
-
+/// 获取可见内容
+CFRange CTFrameGetVisibleStringRange(CTFrameRef frame );
 
 /*!
 	@function	CTFrameGetPath
@@ -194,9 +193,8 @@ CFRange CTFrameGetVisibleStringRange(
 	@param		frame
  The frame that you want to obtain the path from.
  */
-
-CGPathRef CTFrameGetPath(
-						 CTFrameRef frame ) CT_AVAILABLE(10_5, 3_2);
+/// 获取路径
+CGPathRef CTFrameGetPath(CTFrameRef frame );
 
 
 /*!
@@ -216,9 +214,8 @@ CGPathRef CTFrameGetPath(
  frame was created without any frame attributes, this function
  will return NULL.
  */
-
-CFDictionaryRef __nullable CTFrameGetFrameAttributes(
-													 CTFrameRef frame ) CT_AVAILABLE(10_5, 3_2);
+/// 获取属性
+CFDictionaryRef __nullable CTFrameGetFrameAttributes(CTFrameRef frame );
 
 
 /*!
@@ -238,17 +235,14 @@ CFDictionaryRef __nullable CTFrameGetFrameAttributes(
 	@result		This function will return a CFArray object containing the
  CTLine objects that make up the frame.
  */
-
-CFArrayRef CTFrameGetLines(
-						   CTFrameRef frame ) CT_AVAILABLE(10_5, 3_2);
+/// 获取所有 line
+CFArrayRef CTFrameGetLines(CTFrameRef frame );
 
 
 /// 获取所有 CTLine 的显示点 CTFrameGetLineOrigins
-void CTFrameGetLineOrigins(
-						   CTFrameRef frame,
+void CTFrameGetLineOrigins(CTFrameRef frame,
 						   CFRange range,
-						   CGPoint origins[] ) CT_AVAILABLE(10_5, 3_2);
-
+						   CGPoint origins[] );
 
 /*!
 	@function	CTFrameDraw
@@ -267,18 +261,9 @@ void CTFrameGetLineOrigins(
 	@discussion	If both the frame and the context are valid, the frame will be
  drawn in the context.
  */
-
-void CTFrameDraw(
-				 CTFrameRef frame,
-				 CGContextRef context ) CT_AVAILABLE(10_5, 3_2);
-
-
-CF_ASSUME_NONNULL_END
-CF_EXTERN_C_END
-CF_IMPLICIT_BRIDGING_DISABLED
-
-#endif
-
+/// 绘制 CTFrameRef
+void CTFrameDraw(CTFrameRef frame,
+				 CGContextRef context );
 
 
 #endif /* jr_CTFrameRef_h */

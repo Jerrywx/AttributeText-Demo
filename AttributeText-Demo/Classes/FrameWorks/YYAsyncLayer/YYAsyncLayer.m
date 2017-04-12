@@ -1,6 +1,6 @@
 //
-//  YYTextAsyncLayer.m
-//  YYText <https://github.com/ibireme/YYText>
+//  YYAsyncLayer.m
+//  YYKit <https://github.com/ibireme/YYKit>
 //
 //  Created by ibireme on 15/4/11.
 //  Copyright (c) 2015 ibireme.
@@ -9,12 +9,20 @@
 //  LICENSE file in the root directory of this source tree.
 //
 
-#import "YYTextAsyncLayer.h"
-#import <libkern/OSAtomic.h>
+#import "YYAsyncLayer.h"
+#import "YYSentinel.h"
 
+#if __has_include("YYDispatchQueuePool.h")
+#import "YYDispatchQueuePool.h"
+#else
+#import <libkern/OSAtomic.h>
+#endif
 
 /// Global display queue, used for content rendering.
-static dispatch_queue_t YYTextAsyncLayerGetDisplayQueue() {
+static dispatch_queue_t YYAsyncLayerGetDisplayQueue() {
+#ifdef YYDispatchQueuePool_h
+    return YYDispatchQueueGetForQOS(NSQualityOfServiceUserInitiated);
+#else
 #define MAX_QUEUE_COUNT 16
     static int queueCount;
     static dispatch_queue_t queues[MAX_QUEUE_COUNT];
@@ -26,21 +34,23 @@ static dispatch_queue_t YYTextAsyncLayerGetDisplayQueue() {
         if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
             for (NSUInteger i = 0; i < queueCount; i++) {
                 dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INITIATED, 0);
-                queues[i] = dispatch_queue_create("com.ibireme.text.render", attr);
+                queues[i] = dispatch_queue_create("com.ibireme.yykit.render", attr);
             }
         } else {
             for (NSUInteger i = 0; i < queueCount; i++) {
-                queues[i] = dispatch_queue_create("com.ibireme.text.render", DISPATCH_QUEUE_SERIAL);
+                queues[i] = dispatch_queue_create("com.ibireme.yykit.render", DISPATCH_QUEUE_SERIAL);
                 dispatch_set_target_queue(queues[i], dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
             }
         }
     });
-    uint32_t cur = (uint32_t)OSAtomicIncrement32(&counter);
+    int32_t cur = OSAtomicIncrement32(&counter);
+    if (cur < 0) cur = -cur;
     return queues[(cur) % queueCount];
 #undef MAX_QUEUE_COUNT
+#endif
 }
 
-static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
+static dispatch_queue_t YYAsyncLayerGetReleaseQueue() {
 #ifdef YYDispatchQueuePool_h
     return YYDispatchQueueGetForQOS(NSQualityOfServiceDefault);
 #else
@@ -48,33 +58,8 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
 #endif
 }
 
-
-/// a thread safe incrementing counter.
-@interface _YYTextSentinel : NSObject
-/// Returns the current value of the counter.
-@property (atomic, readonly) int32_t value;
-/// Increase the value atomically. @return The new value.
-- (int32_t)increase;
-@end
-
-@implementation _YYTextSentinel {
-    int32_t _value;
-}
-- (int32_t)value {
-    return _value;
-}
-- (int32_t)increase {
-    return OSAtomicIncrement32(&_value);
-}
-@end
-
-
-@implementation YYTextAsyncLayerDisplayTask
-@end
-
-/// 
-@implementation YYTextAsyncLayer {
-    _YYTextSentinel *_sentinel;
+@implementation YYAsyncLayer {
+    YYSentinel *_sentinel;
 }
 
 #pragma mark - Override
@@ -95,7 +80,7 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
         scale = [UIScreen mainScreen].scale;
     });
     self.contentsScale = scale;
-    _sentinel = [_YYTextSentinel new];
+    _sentinel = [YYSentinel new];
     _displaysAsynchronously = YES;
     return self;
 }
@@ -115,48 +100,33 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
 }
 
 #pragma mark - Private
-/**
- layer 内容渲染
- @param async 是否异步渲染
- */
+
 - (void)_displayAsync:(BOOL)async {
-	
-    __strong id<YYTextAsyncLayerDelegate> delegate = (id)self.delegate;
-    YYTextAsyncLayerDisplayTask *task = [delegate newAsyncDisplayTask];
-	
-	/// 渲染layer 内容的回调
+    __strong id<YYAsyncLayerDelegate> delegate = (id)self.delegate;
+    YYAsyncLayerDisplayTask *task = [delegate newAsyncDisplayTask];
     if (!task.display) {
-		/// 执行将要渲染任务
         if (task.willDisplay) task.willDisplay(self);
         self.contents = nil;
-		/// 执行渲染完成
         if (task.didDisplay) task.didDisplay(self, YES);
         return;
     }
-	
-	/// 异步渲染
+    
     if (async) {
-		/// 如果有渲染前回调 调用 渲染前回调
         if (task.willDisplay) task.willDisplay(self);
-		
-        _YYTextSentinel *sentinel = _sentinel;
+        YYSentinel *sentinel = _sentinel;
         int32_t value = sentinel.value;
         BOOL (^isCancelled)() = ^BOOL() {
             return value != sentinel.value;
         };
-        CGSize size		= self.bounds.size;
-        BOOL opaque		= self.opaque;
-        CGFloat scale	= self.contentsScale;
-        CGColorRef backgroundColor = (opaque && self.backgroundColor)
-										? CGColorRetain(self.backgroundColor) : NULL;
-		
-		backgroundColor = [UIColor redColor].CGColor;
-		
+        CGSize size = self.bounds.size;
+        BOOL opaque = self.opaque;
+        CGFloat scale = self.contentsScale;
+        CGColorRef backgroundColor = (opaque && self.backgroundColor) ? CGColorRetain(self.backgroundColor) : NULL;
         if (size.width < 1 || size.height < 1) {
             CGImageRef image = (__bridge_retained CGImageRef)(self.contents);
             self.contents = nil;
             if (image) {
-                dispatch_async(YYTextAsyncLayerGetReleaseQueue(), ^{
+                dispatch_async(YYAsyncLayerGetReleaseQueue(), ^{
                     CFRelease(image);
                 });
             }
@@ -165,7 +135,7 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
             return;
         }
         
-        dispatch_async(YYTextAsyncLayerGetDisplayQueue(), ^{
+        dispatch_async(YYAsyncLayerGetDisplayQueue(), ^{
             if (isCancelled()) {
                 CGColorRelease(backgroundColor);
                 return;
@@ -212,10 +182,7 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
                 }
             });
         });
-    }
-	/// 同步渲染
-	else {
-		
+    } else {
         [_sentinel increase];
         if (task.willDisplay) task.willDisplay(self);
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, self.contentsScale);
@@ -249,4 +216,10 @@ static dispatch_queue_t YYTextAsyncLayerGetReleaseQueue() {
     [_sentinel increase];
 }
 
+@end
+
+
+
+
+@implementation YYAsyncLayerDisplayTask
 @end

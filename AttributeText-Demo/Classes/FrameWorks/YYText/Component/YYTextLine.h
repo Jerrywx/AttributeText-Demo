@@ -27,6 +27,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface YYTextLine : NSObject
 
+/**
+ <#Description#>
+
+ @param CTLine <#CTLine description#>
+ @param position <#position description#>
+ @param isVertical <#isVertical description#>
+ @return <#return value description#>
+ */
 + (instancetype)lineWithCTLine:(CTLineRef)CTLine
 					  position:(CGPoint)position
 					  vertical:(BOOL)isVertical;
@@ -78,9 +86,13 @@ typedef NS_ENUM(NSUInteger, YYTextRunGlyphDrawMode) {
  A range in CTRun, used for vertical form.
  */
 @interface YYTextRunGlyphRange : NSObject
+
 @property (nonatomic) NSRange glyphRangeInRun;
+
 @property (nonatomic) YYTextRunGlyphDrawMode drawMode;
+
 + (instancetype)rangeWithRange:(NSRange)range drawMode:(YYTextRunGlyphDrawMode)mode;
+
 @end
 
 NS_ASSUME_NONNULL_END

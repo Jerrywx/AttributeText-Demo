@@ -17,7 +17,9 @@
     CGFloat _firstGlyphPos; // first glyph position for baseline, typically 0.
 }
 
-+ (instancetype)lineWithCTLine:(CTLineRef)CTLine position:(CGPoint)position vertical:(BOOL)isVertical {
++ (instancetype)lineWithCTLine:(CTLineRef)CTLine 
+					  position:(CGPoint)position 
+					  vertical:(BOOL)isVertical {
     if (!CTLine) return nil;
     YYTextLine *line = [self new];
     line->_position = position;
@@ -36,9 +38,13 @@
         if (_CTLine) CFRelease(_CTLine);
         _CTLine = CTLine;
         if (_CTLine) {
+			/// 文本显示宽度
             _lineWidth = CTLineGetTypographicBounds(_CTLine, &_ascent, &_descent, &_leading);
+			/// 文本显示范围
             CFRange range = CTLineGetStringRange(_CTLine);
             _range = NSMakeRange(range.location, range.length);
+			
+			///
             if (CTLineGetGlyphCount(_CTLine) > 0) {
                 CFArrayRef runs = CTLineGetGlyphRuns(_CTLine);
                 CTRunRef run = CFArrayGetValueAtIndex(runs, 0);
@@ -71,9 +77,10 @@
         _bounds.origin.x += _firstGlyphPos;
     }
     
-    _attachments = nil;
-    _attachmentRanges = nil;
-    _attachmentRects = nil;
+    _attachments		= nil;
+	_attachmentRects	= nil;
+    _attachmentRanges	= nil;
+
     if (!_CTLine) return;
     CFArrayRef runs = CTLineGetGlyphRuns(_CTLine);
     NSUInteger runCount = CFArrayGetCount(runs);
@@ -87,7 +94,9 @@
         CFIndex glyphCount = CTRunGetGlyphCount(run);
         if (glyphCount == 0) continue;
         NSDictionary *attrs = (id)CTRunGetAttributes(run);
+		
         YYTextAttachment *attachment = attrs[YYTextAttachmentAttributeName];
+		/// 附件
         if (attachment) {
             CGPoint runPosition = CGPointZero;
             CTRunGetPositions(run, CFRangeMake(0, 1), &runPosition);
