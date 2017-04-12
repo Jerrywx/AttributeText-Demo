@@ -19,6 +19,7 @@
 #import <Colours.h>
 #import "FMDB.h"
 #import "ZHFProgressHUD.h"
+#import "YYModel.h"
 
 //////
 #define SCREEN_W ([UIScreen mainScreen].bounds.size.width)

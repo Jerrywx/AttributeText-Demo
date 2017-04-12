@@ -155,6 +155,9 @@
 		30D8ACF71E76670E00CDC4BA /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF01E76670E00CDC4BA /* FMDatabaseQueue.m */; };
 		30D8ACF81E76670E00CDC4BA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D8ACF31E76670E00CDC4BA /* FMResultSet.m */; };
 		30D8ACFE1E7668E200CDC4BA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */; };
+		343EBCD41E9E04A4008D305F /* JRAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 343EBCD31E9E04A4008D305F /* JRAssets.m */; };
+		343EBCD71E9E0BD0008D305F /* JRAssetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 343EBCD61E9E0BD0008D305F /* JRAssetCollection.m */; };
+		343EBCDA1E9E1354008D305F /* JRAssetsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 343EBCD91E9E1354008D305F /* JRAssetsManager.m */; };
 		344DDB151E84B9B600127E1C /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344DDB0D1E84B9B600127E1C /* JRBlockViewController.m */; };
 		344DDB161E84B9B600127E1C /* JRCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344DDB0F1E84B9B600127E1C /* JRCollectionController.m */; };
 		345531761E98E651003C7B08 /* YYAsyncLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 345531711E98E651003C7B08 /* YYAsyncLayer.m */; };
@@ -545,6 +548,12 @@
 		30D8ACF21E76670E00CDC4BA /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		30D8ACF31E76670E00CDC4BA /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		343EBCD21E9E04A4008D305F /* JRAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAssets.h; sourceTree = "<group>"; };
+		343EBCD31E9E04A4008D305F /* JRAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAssets.m; sourceTree = "<group>"; };
+		343EBCD51E9E0BD0008D305F /* JRAssetCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAssetCollection.h; sourceTree = "<group>"; };
+		343EBCD61E9E0BD0008D305F /* JRAssetCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAssetCollection.m; sourceTree = "<group>"; };
+		343EBCD81E9E1354008D305F /* JRAssetsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAssetsManager.h; sourceTree = "<group>"; };
+		343EBCD91E9E1354008D305F /* JRAssetsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAssetsManager.m; sourceTree = "<group>"; };
 		344DDB0C1E84B9B600127E1C /* JRBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlockViewController.h; sourceTree = "<group>"; };
 		344DDB0D1E84B9B600127E1C /* JRBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlockViewController.m; sourceTree = "<group>"; };
 		344DDB0E1E84B9B600127E1C /* JRCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCollectionController.h; sourceTree = "<group>"; };
@@ -736,8 +745,14 @@
 		3038A92A1E56E36800B7F931 /* JRImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				343EBCD21E9E04A4008D305F /* JRAssets.h */,
+				343EBCD31E9E04A4008D305F /* JRAssets.m */,
 				3038A92B1E56E3B000B7F931 /* JRImageManager.h */,
 				3038A92C1E56E3B000B7F931 /* JRImageManager.m */,
+				343EBCD51E9E0BD0008D305F /* JRAssetCollection.h */,
+				343EBCD61E9E0BD0008D305F /* JRAssetCollection.m */,
+				343EBCD81E9E1354008D305F /* JRAssetsManager.h */,
+				343EBCD91E9E1354008D305F /* JRAssetsManager.m */,
 			);
 			path = JRImagePicker;
 			sourceTree = "<group>";
@@ -1349,8 +1364,16 @@
 				34593D871E824E8800259DF2 /* Controllers */,
 				34593D8A1E824E8800259DF2 /* FMDBDemo */,
 				34593D8D1E824E8800259DF2 /* ZHForumLog */,
+				343EBCD11E9DCA54008D305F /* ImagePicker */,
 			);
 			path = JRDataStorageModule;
+			sourceTree = "<group>";
+		};
+		343EBCD11E9DCA54008D305F /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
 		344DDB0A1E84B9B600127E1C /* JRCollectionController */ = {
@@ -1997,6 +2020,7 @@
 				30ADD5FC1E4D5060001012E5 /* YYTextView.m in Sources */,
 				348F3D8B1E9B377900D3AE45 /* M80AttributedLabelAttachment.m in Sources */,
 				30ADD5EB1E4D505F001012E5 /* YYTextLine.m in Sources */,
+				343EBCD71E9E0BD0008D305F /* JRAssetCollection.m in Sources */,
 				30ADD5E91E4D505F001012E5 /* YYTextKeyboardManager.m in Sources */,
 				30A3C68E1E52B3E8002424FA /* UIView+WebCacheOperation.m in Sources */,
 				30ADD5ED1E4D505F001012E5 /* YYTextSelectionView.m in Sources */,
@@ -2033,6 +2057,8 @@
 				30828D671E53EBDF000316E2 /* TZAssetCell.m in Sources */,
 				C49868861D92C693009223A1 /* JRThreadHeader.m in Sources */,
 				C40448AF1D82654D0039A815 /* JRBaseViewController.m in Sources */,
+				343EBCD41E9E04A4008D305F /* JRAssets.m in Sources */,
+				343EBCDA1E9E1354008D305F /* JRAssetsManager.m in Sources */,
 				30D8ACD01E763CFC00CDC4BA /* A2BlockInvocation.m in Sources */,
 				30D8ACD21E763CFC00CDC4BA /* NSCache+BlocksKit.m in Sources */,
 				30D8ACF61E76670E00CDC4BA /* FMDatabasePool.m in Sources */,

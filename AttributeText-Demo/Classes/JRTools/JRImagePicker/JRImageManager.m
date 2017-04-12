@@ -8,6 +8,8 @@
 
 #import "JRImageManager.h"
 #import <Photos/Photos.h>
+#import "JRAssetCollection.h"
+#import "JRAssetsManager.h"
 
 @implementation JRImageManager
 
@@ -17,11 +19,98 @@
 	/// 根据类型获取相册
 //	[self getAlbumWithType];
 //	[self getAlbumWithLocation];
-	[self getAlbumWithMoments2];
+//	[self getAlbumWithMoments2];
+	
+	[self getSmartAlbumList];
+	NSLog(@"=======================");
+	[self getCustomAlbumList];
+	
+	NSLog(@"%@", [JRAssetsManager sharedAssetsManager].albums);
 }
+
+#pragma mark -
+
+/**
+ 获取智能相册
+ */
++ (void)getSmartAlbumList {
+	/// 根据类型选择相册
+//	PHFetchResult *albumResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+//																		  subtype:PHAssetCollectionSubtypeAlbumRegular
+//																		  options:nil];
+
+	
+	PHFetchResult *albumResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+																		  subtype:PHAssetCollectionSubtypeAlbumRegular
+																		  options:nil];
+	
+	CFTimeInterval start = CACurrentMediaTime();
+	[albumResult enumerateObjectsUsingBlock:^(PHAssetCollection *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+		
+		PHFetchResult *res = [PHAsset fetchAssetsInAssetCollection:asset options:nil];
+		
+		if (res.count > 0) {
+			JRAssetCollection *collection = [JRAssetCollection new];
+			collection.assetCount	= res.count;
+			collection.albumName	= asset.localizedTitle;
+			[[JRAssetsManager sharedAssetsManager].albums addObject:collection];
+		}
+
+		[res enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//			NSLog(@"--- %@ - %zd", [obj class], idx);
+		}];
+	}];
+	CFTimeInterval end = CACurrentMediaTime();
+	NSLog(@"=-------2 %f", end - start);
+}
+
+/**
+ 获取用户创建相册
+ */
++ (void)getCustomAlbumList {
+	PHFetchResult *albumResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
+																		  subtype:PHAssetCollectionSubtypeAlbumRegular
+																		  options:nil];
+	
+	[albumResult enumerateObjectsUsingBlock:^(PHAssetCollection *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+		NSLog(@"%@ - %zd", asset.localizedTitle, asset.estimatedAssetCount);
+		PHFetchResult *res = [PHAsset fetchAssetsInAssetCollection:asset options:nil];
+		
+		if (res.count > 0) {
+			JRAssetCollection *collection = [JRAssetCollection new];
+			collection.assetCount	= res.count;
+			collection.albumName	= asset.localizedTitle;
+			[[JRAssetsManager sharedAssetsManager].albums addObject:collection];
+		}
+		
+		[res enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+			//			NSLog(@"--- %@ - %zd", [obj class], idx);
+		}];
+	}];
+}
+
+/**
+ 获取时刻列表
+ */
++ (void)getMomentAlbumList {
+	
+	PHFetchResult *albumResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeMoment
+																		  subtype:PHAssetCollectionSubtypeAlbumRegular
+																		  options:nil];
+	
+	[albumResult enumerateObjectsUsingBlock:^(PHAssetCollection *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+		NSLog(@"%@ - %zd", asset.localizedTitle, asset.estimatedAssetCount);
+		PHFetchResult *res = [PHAsset fetchAssetsInAssetCollection:asset options:nil];
+		[res enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+			//			NSLog(@"--- %@ - %zd", [obj class], idx);
+		}];
+	}];
+}
+
 
 /// 根据类型获取相册
 + (void)getAlbumWithType {
+	
 	/// 根据类型选择相册
 	PHFetchResult *albumResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
 																		  subtype:PHAssetCollectionSubtypeAlbumRegular
@@ -31,7 +120,7 @@
 		NSLog(@"%@ - %zd", asset.localizedTitle, asset.estimatedAssetCount);
 		PHFetchResult *res = [PHAsset fetchAssetsInAssetCollection:asset options:nil];
 		[res enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-			NSLog(@"--- %@ - %zd", [obj class], idx);
+//			NSLog(@"--- %@ - %zd", [obj class], idx);
 		}];
 	}];
 }
@@ -102,6 +191,79 @@
 		}];
 	}];
 }
+
+///
++ (void)fetchWithLocalIdentifiers {
+	
+	/// 获取当前
+//	[PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:<#(nonnull NSArray<NSString *> *)#> options:<#(nullable PHFetchOptions *)#>]
+	
+}
+
++ (void)fetchWithType {
+	
+	// PHAssetCollectionType
+	//	1. PHAssetCollectionTypeAlbum
+	//	An album in the Photos app.
+	//	2. PHAssetCollectionTypeSmartAlbum
+	//	A smart album whose contents update dynamically.
+	//	3. PHAssetCollectionTypeMoment
+	//	A moment in the Photos app.
+	
+	
+//	[PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:<#(PHAssetCollectionSubtype)#> options:<#(nullable PHFetchOptions *)#>]
+	
+}
+
+/// 根据时刻获取相册
++ (void)fetchMomentsWithOptions {
+	
+	PHFetchOptions *options = [[PHFetchOptions alloc] init];
+	PHFetchResult *albumResult = [PHAssetCollection fetchMomentsWithOptions:options];
+	
+	NSLog(@"======= %zd", albumResult.count);
+	
+	[albumResult enumerateObjectsUsingBlock:^(PHAssetCollection *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+		NSLog(@"%@ - %zd", asset.localizedTitle, asset.estimatedAssetCount);
+		PHFetchResult *res = [PHAsset fetchAssetsInAssetCollection:asset options:nil];
+		[res enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//			NSLog(@"--- %@ - %zd", [obj class], idx);
+		}];
+	}];
+	
+}
+
+///
++ (void)fetchMomentsInMomentList {
+	
+	PHCollectionList *list = [[PHCollectionList alloc] init];
+	PHFetchOptions *options = [[PHFetchOptions alloc] init];
+	PHFetchResult *albumResult = [PHAssetCollection fetchMomentsInMomentList:list options:options];
+	
+	[albumResult enumerateObjectsUsingBlock:^(PHAssetCollection *asset, NSUInteger idx, BOOL * _Nonnull stop) {
+		NSLog(@"%@ - %zd", asset.localizedTitle, asset.estimatedAssetCount);
+		PHFetchResult *res = [PHAsset fetchAssetsInAssetCollection:asset options:nil];
+		[res enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+			//			NSLog(@"--- %@ - %zd", [obj class], idx);
+		}];
+	}];
+}
+
+/*
+ + fetchAssetCollectionsWithLocalIdentifiers:options:
+	Retrieves asset collections with the specified unique identifiers.
+ + fetchAssetCollectionsWithType:subtype:options:
+	Retrieves asset collections of the specified type and subtype.
+ + fetchAssetCollectionsContainingAsset:withType:options:
+	Retrieves asset collections of the specified type containing the specified asset.
+ + fetchAssetCollectionsWithALAssetGroupURLs:options:
+	Retrieves asset collections using URLs provided by the Assets Library framework.
+ + fetchMomentsInMomentList:options:
+	Retrieves asset collections in the specified moment list collection.
+ + fetchMomentsWithOptions:
+	Retrieves asset collections corresponding to moments seen in the Photos app.
+
+ */
 
 @end
 
