@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300D7FA61E9157FA00CC698A /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300D7FA51E9157FA00CC698A /* JRCoreViewController.m */; };
+		300D7FA91E91581900CC698A /* JRCoreAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300D7FA81E91581900CC698A /* JRCoreAnimationController.m */; };
+		30109E121E91EB2A00CF7CD5 /* JRLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30109E111E91EB2A00CF7CD5 /* JRLayer.m */; };
 		3015F38F1E87D616006B213D /* JRSimpCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3015F38E1E87D616006B213D /* JRSimpCollectionController.m */; };
 		3015F3921E880B3A006B213D /* JRSimpCollectionController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3015F3911E880B3A006B213D /* JRSimpCollectionController2.m */; };
-		3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */; };
 		303603431E5557F9009BAA82 /* JRPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603421E5557F9009BAA82 /* JRPageViewController.m */; };
 		303603471E55600F009BAA82 /* JRPageDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 303603461E55600F009BAA82 /* JRPageDemoController.m */; };
 		3038A92D1E56E3B000B7F931 /* JRImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3038A92C1E56E3B000B7F931 /* JRImageManager.m */; };
@@ -213,12 +215,17 @@
 
 /* Begin PBXFileReference section */
 		248AB9E1F2719219C53583A9 /* Pods-AttributeText-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		300D7FA41E9157FA00CC698A /* JRCoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreViewController.h; sourceTree = "<group>"; };
+		300D7FA51E9157FA00CC698A /* JRCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreViewController.m; sourceTree = "<group>"; };
+		300D7FA71E91581900CC698A /* JRCoreAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreAnimationController.h; sourceTree = "<group>"; };
+		300D7FA81E91581900CC698A /* JRCoreAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreAnimationController.m; sourceTree = "<group>"; };
+		30109E101E91EB2A00CF7CD5 /* JRLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRLayer.h; sourceTree = "<group>"; };
+		30109E111E91EB2A00CF7CD5 /* JRLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRLayer.m; sourceTree = "<group>"; };
+		30109E141E91ED9800CF7CD5 /* jr_CALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CALayer.h; sourceTree = "<group>"; };
 		3015F38D1E87D616006B213D /* JRSimpCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpCollectionController.h; sourceTree = "<group>"; };
 		3015F38E1E87D616006B213D /* JRSimpCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpCollectionController.m; sourceTree = "<group>"; };
 		3015F3901E880B3A006B213D /* JRSimpCollectionController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpCollectionController2.h; sourceTree = "<group>"; };
 		3015F3911E880B3A006B213D /* JRSimpCollectionController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpCollectionController2.m; sourceTree = "<group>"; };
-		3032F0E01E31B6EA0091F0BC /* JRCoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreViewController.h; sourceTree = "<group>"; };
-		3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCoreViewController.m; sourceTree = "<group>"; };
 		3032F0E41E31BFB90091F0BC /* jr_CTFontManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTFontManager.h; sourceTree = "<group>"; };
 		3036033B1E540EA4009BAA82 /* jr_PHCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHCollection.h; sourceTree = "<group>"; };
 		3036033C1E54232F009BAA82 /* jr_PHFetchResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHFetchResult.h; sourceTree = "<group>"; };
@@ -650,6 +657,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		300D7FA21E9157FA00CC698A /* JRCoreAnimationController */ = {
+			isa = PBXGroup;
+			children = (
+				30109E131E91ED8600CF7CD5 /* header */,
+				300D7FA31E9157FA00CC698A /* Controllers */,
+				30109E101E91EB2A00CF7CD5 /* JRLayer.h */,
+				30109E111E91EB2A00CF7CD5 /* JRLayer.m */,
+			);
+			path = JRCoreAnimationController;
+			sourceTree = "<group>";
+		};
+		300D7FA31E9157FA00CC698A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				300D7FA41E9157FA00CC698A /* JRCoreViewController.h */,
+				300D7FA51E9157FA00CC698A /* JRCoreViewController.m */,
+				300D7FA71E91581900CC698A /* JRCoreAnimationController.h */,
+				300D7FA81E91581900CC698A /* JRCoreAnimationController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		30109E131E91ED8600CF7CD5 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				30109E141E91ED9800CF7CD5 /* jr_CALayer.h */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
 		3015F38C1E87D5F5006B213D /* CollectionControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,31 +696,6 @@
 				3015F3911E880B3A006B213D /* JRSimpCollectionController2.m */,
 			);
 			path = CollectionControllers;
-			sourceTree = "<group>";
-		};
-		3032F0DB1E31B6120091F0BC /* JRBaseCoreController */ = {
-			isa = PBXGroup;
-			children = (
-				3032F0DF1E31B6EA0091F0BC /* Controllers */,
-				3032F0E21E31B6EA0091F0BC /* Views */,
-			);
-			path = JRBaseCoreController;
-			sourceTree = "<group>";
-		};
-		3032F0DF1E31B6EA0091F0BC /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				3032F0E01E31B6EA0091F0BC /* JRCoreViewController.h */,
-				3032F0E11E31B6EA0091F0BC /* JRCoreViewController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		3032F0E21E31B6EA0091F0BC /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		303603401E5557D7009BAA82 /* JRPageViewController */ = {
@@ -1424,11 +1436,11 @@
 				C43EDF721E0A862C00893611 /* JRBlurViewController */,
 				C41D53B01E0D6DF600DEDFF9 /* JRCoreImageController */,
 				C42600121E115C530022C4D5 /* JRCoreTextController */,
-				3032F0DB1E31B6120091F0BC /* JRBaseCoreController */,
 				303603401E5557D7009BAA82 /* JRPageViewController */,
 				30AF1B121E558B04005BEB4B /* JRReaderController */,
 				30D8ACF91E76681100CDC4BA /* JRDataStorageModule */,
 				344DDB0A1E84B9B600127E1C /* JRCollectionController */,
+				300D7FA21E9157FA00CC698A /* JRCoreAnimationController */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1865,6 +1877,7 @@
 				30ADD5F91E4D5060001012E5 /* YYTextUtilities.m in Sources */,
 				30D8ACC11E763CFC00CDC4BA /* NSArray+BlocksKit.m in Sources */,
 				30CC05721E55A825009C1BDD /* UIView+CZAddition.m in Sources */,
+				300D7FA61E9157FA00CC698A /* JRCoreViewController.m in Sources */,
 				C4478C4F1D8FC57A0099EA3C /* JRYYTextViewController.m in Sources */,
 				30828D5D1E53EBDF000316E2 /* UIView+Layout.m in Sources */,
 				30A3C6E41E52F7F6002424FA /* YYImage.m in Sources */,
@@ -1895,6 +1908,7 @@
 				30CC056E1E55A825009C1BDD /* UIButton+CZAddition.m in Sources */,
 				30ADD5AB1E4D5053001012E5 /* TYLinkTextStorage.m in Sources */,
 				34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */,
+				30109E121E91EB2A00CF7CD5 /* JRLayer.m in Sources */,
 				30A3C68A1E52B3E8002424FA /* UIImage+GIF.m in Sources */,
 				30ADD5EE1E4D5060001012E5 /* YYTextArchiver.m in Sources */,
 				34D31C311E8362A500F71735 /* ZHFProgressHUD.m in Sources */,
@@ -1904,7 +1918,6 @@
 				30A3C68E1E52B3E8002424FA /* UIView+WebCacheOperation.m in Sources */,
 				30ADD5ED1E4D505F001012E5 /* YYTextSelectionView.m in Sources */,
 				30CC05711E55A825009C1BDD /* UIScreen+CZAddition.m in Sources */,
-				3032F0E31E31B6EA0091F0BC /* JRCoreViewController.m in Sources */,
 				30D8ACC41E763CFC00CDC4BA /* NSInvocation+BlocksKit.m in Sources */,
 				30ADD5F01E4D5060001012E5 /* YYTextParser.m in Sources */,
 				305B31761E7A5D9200B546AB /* UIView+YYAdd.m in Sources */,
@@ -1974,6 +1987,7 @@
 				30ADD5FA1E4D5060001012E5 /* YYTextWeakProxy.m in Sources */,
 				30ADD5A81E4D5053001012E5 /* TYDrawStorage.m in Sources */,
 				30CC056F1E55A825009C1BDD /* UIColor+CZAddition.m in Sources */,
+				300D7FA91E91581900CC698A /* JRCoreAnimationController.m in Sources */,
 				308E87471E51AB6300600176 /* MGSwipeTableCell.m in Sources */,
 				30D8ACDA1E763CFC00CDC4BA /* UIBarButtonItem+BlocksKit.m in Sources */,
 				C42600151E115CB80022C4D5 /* JRCoreTextController.m in Sources */,
