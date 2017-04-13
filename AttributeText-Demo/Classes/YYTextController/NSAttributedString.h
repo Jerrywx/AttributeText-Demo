@@ -70,11 +70,12 @@ UIKIT_EXTERN NSString * const NSVerticalGlyphFormAttributeName NS_AVAILABLE(10_7
 
 /************************ Attribute values ************************/
 // This defines currently supported values for NSUnderlineStyleAttributeName and NSStrikethroughStyleAttributeName. NSUnderlineStyle*, NSUnderlinePattern*, and NSUnderlineByWord are or'ed together to produce an underline style.
+/// 下划线样式
 typedef NS_ENUM(NSInteger, NSUnderlineStyle) {
-	NSUnderlineStyleNone                                    = 0x00,
-	NSUnderlineStyleSingle                                  = 0x01,
+	NSUnderlineStyleNone                                    = 0x00,				// 无
+	NSUnderlineStyleSingle                                  = 0x01,				// 单行
 	NSUnderlineStyleThick NS_ENUM_AVAILABLE(10_0, 7_0)      = 0x02,
-	NSUnderlineStyleDouble NS_ENUM_AVAILABLE(10_0, 7_0)     = 0x09,
+	NSUnderlineStyleDouble NS_ENUM_AVAILABLE(10_0, 7_0)     = 0x09,				// 双
 	
 	NSUnderlinePatternSolid NS_ENUM_AVAILABLE(10_0, 7_0)      = 0x0000,
 	NSUnderlinePatternDot NS_ENUM_AVAILABLE(10_0, 7_0)        = 0x0100,
@@ -86,6 +87,7 @@ typedef NS_ENUM(NSInteger, NSUnderlineStyle) {
 } NS_ENUM_AVAILABLE(10_0, 6_0);
 
 // NSWritingDirectionFormatType values used by NSWritingDirectionAttributeName. It is or'ed with either NSWritingDirectionLeftToRight or NSWritingDirectionRightToLeft. Can specify the formatting controls defined by Unicode Bidirectional Algorithm.
+/// 绘制方向
 typedef NS_ENUM(NSInteger, NSWritingDirectionFormatType) {
 	NSWritingDirectionEmbedding     = (0 << 1),
 	NSWritingDirectionOverride      = (1 << 1)
@@ -146,24 +148,40 @@ UIKIT_EXTERN NSString * const NSDefaultTabIntervalDocumentAttribute NS_AVAILABLE
 UIKIT_EXTERN NSString * const NSTextLayoutSectionsAttribute NS_AVAILABLE(10_7, 7_0);  // NSArray of dictionaries.  Each dictionary describing a layout orientation section.  The dictionary can have two attributes: NSTextLayoutSectionOrientation and NSTextLayoutSectionRange.  When there is a gap between sections, it's assumed to have NSTextLayoutOrientationHorizontal.
 
 
-
 @interface NSAttributedString (NSAttributedStringDocumentFormats)
 // Methods initializing the receiver contents with an external document data.  options specify document attributes for interpreting the document contents.  NSDocumentTypeDocumentAttribute, NSCharacterEncodingDocumentAttribute, and NSDefaultAttributesDocumentAttribute are supported options key.  When they are not specified, these methods will examine the data and do their best to detect the appropriate attributes.  If dict is non-NULL, it will return a dictionary with various document-wide attributes accessible via NS...DocumentAttribute keys.
-- (nullable instancetype)initWithURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict error:(NSError **)error NS_AVAILABLE(10_4, 9_0);
-- (nullable instancetype)initWithData:(NSData *)data options:(NSDictionary<NSString *, id> *)options documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict error:(NSError **)error NS_AVAILABLE(10_0, 7_0);
+- (nullable instancetype)initWithURL:(NSURL *)url 
+							 options:(NSDictionary<NSString *, id> *)options 
+				  documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict error:(NSError **)error;
+
+- (nullable instancetype)initWithData:(NSData *)data 
+							  options:(NSDictionary<NSString *, id> *)options 
+				   documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict error:(NSError **)error;
 
 // Generates an NSData object for the receiver contents in range.  It requires a document attributes dict specifying at least the NSDocumentTypeDocumentAttribute to determine the format to be written.
-- (nullable NSData *)dataFromRange:(NSRange)range documentAttributes:(NSDictionary<NSString *, id> *)dict error:(NSError **)error NS_AVAILABLE(10_0, 7_0);
+- (nullable NSData *)dataFromRange:(NSRange)range 
+				documentAttributes:(NSDictionary<NSString *, id> *)dict 
+							 error:(NSError **)error;
 
 // Returns an NSFileWrapper object for the receiver contents in range.  It requires a document attributes dict specifying at least the NSDocumentTypeDocumentAttribute to determine the format to be written.  The method returns a directory file wrapper for those document types represented by a file package such as NSRTFDTextDocumentType; otherwise, it returns a regular-file file wrapper.
-- (nullable NSFileWrapper *)fileWrapperFromRange:(NSRange)range documentAttributes:(NSDictionary<NSString *, id> *)dict error:(NSError **)error NS_AVAILABLE(10_0, 7_0);
+- (nullable NSFileWrapper *)fileWrapperFromRange:(NSRange)range 
+							  documentAttributes:(NSDictionary<NSString *, id> *)dict 
+										   error:(NSError **)error;
 
 @end
 
 @interface NSMutableAttributedString (NSMutableAttributedStringDocumentFormats)
 // Methods replacing the receiver contents with an external document data.  options specify document attributes for interpreting the document contents.  NSDocumentTypeDocumentAttribute, NSCharacterEncodingDocumentAttribute, and NSDefaultAttributesDocumentAttribute are supported options key.  When they are not specified, these methods will examine the data and do their best to detect the appropriate attributes.  If dict is non-NULL, it will return a dictionary with various document-wide attributes accessible via NS...DocumentAttribute keys.
-- (BOOL)readFromURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)opts documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict error:(NSError **)error  NS_AVAILABLE(10_11, 9_0);
-- (BOOL)readFromData:(NSData *)data options:(NSDictionary<NSString *, id> *)opts documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict error:(NSError **)error NS_AVAILABLE(10_0, 7_0);
+- (BOOL)readFromURL:(NSURL *)url 
+			options:(NSDictionary<NSString *, id> *)opts 
+ documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict 
+			  error:(NSError **)error;
+
+- (BOOL)readFromData:(NSData *)data 
+			 options:(NSDictionary<NSString *, id> *)opts 
+  documentAttributes:(NSDictionary<NSString *, id> * __nullable * __nullable)dict 
+			   error:(NSError **)error;
+
 @end
 
 
@@ -173,21 +191,6 @@ UIKIT_EXTERN NSString * const NSTextLayoutSectionsAttribute NS_AVAILABLE(10_7, 7
 - (BOOL)containsAttachmentsInRange:(NSRange)range NS_AVAILABLE(10_11, 9_0);
 @end
 
-/************************ Deprecated ************************/
-
-typedef NS_ENUM(NSInteger, NSTextWritingDirection) {
-	NSTextWritingDirectionEmbedding     = (0 << 1),
-	NSTextWritingDirectionOverride      = (1 << 1)
-} NS_ENUM_DEPRECATED_IOS(7_0, 9_0, "Use NSWritingDirectionFormatType instead") __TVOS_PROHIBITED;
-
-@interface NSAttributedString(NSDeprecatedKitAdditions)
-- (nullable instancetype)initWithFileURL:(NSURL *)url options:(NSDictionary *)options documentAttributes:(NSDictionary* __nullable * __nullable)dict error:(NSError **)error NS_DEPRECATED_IOS(7_0, 9_0, "Use -initWithURL:options:documentAttributes:error: instead") __TVOS_PROHIBITED;
-@end
-
-@interface NSMutableAttributedString (NSDeprecatedKitAdditions)
-- (BOOL)readFromFileURL:(NSURL *)url options:(NSDictionary *)opts documentAttributes:(NSDictionary* __nullable * __nullable)dict error:(NSError **)error NS_DEPRECATED_IOS(7_0, 9_0, "Use -readFromURL:options:documentAttributes:error: instead") __TVOS_PROHIBITED;
-@end
-NS_ASSUME_NONNULL_END
 
 
 
@@ -205,7 +208,6 @@ NS_ASSUME_NONNULL_END
 									 effectiveRange:(nullable NSRangePointer)range;
 
 @end
-
 /// 扩展
 @interface NSAttributedString (NSExtendedAttributedString)
 /// 长度
@@ -234,40 +236,54 @@ NS_ASSUME_NONNULL_END
 					attributes:(nullable NSDictionary<NSString *, id> *)attrs;
 /// 使用属性字符串初始化
 - (instancetype)initWithAttributedString:(NSAttributedString *)attrStr;
-
+///
 typedef NS_OPTIONS(NSUInteger, NSAttributedStringEnumerationOptions) {
 	NSAttributedStringEnumerationReverse = (1UL << 1),
 	NSAttributedStringEnumerationLongestEffectiveRangeNotRequired = (1UL << 20)
 };
+/// 遍历
+- (void)enumerateAttributesInRange:(NSRange)enumerationRange 
+						   options:(NSAttributedStringEnumerationOptions)opts 
+						usingBlock:(void (NS_NOESCAPE ^)(NSDictionary<NSString *, id> *attrs,
+														 NSRange range, BOOL *stop))block;
 
-- (void)enumerateAttributesInRange:(NSRange)enumerationRange options:(NSAttributedStringEnumerationOptions)opts usingBlock:(void (NS_NOESCAPE ^)(NSDictionary<NSString *, id> *attrs, NSRange range, BOOL *stop))block NS_AVAILABLE(10_6, 4_0);
-- (void)enumerateAttribute:(NSString *)attrName inRange:(NSRange)enumerationRange options:(NSAttributedStringEnumerationOptions)opts usingBlock:(void (NS_NOESCAPE ^)(id _Nullable value, NSRange range, BOOL *stop))block NS_AVAILABLE(10_6, 4_0);
+- (void)enumerateAttribute:(NSString *)attrName 
+				   inRange:(NSRange)enumerationRange 
+				   options:(NSAttributedStringEnumerationOptions)opts 
+				usingBlock:(void (NS_NOESCAPE ^)(id _Nullable value, NSRange range, BOOL *stop))block;
 
 @end
 
-NS_CLASS_AVAILABLE(10_0, 3_2)
 @interface NSMutableAttributedString : NSAttributedString
-
+/// 替换字符串
 - (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)str;
+/// 设置属性
 - (void)setAttributes:(nullable NSDictionary<NSString *, id> *)attrs range:(NSRange)range;
 
 @end
 
 @interface NSMutableAttributedString (NSExtendedMutableAttributedString)
-
+/// 可变字符串
 @property (readonly, retain) NSMutableString *mutableString;
-
+/// 添加属性
 - (void)addAttribute:(NSString *)name value:(id)value range:(NSRange)range;
+/// 添加属性
 - (void)addAttributes:(NSDictionary<NSString *, id> *)attrs range:(NSRange)range;
+/// 删除属性
 - (void)removeAttribute:(NSString *)name range:(NSRange)range;
-
+/// 替换属性字符串
 - (void)replaceCharactersInRange:(NSRange)range withAttributedString:(NSAttributedString *)attrString;
+/// 插入属性字符串
 - (void)insertAttributedString:(NSAttributedString *)attrString atIndex:(NSUInteger)loc;
+/// 追加属性字符串
 - (void)appendAttributedString:(NSAttributedString *)attrString;
+/// 删除属性字符串
 - (void)deleteCharactersInRange:(NSRange)range;
+/// 设置属性字符串
 - (void)setAttributedString:(NSAttributedString *)attrString;
-
+/// 开始编辑
 - (void)beginEditing;
+/// 停止编辑
 - (void)endEditing;
 
 @end

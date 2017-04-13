@@ -97,12 +97,35 @@
 //	NSLog(@"=== %@ --- %zd %zd", textBlocks, textBlocksArrayRange.location, textBlocksArrayRange.length);
 	
 	NSDictionary *dic = [aString attributesAtIndex:1 effectiveRange:&textBlocksArrayRange];
-	NSLog(@"=== %@ --- %zd %zd", dic, textBlocksArrayRange.location, textBlocksArrayRange.length);
+//	NSLog(@"=== %@ --- %zd %zd", dic, textBlocksArrayRange.location, textBlocksArrayRange.length);
 //	NSDictionary *dic2 = [aString attributesAtIndex:6 effectiveRange:&textBlocksArrayRange];
 	NSDictionary *dic2 = [aString attributesAtIndex:5 
 							  longestEffectiveRange:&textBlocksArrayRange 
 											inRange:NSMakeRange(3, 3)];
-	NSLog(@"=== %@ --- %zd %zd", dic2, textBlocksArrayRange.location, textBlocksArrayRange.length);
+//	NSLog(@"=== %@ --- %zd %zd", dic2, textBlocksArrayRange.location, textBlocksArrayRange.length);
+	
+	
+	NSLog(@"start encoding");
+//	NSString *htmlBody = @"<html><body>I am <b>bold</b> and <i>italic</i>";
+	NSString *htmlBody = @"<bold>Wow!</bold> Now <em>iOS</em> can create <h3>NSAttributedString</h3> from HTMLs!";
+	NSStringEncoding encoding = NSUnicodeStringEncoding;
+	NSData *data = [htmlBody dataUsingEncoding:encoding];
+	NSDictionary *options = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+							  NSCharacterEncodingDocumentAttribute: @(encoding)};
+	
+//	NSURL *url = [NSURL URLWithString:@"https://www.baidu.com/"];
+	NSAttributedString *body = [[NSAttributedString alloc] initWithData:data
+																options:options
+													 documentAttributes:nil
+																  error:nil];
+	
+//	NSAttributedString *body = [[NSAttributedString alloc] initWithURL:url 
+//															   options:options 
+//													documentAttributes:nil
+//																 error:nil];
+	
+	NSLog(@"end encoding%@", body);
+	self.label.attributedText = body;
 }
 
 #pragma mark -
