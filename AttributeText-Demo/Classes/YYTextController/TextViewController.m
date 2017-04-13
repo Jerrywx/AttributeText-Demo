@@ -8,6 +8,7 @@
 
 #import "TextViewController.h"
 #import "M80AttributedLabel.h"
+#import "JRTextView.h"
 
 @interface TextViewController ()
 
@@ -18,6 +19,8 @@
 @property (nonatomic, strong) M80AttributedLabel *label2;
 
 @property (nonatomic, strong) NSMutableAttributedString *aString;
+
+@property (nonatomic, strong) JRTextView *textView;
 
 @end
 
@@ -31,7 +34,7 @@
 
 - (void)setupView {
 	
-	///
+	/// YYKit
 	self.label = ({
 		YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(20, 80, SCREEN_W - 40, 100)];
 		label.textVerticalAlignment = YYTextVerticalAlignmentTop;
@@ -40,49 +43,69 @@
 		[self.view addSubview:label];
 		label;
 	});
-	
-	
 	YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(300, 100) text:self.aString];
 	self.label.textLayout = layout;
 	
-//	NSLog(@"%@", NSStringFromCGRect(layout.textBoundingRect));
-	
+	/// M80
 	self.label2 = ({
-		M80AttributedLabel *label = [[M80AttributedLabel alloc] initWithFrame:CGRectMake(20, 200, SCREEN_W - 40, 100)];
+		M80AttributedLabel *label = [[M80AttributedLabel alloc] initWithFrame:CGRectMake(20, 200, SCREEN_W - 40, 50)];
 		label.backgroundColor = [UIColor yellowColor];
 		[self.view addSubview:label];
 		label;
 	});
-	
 	self.label2.text = @"这是一个测试";
-//	[self.label2 appendImage:[UIImage imageNamed:@"受惊"]];
 	[self.label2 appendText:@"margin"];
-	
 	[self.label2 appendImage:[UIImage imageNamed:@"受惊"] maxSize:CGSizeMake(15, 15) margin:UIEdgeInsetsMake(0, 4, 2, 4)];
 	[self.label2 appendText:@"测试结束"];
+	
+	/// 测试
+	self.textView = ({
+		JRTextView *view = [[JRTextView alloc] initWithFrame:CGRectMake(20, 320, SCREEN_W - 40, 100)];
+		view.backgroundColor = [UIColor yellowColor];
+		[self.view addSubview:view];
+		view;
+	});
 	
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 	
-	NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:@"An NSAttributedString object manages character strings and associated sets of attributes (for example, font and kerning) that apply to individual characters..."];
-	[aString setYy_font:kFontSize_18];
-	[aString yy_setColor:[UIColor redColor] range:NSMakeRange(10, 40)];
-	self.label.attributedText = aString;
+	NSMutableDictionary *appendAttributes = [NSMutableDictionary dictionary];
+	[appendAttributes setObject:@"111" forKey:@"one"];
+	[appendAttributes setObject:@"222" forKey:@"two"];
+	[appendAttributes setObject:@[@"one", @"two", @"three"] forKey:@"three"];
 	
 	
-//	[NSAttributedString attributedStringWithAttachment:<#(nonnull NSTextAttachment *)#>]
-//	CFAttributedStringCreate
+	NSMutableDictionary *a2 = [NSMutableDictionary dictionary];
+	[a2 setObject:@"111zzz" forKey:@"one!"];
+	[a2 setObject:@"222aaa" forKey:@"two!"];
+	[a2 setObject:@[@"one", @"two", @"three"] forKey:@"three!"];
 	
-	CFStringRef str = CFSTR("An NSAttributedString object manages character strings and associated sets of attributes (for example, font and kerning) that apply to individual characters...");
 	
-	CFAttributedStringRef cfaString = CFAttributedStringCreate(kCFAllocatorDefault, str, NULL);
-	CFIndex len = CFAttributedStringGetLength(cfaString);
-	NSLog(@"==== %zd", len);
+	NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:@"这是一个"
+																				attributes:appendAttributes];
 	
+	NSAttributedString *aString2 = [[NSAttributedString alloc] initWithString:@"测试字符串" attributes:a2];
+	
+	[aString appendAttributedString:aString2];
+	
+	NSRange textBlocksArrayRange;
+	NSArray *textBlocks = [aString attribute:@"threeqq"
+									 atIndex:1
+					   longestEffectiveRange:&textBlocksArrayRange
+									 inRange:NSMakeRange(0, aString.string.length)];
+//	NSLog(@"=== %@ --- %zd %zd", textBlocks, textBlocksArrayRange.location, textBlocksArrayRange.length);
+	
+	NSDictionary *dic = [aString attributesAtIndex:1 effectiveRange:&textBlocksArrayRange];
+	NSLog(@"=== %@ --- %zd %zd", dic, textBlocksArrayRange.location, textBlocksArrayRange.length);
+//	NSDictionary *dic2 = [aString attributesAtIndex:6 effectiveRange:&textBlocksArrayRange];
+	NSDictionary *dic2 = [aString attributesAtIndex:5 
+							  longestEffectiveRange:&textBlocksArrayRange 
+											inRange:NSMakeRange(3, 3)];
+	NSLog(@"=== %@ --- %zd %zd", dic2, textBlocksArrayRange.location, textBlocksArrayRange.length);
 }
 
-#pragma mark - 
+#pragma mark -
 
 - (NSMutableAttributedString *)aString {
 	if (_aString) {

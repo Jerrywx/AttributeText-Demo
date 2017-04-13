@@ -163,6 +163,7 @@
 		345531761E98E651003C7B08 /* YYAsyncLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 345531711E98E651003C7B08 /* YYAsyncLayer.m */; };
 		345531771E98E651003C7B08 /* YYSentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = 345531731E98E651003C7B08 /* YYSentinel.m */; };
 		345531781E98E651003C7B08 /* YYTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 345531751E98E651003C7B08 /* YYTransaction.m */; };
+		3458D6681E9F683A009593E9 /* JRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3458D6671E9F683A009593E9 /* JRTextView.m */; };
 		34593D8E1E824E8800259DF2 /* JRDataStorageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D891E824E8800259DF2 /* JRDataStorageController.m */; };
 		34593D8F1E824E8800259DF2 /* JRFMDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D8C1E824E8800259DF2 /* JRFMDBController.m */; };
 		34593D921E824FDD00259DF2 /* ZHForumLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 34593D911E824FDD00259DF2 /* ZHForumLog.m */; };
@@ -251,8 +252,8 @@
 		303ACF581E5A99520079B74A /* JRCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCModel.m; sourceTree = "<group>"; };
 		303ACF5A1E5AB6BF0079B74A /* JRHModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRHModel.h; sourceTree = "<group>"; };
 		303ACF5B1E5AB6BF0079B74A /* JRHModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRHModel.m; sourceTree = "<group>"; };
-		304288C21E08D987004BDE4A /* JRTextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextViewViewController.h; sourceTree = "<group>"; };
-		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextViewViewController.m; sourceTree = "<group>"; };
+		304288C21E08D987004BDE4A /* JRTextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRTextViewViewController.h; path = ../JRTextViewViewController.h; sourceTree = "<group>"; };
+		304288C31E08D987004BDE4A /* JRTextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRTextViewViewController.m; path = ../JRTextViewViewController.m; sourceTree = "<group>"; };
 		304288C51E08DCA2004BDE4A /* NSAttributedString+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JRExtension.h"; sourceTree = "<group>"; };
 		304288C61E08DCA2004BDE4A /* NSAttributedString+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+JRExtension.m"; sourceTree = "<group>"; };
 		305B316D1E7A5D9200B546AB /* JRCoreImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCoreImageController.h; sourceTree = "<group>"; };
@@ -568,6 +569,8 @@
 		345531731E98E651003C7B08 /* YYSentinel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYSentinel.m; sourceTree = "<group>"; };
 		345531741E98E651003C7B08 /* YYTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTransaction.h; sourceTree = "<group>"; };
 		345531751E98E651003C7B08 /* YYTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTransaction.m; sourceTree = "<group>"; };
+		3458D6661E9F683A009593E9 /* JRTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTextView.h; sourceTree = "<group>"; };
+		3458D6671E9F683A009593E9 /* JRTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTextView.m; sourceTree = "<group>"; };
 		34593D881E824E8800259DF2 /* JRDataStorageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRDataStorageController.h; sourceTree = "<group>"; };
 		34593D891E824E8800259DF2 /* JRDataStorageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRDataStorageController.m; sourceTree = "<group>"; };
 		34593D8B1E824E8800259DF2 /* JRFMDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFMDBController.h; sourceTree = "<group>"; };
@@ -603,8 +606,8 @@
 		34DB4C321E83A45300F95E1D /* ZHFRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFRefreshHeader.m; sourceTree = "<group>"; };
 		519580AAE907D9DADAD16CB2 /* Pods-AttributeText-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributeText-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributeText-Demo/Pods-AttributeText-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		75A7D122A4ED564AF4A93467 /* libPods-AttributeText-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributeText-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
-		C400712E1D901ED100220BB9 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		C400712D1D901ED100220BB9 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextViewController.h; path = ../TextViewController.h; sourceTree = "<group>"; };
+		C400712E1D901ED100220BB9 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextViewController.m; path = ../TextViewController.m; sourceTree = "<group>"; };
 		C40448AD1D82654D0039A815 /* JRBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBaseViewController.h; sourceTree = "<group>"; };
 		C40448AE1D82654D0039A815 /* JRBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBaseViewController.m; sourceTree = "<group>"; };
 		C40448B01D82655A0039A815 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -652,8 +655,8 @@
 		C43741971E1FF3E700FAD830 /* jr_CTRunRef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_CTRunRef.h; sourceTree = "<group>"; };
 		C43EDF731E0A863A00893611 /* JRBlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBlurViewController.h; sourceTree = "<group>"; };
 		C43EDF741E0A863A00893611 /* JRBlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBlurViewController.m; sourceTree = "<group>"; };
-		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRYYTextViewController.h; sourceTree = "<group>"; };
-		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRYYTextViewController.m; sourceTree = "<group>"; };
+		C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRYYTextViewController.h; path = ../JRYYTextViewController.h; sourceTree = "<group>"; };
+		C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRYYTextViewController.m; path = ../JRYYTextViewController.m; sourceTree = "<group>"; };
 		C48275121D9174F40032EE10 /* UIColor+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JRExtension.h"; sourceTree = "<group>"; };
 		C48275131D9174F40032EE10 /* UIColor+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JRExtension.m"; sourceTree = "<group>"; };
 		C48275551D9187DF0032EE10 /* JRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRViewController.h; sourceTree = "<group>"; };
@@ -882,8 +885,14 @@
 		3086EDEA1E52FD6200791CB7 /* YYTextDemoController */ = {
 			isa = PBXGroup;
 			children = (
+				C400712D1D901ED100220BB9 /* TextViewController.h */,
+				C400712E1D901ED100220BB9 /* TextViewController.m */,
 				3086EDEB1E52FD8200791CB7 /* JRTextDemoViewController.h */,
 				3086EDEC1E52FD8200791CB7 /* JRTextDemoViewController.m */,
+				C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */,
+				C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */,
+				304288C21E08D987004BDE4A /* JRTextViewViewController.h */,
+				304288C31E08D987004BDE4A /* JRTextViewViewController.m */,
 			);
 			path = YYTextDemoController;
 			sourceTree = "<group>";
@@ -1712,13 +1721,9 @@
 			isa = PBXGroup;
 			children = (
 				3086EDEA1E52FD6200791CB7 /* YYTextDemoController */,
-				C4478C4D1D8FC57A0099EA3C /* JRYYTextViewController.h */,
-				C4478C4E1D8FC57A0099EA3C /* JRYYTextViewController.m */,
-				C400712D1D901ED100220BB9 /* TextViewController.h */,
-				C400712E1D901ED100220BB9 /* TextViewController.m */,
-				304288C21E08D987004BDE4A /* JRTextViewViewController.h */,
-				304288C31E08D987004BDE4A /* JRTextViewViewController.m */,
 				309CCFE01E08FDE000B23A4D /* NSAttributedString.h */,
+				3458D6661E9F683A009593E9 /* JRTextView.h */,
+				3458D6671E9F683A009593E9 /* JRTextView.m */,
 			);
 			path = YYTextController;
 			sourceTree = "<group>";
@@ -2105,6 +2110,7 @@
 				30CC056F1E55A825009C1BDD /* UIColor+CZAddition.m in Sources */,
 				308E87471E51AB6300600176 /* MGSwipeTableCell.m in Sources */,
 				30D8ACDA1E763CFC00CDC4BA /* UIBarButtonItem+BlocksKit.m in Sources */,
+				3458D6681E9F683A009593E9 /* JRTextView.m in Sources */,
 				30CC05681E55A825009C1BDD /* NSArray+Log.m in Sources */,
 				30ADD5A91E4D5053001012E5 /* TYImageCache.m in Sources */,
 				30B279911E5BFDCE00C2DFAF /* JRSubView.m in Sources */,
