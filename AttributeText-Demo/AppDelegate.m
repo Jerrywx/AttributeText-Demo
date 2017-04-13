@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "JRBlockViewController.h"
 #import "JRDataStorageController.h"
+#import "JRCoreAnimationController.h"
 
 @interface AppDelegate ()
 
@@ -38,15 +39,20 @@
 	JRDataStorageController *threeVC	= [[JRDataStorageController alloc] init];
 	UINavigationController *threeNav	= [[UINavigationController alloc] initWithRootViewController:threeVC];
 	threeVC.title			= @"Three";
-	
-//	JRCoreImageController
+
 	/// 4.
 	JRCoreImageController *fourVC	= [[JRCoreImageController alloc] init];
 	UINavigationController *fourNav	= [[UINavigationController alloc] initWithRootViewController:fourVC];
 	fourVC.title			= @"Four";
 	
+	// JRCoreAnimationController.h
+	/// 4.
+	JRCoreAnimationController *animaVC	= [[JRCoreAnimationController alloc] init];
+	UINavigationController *animaNav	= [[UINavigationController alloc] initWithRootViewController:animaVC];
+	animaVC.title			= @"Animation";
+	
 	/// 添加控制器
-	tabVC.viewControllers = @[oneNav, twoNav, threeNav, fourNav];
+	tabVC.viewControllers = @[oneNav, twoNav, animaNav, threeNav, fourNav];
 	
 	/// 显示
 	self.window.rootViewController = tabVC;
