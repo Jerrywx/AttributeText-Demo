@@ -1078,7 +1078,9 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     YYTextContainer *container	= _innerContainer;
     YYTextVerticalAlignment verticalAlignment = _textVerticalAlignment;
     YYTextDebugOption *debug		 = _debugOption;
+	//// View 附件
     NSMutableArray *attachmentViews  = _attachmentViews;
+	//// layer 附件
     NSMutableArray *attachmentLayers = _attachmentLayers;
     BOOL layoutNeedUpdate	= _state.layoutNeedUpdate;
     BOOL fadeForAsync		= _displaysAsynchronously && _fadeOnAsynchronouslyDisplay;
@@ -1097,6 +1099,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 	
 	/// 将要开始渲染layer内容 回调
     task.willDisplay = ^(CALayer *layer) {
+		
         [layer removeAnimationForKey:@"contents"];
         
         // If the attachment is not in new layout, or we don't know the new layout currently,
@@ -1108,6 +1111,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
                 }
             }
         }
+		
         for (CALayer *layer in attachmentLayers) {
             if (layoutNeedUpdate || ![layout.attachmentContentsSet containsObject:layer]) {
                 if (layer.superlayer == self.layer) {
@@ -1115,6 +1119,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
                 }
             }
         }
+		
         [attachmentViews removeAllObjects];
         [attachmentLayers removeAllObjects];
     };
@@ -1208,11 +1213,15 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         [drawLayout drawInContext:nil size:size point:point view:view layer:layer debug:nil cancel:NULL];
 		
 		
+		/// 保存附件
         for (YYTextAttachment *a in drawLayout.attachments) {
-            if ([a.content isKindOfClass:[UIView class]]) [attachmentViews addObject:a.content];
-            else if ([a.content isKindOfClass:[CALayer class]]) [attachmentLayers addObject:a.content];
+            if ([a.content isKindOfClass:[UIView class]])
+				[attachmentViews addObject:a.content];
+            else if ([a.content isKindOfClass:[CALayer class]])
+				[attachmentLayers addObject:a.content];
         }
-        
+		
+		///
         if (contentsNeedFade) {
             CATransition *transition = [CATransition animation];
             transition.duration = kHighlightFadeDuration;

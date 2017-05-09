@@ -62,17 +62,12 @@
     switch (indexPath.row) {
         case 0: {
             JRSimpCollectionController *vc = [[JRSimpCollectionController alloc] init];
+			vc.hidesBottomBarWhenPushed =  YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
 			
 		case 1: {
-			
-//			[ZHFProgressHUD showHUDAddedTo:self.view];
-//			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//				[ZHFProgressHUD hideHUDForView:self.view];
-//			});
-			
 			JRSimpCollectionController2 *vc = [[JRSimpCollectionController2 alloc] init];
 			[self.navigationController pushViewController:vc animated:YES];
 		}
@@ -81,6 +76,9 @@
             break;
     }
 }
+
+
+
 
 #pragma mark -
 - (NSArray *)dataSource {

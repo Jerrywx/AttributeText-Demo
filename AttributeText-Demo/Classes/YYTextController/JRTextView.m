@@ -7,6 +7,7 @@
 //
 
 #import "JRTextView.h"
+#import "JRDemo.h"
 
 @implementation JRTextView
 
