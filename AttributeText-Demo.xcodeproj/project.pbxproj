@@ -448,11 +448,13 @@
 		30D8ACFE1E7668E200CDC4BA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D8ACFD1E7668E200CDC4BA /* libsqlite3.tbd */; };
 		30F9946C1E9E840300912613 /* JRSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F994691E9E840300912613 /* JRSimpleView.m */; };
 		30F9946D1E9E840300912613 /* JRSimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F9946B1E9E840300912613 /* JRSimpleViewController.m */; };
+		34390E811EA5F05D0052BB6B /* JRDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 34390E801EA5F05D0052BB6B /* JRDemo.m */; };
 		343EBCD41E9E04A4008D305F /* JRAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 343EBCD31E9E04A4008D305F /* JRAssets.m */; };
 		343EBCD71E9E0BD0008D305F /* JRAssetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 343EBCD61E9E0BD0008D305F /* JRAssetCollection.m */; };
 		343EBCDA1E9E1354008D305F /* JRAssetsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 343EBCD91E9E1354008D305F /* JRAssetsManager.m */; };
 		344DDB151E84B9B600127E1C /* JRBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344DDB0D1E84B9B600127E1C /* JRBlockViewController.m */; };
 		344DDB161E84B9B600127E1C /* JRCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344DDB0F1E84B9B600127E1C /* JRCollectionController.m */; };
+		3451F0E91EB0405F00B9A3D9 /* JRCollectionViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3451F0E81EB0405F00B9A3D9 /* JRCollectionViewCell2.m */; };
 		345531761E98E651003C7B08 /* YYAsyncLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 345531711E98E651003C7B08 /* YYAsyncLayer.m */; };
 		345531771E98E651003C7B08 /* YYSentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = 345531731E98E651003C7B08 /* YYSentinel.m */; };
 		345531781E98E651003C7B08 /* YYTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 345531751E98E651003C7B08 /* YYTransaction.m */; };
@@ -1138,6 +1140,8 @@
 		30F994691E9E840300912613 /* JRSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpleView.m; sourceTree = "<group>"; };
 		30F9946A1E9E840300912613 /* JRSimpleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSimpleViewController.h; sourceTree = "<group>"; };
 		30F9946B1E9E840300912613 /* JRSimpleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSimpleViewController.m; sourceTree = "<group>"; };
+		34390E7F1EA5F05D0052BB6B /* JRDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRDemo.h; sourceTree = "<group>"; };
+		34390E801EA5F05D0052BB6B /* JRDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRDemo.m; sourceTree = "<group>"; };
 		343EBCD21E9E04A4008D305F /* JRAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAssets.h; sourceTree = "<group>"; };
 		343EBCD31E9E04A4008D305F /* JRAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAssets.m; sourceTree = "<group>"; };
 		343EBCD51E9E0BD0008D305F /* JRAssetCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAssetCollection.h; sourceTree = "<group>"; };
@@ -1152,6 +1156,8 @@
 		344DDB121E84B9B600127E1C /* jr_UICollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionView.h; sourceTree = "<group>"; };
 		344DDB131E84B9B600127E1C /* jr_UICollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		344DDB141E84B9B600127E1C /* jr_UICollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jr_UICollectionViewLayout.h; sourceTree = "<group>"; };
+		3451F0E71EB0405F00B9A3D9 /* JRCollectionViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCollectionViewCell2.h; sourceTree = "<group>"; };
+		3451F0E81EB0405F00B9A3D9 /* JRCollectionViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCollectionViewCell2.m; sourceTree = "<group>"; };
 		345531701E98E651003C7B08 /* YYAsyncLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAsyncLayer.h; sourceTree = "<group>"; };
 		345531711E98E651003C7B08 /* YYAsyncLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAsyncLayer.m; sourceTree = "<group>"; };
 		345531721E98E651003C7B08 /* YYSentinel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSentinel.h; sourceTree = "<group>"; };
@@ -2296,6 +2302,8 @@
 				344DDB101E84B9B600127E1C /* header */,
 				344DDB0B1E84B9B600127E1C /* Controllers */,
 				3015F38C1E87D5F5006B213D /* CollectionControllers */,
+				3451F0E71EB0405F00B9A3D9 /* JRCollectionViewCell2.h */,
+				3451F0E81EB0405F00B9A3D9 /* JRCollectionViewCell2.m */,
 			);
 			path = JRCollectionController;
 			sourceTree = "<group>";
@@ -2640,6 +2648,8 @@
 				34D31C2E1E8362A500F71735 /* ZHFProgressHUD */,
 				3038A92A1E56E36800B7F931 /* JRImagePicker */,
 				C48275111D9174F40032EE10 /* JRExtension */,
+				34390E7F1EA5F05D0052BB6B /* JRDemo.h */,
+				34390E801EA5F05D0052BB6B /* JRDemo.m */,
 			);
 			path = JRTools;
 			sourceTree = "<group>";
@@ -3225,6 +3235,7 @@
 				30ADD5A71E4D5053001012E5 /* TYAttributedLabel.m in Sources */,
 				30A3C68D1E52B3E8002424FA /* UIImageView+WebCache.m in Sources */,
 				348F3D8A1E9B377900D3AE45 /* M80AttributedLabel.m in Sources */,
+				34390E811EA5F05D0052BB6B /* JRDemo.m in Sources */,
 				30ADD5FB1E4D5060001012E5 /* YYLabel.m in Sources */,
 				30ADD5F81E4D5060001012E5 /* YYTextTransaction.m in Sources */,
 				30CC056D1E55A825009C1BDD /* NSString+CZPath.m in Sources */,
@@ -3316,6 +3327,7 @@
 				30D8ACD11E763CFC00CDC4BA /* A2DynamicDelegate.m in Sources */,
 				3038A92D1E56E3B000B7F931 /* JRImageManager.m in Sources */,
 				C42A193F1E133E9500268F1C /* JRTranslateCTMView.m in Sources */,
+				3451F0E91EB0405F00B9A3D9 /* JRCollectionViewCell2.m in Sources */,
 				30D8ACC71E763CFC00CDC4BA /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				305B31741E7A5D9200B546AB /* JRCoreImageController.m in Sources */,
 				30D8ACDD1E763CFC00CDC4BA /* UIImagePickerController+BlocksKit.m in Sources */,
