@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的起点 - 小记 的交互设计</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_19">产品的起点 - 小记 的交互设计</h1>
+        <div class="section">
+            <h1 id="product-design-产品的起点---小记-的交互设计" class="calibre7">Product Design: 产品的起点 - <strong class="calibre15">小记</strong> 的交互设计</h1>
+<p class="calibre8"><strong class="calibre12">小记</strong> 的交互非常简单:</p>
+<ul class="calibre10">
+<li class="calibre11"><p class="calibre8">单击进入</p>
+</li>
+<li class="calibre11"><p class="calibre8">双击返回</p>
+</li>
+</ul>
+<p class="calibre8">返回的时候采用放大，渐变的动画。</p>
+<p class="calibre8">这两个交互在 iOS 系统上并不常见，开始之初会有一定的学习成本。</p>
+<p class="calibre8">但是从另外一个角度，这个交互可以很好保护 App 所带来的时空感，避免突然被很现代的操作在两个时空拉扯，产生 “山寨” 的感觉。</p>
+<p class="calibre8">所以虽然略有弊端，但是最后还是决定留下这个交互。</p>
+<p class="calibre8">Sketch 里已经完成了界面的设计，剩下的就是导入到 Framer 里加工一下交互。</p>
+<h2 id="导入-sketch-文件" class="calibre9">导入 Sketch 文件</h2>
+<p class="calibre8">打开你的 Sketch 文件，然后切换到 FramerStudio 里，点击 File -&gt; Import</p>
+<p class="calibre8"><img src="16.jpg" alt="导入" class="calibre20"/></p>
+<p class="calibre8">这时候 Framer 自动根据我们的 Sketch 文件里对每个 Artboard 的命名生成了图层。</p>
+<p class="calibre8">先把主页面显示出来</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-title"># 把 Diary 文件中所有的图层导入到 diaryLayers</span>
+diaryLayers = Framer.Importer.load <span class="hljs-string">"imported/Diary"</span>
+
+<span class="hljs-title"># 创建新的图层</span>
+container = <span class="hljs-keyword">new</span> Layer
+    width: Screen.width <span class="hljs-title"># Screen 可以直接拿到设备的尺寸</span>
+    height: Screen.height
+    backgroundColor: <span class="hljs-string">"#fff"</span> ＃ 设置背景色为 <span class="hljs-title">#fff</span>
+
+container.center()  
+<span class="hljs-title">#使用 Framer 提供的 Center 函数居中显示Layer</span>
+
+diaryLayers.Month.visible = <span class="hljs-number">true</span> <span class="hljs-title"># 使 Month 这个 Layer 显示</span>
+diaryLayers.Month.superLayer = container
+<span class="hljs-title"># 使用 container 作为 Month 的父层</span>
+</code></pre>
+<p class="calibre8">点击中间的日期后切换到日记页面</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">diaryLayers = Framer.Importer.load <span class="hljs-string">"imported/Diary"</span>
+
+diaryContainer = <span class="hljs-keyword">new</span> Layer
+    width: Screen.width
+    height: Screen.height
+    backgroundColor: <span class="hljs-string">"white"</span> ＃ 设置背景色为白色
+    scale: <span class="hljs-number">0</span> <span class="hljs-title"># 设置缩放为 0 即最小化</span>
+    opacity: <span class="hljs-number">0</span> <span class="hljs-title"># 设置透明度为 0</span>
+
+diaryContainer.states.animationOptions = {
+    curve: <span class="hljs-string">"ease-in-out"</span>
+    repeat: <span class="hljs-number">0</span>
+    delay: <span class="hljs-number">0</span>
+    time: <span class="hljs-number">0.4</span>
+}
+
+diaryContainer.states.add
+    default: {opacity:<span class="hljs-number">0</span>, scale: <span class="hljs-number">0</span>}
+    show: {opacity:<span class="hljs-number">1</span>, scale: <span class="hljs-number">1</span>}
+    fadeOut: {opacity:<span class="hljs-number">0</span>, scale: <span class="hljs-number">2.0</span>}
+
+diaryContainer.center()
+
+diaryLayers.View.visible = <span class="hljs-number">true</span>
+diaryLayers.View.superLayer = diaryContainer
+
+container = <span class="hljs-keyword">new</span> Layer
+    width: Screen.width
+    height: Screen.height
+    backgroundColor: <span class="hljs-string">"#fff"</span>
+
+container.center()
+
+diaryLayers.Month.visible = <span class="hljs-number">true</span>
+diaryLayers.Month.superLayer = container
+
+diaryLayers.Month.<span class="hljs-number">on</span> Events.Click, <span class="hljs-function">-&gt;</span>
+    diaryContainer.bringToFront() <span class="hljs-title"># 置顶显示</span>
+    diaryContainer.states.<span class="hljs-keyword">switch</span>(<span class="hljs-string">"show"</span>) <span class="hljs-title"># 切换状态</span>
+</code></pre>
+<p class="calibre8">双击日记页面后页面消失</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">clickCount = <span class="hljs-number">0</span>
+diaryContainer.<span class="hljs-number">on</span> Events.Click, <span class="hljs-function">-&gt;</span>
+    clickCount += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> clickCount == <span class="hljs-number">2</span>
+        diaryContainer.states.<span class="hljs-keyword">switch</span>(<span class="hljs-string">"fadeOut"</span>)
+        clickCount = <span class="hljs-number">0</span>
+</code></pre>
+<p class="calibre8">短短 50 行代码，Framer 和 Sketch 就可以迅速完成交互的原型，这个双击返回的交互贯彻在所有界面。</p>
+<p class="calibre8">在制作原型的时候需要注意的一点是，只需要做出具体某个交互的演示效果即可，不需要 100% 正常工作，不然花费的精力可能甚至超过你在 iOS 里实现这个效果。</p>
+<p class="calibre8">你可以从 <a href="http://static-catch.qiniudn.com/Diary.framer.zip" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a> 获取到 Framer 的工程源码。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

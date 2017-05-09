@@ -74,6 +74,7 @@
 //			});
 			
 			JRSimpCollectionController2 *vc = [[JRSimpCollectionController2 alloc] init];
+			vc.hidesBottomBarWhenPushed = YES;
 			[self.navigationController pushViewController:vc animated:YES];
 		}
 	

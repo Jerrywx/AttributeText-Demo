@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>动画进阶 - 帧序列动画</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_45">动画进阶 - 帧序列动画</h1>
+        <div class="section">
+            <h1 id="product-advanced-动画进阶-帧序列动画" class="calibre7">Product Advanced 动画进阶: 帧序列动画</h1>
+<p class="calibre8">iOS 中还有一种特殊的动画，就是帧序列动画，有时候一些复杂细腻的变形动画用代码实现起来技术和时间成本都比较高，但是用 AE (After Effects) 等软件制作起来要简单的多。</p>
+<p class="calibre8">以 Twitter 的点赞动画为例</p>
+<div class="calibre21"><img src="naughty.gif" class="calibre50"/></div>
+
+<p class="calibre8">这个动画其实就是针对一个帧图矩阵进行操控实现了这个效果，在 2D 游戏中经常使用这种技术来实现角色动画。</p>
+<div class="calibre21"><img src="fav.png" class="calibre50"/></div>
+
+<p class="calibre8">iOS 中其实现原理也很简单，一起通过 <a href="https://github.com/kevinzhow/NaughtyImageView.git" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">NaughtyImageView</a> 的代码来分析一下其原理。</p>
+<h2 id="生成矩阵" class="calibre9">生成矩阵</h2>
+<p class="calibre8">在设置图片但时候，设置行数和列数，生成一个矩阵存成字典，使程序可以简单的通过帧的序列获取在矩阵中正确的位置。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> horizontalImages: <span class="hljs-class">Int</span>!
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> verticalImages: <span class="hljs-class">Int</span>!
+
+<span class="hljs-keyword">var</span> floatingImage: <span class="hljs-class">UIImageView</span>!
+
+<span class="hljs-keyword">var</span> positionMatrix = [<span class="hljs-class">CGPoint</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>)]
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">setupWithImage</span><span class="hljs-number">(newImage: UIImage,
+   horizontalImages: Int, verticalImages: Int)</span></span> {
+
+    <span class="hljs-keyword">if</span> !debug {
+        clipsToBounds = <span class="hljs-number">true</span>
+    }
+
+    floatingImage.frame = <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>,
+      frame.width * <span class="hljs-class">CGFloat</span>(horizontalImages),
+       frame.height * <span class="hljs-class">CGFloat</span>(verticalImages))
+
+    floatingImage.image = newImage
+
+    <span class="hljs-keyword">self</span>.horizontalImages = horizontalImages
+    <span class="hljs-keyword">self</span>.verticalImages = verticalImages
+
+    floatingImage.contentMode = <span class="hljs-class">UIViewContentMode</span>.<span class="hljs-class">TopLeft</span>
+
+    <span class="hljs-keyword">var</span> index = <span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">var</span> tempX = <span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">var</span> tempY = <span class="hljs-number">0</span>
+
+    <span class="hljs-keyword">while</span> index &lt;= (horizontalImages * verticalImages - <span class="hljs-number">1</span>)
+    {
+
+        positionMatrix.append(<span class="hljs-class">CGPoint</span>(x: tempX,
+           y: tempY))
+
+        <span class="hljs-keyword">if</span> tempX + <span class="hljs-number">1</span> &gt; horizontalImages - <span class="hljs-number">1</span> {
+            tempX = <span class="hljs-number">0</span>
+            tempY += <span class="hljs-number">1</span>
+        } <span class="hljs-keyword">else</span> {
+            tempX += <span class="hljs-number">1</span>
+        }
+
+        index += <span class="hljs-number">1</span>
+    }
+}
+</code></pre>
+<h2 id="播放控制" class="calibre9">播放控制</h2>
+<p class="calibre8">原矩阵图的 UIImageView 被作为 Subview 嵌套在了一个 UIImageView UIImageView 的大小等于矩阵单个图片的大小，同时給这个 UIImageView 设置为 clipToBounds，这样超过的部分就会被隐藏起来，最后使用 CADisplayLink 来控制播放</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">startNaughtyAnimation</span><span class="hljs-number">()</span></span> {
+  finished = <span class="hljs-number">false</span>
+  naughtyAnimating = <span class="hljs-number">true</span>
+
+  displayLink = <span class="hljs-class">CADisplayLink</span>(target: <span class="hljs-keyword">self</span>,
+    selector: <span class="hljs-class">Selector</span>(<span class="hljs-string">"callbackNaughtyAnimation"</span>))
+
+  displayLink.addToRunLoop(<span class="hljs-class">NSRunLoop</span>.currentRunLoop(),
+  forMode: <span class="hljs-class">NSRunLoopCommonModes</span>)
+}
+</code></pre>
+<p class="calibre8">默认的帧率是 60fps 可以利用 frameSkip 参数来设置跳帧</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> frameSkip = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> frameCount = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">callbackNaughtyAnimation</span><span class="hljs-number">()</span></span> {
+
+  <span class="hljs-keyword">if</span> frameCount == frameSkip {
+      toNewFrame(currentIndex + <span class="hljs-number">1</span>)
+      frameCount = <span class="hljs-number">0</span>
+  } <span class="hljs-keyword">else</span> {
+      frameCount += <span class="hljs-number">1</span>
+  }
+
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">toNewFrame</span><span class="hljs-number">(frameIndex: Int)</span></span> {
+
+  <span class="hljs-keyword">if</span> frameIndex + <span class="hljs-number">1</span> &lt;= positionMatrix.<span class="hljs-number">count</span> {
+      currentIndex = frameIndex
+  } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span> loop {
+          currentIndex = <span class="hljs-number">0</span>
+      } <span class="hljs-keyword">else</span> {
+          finished = <span class="hljs-number">true</span>
+          stopNaughtyAnimation()
+      }
+
+  }
+}
+</code></pre>
+<p class="calibre8">真正控制显示哪帧则放在了 currentIndex 的 didSet 里</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> currentIndex = <span class="hljs-number">0</span> {
+  <span class="hljs-keyword">didSet</span> {
+
+    <span class="hljs-keyword">var</span> location = locateFrame(currentIndex)
+
+    floatingImage.frame = <span class="hljs-class">CGRectMake</span>(
+      -location.x * frame.width,
+       -location.y * frame.height,
+        floatingImage.frame.width,
+         floatingImage.frame.height)
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">locateFrame</span><span class="hljs-number">(frameIndex: Int)</span></span> -&gt; <span class="hljs-class">CGPoint</span> {
+
+  <span class="hljs-keyword">var</span> location: <span class="hljs-class">CGPoint</span> = positionMatrix[frameIndex]
+
+  <span class="hljs-keyword">return</span> location
+}
+</code></pre>
+<h2 id="使用" class="calibre9">使用</h2>
+<p class="calibre8">首先创建一个 NaughtyImageView，然后初始化图片，接着就可以使用 startNaughtyAnimation() 方法来播放。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> starImageView = <span class="hljs-class">NaughtyImageView</span>(frame:
+  <span class="hljs-class">CGRectMake</span>(view.frame.width/<span class="hljs-number">2.0</span> - <span class="hljs-number">32</span>/<span class="hljs-number">2.0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">32</span>, <span class="hljs-number">32</span>))
+
+starImageView.setupWithImage(<span class="hljs-class">UIImage</span>(named: <span class="hljs-string">"fav"</span>)!,
+ horizontalImages: <span class="hljs-number">8</span>, verticalImages: <span class="hljs-number">12</span>)
+
+<span class="hljs-title">// 开始播放</span>
+starImageView.startNaughtyAnimation()
+</code></pre>
+<p class="calibre8">而通过 toNewFrame() 方法则可以精确控制播放进度，适合在做下拉刷新动画的时候使用。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">starImageView.toNewFrame(frameIndex)
+</code></pre>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

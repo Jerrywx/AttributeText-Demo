@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>工具 - Framer 基础</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_15">工具 - Framer 基础</h1>
+        <div class="section">
+            <h1 id="product-design-产品的起点---framer-基础" class="calibre7">Product Design: 产品的起点 - Framer 基础</h1>
+<h2 id="coffeescript" class="calibre14">CoffeeScript</h2>
+<p class="calibre8">CoffeeScript 是 JavaScript 的二代语言，或许这两种语言对你来说此刻都很陌生。不过没关系，我们学 CoffeeScript，问题立刻就少了一半。</p>
+<p class="calibre8">最快入门一个语言的方法不是从理论开始，而是直接使用这门语言。Swift 是我们的主菜，CoffeeScript 这个小菜可以直接端上来。</p>
+<h2 id="coffeescript-基础" class="calibre9">CoffeeScript 基础</h2>
+<p class="calibre8">你可以进入 <a href="http://coffeescript.org/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">CoffeeScript</a> 的官网，点击 Try CoffeeScript 来学习这门语言。</p>
+<h3 id="赋值" class="calibre31">赋值</h3>
+<p class="calibre8">从现在开始你要习惯计算机世界里各种奇奇怪怪的名字，做的事情都很简单，但是名字着实卖弄。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">number = <span class="hljs-number">42</span>
+alert number
+</code></pre>
+<p class="calibre8">把 42 赋值给 number，接下来点击右边的 RUN，你就会看到一个弹窗提示 42。</p>
+<h3 id="判断语句" class="calibre31">判断语句</h3>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">newNumber = <span class="hljs-number">43</span>
+<span class="hljs-keyword">if</span> newNumber &gt; <span class="hljs-number">42</span>
+  number = newNumber
+<span class="hljs-keyword">else</span>
+  number = <span class="hljs-number">42</span>
+alert number
+</code></pre>
+<p class="calibre8">if..else 是程序世界最常用的条件判断语句，这里的含义就是当 newNumber 大于 42 的时候，number 赋值为 newNumber 的值，如果小于 42，number 赋值为 42。</p>
+<p class="calibre8">点击 RUN，你会看到弹窗提示 43。</p>
+<h3 id="函数" class="calibre31">函数</h3>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-title">sum</span> = <span class="hljs-number">(x,y)</span> -&gt;</span>
+  <span class="hljs-keyword">return</span> x + y
+
+number = sum(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+
+alert number
+</code></pre>
+<p class="calibre8">函数是程序世界里另外一个非常常用的功能，这里我们定义了一个函数 sum 它接受两个参数 x 和 y，并把他们的求和返回出来。</p>
+<p class="calibre8">当我们执行 sum(1,2) 的时候，1 和 2 就分别作为 x,y 传入了函数，并且执行。如果函数不要求任何参数，那么就是单纯的  function_name() 即可。</p>
+<p class="calibre8">RUN 一下可以看到弹窗提示 3。</p>
+<p class="calibre8">可能现在你的大脑已经浆糊了， -&gt; 是什么来的？</p>
+<p class="calibre8">其实这些东西都不需要深究，每一种编程语言都有自己的约定，而 -&gt; 就是表示函数的特殊符号，你可以当作这是画画。</p>
+<p class="calibre8">CoffeeScript 使用行与行之间的缩进关系来表示代码之间的关系，如果你写成这样</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-title">sum</span> = <span class="hljs-number">(x,y)</span> -&gt;</span>
+<span class="hljs-keyword">return</span> x + y
+
+number = sum(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+
+alert number
+</code></pre>
+<p class="calibre8">那么再点击 RUN 的时候，就会出现这个错误</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">SyntaxError: Illegal return statement
+</code></pre><p class="calibre8">因为缩进关系一变化，逻辑就也发生了变化。</p>
+<h3 id="对象" class="calibre31">对象</h3>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">me =
+  age:    <span class="hljs-number">23</span>
+  height: <span class="hljs-number">178</span>
+  weight: <span class="hljs-string">"secret"</span>
+
+alert me.weight
+</code></pre>
+<p class="calibre8">我们可以把一组参数打包进去一个对象里，比如这里我们创建了一个 me 对象，里面有年龄，身高，体重。</p>
+<p class="calibre8">通过 me.weight 这种方式，就能够获得对象属性所对应的值。</p>
+<p class="calibre8">当你 RUN 的时候，就会有弹窗提示，secret。</p>
+<h2 id="framer" class="calibre9">Framer</h2>
+<p class="calibre8">打开 Framer 之后就可以看到他们已经附带了一个例子</p>
+<p class="calibre8"><img src="15.jpg" alt="Framer 主界面" class="calibre20"/></p>
+<p class="calibre8">逐行解释下：</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">iconLayer = <span class="hljs-keyword">new</span> Layer width:<span class="hljs-number">256</span>, height:<span class="hljs-number">256</span>,
+ image:<span class="hljs-string">"images/framer-icon.jpg"</span>
+
+<span class="hljs-title"># 创建一个 Layer，名字是 iconLayer，宽度是 256，高度是 256</span>
+<span class="hljs-title"># 显示本程序文件所在的文件夹下 images 文件夹里的 framer-icon.jpg</span>
+
+iconLayer.center()
+
+<span class="hljs-title"># 居中显示这个 Layer</span>
+
+iconLayer.states.add
+    second: {y:<span class="hljs-number">100</span>, scale:<span class="hljs-number">0.6</span>, rotationZ:<span class="hljs-number">100</span>}
+    third:  {y:<span class="hljs-number">300</span>, scale:<span class="hljs-number">1.3</span>, blur:<span class="hljs-number">4</span>}
+    fourth: {y:<span class="hljs-number">200</span>, scale:<span class="hljs-number">0.9</span>, blur:<span class="hljs-number">2</span>, rotationZ:<span class="hljs-number">200</span>}
+
+<span class="hljs-title"># 给这个 Layer 定义三种状态，分别设定了三种状态下 Layer 的 y 坐标</span>
+<span class="hljs-title"># scale 缩放，以及 blur 模糊程度，和 Z 轴的旋转</span>
+<span class="hljs-title"># 这里有 second, third, fourth, 但是first 是什么？</span>
+<span class="hljs-title"># 没有做任何变化之前的默认状态就是 First</span>
+
+iconLayer.states.animationOptions =
+    curve: <span class="hljs-string">"spring(500,12,0)"</span>
+
+<span class="hljs-title"># 设置进行状态变化的时候的动画曲线参数，spring(500,12,0) 是弹簧动画</span>
+<span class="hljs-title"># 里面参数的意义就需要阅读文档了</span>
+
+iconLayer.<span class="hljs-number">on</span> Events.Click, <span class="hljs-function">-&gt;</span>
+    iconLayer.states.next()
+
+<span class="hljs-title"># 当用户点击这个 Layer 的时候， Layer 的状态自动切换到下一个</span>
+</code></pre>
+<p class="calibre8">对于 <code class="pcalibre6 pcalibre5 calibre34">spring</code> 参数的解释，你可以<a href="http://framerjs.com/docs/#animation.curve-types" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">查看这里</a>， Framer 有两种 Spring 效果，<code class="pcalibre6 pcalibre5 calibre34">spring-rk4</code> 和 <code class="pcalibre6 pcalibre5 calibre34">spring-dho</code>，而 <code class="pcalibre6 pcalibre5 calibre34">spring</code> 被映射到了 <code class="pcalibre6 pcalibre5 calibre34">spring-rk4</code>，所以上面的也可以写作 <code class="pcalibre6 pcalibre5 calibre34">spring-rk4(500,12,0)</code>。</p>
+<h2 id="drag" class="calibre9">Drag</h2>
+<p class="calibre8">删掉上面所有的代码，点击 Snippets 选择 Draggleable Layer</p>
+<p class="calibre8"><img src="23.jpg" alt="Snippets" class="calibre20"/></p>
+<p class="calibre8">这时候右面 iPhone 就切换了一个场景，你可以拖动中间的白色矩形，来试试交互的感觉。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">bg = <span class="hljs-keyword">new</span> BackgroundLayer backgroundColor: <span class="hljs-string">"#28affa"</span>
+
+<span class="hljs-title"># 设置背景</span>
+
+layerA = <span class="hljs-keyword">new</span> Layer
+    width: <span class="hljs-number">250</span>
+    height: <span class="hljs-number">250</span>
+    backgroundColor: <span class="hljs-string">"#fff"</span>
+    borderRadius: <span class="hljs-number">8</span>
+
+<span class="hljs-title"># 除了高宽，这个 Layer 还设置了背景色，圆角半径 8</span>
+
+layerA.center()
+layerA.draggable.enabled = <span class="hljs-number">true</span>
+
+<span class="hljs-title"># 使这个 Layer 可以跟随拖动</span>
+</code></pre>
+<p class="calibre8">在我刚接触这样代码的时候，我最大的疑问是，为什么 <code class="pcalibre6 pcalibre5 calibre34">layerA.draggable.enabled = true</code> 设置了后，他就可以跟随我的拖动了？背后都发生了什么？</p>
+<p class="calibre8">这些疑问会在某一天你来写一个通用模块的时候迎刃而解。</p>
+<h2 id="实时预览" class="calibre9">实时预览</h2>
+<p class="calibre8">在 iOS 上下载 Frameless 这个浏览器，你在手机上打开的时候，他就会询问你是不是连接 Framer，点击 Sure，就可以自动同步两边的界面。</p>
+<div class="calibre21"><img src="24.jpg" class="calibre25"/></div>
+
+<p class="calibre8">在手机上点点试试，对，现在就是这么神奇。</p>
+<h2 id="游乐园" class="calibre9">游乐园</h2>
+<p class="calibre8">Framer 带了很多例子，先从这些例子来学习是很好的开始，你可以修改里面参数，反复运行，不管结果是对还是错，当成一个游乐园来玩耍，把不理解的地方都打包起来。</p>
+<p class="calibre8">玩累了之后去官网查看对应的文档，当你在文档里看到要找的答案，茅塞顿开的感觉请牢牢记住哟。</p>
+<p class="calibre8">恭喜你，很快，你就可以入门这个技术了。</p>
+<h2 id="深入学习-framer" class="calibre9">深入学习 Framer</h2>
+<p class="calibre8"><a href="http://coffeescript.org" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Learn CoffeeScript</a></p>
+<p class="calibre8"><a href="http://framerjs.com/learn/basics/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Learn Framer</a></p>
+<p class="calibre8"><a href="http://examples.framerjs.com/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Framer Example</a></p>
+<p class="calibre8"><a href="http://framerco.de" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">FramerCode</a></p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

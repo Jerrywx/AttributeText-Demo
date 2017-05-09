@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - 在年之外</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_27">产品的实现 - 在年之外</h1>
+        <div class="section">
+            <h1 id="product-code-产品的实现---在年之外" class="calibre7">Product Code: 产品的实现 - 在年之外</h1>
+<p class="calibre8">从这章开始，我们开始构建一个完全自定义界面的 App 小记，陌生的知识即将扑面而来，不要担心，接受新知识的时候大脑都会短路发热。你需要做的就是像看英文文章一样去试着理解这些代码的含义。</p>
+<p class="calibre8">等你第二天醒来的时候，这些知识就再也不会陌生。</p>
+<h2 id="uilabel" class="calibre9">UILabel</h2>
+<p class="calibre8">竖排是我们第一个要攻克的问题，这个问题可大可小，往大了讲就是实现一个可以竖着显示，竖着编辑，竖着选择的体验和横着完全一样的控件，小了说就是一个竖着显示文字的控件。</p>
+<p class="calibre8">那么，在小记里，大的地方就是查看的界面，小的地方就是显示年份的这种小 Label。</p>
+<p class="calibre8">在 iOS 里，UI 方面的控件都在一个叫 UIKit 的 Framework 里面，UIButton，UITextView，UITextField 等等，这些控件各有特性，但是都基于 UIView 衍生出来，需要你慢慢地挨个熟悉。</p>
+<p class="calibre8">我们先来搞定 UILabel。</p>
+<p class="calibre8">新建一个 Playground，这是 Swift 时代新引入的一个东西，可以实时查看代码的效果。你可以在 <a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Diary/UILabel/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a> 获取完成后的 Playground。</p>
+<p class="calibre8"><img src="114.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><img src="212.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">在里面输入如下代码</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> UIKit
+
+<span class="hljs-title">// 引用 UIKit 这样才能找得到 UILabel</span>
+
+<span class="hljs-keyword">var</span> newLabel = <span class="hljs-class">UILabel</span>(frame: <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">300</span>, <span class="hljs-number">100</span>))
+
+<span class="hljs-title">// 创建新的 UILabel，并且设置宽高为 100 和 300</span>
+
+newLabel.text = <span class="hljs-string">"HeyLabel"</span>
+
+<span class="hljs-title">// 设置 Label 的文字</span>
+
+newLabel.sizeToFit()
+
+<span class="hljs-title">// 使 Label 的大小自动适应文字的大小</span>
+
+newLabel
+</code></pre>
+<p class="calibre8">这时候你就可以在右边点小眼睛查看到这个控件的外观</p>
+<p class="calibre8"><img src="38.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">任重而道远，开心一下继续下面的任务，就是让它竖着显示。
+这里我们采用的方法比较取巧</p>
+<ol class="calibre2">
+<li class="calibre11">设置 Label 的宽度为文字单个字符的宽度</li>
+<li class="calibre11">高度为全部文字叠加起来的高度</li>
+<li class="calibre11">自动换行</li>
+</ol>
+<p class="calibre8">这样文字就会竖着显示了。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> fontSize: <span class="hljs-class">CGFloat</span> = <span class="hljs-number">22.0</span>
+
+<span class="hljs-keyword">let</span> font = <span class="hljs-class">UIFont</span>.systemFontOfSize(fontSize)
+
+<span class="hljs-keyword">var</span> newLabelTwo = <span class="hljs-class">UILabel</span>(frame: <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>, width: <span class="hljs-number">20</span>, height: <span class="hljs-number">100</span>))
+
+newLabelTwo.text = <span class="hljs-string">"竖排文字"</span>
+
+newLabelTwo.lineBreakMode = <span class="hljs-class">NSLineBreakMode</span>.<span class="hljs-class">ByCharWrapping</span>
+<span class="hljs-title">// 以字符为换行标准</span>
+
+newLabelTwo.numberOfLines = <span class="hljs-number">0</span>
+</code></pre>
+<p class="calibre8">为了实现这一点，我们要写一个函数，来计算竖着显示这些文字的大小是多少</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sizeHeightWithText</span><span class="hljs-number">(labelText: NSString,
+fontSize: CGFloat,
+textAttributes: [String : AnyObject])</span></span> -&gt; <span class="hljs-class">CGRect</span> {
+
+  <span class="hljs-keyword">return</span> labelText.boundingRectWithSize(
+        <span class="hljs-class">CGSizeMake</span>(fontSize, <span class="hljs-number">480</span>),
+    options: <span class="hljs-class">NSStringDrawingOptions</span>.<span class="hljs-class">UsesLineFragmentOrigin</span>,
+    attributes: textAttributes, context: <span class="hljs-number">nil</span>)
+}
+</code></pre>
+<p class="calibre8">NSString 这个类有一个自带的 <code class="pcalibre6 pcalibre5 calibre34">boundingRectWithSize</code> 方法，这个方法可以计算在给定的大小里填充进文字后的实际大小是多少，CGSizeMake(fontSize, 480) 这个参数给了一个宽度是文字的宽度，高度是 480 的长方形大小。</p>
+<p class="calibre8"><code class="pcalibre6 pcalibre5 calibre34">NSStringDrawingOptions.UsesLineFragmentOrigin</code> 设定了文字的排列对齐的方式，textAttributes 里存放了文字的字体以及行高宽之类的信息。</p>
+<p class="calibre8">那么我们修改下 Label 的面积大小。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> labelText = <span class="hljs-string">"竖排文字"</span>
+
+<span class="hljs-keyword">let</span> fontSize: <span class="hljs-class">CGFloat</span> = <span class="hljs-number">22.0</span>
+
+<span class="hljs-keyword">let</span> font = <span class="hljs-class">UIFont</span>.systemFontOfSize(fontSize)
+<span class="hljs-title">//创建 康熙字典体</span>
+
+<span class="hljs-keyword">let</span> textAttributes: [<span class="hljs-class">String</span> : <span class="hljs-class">AnyObject</span>] =
+[<span class="hljs-class">NSFontAttributeName</span>: font]
+<span class="hljs-title">// 定义一个字体样式，这里 [key: value] 的写法是一种字典映射</span>
+<span class="hljs-title">// 意思是 key 的值就是后面的 value，在这里的意思就是字体</span>
+<span class="hljs-title">//（NSFontAttributeName）使用康熙字典体</span>
+
+<span class="hljs-keyword">let</span> labelSize = sizeHeightWithText(labelText,
+    fontSize: fontSize ,
+    textAttributes: textAttributes)
+
+<span class="hljs-keyword">var</span> newLabelTwo = <span class="hljs-class">UILabel</span>(frame: labelSize)
+
+newLabelTwo.attributedText = <span class="hljs-class">NSAttributedString</span>(string:
+    labelText, attributes: textAttributes)
+<span class="hljs-title">// 设置带有字体样式的文字</span>
+
+newLabelTwo.lineBreakMode = <span class="hljs-class">NSLineBreakMode</span>.<span class="hljs-class">ByCharWrapping</span>
+<span class="hljs-title">// 以字符为换行标准</span>
+
+newLabelTwo.numberOfLines = <span class="hljs-number">0</span>
+<span class="hljs-title">//  允许多行</span>
+</code></pre>
+<p class="calibre8">这时，你的 newLabel 就完成了竖排的任务，你可以在 <a href="http://static-catch.qiniudn.com/PlaygroundExample.zip" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a> 获取到一个完整的示例代码</p>
+<p class="calibre8"><img src="73.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">接下来，独立成一个单独的类方便重复使用，简称复用。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> UIKit
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sizeHeightWithText</span><span class="hljs-number">(labelText: NSString,
+    fontSize: CGFloat,
+    textAttributes: [String : AnyObject])</span></span> -&gt; <span class="hljs-class">CGRect</span> {
+
+        <span class="hljs-keyword">return</span> labelText.boundingRectWithSize(
+            <span class="hljs-class">CGSizeMake</span>(fontSize, <span class="hljs-number">480</span>),
+            options: <span class="hljs-class">NSStringDrawingOptions</span>.
+                        <span class="hljs-class">UsesLineFragmentOrigin</span>,
+            attributes: textAttributes, context: <span class="hljs-number">nil</span>)
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryLabel</span>: <span class="hljs-title">UILabel</span> </span>{
+
+  <span class="hljs-keyword">var</span> textAttributes: [<span class="hljs-class">String</span> : <span class="hljs-class">AnyObject</span>]!
+
+  <span class="hljs-keyword">convenience</span> <span class="hljs-keyword">init</span>(fontname:<span class="hljs-class">String</span>,
+      labelText:<span class="hljs-class">String</span>,
+      fontSize : <span class="hljs-class">CGFloat</span>,
+      lineHeight: <span class="hljs-class">CGFloat</span>){
+
+      <span class="hljs-keyword">self</span>.<span class="hljs-keyword">init</span>(frame: <span class="hljs-class">CGRectZero</span>)
+
+      <span class="hljs-keyword">let</span> font = <span class="hljs-class">UIFont</span>(name: fontname,
+          size: fontSize) <span class="hljs-keyword">as</span> <span class="hljs-class">UIFont</span>!
+
+      <span class="hljs-keyword">let</span> paragraphStyle = <span class="hljs-class">NSMutableParagraphStyle</span>()
+      paragraphStyle.lineSpacing = lineHeight
+
+      textAttributes = [<span class="hljs-class">NSFontAttributeName</span>: font,
+          <span class="hljs-class">NSParagraphStyleAttributeName</span>: paragraphStyle]
+
+      <span class="hljs-keyword">let</span> labelSize = sizeHeightWithText(labelText,
+                fontSize: fontSize ,
+                textAttributes: textAttributes)
+
+      <span class="hljs-keyword">self</span>.frame = <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, labelSize.width,
+          labelSize.height)
+
+      <span class="hljs-keyword">self</span>.attributedText = <span class="hljs-class">NSAttributedString</span>(
+          string: labelText,
+          attributes: textAttributes)
+      <span class="hljs-keyword">self</span>.lineBreakMode = <span class="hljs-class">NSLineBreakMode</span>.<span class="hljs-class">ByCharWrapping</span>
+      <span class="hljs-keyword">self</span>.numberOfLines = <span class="hljs-number">0</span>
+  }
+
+}
+</code></pre>
+<p class="calibre8">这种行为就叫做重构，是用来消磨时间，增加代码的可维护性，提升满足感的好活动。</p>
+<p class="calibre8">我们还使用了神奇的 convenience init 方法，在这个方法里我们定义了 UILabel 被生成的时候可以接受的参数，像 fontname，labelText 等，都指定成在生成的时候边可以设定，而在这个方法里面，我们真正的生成是用 self.init(frame: CGRectZero) 这个方法，他调用了自己（即 UILabel）原本的 init(frame: CGRectZero) 方法来生成一个最原始的 UILabel，随后我们对其根据传入的参数进行了定制。</p>
+<h2 id="字体" class="calibre9">字体</h2>
+<p class="calibre8">首先我们要添加两个字体，<a href="http://wytype.com/purchase/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">文悦字型</a> 提供了我们需要的康熙字典体和文悦聚珍仿宋。</p>
+<p class="calibre8">下载后把字体拖到 Xcode 的项目里。</p>
+<p class="calibre8"><img src="47.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">然后修改项目的配置文件 Supporting Files/Info.plist，右键在 Fonts provided by application 增加两行 String，分别为字体的文件名。</p>
+<p class="calibre8"><img src="57.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">最后你需要知道这里两个字体在应用里的正式名字是什么，方法很简单，在 Finder 里面双击安装这个字体，然后你就能在 PostScript 看到它的名字。</p>
+<p class="calibre8"><img src="65.jpg" alt="" class="calibre20"/></p>
+<h2 id="uicollectionview" class="calibre9">UICollectionView</h2>
+<p class="calibre8">回顾年的设计，中间的年份并不是一成不变的，可能出现二零一六年，二零一七年。所以我使用 UICollectionView 在这里实现动态的显示。</p>
+<p class="calibre8">UICollectionView 预设了一套非常先进的显示逻辑，这点你在 iOS 的相册里已经体验到了，当你拍摄了更多的相片，相片会按照日期排列好，你可以通过滑动查看不同的相片，这都是 UICollectionView 的功劳。</p>
+<p class="calibre8">打开 Xcode 里的 Main.StoryBoard，选中默认 View Controller 按 Delete 删掉，然后在右下角拖进去 Collection View Controller</p>
+<p class="calibre8"><img src="82.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">这个 Collection View Controller 默认并没有关联任何大脑。我们需要新建一个 HomeCollectionViewController 作为大脑。</p>
+<p class="calibre8"><img src="102.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><img src="115.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">UICollectionViewController 是苹果为我们预先准备的大脑，它可以自动关联 UICollectionView，在 StoryBoard 里修改 Custom Class 为 HomeCollectionViewController 就可以使两者关联。</p>
+<p class="calibre8"><img src="123.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">UICollectionView 有两个极为重要的协议，一个是 DataSource，它为 UICollectionView 提供数据。另一个是 Delegate，它为 UICollectionView 处理交互逻辑。</p>
+<p class="calibre8"><img src="producter.004.jpeg" alt="" class="calibre20"/></p>
+<p class="calibre8">UICollectionViewController 继承自 UIViewController，以 UICollectionView 作为默认的 View，并且默认实现了 DataSource 和 Delegate 的协议。</p>
+<p class="calibre8">在这里，DataSource 和 Delegate 会被自动设置为 HomeCollectionViewController，因为 HomeCollectionViewController 继承自 UICollectionViewController，这是 App 和我们的一个小约定。</p>
+<h2 id="uicollectionview-datasource" class="calibre9">UICollectionView DataSource</h2>
+<p class="calibre8">UICollectionView 会问 DataSource 几个问题。</p>
+<ol class="calibre2">
+<li class="calibre11"><code class="pcalibre6 pcalibre5 calibre34">numberOfSectionsInCollectionView</code> —— 显示几个栏目？</li>
+<li class="calibre11"><code class="pcalibre6 pcalibre5 calibre34">numberOfItemsInSection</code> —— 每个栏目里有几个项目？</li>
+<li class="calibre11"><code class="pcalibre6 pcalibre5 calibre34">cellForItemAtIndexPath</code> —— 项目需要长成什么样子？</li>
+</ol>
+<p class="calibre8">对于第一个问题，我们只显示年，所以在应答里返回 1 即可</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">numberOfSectionsInCollectionView</span>
+<span class="hljs-number">(collectionView: UICollectionView)</span></span> -&gt; <span class="hljs-class">Int</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+}
+</code></pre>
+<p class="calibre8">对于第二个问题，我们此时只有 2015 年，所以可以如下作答</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">collectionView</span><span class="hljs-number">(
+    collectionView: UICollectionView,
+    numberOfItemsInSection section: Int)</span></span> -&gt; <span class="hljs-class">Int</span>
+{
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+}
+</code></pre>
+<p class="calibre8">而第三个问题就略微复杂一些，我们的回答模式如下，但是并不完整</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">collectionView</span><span class="hljs-number">(
+    collectionView: UICollectionView,
+    cellForItemAtIndexPath
+    indexPath: NSIndexPath
+)</span></span> -&gt; <span class="hljs-class">HomeYearCollectionViewCell</span>
+{
+    <span class="hljs-keyword">let</span> identifier = <span class="hljs-string">"HomeYearCollectionViewCell"</span>
+
+    <span class="hljs-keyword">let</span> cell = collectionView.
+    dequeueReusableCellWithReuseIdentifier(
+        identifier, forIndexPath: indexPath)
+        <span class="hljs-keyword">as</span>! <span class="hljs-class">HomeYearCollectionViewCell</span>
+
+    cell.textInt = <span class="hljs-number">2015</span>
+    cell.labelText = <span class="hljs-string">"二零一五 年"</span>
+
+    <span class="hljs-keyword">return</span> cell
+}
+</code></pre>
+<p class="calibre8">因为我们还没有创建 HomeYearCollectionViewCell，Cell 是一种针对数据的模版。在 App 里有很多样式相同，但是数据不同的界面，例如聊天界面的气泡，气泡的样式都是一样的，但是文字内容不同。</p>
+<p class="calibre8">而气泡就是一个 Cell，我们需要做的就是把数据填充进去。</p>
+<p class="calibre8">先创建一个 HomeYearCollectionViewCell</p>
+<p class="calibre8"><img src="132.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><img src="142.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">在 HomeYearCollectionViewCell 里，我们如下编写</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> textLabel: <span class="hljs-class">DiaryLabel</span>!
+<span class="hljs-keyword">var</span> textInt: <span class="hljs-class">Int</span> = <span class="hljs-number">0</span>
+<span class="hljs-keyword">var</span> labelText: <span class="hljs-class">String</span> = <span class="hljs-string">""</span> {
+  <span class="hljs-keyword">didSet</span> {
+    <span class="hljs-keyword">self</span>.textLabel.updateText(labelText)
+  }
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">awakeFromNib</span><span class="hljs-number">()</span></span> {
+    <span class="hljs-title">// 界面载入到内存</span>
+  <span class="hljs-keyword">self</span>.textLabel = <span class="hljs-class">DiaryLabel</span>(
+        fontname: <span class="hljs-string">"TpldKhangXiDictTrial"</span>,
+        labelText: labelText,
+        fontSize: <span class="hljs-number">16.0</span>,
+        lineHeight: <span class="hljs-number">5.0</span>)
+
+  <span class="hljs-keyword">self</span>.addSubview(textLabel)
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">layoutSubviews</span><span class="hljs-number">()</span></span> {
+    <span class="hljs-keyword">super</span>.layoutSubviews() <span class="hljs-title">// 对子 View 进行布局</span>
+  <span class="hljs-keyword">self</span>.textLabel.center =
+    <span class="hljs-class">CGPointMake</span>(itemWidth/<span class="hljs-number">2.0</span>, <span class="hljs-number">150.0</span>/<span class="hljs-number">2.0</span>)
+}
+</code></pre>
+<p class="calibre8">流程很简单，awakeFromNib 的时候，添加了一个 textLabel，当更新 labelText 的时候，通过 didSet 事件来用 updateText 方法更新文字以重新计算 Label 的大小。 在最终显示前，通过 layoutSubviews 来重新计算 textLabel 的中心。</p>
+<p class="calibre8"><code class="pcalibre6 pcalibre5 calibre34">awakeFromNib</code> <code class="pcalibre6 pcalibre5 calibre34">layoutSubviews</code> 这些是哪里来的以及我是怎么知道它们的用法的呢？</p>
+<p class="calibre8">这些当然都是要你从不停地看各种枯燥无味的基本文档中练出来，抽时间详细的阅读一遍 Apple 的文档是一件大有裨益的事情。</p>
+<p class="calibre8">textInt 存储了年份的整数形式。</p>
+<p class="calibre8">完成了我们的 Cell 后，回到我们的 Storyboard 里找到刚才的 UICollectionViewController，点击里面的小正方形，把 Custom Class 设置成 HomeYearCollectionViewCell</p>
+<p class="calibre8"><img src="172.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">因为在上面我们利用了 dequeueReusableCellWithReuseIdentifier 来通过 Identifier 获取 Cell，所以在这里我们也需要把 Identifier 也设置成 HomeYearCollectionViewCell</p>
+<p class="calibre8"><img src="161.jpg" alt="" class="calibre20"/></p>
+<h2 id="全局常量" class="calibre9">全局常量</h2>
+<p class="calibre8">在 App 里有些参数是需要反复使用的，例如上面的 Cell 在计算的时候，写了很多临时的数字，那么明显存在某个地方可以方便统一管理，在 AppDelegate 的最顶端，我放置了这些常量</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> itemHeight: <span class="hljs-class">CGFloat</span> = <span class="hljs-number">150.0</span>
+
+<span class="hljs-title">// Cell 的高度</span>
+
+<span class="hljs-keyword">let</span> itemWidth: <span class="hljs-class">CGFloat</span> = <span class="hljs-number">60</span>
+
+<span class="hljs-title">// Cell 的宽度</span>
+
+<span class="hljs-keyword">let</span> collectionViewWidth = itemWidth * <span class="hljs-number">3</span>
+
+<span class="hljs-title">//同时显示三个 Cell 时候</span>
+</code></pre>
+<p class="calibre8">那么像 <code class="pcalibre6 pcalibre5 calibre34">self.textLabel.center = CGPointMake(30/2.0, 150.0/2.0)</code> 这种计算，就可以写成 <code class="pcalibre6 pcalibre5 calibre34">self.textLabel.center = CGPointMake(itemWidth/2.0, itemHeight/2.0)</code></p>
+<p class="calibre8">生活顿时容易多了。</p>
+<p class="calibre8">但是到这里，CollectionView 还不知道用什么样的布局显示出来这些 Cell。</p>
+<p class="calibre8">So Go For The Last Question</p>
+<p class="calibre8"><img src="132.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><img src="152.jpg" alt="" class="calibre20"/></p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryLayout</span>: <span class="hljs-title">UICollectionViewFlowLayout</span> </span>{
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">prepareLayout</span><span class="hljs-number">()</span></span> {
+    <span class="hljs-keyword">super</span>.prepareLayout() <span class="hljs-title">//准备布局</span>
+    <span class="hljs-keyword">let</span> itemSize = <span class="hljs-class">CGSizeMake</span>(itemWidth,itemHeight)
+    <span class="hljs-keyword">self</span>.itemSize = itemSize
+    <span class="hljs-keyword">self</span>.minimumInteritemSpacing = <span class="hljs-number">0.0</span>
+    <span class="hljs-keyword">self</span>.minimumLineSpacing = <span class="hljs-number">0</span>
+  }
+}
+</code></pre>
+<p class="calibre8">这几个就是如字面意思了，Cell 的大小设置为 宽度 30.0 高度 150.0，item 之间不留空，Cell 的行之间，空 30。</p>
+<p class="calibre8">在 ViewDidLoad 里面，把 Layout 信息给 CollectionView</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> yearLayout = <span class="hljs-class">DiaryLayout</span>()
+
+yearLayout.scrollDirection =
+<span class="hljs-class">UICollectionViewScrollDirection</span>.<span class="hljs-class">Horizontal</span>
+<span class="hljs-keyword">self</span>.collectionView?.setCollectionViewLayout(
+    yearLayout, animated: <span class="hljs-number">false</span>)
+</code></pre>
+<p class="calibre8">这时候运行一下，你就可以看到屏幕显示着 二零一五年 了。</p>
+<p class="calibre8">但是这个年并不是居中的，怎么居中呢？</p>
+<p class="calibre8">我的思路是把 collectionView 按照三个 Cell 的宽度和高度重置 frame 然后给  collectionView 做一下 inset。</p>
+<p class="calibre8">在 ViewDidLoad 里面</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">self</span>.collectionView!.frame = <span class="hljs-class">CGRect</span>(x:<span class="hljs-number">0</span>, y:<span class="hljs-number">0</span>,
+width: collectionViewWidth, height: itemHeight)
+
+<span class="hljs-keyword">self</span>.collectionView!.center = <span class="hljs-class">CGPoint</span>(
+    x: <span class="hljs-keyword">self</span>.view.frame.size.width/<span class="hljs-number">2.0</span>,
+y: <span class="hljs-keyword">self</span>.view.frame.size.height/<span class="hljs-number">2.0</span>)
+</code></pre>
+<p class="calibre8">collectionView 有个方便的方法可以设置 inset</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">collectionView</span><span class="hljs-number">(collectionView: UICollectionView,
+layout collectionViewLayout: UICollectionViewLayout,
+insetForSectionAtIndex section: Int)</span></span> -&gt; <span class="hljs-class">UIEdgeInsets</span> {
+
+  <span class="hljs-keyword">var</span> leftRightMagrin = (collectionViewWidth - itemWidth)/<span class="hljs-number">2</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-class">UIEdgeInsetsMake</span>(<span class="hljs-number">0</span>,
+        leftRightMagrin, <span class="hljs-number">0</span>, leftRightMagrin)
+}
+</code></pre>
+<p class="calibre8">最后，按下 Xcode 左上角的播放键，就可以运行你的 App 了。</p>
+<p class="calibre8">你可以在 <a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Diary/Home/Diary" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github</a> 找到本章节的完成代码。</p>
+<h2 id="深入理解-view-controller" class="calibre9">深入理解 View Controller</h2>
+<p class="calibre8"><a href="https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007457-CH1-SW1" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">View Controller Programming Guide for iOS</a></p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

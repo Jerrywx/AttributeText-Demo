@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - 撰写</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_30">产品的实现 - 撰写</h1>
+        <div class="section">
+            <h1 id="product-code-产品的实现---撰写" class="calibre7">Product Code: 产品的实现 - 撰写</h1>
+<p class="calibre8">为了让点击撰的这个事件被捕捉，我们需要给 composeButton 增加如下代码</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">composeButton.addTarget(<span class="hljs-keyword">self</span>,
+  action: <span class="hljs-string">"newCompose"</span>,
+  forControlEvents: <span class="hljs-class">UIControlEvents</span>.<span class="hljs-class">TouchUpInside</span>)
+</code></pre>
+<p class="calibre8">这个事件的处理分为了三步</p>
+<ol class="calibre2">
+<li class="calibre11">Target</li>
+<li class="calibre11">Action</li>
+<li class="calibre11">Event</li>
+</ol>
+<p class="calibre8">Action 就是 Method，即运行什么方法的意思，Target 是指哪个对象会响应这个事件，Event 是指由什么事件触发，这里 TouchUpInside 的意思就是当用户按在了按钮的正中，然后抬起手指。</p>
+<p class="calibre8">在外围，也要增加一个响应的函数，函数的名称正是上面 Action 的文字。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">newCompose</span><span class="hljs-number">()</span></span> {
+
+  <span class="hljs-keyword">let</span> identifier = <span class="hljs-string">"DiaryComposeViewController"</span>
+
+  <span class="hljs-keyword">var</span> composeViewController = <span class="hljs-keyword">self</span>.storyboard?.
+  instantiateViewControllerWithIdentifier(identifier)
+  <span class="hljs-keyword">as</span>! <span class="hljs-class">DiaryComposeViewController</span>
+
+  <span class="hljs-keyword">self</span>.presentViewController(composeViewController,
+  animated: <span class="hljs-number">true</span>,
+  completion: <span class="hljs-number">nil</span>)
+
+}
+</code></pre>
+<p class="calibre8">又出现了我们缺少的 DiaryComposeViewController，这个 ViewController 可能是这个 App 里最复杂的部分。</p>
+<h2 id="日记的数据结构" class="calibre9">日记的数据结构</h2>
+<p class="calibre8">日记大概需要这四个构成</p>
+<ol class="calibre2">
+<li class="calibre11">名称</li>
+<li class="calibre11">内容</li>
+<li class="calibre11">位置信息</li>
+<li class="calibre11">创建时间</li>
+</ol>
+<div class="calibre21"><img src="67.jpg" class="calibre46"/></div>
+
+<p class="calibre8">这里我都使用了 UITextView 来创建前三个信息输入框，原因是复制方便。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">composeView = <span class="hljs-class">UITextView</span>(frame: <span class="hljs-class">CGRectMake</span>(
+<span class="hljs-number">0</span>,
+contentMargin + titleTextViewHeight, screenRect.width,
+screenRect.height),
+textContainer: container)
+
+composeView.font = <span class="hljs-class">DiaryFont</span>
+composeView.editable = <span class="hljs-number">true</span>
+composeView.userInteractionEnabled = <span class="hljs-number">true</span>
+composeView.delegate = <span class="hljs-keyword">self</span>
+
+composeView.textContainerInset = <span class="hljs-class">UIEdgeInsetsMake</span>(
+  contentMargin,
+   contentMargin,
+   contentMargin,
+   contentMargin)
+
+<span class="hljs-title">//添加 LocationTextView</span>
+
+locationTextView = <span class="hljs-class">UITextView</span>(frame: <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>,
+composeView.frame.size.height - <span class="hljs-number">30.0</span>,
+ screenRect.width - <span class="hljs-number">60.0</span>, <span class="hljs-number">30.0</span>))
+locationTextView.font = <span class="hljs-class">DiaryLocationFont</span>
+locationTextView.editable = <span class="hljs-number">true</span>
+locationTextView.userInteractionEnabled = <span class="hljs-number">true</span>
+locationTextView.alpha = <span class="hljs-number">0.0</span>
+locationTextView.bounces = <span class="hljs-number">false</span>
+</code></pre>
+<p class="calibre8">这里值得一提的是 textContainerInset，几乎 UIView 的子类都支持类似的方法， 可以将内容挤压产生边距。</p>
+<p class="calibre8">bounces 是指是否可以产生回弹效果，当你在 iPhone 滑动邮件列表的时候，到了顶端并不会立刻停止，而是会产生一个像弹簧一样的拉动效果，这个就是 bounces。</p>
+<h2 id="nsnotification" class="calibre9">NSNotification</h2>
+<p class="calibre8">布局完成后，当用户点击了 UITextView 要输入文字的时候，locationTextView 可能会被挡在键盘下面，这时候我们就需要监听键盘事件来移动 locationTextView 的位置。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">  <span class="hljs-class">NSNotificationCenter</span>.defaultCenter().addObserver(<span class="hljs-keyword">self</span>,
+    selector: <span class="hljs-string">"keyboardDidShow:"</span>,
+    name: <span class="hljs-class">UIKeyboardDidShowNotification</span>,
+    object: <span class="hljs-number">nil</span>)
+</code></pre>
+<p class="calibre8">监听一个通知主要需要四个</p>
+<ol class="calibre2">
+<li class="calibre11">Observer</li>
+<li class="calibre11">NotificationName</li>
+<li class="calibre11">Selector</li>
+<li class="calibre11">Object</li>
+</ol>
+<p class="calibre8">Observer 是指由谁负责监听，NotificationName 是指监听什么事件，Selector 是监听到的信息由哪个方法来处理。</p>
+<p class="calibre8">如果是自己发消息，Object 可以填入你想传送的数据，而这里因为是监听一个系统消息，所以并不需要我们填入数据。</p>
+<p class="calibre8">keyboardDidShow 后面加了个冒号，意思是指这个方法接收参数，即下面的 notification: NSNotification</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">keyboardDidShow</span><span class="hljs-number">(notification: NSNotification)</span></span> {
+
+  <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> rectValue = notification.
+  userInfo?[<span class="hljs-class">UIKeyboardFrameEndUserInfoKey</span>] <span class="hljs-keyword">as</span>? <span class="hljs-class">NSValue</span> {
+    keyboardSize = rectValue.<span class="hljs-class">CGRectValue</span>().size
+    updateTextViewSizeForKeyboardHeight(keyboardSize.height)
+  }
+}
+</code></pre>
+<p class="calibre8">NSNotification 是我非常喜欢的一个特性，在 App 内传递消息变得非常方便。不管是在哪个地方，只要做一下响应的监听，就可以响应其他地方发出的消息。</p>
+<p class="calibre8">获取传递过来的信息有两种方法，一种是 notification.userInfo 一种是 notification.object。</p>
+<p class="calibre8">userInfo 一般是系统消息，object 则是你放入 Object 里的对象，你可以用 as 方法转换成你需要的类型。</p>
+<h2 id="animation" class="calibre9">Animation</h2>
+<p class="calibre8">iOS 的动画有许多实现方式，不过我想你最开始肯定想要一个最简单的方式。</p>
+<p class="calibre8">updateTextViewSizeForKeyboardHeight 这个方法需要移动 LocationTextView 的位置，这里就可以通过 UIViewAnimation 来实现。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> newKeyboardHeight = keyboardHeight
+
+<span class="hljs-class">UIView</span>.animateWithDuration(<span class="hljs-number">1.0</span>, delay: <span class="hljs-number">0</span>,
+options: <span class="hljs-class">UIViewAnimationOptions</span>.<span class="hljs-class">CurveEaseInOut</span>,
+animations:
+{
+  <span class="hljs-keyword">self</span>.finishButton.center = <span class="hljs-class">CGPointMake</span>(
+    <span class="hljs-keyword">self</span>.view.frame.width -
+    <span class="hljs-keyword">self</span>.finishButton.frame.size.height/<span class="hljs-number">2.0</span> - <span class="hljs-number">10</span>,
+    <span class="hljs-keyword">self</span>.view.frame.height - newKeyboardHeight
+    - <span class="hljs-keyword">self</span>.finishButton.frame.size.height/<span class="hljs-number">2.0</span> - <span class="hljs-number">10</span>)
+
+  <span class="hljs-keyword">self</span>.locationTextView.center = <span class="hljs-class">CGPointMake</span>(
+    <span class="hljs-keyword">self</span>.locationTextView.frame.size.width/<span class="hljs-number">2.0</span> + <span class="hljs-number">20.0</span>,
+    <span class="hljs-keyword">self</span>.finishButton.center.y)
+
+}, completion: <span class="hljs-number">nil</span>)
+</code></pre>
+<p class="calibre8">不只是 center，其实很多属性都可以在这里移动，color、frame 大小、alpha 等。</p>
+<h2 id="location" class="calibre9">Location</h2>
+<p class="calibre8">获取地理位置我们可以通过 iOS 自带的地理位置服务，不过首先你需要在 Info.plist 里增加个 NSLocationWhenInUseUsageDescription 字段说明为什么你需要位置权限，这段文字也会在系统向用户要求权限的时候展示给用户。</p>
+<p class="calibre8"><img src="312.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">我们又一次用到了 NSNotification 发送我们自定义的 DiaryLocationUpdated 来通知编辑界面记录位置信息。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> CoreLocation
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryLocationHelper</span>: <span class="hljs-title">NSObject</span>,
+<span class="hljs-title">CLLocationManagerDelegate</span> </span>{
+
+    <span class="hljs-keyword">var</span> locationManager:<span class="hljs-class">CLLocationManager</span> =
+    <span class="hljs-class">CLLocationManager</span>()
+
+    <span class="hljs-keyword">var</span> currentLocation:<span class="hljs-class">CLLocation</span>?
+    <span class="hljs-keyword">var</span> address:<span class="hljs-class">String</span>?
+    <span class="hljs-keyword">var</span> geocoder = <span class="hljs-class">CLGeocoder</span>()
+
+    <span class="hljs-keyword">override</span> <span class="hljs-keyword">init</span>() {
+      <span class="hljs-keyword">super</span>.<span class="hljs-keyword">init</span>()
+      locationManager.delegate = <span class="hljs-keyword">self</span>
+      locationManager.distanceFilter =
+      kCLDistanceFilterNone
+      <span class="hljs-title">// 设置位移通知最小间隔</span>
+
+      locationManager.desiredAccuracy =
+       kCLLocationAccuracyNearestTenMeters
+      <span class="hljs-title">// 设置位置精确度</span>
+
+      locationManager.
+      pausesLocationUpdatesAutomatically = <span class="hljs-number">true</span>
+      <span class="hljs-title">// 当用户不再移动时自动暂停</span>
+
+      locationManager.headingFilter = kCLHeadingFilterNone
+      <span class="hljs-title">// 用户朝向变化角度最小间隔</span>
+
+      locationManager.requestWhenInUseAuthorization()
+      <span class="hljs-title">// 请求用户授权当 App 在使用时可以获取位置</span>
+
+      <span class="hljs-keyword">if</span> (<span class="hljs-class">CLLocationManager</span>.locationServicesEnabled()){
+          <span class="hljs-title">// 查看用户是否已授权，如果授权则开始获取位置</span>
+          locationManager.startUpdatingLocation()
+      }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">locationManager</span><span class="hljs-number">(manager: CLLocationManager,
+       didUpdateToLocation
+      newLocation: CLLocation,
+      fromLocation oldLocation: CLLocation)</span></span> {
+
+        <span class="hljs-title">// 每当用户位置更新的时候，本方法就会被调用</span>
+
+        geocoder.reverseGeocodeLocation(newLocation,
+           completionHandler: { (placemarks, error) <span class="hljs-keyword">in</span>
+
+          <span class="hljs-title">//通过 reverseGeocodeLocation 查询用户位置的描述</span>
+
+          <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> error = error {
+           <span class="hljs-number">print</span>(<span class="hljs-string">"reverse geodcode fail: <span class="hljs-class">\(error.localizedDescription)</span>"</span>)
+          }
+
+          <span class="hljs-title">// placemarks 里包括了位置的国家，省份，地区等信息</span>
+          <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> pm = placemarks {
+            <span class="hljs-keyword">if</span> pm.<span class="hljs-number">count</span> &gt; <span class="hljs-number">0</span> {
+
+                <span class="hljs-keyword">let</span> placemark = pm.first
+
+                <span class="hljs-keyword">self</span>.address = placemark?.locality
+
+                <span class="hljs-class">NSNotificationCenter</span>.defaultCenter().
+                postNotificationName(
+                  <span class="hljs-string">"DiaryLocationUpdated"</span>,
+                object: <span class="hljs-keyword">self</span>.address)
+
+                <span class="hljs-title">// 将位置信息通过通知发送出去</span>
+            }
+          }
+
+        })
+    }
+}
+</code></pre>
+<h2 id="coredata" class="calibre9">CoreData</h2>
+<p class="calibre8">Core Data 是 iOS 默认的数据库技术，也是 iOS 里相对复杂的技术，不过我们这里只用一个基本功能。</p>
+<p class="calibre8">在创建 App 的时候，我们默认启用了 Core Data，这时候你的项目里会有一个 Diary.xcdatamodeld 文件。</p>
+<p class="calibre8">点击这个文件后，右边就可以编辑数据库的数据结构，点击 Add Entity 添加一个 Diary 记录类型。</p>
+<p class="calibre8"><img src="118.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">Attribute 是这个类型的一些属性结构，content 以 String 类型来存放日记正文，created_at 以 Date 类型存放创建日期，这里我们还添加了 month、title、year 这三个属性方便后面搜索。</p>
+<p class="calibre8">在右边将 Class 名称改成 Diary</p>
+<p class="calibre8"><img src="410.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">编辑完毕后，就可以导出成 NSManagedObject，为了能在 Swift 中正常使用，你还需要增加一个 @objc(Diary) 标识。</p>
+<p class="calibre8"><img src="215.jpg" alt="" class="calibre20"/></p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> Foundation
+<span class="hljs-keyword">import</span> CoreData
+
+<span class="hljs-class">@objc</span>(<span class="hljs-class">Diary</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Diary</span>: <span class="hljs-title">NSManagedObject</span> </span>{
+
+  <span class="hljs-class">@NSManaged</span> <span class="hljs-keyword">var</span> title: <span class="hljs-class">String</span>?
+  <span class="hljs-class">@NSManaged</span> <span class="hljs-keyword">var</span> content: <span class="hljs-class">String</span>
+  <span class="hljs-class">@NSManaged</span> <span class="hljs-keyword">var</span> created_at: <span class="hljs-class">NSDate</span>
+  <span class="hljs-class">@NSManaged</span> <span class="hljs-keyword">var</span> location: <span class="hljs-class">String</span>
+  <span class="hljs-class">@NSManaged</span> <span class="hljs-keyword">var</span> year: <span class="hljs-class">NSNumber</span>
+  <span class="hljs-class">@NSManaged</span> <span class="hljs-keyword">var</span> month: <span class="hljs-class">NSNumber</span>
+
+}
+</code></pre>
+<p class="calibre8">这个文件和 Diary 的 Attribute 是一一对应的关系。</p>
+<p class="calibre8">CoreData 的原理图如下</p>
+<p class="calibre8"><img src="producter.006.jpeg" alt="" class="calibre20"/></p>
+<p class="calibre8">在 AppDelegate 里，Xcode 自动帮我们配置了 managedObjectModel</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-number">lazy</span> <span class="hljs-keyword">var</span> managedObjectModel: <span class="hljs-class">NSManagedObjectModel</span> = {
+    <span class="hljs-title">// 描述数据模型描述文件存储位置</span>
+    <span class="hljs-keyword">let</span> modelURL = <span class="hljs-class">NSBundle</span>.mainBundle().<span class="hljs-class">URLForResource</span>(
+      <span class="hljs-string">"Diary"</span>, withExtension: <span class="hljs-string">"momd"</span>)!
+    <span class="hljs-keyword">return</span> <span class="hljs-class">NSManagedObjectModel</span>(contentsOfURL: modelURL)!
+}()
+</code></pre>
+<p class="calibre8">persistentStoreCoordinator 持久化管理</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">lazy var persistentStoreCoordinator:
+    NSPersistentStoreCoordinator? = {
+    // 通过 managedObjectModel 创建持久化管理
+    var coordinator: NSPersistentStoreCoordinator? =
+    NSPersistentStoreCoordinator(managedObjectModel:
+       self.managedObjectModel)
+
+    let url = self.applicationDocumentsDirectory.
+    URLByAppendingPathComponent("Diary.sqlite")
+    // 设定数据库存储位置
+
+    var error: NSError? = nil
+    var failureReason = "There was an error creating or
+    loading the application's saved data."
+
+    do {
+        try coordinator!.addPersistentStoreWithType(
+          NSSQLiteStoreType, configuration: nil,
+          URL: url, options: nil)
+        // 创建 NSSQLiteStoreType 类型持久化存储
+    } catch var error1 as NSError {
+      ...
+    } catch {
+      fatalError()
+    }
+
+    return coordinator
+}()
+</code></pre>
+<p class="calibre8">以及 managedObjectContext 数据库上下文</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-number">lazy</span> <span class="hljs-keyword">var</span> managedObjectContext: <span class="hljs-class">NSManagedObjectContext</span>? = {
+    <span class="hljs-keyword">let</span> coordinator = <span class="hljs-keyword">self</span>.persistentStoreCoordinator
+    <span class="hljs-keyword">if</span> coordinator == <span class="hljs-number">nil</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">nil</span>
+    }
+    <span class="hljs-keyword">var</span> managedObjectContext = <span class="hljs-class">NSManagedObjectContext</span>()
+    managedObjectContext.persistentStoreCoordinator =
+     coordinator
+    <span class="hljs-keyword">return</span> managedObjectContext
+}()
+</code></pre>
+<p class="calibre8">在平时，不出意外我们只需要跟 managedObjectContext 打交道，为了方便使用，我们可以在 AppDelegate 的顶端，可以创建两个静态变量</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-title">//Coredata</span>
+<span class="hljs-keyword">let</span> appDelegate =
+<span class="hljs-class">UIApplication</span>.sharedApplication().delegate <span class="hljs-keyword">as</span>! <span class="hljs-class">AppDelegate</span>
+
+<span class="hljs-keyword">let</span> managedContext = appDelegate.managedObjectContext!
+</code></pre>
+<p class="calibre8">managedContext 是数据库的管理对象，通过这个对象就可以操作数据库的增删查改。</p>
+<p class="calibre8">当你想要保存的日记的时候，就需要先用数据生成 NSManagedObject 再通过 managedObjectContext 进行持久化存储</p>
+<p class="calibre8"><img src="producter.007.jpeg" alt="" class="calibre20"/></p>
+<p class="calibre8">那么，存储就可以用下面的代码轻松解决</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> entity =  <span class="hljs-class">NSEntityDescription</span>.entityForName(<span class="hljs-string">"Diary"</span>,
+ inManagedObjectContext: managedContext)
+
+<span class="hljs-keyword">let</span> newdiary = <span class="hljs-class">Diary</span>(entity: entity!,
+  insertIntoManagedObjectContext:managedContext)
+
+newdiary.content = composeView.text
+newdiary.location = locationTextView.text
+newdiary.title = titleTextView.text
+newdiary.updateTimeWithDate(<span class="hljs-class">NSDate</span>())
+
+<span class="hljs-keyword">var</span> error: <span class="hljs-class">NSError</span>?
+<span class="hljs-keyword">if</span> !managedContext.save(&amp;error) {
+   <span class="hljs-number">print</span>(<span class="hljs-string">"Could not save <span class="hljs-class">\(error)</span>, <span class="hljs-class">\(error?.userInfo)</span>"</span>)
+}
+</code></pre>
+<p class="calibre8">你可以在 <a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Diary/EditDiary/Diary" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github</a> 找到本章的工程文件。</p>
+<h2 id="深入了解-coredata-和-animations" class="calibre9">深入了解 CoreData 和 Animations</h2>
+<p class="calibre8"><a href="https://developer.apple.com/library/prerelease/ios/documentation/Cocoa/Conceptual/CoreData/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Introduction to Core Data Programming Guide</a></p>
+<p class="calibre8"><a href="https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Animations</a></p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - 年 和 月</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_29">产品的实现 - 年 和 月</h1>
+        <div class="section">
+            <h1 id="product-code-产品的实现---年-和-月" class="calibre7">Product Code: 产品的实现 - 年 和 月</h1>
+<p class="calibre8">点击年就是显示月份咯，而月和年并没有很大区别。除了字体从康熙字典换成了文悦古仿宋。</p>
+<p class="calibre8">当然，此刻你点击是没有什么发生，因为还有一个问题需要回答。当点击的时候，该做什么。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">collectionView</span><span class="hljs-number">(collectionView: UICollectionView,
+     didSelectItemAtIndexPath indexPath: NSIndexPath)</span></span> {
+
+}
+</code></pre>
+<p class="calibre8">在上面的代码里写入如下片段</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> identifier = <span class="hljs-string">"DiaryYearCollectionViewController"</span>
+
+<span class="hljs-keyword">var</span> dvc = <span class="hljs-keyword">self</span>.storyboard?.
+instantiateViewControllerWithIdentifier(identifier)
+ <span class="hljs-keyword">as</span>! <span class="hljs-class">DiaryYearCollectionViewController</span>
+
+<span class="hljs-title">// 获取 DiaryYearCollectionViewController</span>
+
+dvc.year = <span class="hljs-number">2015</span>
+
+<span class="hljs-title">// 指定是 2015 年的月份</span>
+
+<span class="hljs-keyword">self</span>.navigationController!.pushViewController(dvc, animated: <span class="hljs-number">true</span>)
+
+<span class="hljs-title">// 页面跳转</span>
+</code></pre>
+<p class="calibre8">instantiateViewControllerWithIdentifier 是 Storyboard 的一个方法，可以根据 Storyboard 里给 ViewController 设置的 identifier 获取其实例。</p>
+<p class="calibre8">这时候点击年…… 依旧不能跳转，因为 DiaryYearCollectionViewController 这个 Controller 还没有。</p>
+<p class="calibre8">仿照之前在年之外的创建方法，我们创建一个 DiaryYearCollectionViewController，DiaryYearCollectionViewController 同时需要一个 year 的 Int 属性，存储是哪一年。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+<span class="hljs-keyword">import</span> UIKit
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryYearCollectionViewController</span>: <span class="hljs-title">UICollectionViewController</span> </span>{
+
+    <span class="hljs-keyword">var</span> year:<span class="hljs-class">Int</span>!
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">viewDidLoad</span><span class="hljs-number">()</span></span> {
+        <span class="hljs-keyword">super</span>.viewDidLoad()
+
+    }
+}
+</code></pre>
+<p class="calibre8">不过完成了这步还是依旧不能跳转，因为 <code class="pcalibre6 pcalibre5 calibre34">self.navigationController</code> 这个东西还不存在。</p>
+<h2 id="uinavigationcontroller" class="calibre9">UINavigationController</h2>
+<p class="calibre8">我们通常会建立不同的 UIViewController 来显示不同的页面，而页面间如何切换便成了一个经常遇到的问题。</p>
+<p class="calibre8">UINavigationController 是 iOS 里管理页面切换的家伙，他解决了页面之间切换的逻辑问题。默认会带有一个导航栏，通过 pushViewController 可以切换到下一个页面，popViewController 可以返回上一页，每天你在 iOS 中使用的侧滑返回也是其提供的。</p>
+<p class="calibre8"><img src="producter.005.jpeg" alt="" class="calibre20"/></p>
+<p class="calibre8">UINavigationController 有一个 viewControllers 的属性，这个数组就是导航栈，里面存储了在整个页面跳转过程中显示的 ViewController。</p>
+<p class="calibre8">先在要给我们的 App 增加一个最外围的 UINavigationController。</p>
+<p class="calibre8">回到 Main.storyboard</p>
+<p class="calibre8">增加一个 UINavigationController</p>
+<p class="calibre8"><img src="74.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">然后删掉它附赠的 UITableViewController</p>
+<p class="calibre8">按住 Control 然后在 UINavigationController 上按住左键，拖拽到 HomeCollectionViewController 上选择 rootViewController</p>
+<p class="calibre8"><img src="83.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">确认已经把 Storyboard Entry Point 移动到 UINavigationController 上</p>
+<p class="calibre8"><img src="93.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">另外一个需要注意的就是要 Hide 掉 Navigation Bar，在右边的 Storyboard 上取消 Show Navigation Bar 上的对勾即可。</p>
+<p class="calibre8"><img src="103.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">重新运行 App，页面就可以切换到年视图了。</p>
+<p class="calibre8">点击月份进入这个月视图，月视图里面，显示的就是日记了。</p>
+<p class="calibre8">我们需要在月和年的视图右上角加上年和撰，月单独的有个红色的月份显示在右边。</p>
+<p class="calibre8">年份和月份并无太大不同，只是颜色和字体略有区别，撰这个按钮倒是值得一提。</p>
+<h2 id="uibutton" class="calibre9">UIButton</h2>
+<p class="calibre8">UIButton 是 iOS 中一个非常常用的控件，用来制作界面的按钮，通过代码创建一个 UIButton 的方法非常简单</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> button = <span class="hljs-class">UIButton</span>(type: <span class="hljs-class">UIButtonType</span>.<span class="hljs-class">Custom</span>)
+<span class="hljs-title">// 创建 Custom 类型的 Button，Custom 类型不适用任何系统样式</span>
+<span class="hljs-title">// 方便我们自定义 Button</span>
+
+button.frame = <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>, width: <span class="hljs-number">100</span>, height: <span class="hljs-number">50</span>)
+<span class="hljs-title">// 通过 frame 属性自定义 Button 大小和位置</span>
+
+button.setTitle(<span class="hljs-string">"好的"</span>, forState: <span class="hljs-class">UIControlState</span>.<span class="hljs-class">Normal</span>)
+<span class="hljs-title">// 一个 Button 有多种状态，Normal 是默认状态</span>
+
+button.setBackgroundImage(<span class="hljs-class">UIImage</span>(named: <span class="hljs-string">"button_bg"</span>),
+forState: <span class="hljs-class">UIControlState</span>.<span class="hljs-class">Normal</span>)
+<span class="hljs-title">// 设置按钮默认状态下的背景</span>
+
+button.addTarget(<span class="hljs-keyword">self</span>, action: <span class="hljs-string">"newCompose"</span>,
+forControlEvents: <span class="hljs-class">UIControlEvents</span>.<span class="hljs-class">TouchUpInside</span>)
+</code></pre>
+<p class="calibre8">UIButton 这一类的可交互控件有很多种状态</p>
+<table class="calibre37">
+<thead class="calibre38">
+<tr class="calibre39">
+<th class="calibre40">常用属性</th>
+<th class="calibre41">描述</th>
+</tr>
+</thead>
+<tbody class="calibre42">
+<tr class="calibre39">
+<td class="calibre43">Normal</td>
+<td class="calibre44">默认状态</td>
+</tr>
+<tr class="calibre45">
+<td class="calibre43">Highlighted</td>
+<td class="calibre44">被按住的高亮状态</td>
+</tr>
+<tr class="calibre39">
+<td class="calibre43">Disabled</td>
+<td class="calibre44">禁用状态</td>
+</tr>
+<tr class="calibre45">
+<td class="calibre43">Selected</td>
+<td class="calibre44">选中状态（主要是针对 Tab 这类控件）</td>
+</tr>
+</tbody>
+</table>
+<p class="calibre8">通过 Button 的 addTarget 方法，我们可以指定在某个交互时，Button 需要触发哪个 target 的 action。</p>
+<table class="calibre37">
+<thead class="calibre38">
+<tr class="calibre39">
+<th class="calibre40">常用属性</th>
+<th class="calibre41">描述</th>
+</tr>
+</thead>
+<tbody class="calibre42">
+<tr class="calibre39">
+<td class="calibre43">TouchDown</td>
+<td class="calibre44">按下</td>
+</tr>
+<tr class="calibre45">
+<td class="calibre43">TouchUpInside</td>
+<td class="calibre44">在控件中心按下（避免误触）</td>
+</tr>
+<tr class="calibre39">
+<td class="calibre43">TouchUpOutside</td>
+<td class="calibre44">按下后滑出控件松手</td>
+</tr>
+<tr class="calibre45">
+<td class="calibre43">TouchCancel</td>
+<td class="calibre44">取消触摸（被意外终止）</td>
+</tr>
+<tr class="calibre39">
+<td class="calibre43">ValueChanged</td>
+<td class="calibre44">数值变化（主要针对滑块控件）</td>
+</tr>
+</tbody>
+</table>
+<p class="calibre8">因为这个 Button 会在多处出现，所以弄一个方法来简易生产这样的 Button</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">diaryButtonWith</span><span class="hljs-number">(text text: String,
+    fontSize: CGFloat,
+    width: CGFloat,
+     normalImageName: String,
+     highlightedImageName: String)</span></span> -&gt; <span class="hljs-class">UIButton</span> {
+
+    <span class="hljs-keyword">let</span> button = <span class="hljs-class">UIButton</span>(type: <span class="hljs-class">UIButtonType</span>.<span class="hljs-class">Custom</span>)
+        <span class="hljs-title">//创建自定义 Button</span>
+    button.frame = <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, width)
+        <span class="hljs-title">//设定 Button 的大小</span>
+
+    <span class="hljs-keyword">let</span> font = <span class="hljs-class">UIFont</span>(name: <span class="hljs-string">"Wyue-GutiFangsong-NC"</span>,
+     size: fontSize) <span class="hljs-keyword">as</span> <span class="hljs-class">UIFont</span>!
+
+    <span class="hljs-keyword">let</span> textAttributes: [<span class="hljs-class">String</span> : <span class="hljs-class">AnyObject</span>] = [
+            <span class="hljs-class">NSFontAttributeName</span>: font,
+            <span class="hljs-class">NSForegroundColorAttributeName</span>: <span class="hljs-class">UIColor</span>.whiteColor()]
+
+    <span class="hljs-keyword">let</span> attributedText = <span class="hljs-class">NSAttributedString</span>(string: text, attributes: textAttributes)
+    button.setAttributedTitle(attributedText, forState: <span class="hljs-class">UIControlState</span>.<span class="hljs-class">Normal</span>)
+        <span class="hljs-title">//设置 Button 字体</span>
+
+    button.setBackgroundImage(<span class="hljs-class">UIImage</span>(
+        named: normalImageName),
+        forState: <span class="hljs-class">UIControlState</span>.<span class="hljs-class">Normal</span>)
+        <span class="hljs-title">//设置默认 Button 样式</span>
+
+    button.setBackgroundImage(<span class="hljs-class">UIImage</span>(
+            named: highlightedImageName),
+            forState: <span class="hljs-class">UIControlState</span>.<span class="hljs-class">Highlighted</span>)
+        <span class="hljs-title">// 设置 Button 被按下时候的样式</span>
+
+    <span class="hljs-keyword">return</span> button
+
+}
+</code></pre>
+<p class="calibre8">在 <code class="pcalibre6 pcalibre5 calibre34">viewDidLoad</code> 里面，通过以下代码添加这个 Button</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> composeButton = diaryButtonWith(text: <span class="hljs-string">"撰"</span>,
+fontSize: <span class="hljs-number">14.0</span>,
+width: <span class="hljs-number">40.0</span>,
+normalImageName: <span class="hljs-string">"Oval"</span>,
+highlightedImageName: <span class="hljs-string">"Oval_pressed"</span>)
+
+composeButton.center = <span class="hljs-class">CGPointMake</span>(yearLabel.center.x,
+<span class="hljs-number">38</span> + yearLabel.frame.size.height + <span class="hljs-number">26.0</span>/<span class="hljs-number">2.0</span>)
+
+composeButton.addTarget(<span class="hljs-keyword">self</span>, action: <span class="hljs-string">"newCompose"</span>,
+forControlEvents: <span class="hljs-class">UIControlEvents</span>.<span class="hljs-class">TouchUpInside</span>)
+
+<span class="hljs-keyword">self</span>.view.addSubview(composeButton)
+</code></pre>
+<p class="calibre8">Oval 是单独绘制的一个红色圆形，pressed 则是颜色略有不同的圆形，在 Sketch 里，你可以这样简单的导出图片。</p>
+<p class="calibre8">选中你要导出的图形</p>
+<p class="calibre8"><img src="214.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">点击 Make Exportable</p>
+<p class="calibre8">然后增加你需要的尺寸</p>
+<p class="calibre8"><img src="117.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">导出后，把他们拖到 XCode 的 Images.xcassets 里面即可</p>
+<p class="calibre8"><img src="59.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">jpg 和 PDF 都是不错的类型，PDF 只需要一张，由 XCode 在编译的时候自动生成多个尺寸，而 jpg 需要你手动添加多个尺寸，对于不同的类型，jpg 的 Scale Factors 是 Multible, PDF 的是 Single Vector。</p>
+<p class="calibre8"><img src="310.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><img src="49.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">不过 PDF 也有一定的局限性，例如不能体现复杂的图层效果，对于透明的处理上也会有些问题。</p>
+<h2 id="自定义转场" class="calibre9">自定义转场</h2>
+<p class="calibre8">按照我们的交互设计，这里的页面切换方式不应该是从右边推进进来，好在 iOS 里已有自定义转场这样的非常有趣的技术。</p>
+<p class="calibre8">首先在 HomeCollectionViewController 的 <code class="pcalibre6 pcalibre5 calibre34">viewDidLoad</code> 里面指定</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">self</span>.navigationController!.delegate = <span class="hljs-keyword">self</span>
+</code></pre>
+<p class="calibre8">在 HomeCollectionViewController 的底部增加一个 Extension</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">extension</span> <span class="hljs-title">HomeCollectionViewController</span>: <span class="hljs-title">UINavigationControllerDelegate</span> </span>{
+
+}
+</code></pre>
+<p class="calibre8">Extension 可以扩展类能够实现的功能。</p>
+<p class="calibre8">这时候 navigationController 就会询问具体的转场方法。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">navigationController</span><span class="hljs-number">(navigationController:
+     UINavigationController,
+animationControllerForOperation operation:
+ UINavigationControllerOperation,
+fromViewController fromVC: UIViewController,
+toViewController toVC: UIViewController)</span></span> -&gt;
+ <span class="hljs-class">UIViewControllerAnimatedTransitioning</span>? {
+
+}
+</code></pre>
+<p class="calibre8">我们先增加一个 DiaryAnimator</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> UIKit
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryAnimator</span>: <span class="hljs-title">NSObject</span>,
+ <span class="hljs-title">UIViewControllerAnimatedTransitioning</span> </span>{
+
+    <span class="hljs-keyword">var</span> operation:<span class="hljs-class">UINavigationControllerOperation</span>!
+
+  <span class="hljs-title">//转场时长</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">transitionDuration</span><span class="hljs-number">(transitionContext:
+     UIViewControllerContextTransitioning)</span></span> -&gt; <span class="hljs-class">NSTimeInterval</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0.4</span>
+    }
+}
+</code></pre>
+<p class="calibre8">接着我们在 DiaryAnimator 这个类里加入转场变化的具体实现</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+<span class="hljs-title">//转场的参数变化</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">animateTransition</span><span class="hljs-number">(transitionContext:
+     UIViewControllerContextTransitioning)</span></span>
+{
+
+    <span class="hljs-keyword">let</span> containerView = transitionContext.containerView()
+
+    <span class="hljs-title">//获取转场舞台</span>
+
+    <span class="hljs-keyword">let</span> fromVC = transitionContext.
+    viewControllerForKey(
+        <span class="hljs-class">UITransitionContextFromViewControllerKey</span>)
+
+    <span class="hljs-keyword">let</span> fromView = fromVC!.view
+
+    <span class="hljs-title">//获取从哪个场景开始转</span>
+
+    <span class="hljs-keyword">let</span> toVC = transitionContext.
+    viewControllerForKey(
+        <span class="hljs-class">UITransitionContextToViewControllerKey</span>)
+
+    <span class="hljs-keyword">let</span> toView = toVC!.view
+
+    <span class="hljs-title">//获取要转去哪个场景</span>
+
+    toView.alpha = <span class="hljs-number">0.0</span>
+
+    <span class="hljs-title">//设置新场景透明度</span>
+
+    <span class="hljs-title">// UINavigationControllerOperation.Pop 用来判断是转入还是转出</span>
+
+    <span class="hljs-keyword">if</span> operation ==  <span class="hljs-class">UINavigationControllerOperation</span>.<span class="hljs-class">Pop</span> {
+        toView.transform = <span class="hljs-class">CGAffineTransformMakeScale</span>(<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>)
+
+        <span class="hljs-title">// 如果是返回旧场景，那么设置要转入的场景初始缩放为原始大小</span>
+
+    }<span class="hljs-keyword">else</span>{
+        toView.transform = <span class="hljs-class">CGAffineTransformMakeScale</span>(<span class="hljs-number">0.3</span>,<span class="hljs-number">0.3</span>);
+
+        <span class="hljs-title">// 如果是转到新场景，设置新场景初始缩放为 0.3</span>
+    }
+
+    containerView!.insertSubview(toView,
+         aboveSubview: fromView)
+
+    <span class="hljs-title">// 在舞台上插入场景</span>
+}
+</code></pre>
+<p class="calibre8">以上代码就完成了开始动画前各个元素的就位工作，继续在 func animateTransition() 的最后加入一个 UIView.animateWithDuration() 来实现最终动画</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class">UIView</span>.animateWithDuration(
+    transitionDuration(transitionContext),
+    delay: <span class="hljs-number">0</span>,
+    options: <span class="hljs-class">UIViewAnimationOptions</span>.<span class="hljs-class">CurveEaseInOut</span>,
+    animations:
+{
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.operation ==  <span class="hljs-class">UINavigationControllerOperation</span>.
+    <span class="hljs-class">Pop</span> {
+
+        fromView.transform = <span class="hljs-class">CGAffineTransformMakeScale</span>(<span class="hljs-number">3.3</span>,<span class="hljs-number">3.3</span>)
+        <span class="hljs-title">// 放大要转出的场景</span>
+
+    } <span class="hljs-keyword">else</span> {
+
+        toView.transform = <span class="hljs-class">CGAffineTransformMakeScale</span>(<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>)
+        <span class="hljs-title">// 设置新场景为原始大小</span>
+
+    }
+
+    toView.alpha = <span class="hljs-number">1.0</span>
+
+}, completion: { finished <span class="hljs-keyword">in</span>
+
+    transitionContext.completeTransition(<span class="hljs-number">true</span>)
+    <span class="hljs-title">// 通知 NavigationController 已经完成转场</span>
+
+})
+</code></pre>
+<p class="calibre8">接下来把转场代码写进去，就可以生效啦</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">navigationController</span><span class="hljs-number">(navigationController:
+     UINavigationController,
+animationControllerForOperation operation:
+ UINavigationControllerOperation,
+fromViewController fromVC: UIViewController,
+toViewController toVC: UIViewController)</span></span> -&gt;
+ <span class="hljs-class">UIViewControllerAnimatedTransitioning</span>? {
+
+  <span class="hljs-keyword">var</span> animator = <span class="hljs-class">DiaryAnimator</span>()
+  animator.operation = operation
+  <span class="hljs-keyword">return</span> animator
+
+}
+</code></pre>
+<p class="calibre8">按照这个流程，我们还需要再实现一个 DiaryMonthDayCollectionViewController 来显示月份下的日记。</p>
+<p class="calibre8">你可以在 <a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Diary/YearAndMonth/Diary" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github</a> 找到我们本章的工程文件</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

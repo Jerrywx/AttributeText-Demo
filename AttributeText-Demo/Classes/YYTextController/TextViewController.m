@@ -45,12 +45,15 @@
 	});
 	YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:CGSizeMake(300, 100) text:self.aString];
 	self.label.textLayout = layout;
+	self.label.frame = self.view.bounds;
+	
+	
 	
 	/// M80
 	self.label2 = ({
 		M80AttributedLabel *label = [[M80AttributedLabel alloc] initWithFrame:CGRectMake(20, 200, SCREEN_W - 40, 50)];
 		label.backgroundColor = [UIColor yellowColor];
-		[self.view addSubview:label];
+//		[self.view addSubview:label];
 		label;
 	});
 	self.label2.text = @"这是一个测试";
@@ -62,10 +65,18 @@
 	self.textView = ({
 		JRTextView *view = [[JRTextView alloc] initWithFrame:CGRectMake(20, 320, SCREEN_W - 40, 100)];
 		view.backgroundColor = [UIColor yellowColor];
-		[self.view addSubview:view];
+//		[self.view addSubview:view];
 		view;
 	});
 	
+	
+	///////
+	NSURL *url = [[NSBundle mainBundle] URLForResource:@"cocoapods" withExtension:@"html"];
+	NSAttributedString *attrStr = [[NSAttributedString alloc] initWithFileURL:url
+																	  options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType}
+														   documentAttributes:nil error:nil];
+	
+	self.label.attributedText = attrStr;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -119,13 +130,14 @@
 													 documentAttributes:nil
 																  error:nil];
 	
-//	NSAttributedString *body = [[NSAttributedString alloc] initWithURL:url 
-//															   options:options 
-//													documentAttributes:nil
-//																 error:nil];
 	
-	NSLog(@"end encoding%@", body);
-	self.label.attributedText = body;
+//	NSURL *url = [[NSBundle mainBundle] URLForResource:@"cocoapods" withExtension:@"html"];
+//	NSAttributedString *attrStr = [[NSAttributedString alloc] initWithFileURL:url
+//																	  options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType}
+//														   documentAttributes:nil error:nil];
+//	
+//	NSLog(@"end encoding%@", body);
+//	self.label.attributedText = attrStr;
 }
 
 #pragma mark -

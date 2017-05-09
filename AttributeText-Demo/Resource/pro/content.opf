@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+  <metadata xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dc:contributor opf:role="bkp">GitBook</dc:contributor>
+    <dc:creator opf:file-as="未知" opf:role="aut">周楷雯 (kevinzhow)</dc:creator>
+    <dc:description>Build product with love</dc:description>
+    <dc:language>zh</dc:language>
+    <dc:title>Producter</dc:title>
+    <meta name="cover" content="cover"/>
+    <dc:publisher>GitBook</dc:publisher>
+    <dc:identifier id="uuid_id" opf:scheme="uuid">1b5c4d3a-c2d2-4ba5-813e-efd04bdfb67e</dc:identifier>
+    <meta name="calibre:timestamp" content="2016-10-05T04:01:56.838680+00:00"/>
+  </metadata>
+  <manifest>
+    <item href="cover.jpg" id="cover" media-type="image/jpeg"/>
+    <item href="0.jpg" id="added100" media-type="image/jpeg"/>
+    <item href="1.1.jpg" id="added63" media-type="image/jpeg"/>
+    <item href="1.2.jpg" id="added64" media-type="image/jpeg"/>
+    <item href="1.3.1.jpg" id="added65" media-type="image/jpeg"/>
+    <item href="1.3.2.jpg" id="added66" media-type="image/jpeg"/>
+    <item href="1.4.1.jpg" id="added68" media-type="image/jpeg"/>
+    <item href="1.4.jpg" id="added67" media-type="image/jpeg"/>
+    <item href="1.5.1.jpg" id="added70" media-type="image/jpeg"/>
+    <item href="1.5.2.jpg" id="added71" media-type="image/jpeg"/>
+    <item href="1.5.jpg" id="added69" media-type="image/jpeg"/>
+    <item href="1.6.1.jpg" id="added73" media-type="image/jpeg"/>
+    <item href="1.6.2.jpg" id="added74" media-type="image/jpeg"/>
+    <item href="1.6.3.jpg" id="added75" media-type="image/jpeg"/>
+    <item href="1.6.4.jpg" id="added76" media-type="image/jpeg"/>
+    <item href="1.6.jpg" id="added72" media-type="image/jpeg"/>
+    <item href="1.7.1.jpg" id="added78" media-type="image/jpeg"/>
+    <item href="1.7.2.jpg" id="added79" media-type="image/jpeg"/>
+    <item href="1.7.3.jpg" id="added80" media-type="image/jpeg"/>
+    <item href="1.7.jpg" id="added77" media-type="image/jpeg"/>
+    <item href="1.8.1.jpg" id="added82" media-type="image/jpeg"/>
+    <item href="1.8.2.jpg" id="added83" media-type="image/jpeg"/>
+    <item href="1.8.jpg" id="added81" media-type="image/jpeg"/>
+    <item href="1.jpg" id="added6" media-type="image/jpeg"/>
+    <item href="10.jpg" id="added56" media-type="image/jpeg"/>
+    <item href="101.jpg" id="added125" media-type="image/jpeg"/>
+    <item href="102.jpg" id="added163" media-type="image/jpeg"/>
+    <item href="103.jpg" id="added182" media-type="image/jpeg"/>
+    <item href="104.jpg" id="added204" media-type="image/jpeg"/>
+    <item href="11.jpg" id="added20" media-type="image/jpeg"/>
+    <item href="110.jpg" id="added115" media-type="image/jpeg"/>
+    <item href="111.jpg" id="added57" media-type="image/jpeg"/>
+    <item href="1110.jpg" id="added205" media-type="image/jpeg"/>
+    <item href="112.jpg" id="added124" media-type="image/jpeg"/>
+    <item href="113.jpg" id="added146" media-type="image/jpeg"/>
+    <item href="114.jpg" id="added155" media-type="image/jpeg"/>
+    <item href="115.jpg" id="added164" media-type="image/jpeg"/>
+    <item href="116.jpg" id="added172" media-type="image/jpeg"/>
+    <item href="117.jpg" id="added184" media-type="image/jpeg"/>
+    <item href="118.jpg" id="added190" media-type="image/jpeg"/>
+    <item href="119.jpg" id="added197" media-type="image/jpeg"/>
+    <item href="12.jpg" id="added27" media-type="image/jpeg"/>
+    <item href="120.jpg" id="added198" media-type="image/jpeg"/>
+    <item href="121.jpg" id="added58" media-type="image/jpeg"/>
+    <item href="122.jpg" id="added122" media-type="image/jpeg"/>
+    <item href="123.jpg" id="added165" media-type="image/jpeg"/>
+    <item href="124.jpg" id="added206" media-type="image/jpeg"/>
+    <item href="125.jpg" id="added209" media-type="image/jpeg"/>
+    <item href="126.jpg" id="added212" media-type="image/jpeg"/>
+    <item href="127.jpg" id="added213" media-type="image/jpeg"/>
+    <item href="128.jpg" id="added215" media-type="image/jpeg"/>
+    <item href="13.jpg" id="added59" media-type="image/jpeg"/>
+    <item href="131.jpg" id="added129" media-type="image/jpeg"/>
+    <item href="132.jpg" id="added167" media-type="image/jpeg"/>
+    <item href="14.jpg" id="added60" media-type="image/jpeg"/>
+    <item href="141.jpg" id="added128" media-type="image/jpeg"/>
+    <item href="142.jpg" id="added168" media-type="image/jpeg"/>
+    <item href="15.jpg" id="added84" media-type="image/jpeg"/>
+    <item href="151.jpg" id="added126" media-type="image/jpeg"/>
+    <item href="152.jpg" id="added171" media-type="image/jpeg"/>
+    <item href="16.jpg" id="added93" media-type="image/jpeg"/>
+    <item href="161.jpg" id="added170" media-type="image/jpeg"/>
+    <item href="17.jpg" id="added94" media-type="image/jpeg"/>
+    <item href="171.jpg" id="added130" media-type="image/jpeg"/>
+    <item href="172.jpg" id="added169" media-type="image/jpeg"/>
+    <item href="18.jpg" id="added97" media-type="image/jpeg"/>
+    <item href="19.jpg" id="added103" media-type="image/jpeg"/>
+    <item href="191.jpg" id="added131" media-type="image/jpeg"/>
+    <item href="2.jpg" id="added3" media-type="image/jpeg"/>
+    <item href="20.jpg" id="added127" media-type="image/jpeg"/>
+    <item href="21.jpg" id="added13" media-type="image/jpeg"/>
+    <item href="210.jpg" id="added147" media-type="image/jpeg"/>
+    <item href="211.jpg" id="added132" media-type="image/jpeg"/>
+    <item href="212.jpg" id="added156" media-type="image/jpeg"/>
+    <item href="213.jpg" id="added173" media-type="image/jpeg"/>
+    <item href="214.jpg" id="added183" media-type="image/jpeg"/>
+    <item href="215.jpg" id="added192" media-type="image/jpeg"/>
+    <item href="216.jpg" id="added199" media-type="image/jpeg"/>
+    <item href="217.jpg" id="added211" media-type="image/jpeg"/>
+    <item href="218.jpg" id="added214" media-type="image/jpeg"/>
+    <item href="219.jpg" id="added216" media-type="image/jpeg"/>
+    <item href="22.jpg" id="added21" media-type="image/jpeg"/>
+    <item href="220.jpg" id="added225" media-type="image/jpeg"/>
+    <item href="221.jpg" id="added133" media-type="image/jpeg"/>
+    <item href="23.jpg" id="added85" media-type="image/jpeg"/>
+    <item href="231.jpg" id="added134" media-type="image/jpeg"/>
+    <item href="24.jpg" id="added86" media-type="image/jpeg"/>
+    <item href="241.jpg" id="added135" media-type="image/jpeg"/>
+    <item href="25.jpg" id="added95" media-type="image/jpeg"/>
+    <item href="251.jpg" id="added136" media-type="image/jpeg"/>
+    <item href="26.jpg" id="added98" media-type="image/jpeg"/>
+    <item href="261.jpg" id="added140" media-type="image/jpeg"/>
+    <item href="27.jpg" id="added104" media-type="image/jpeg"/>
+    <item href="271.jpg" id="added141" media-type="image/jpeg"/>
+    <item href="28.jpg" id="added116" media-type="image/jpeg"/>
+    <item href="281.jpg" id="added142" media-type="image/jpeg"/>
+    <item href="29.jpg" id="added143" media-type="image/jpeg"/>
+    <item href="3.jpg" id="added7" media-type="image/jpeg"/>
+    <item href="30.jpg" id="added144" media-type="image/jpeg"/>
+    <item href="31.jpg" id="added22" media-type="image/jpeg"/>
+    <item href="310.jpg" id="added186" media-type="image/jpeg"/>
+    <item href="311.jpg" id="added145" media-type="image/jpeg"/>
+    <item href="312.jpg" id="added189" media-type="image/jpeg"/>
+    <item href="313.jpg" id="added208" media-type="image/jpeg"/>
+    <item href="314.jpg" id="added217" media-type="image/jpeg"/>
+    <item href="315.jpg" id="added226" media-type="image/jpeg"/>
+    <item href="32.jpg" id="added49" media-type="image/jpeg"/>
+    <item href="321.jpg" id="added137" media-type="image/jpeg"/>
+    <item href="33.jpg" id="added96" media-type="image/jpeg"/>
+    <item href="331.jpg" id="added138" media-type="image/jpeg"/>
+    <item href="34.jpg" id="added99" media-type="image/jpeg"/>
+    <item href="341.jpg" id="added139" media-type="image/jpeg"/>
+    <item href="35.jpg" id="added105" media-type="image/jpeg"/>
+    <item href="36.jpg" id="added114" media-type="image/jpeg"/>
+    <item href="37.jpg" id="added149" media-type="image/jpeg"/>
+    <item href="38.jpg" id="added157" media-type="image/jpeg"/>
+    <item href="39.jpg" id="added174" media-type="image/jpeg"/>
+    <item href="4.jpg" id="added5" media-type="image/jpeg"/>
+    <item href="41.jpg" id="added14" media-type="image/jpeg"/>
+    <item href="410.jpg" id="added191" media-type="image/jpeg"/>
+    <item href="411.jpg" id="added200" media-type="image/jpeg"/>
+    <item href="412.jpg" id="added210" media-type="image/jpeg"/>
+    <item href="42.jpg" id="added23" media-type="image/jpeg"/>
+    <item href="43.jpg" id="added50" media-type="image/jpeg"/>
+    <item href="44.jpg" id="added106" media-type="image/jpeg"/>
+    <item href="45.jpg" id="added117" media-type="image/jpeg"/>
+    <item href="46.jpg" id="added150" media-type="image/jpeg"/>
+    <item href="47.jpg" id="added159" media-type="image/jpeg"/>
+    <item href="48.jpg" id="added175" media-type="image/jpeg"/>
+    <item href="49.jpg" id="added187" media-type="image/jpeg"/>
+    <item href="5.jpg" id="added4" media-type="image/jpeg"/>
+    <item href="51.jpg" id="added15" media-type="image/jpeg"/>
+    <item href="52.jpg" id="added24" media-type="image/jpeg"/>
+    <item href="53.jpg" id="added51" media-type="image/jpeg"/>
+    <item href="54.jpg" id="added110" media-type="image/jpeg"/>
+    <item href="55.jpg" id="added118" media-type="image/jpeg"/>
+    <item href="56.jpg" id="added148" media-type="image/jpeg"/>
+    <item href="57.jpg" id="added160" media-type="image/jpeg"/>
+    <item href="58.jpg" id="added176" media-type="image/jpeg"/>
+    <item href="59.jpg" id="added185" media-type="image/jpeg"/>
+    <item href="6.jpg" id="added12" media-type="image/jpeg"/>
+    <item href="61.jpg" id="added25" media-type="image/jpeg"/>
+    <item href="62.jpg" id="added52" media-type="image/jpeg"/>
+    <item href="63.jpg" id="added119" media-type="image/jpeg"/>
+    <item href="64.jpg" id="added151" media-type="image/jpeg"/>
+    <item href="65.jpg" id="added161" media-type="image/jpeg"/>
+    <item href="66.jpg" id="added177" media-type="image/jpeg"/>
+    <item href="67.jpg" id="added188" media-type="image/jpeg"/>
+    <item href="7.jpg" id="added26" media-type="image/jpeg"/>
+    <item href="71.jpg" id="added53" media-type="image/jpeg"/>
+    <item href="72.jpg" id="added120" media-type="image/jpeg"/>
+    <item href="73.jpg" id="added158" media-type="image/jpeg"/>
+    <item href="74.jpg" id="added179" media-type="image/jpeg"/>
+    <item href="75.jpg" id="added201" media-type="image/jpeg"/>
+    <item href="8.jpg" id="added54" media-type="image/jpeg"/>
+    <item href="81.jpg" id="added121" media-type="image/jpeg"/>
+    <item href="82.jpg" id="added162" media-type="image/jpeg"/>
+    <item href="83.jpg" id="added180" media-type="image/jpeg"/>
+    <item href="84.jpg" id="added202" media-type="image/jpeg"/>
+    <item href="9.jpg" id="added55" media-type="image/jpeg"/>
+    <item href="91.jpg" id="added108" media-type="image/jpeg"/>
+    <item href="92.jpg" id="added123" media-type="image/jpeg"/>
+    <item href="93.jpg" id="added181" media-type="image/jpeg"/>
+    <item href="94.jpg" id="added203" media-type="image/jpeg"/>
+    <item href="SUMMARY.html" id="html" media-type="application/xhtml+xml"/>
+    <item href="animation_type.jpg" id="added219" media-type="image/jpeg"/>
+    <item href="atom.jpg" id="added196" media-type="image/jpeg"/>
+    <item href="autolayout.html" id="html24" media-type="application/xhtml+xml"/>
+    <item href="bian_ji_ri_ji.html" id="html33" media-type="application/xhtml+xml"/>
+    <item href="card_slider.html" id="html10" media-type="application/xhtml+xml"/>
+    <item href="cat_cart.jpg" id="added113" media-type="image/jpeg"/>
+    <item href="chan_pin_de_te_zhi.html" id="html38" media-type="application/xhtml+xml"/>
+    <item href="cheng_wei_kai_fa_zhe.html" id="html21" media-type="application/xhtml+xml"/>
+    <item href="clean.html" id="html5" media-type="application/xhtml+xml"/>
+    <item href="clear.html" id="html4" media-type="application/xhtml+xml"/>
+    <item href="cocoapods.html" id="html35" media-type="application/xhtml+xml"/>
+    <item href="collection.html" id="html11" media-type="application/xhtml+xml"/>
+    <item href="cong_gan_jue_kai_shi.html" id="html3" media-type="application/xhtml+xml"/>
+    <item href="cool.html" id="html6" media-type="application/xhtml+xml"/>
+    <item href="countinglabel.jpg" id="added221" media-type="image/jpeg"/>
+    <item href="crashlystics.html" id="html36" media-type="application/xhtml+xml"/>
+    <item href="delegate_flow.002.jpeg" id="added107" media-type="image/jpeg"/>
+    <item href="dong_hua_ku_facebook_pop.html" id="html42" media-type="application/xhtml+xml"/>
+    <item href="facebookpopstructure.jpg" id="added218" media-type="image/jpeg"/>
+    <item href="fav.png" id="added233" media-type="image/png"/>
+    <item href="final.jpg" id="added154" media-type="image/jpeg"/>
+    <item href="flyin.jpg" id="added222" media-type="image/jpeg"/>
+    <item href="framer_ji_chu.html" id="html15" media-type="application/xhtml+xml"/>
+    <item href="geng_tong_yong.html" id="html37" media-type="application/xhtml+xml"/>
+    <item href="gsmarena_001.jpg" id="added17" media-type="image/jpeg"/>
+    <item href="guan_jian_zhen_dong_hua.html" id="html46" media-type="application/xhtml+xml"/>
+    <item href="hanxiao1.jpeg" id="added8" media-type="image/jpeg"/>
+    <item href="hanxiao2.jpeg" id="added9" media-type="image/jpeg"/>
+    <item href="hanxiao3.jpeg" id="added10" media-type="image/jpeg"/>
+    <item href="hanxiao4.jpeg" id="added11" media-type="image/jpeg"/>
+    <item href="home.jpg" id="added88" media-type="image/jpeg"/>
+    <item href="hydro_de_jiao_hu_yu_ti_yan_she_ji.html" id="html20" media-type="application/xhtml+xml"/>
+    <item href="icon.jpg" id="added102" media-type="image/jpeg"/>
+    <item href="image21.jpg" id="added111" media-type="image/jpeg"/>
+    <item href="image_large_2x.jpg" id="added112" media-type="image/jpeg"/>
+    <item href="img_0104.jpg" id="added28" media-type="image/jpeg"/>
+    <item href="img_0108.jpg" id="added30" media-type="image/jpeg"/>
+    <item href="img_0110.jpg" id="added29" media-type="image/jpeg"/>
+    <item href="img_0114.jpg" id="added31" media-type="image/jpeg"/>
+    <item href="img_0115.jpg" id="added43" media-type="image/jpeg"/>
+    <item href="img_0118.jpg" id="added45" media-type="image/jpeg"/>
+    <item href="img_0119.jpg" id="added44" media-type="image/jpeg"/>
+    <item href="img_0120.jpg" id="added32" media-type="image/jpeg"/>
+    <item href="img_0122.jpg" id="added47" media-type="image/jpeg"/>
+    <item href="img_0125.jpg" id="added34" media-type="image/jpeg"/>
+    <item href="img_0126.jpg" id="added35" media-type="image/jpeg"/>
+    <item href="img_0127.jpg" id="added33" media-type="image/jpeg"/>
+    <item href="img_0129.jpg" id="added36" media-type="image/jpeg"/>
+    <item href="img_0130.jpg" id="added37" media-type="image/jpeg"/>
+    <item href="img_0132.jpg" id="added40" media-type="image/jpeg"/>
+    <item href="img_0133.jpg" id="added38" media-type="image/jpeg"/>
+    <item href="img_0134.jpg" id="added39" media-type="image/jpeg"/>
+    <item href="img_0137.jpg" id="added41" media-type="image/jpeg"/>
+    <item href="img_0139.jpg" id="added48" media-type="image/jpeg"/>
+    <item href="img_0140.jpg" id="added46" media-type="image/jpeg"/>
+    <item href="index.html" id="html1" media-type="application/xhtml+xml"/>
+    <item href="ingress.jpg" id="added16" media-type="image/jpeg"/>
+    <item href="init.jpg" id="added153" media-type="image/jpeg"/>
+    <item href="ios_animation.html" id="html26" media-type="application/xhtml+xml"/>
+    <item href="ios_app_shi_shi_yao.html" id="html23" media-type="application/xhtml+xml"/>
+    <item href="ios_architecture.png" id="added152" media-type="image/png"/>
+    <item href="jiao_hu_she_ji.html" id="html18" media-type="application/xhtml+xml"/>
+    <item href="jinianbeigu.jpg" id="added18" media-type="image/jpeg"/>
+    <item href="liu_lan_nian_ff0c_yue.html" id="html31" media-type="application/xhtml+xml"/>
+    <item href="liu_lan_ri_ji.html" id="html32" media-type="application/xhtml+xml"/>
+    <item href="maskanimation.gif" id="added235" media-type="image/gif"/>
+    <item href="month.jpg" id="added90" media-type="image/jpeg"/>
+    <item href="motion_graphic.html" id="html43" media-type="application/xhtml+xml"/>
+    <item href="naughty.gif" id="added232" media-type="image/gif"/>
+    <item href="nei_ce_ni_de_chan_pin.html" id="html41" media-type="application/xhtml+xml"/>
+    <item href="new.jpg" id="added92" media-type="image/jpeg"/>
+    <item href="new1.jpg" id="added224" media-type="image/jpeg"/>
+    <item href="nian_he_yue.html" id="html29" media-type="application/xhtml+xml"/>
+    <item href="page_styles.css" id="page_css" media-type="text/css"/>
+    <item href="product_next.html" id="html47" media-type="application/xhtml+xml"/>
+    <item href="producter.003.jpeg" id="added109" media-type="image/jpeg"/>
+    <item href="producter.004.jpeg" id="added166" media-type="image/jpeg"/>
+    <item href="producter.005.jpeg" id="added178" media-type="image/jpeg"/>
+    <item href="producter.006.jpeg" id="added193" media-type="image/jpeg"/>
+    <item href="producter.007.jpeg" id="added194" media-type="image/jpeg"/>
+    <item href="producter.008.jpeg" id="added195" media-type="image/jpeg"/>
+    <item href="producter.009.jpeg" id="added234" media-type="image/jpeg"/>
+    <item href="real-pixels.jpg" id="added207" media-type="image/jpeg"/>
+    <item href="screen322x572.jpeg" id="added19" media-type="image/jpeg"/>
+    <item href="she_ji_gong_ju_de_xuan_ze.html" id="html12" media-type="application/xhtml+xml"/>
+    <item href="she_ji_qu_dong_kai_fa.html" id="html2" media-type="application/xhtml+xml"/>
+    <item href="she_ji_xiao_ji.html" id="html17" media-type="application/xhtml+xml"/>
+    <item href="shi_yong_git_guan_li_ni_de_dai_ma.html" id="html28" media-type="application/xhtml+xml"/>
+    <item href="simple_iOS_App.html" id="html25" media-type="application/xhtml+xml"/>
+    <item href="sin5wave.jpg" id="added229" media-type="image/jpeg"/>
+    <item href="sinx.jpg" id="added228" media-type="image/jpeg"/>
+    <item href="sketch_ji_chu.html" id="html13" media-type="application/xhtml+xml"/>
+    <item href="sketch_shijian_wunderlist.html" id="html14" media-type="application/xhtml+xml"/>
+    <item href="slide_menu.html" id="html9" media-type="application/xhtml+xml"/>
+    <item href="sping.jpg" id="added220" media-type="image/jpeg"/>
+    <item href="stylesheet.css" id="css" media-type="text/css"/>
+    <item href="swift.html" id="html22" media-type="application/xhtml+xml"/>
+    <item href="tabbar.html" id="html8" media-type="application/xhtml+xml"/>
+    <item href="tinder_moments_2.jpg" id="added42" media-type="image/jpeg"/>
+    <item href="titlepage.xhtml" id="titlepage" media-type="application/xhtml+xml"/>
+    <item href="transfrom.jpg" id="added223" media-type="image/jpeg"/>
+    <item href="view.jpg" id="added91" media-type="image/jpeg"/>
+    <item href="waver.jpg" id="added227" media-type="image/jpeg"/>
+    <item href="waver_sheng_bo_xiao_guo.html" id="html44" media-type="application/xhtml+xml"/>
+    <item href="wei_shi_yao_di_yi_ge_shi_xiao_ji.html" id="html16" media-type="application/xhtml+xml"/>
+    <item href="wunderlist.jpg" id="added61" media-type="image/jpeg"/>
+    <item href="wunderlist_details.jpg" id="added62" media-type="image/jpeg"/>
+    <item href="x2.jpg" id="added230" media-type="image/jpeg"/>
+    <item href="x2andsin.jpg" id="added231" media-type="image/jpeg"/>
+    <item href="xcode.jpg" id="added101" media-type="image/jpeg"/>
+    <item href="xiao_ji_de_jiao_hu_she_ji.html" id="html19" media-type="application/xhtml+xml"/>
+    <item href="xiaoji_preview.png" id="added87" media-type="image/png"/>
+    <item href="xun_zhao_ling_gan.html" id="html7" media-type="application/xhtml+xml"/>
+    <item href="year.jpg" id="added89" media-type="image/jpeg"/>
+    <item href="ying_xiao_de_fang_fa.html" id="html39" media-type="application/xhtml+xml"/>
+    <item href="ying_xiao_de_xi_jie.html" id="html40" media-type="application/xhtml+xml"/>
+    <item href="you_hua.html" id="html34" media-type="application/xhtml+xml"/>
+    <item href="zai_nian_zhi_wai.html" id="html27" media-type="application/xhtml+xml"/>
+    <item href="zhen_dong_hua.html" id="html45" media-type="application/xhtml+xml"/>
+    <item href="zhuan_xie.html" id="html30" media-type="application/xhtml+xml"/>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="titlepage"/>
+    <itemref idref="html"/>
+    <itemref idref="html1"/>
+    <itemref idref="html2"/>
+    <itemref idref="html3"/>
+    <itemref idref="html4"/>
+    <itemref idref="html5"/>
+    <itemref idref="html6"/>
+    <itemref idref="html7"/>
+    <itemref idref="html8"/>
+    <itemref idref="html9"/>
+    <itemref idref="html10"/>
+    <itemref idref="html11"/>
+    <itemref idref="html12"/>
+    <itemref idref="html13"/>
+    <itemref idref="html14"/>
+    <itemref idref="html15"/>
+    <itemref idref="html16"/>
+    <itemref idref="html17"/>
+    <itemref idref="html18"/>
+    <itemref idref="html19"/>
+    <itemref idref="html20"/>
+    <itemref idref="html21"/>
+    <itemref idref="html22"/>
+    <itemref idref="html23"/>
+    <itemref idref="html24"/>
+    <itemref idref="html25"/>
+    <itemref idref="html26"/>
+    <itemref idref="html27"/>
+    <itemref idref="html28"/>
+    <itemref idref="html29"/>
+    <itemref idref="html30"/>
+    <itemref idref="html31"/>
+    <itemref idref="html32"/>
+    <itemref idref="html33"/>
+    <itemref idref="html34"/>
+    <itemref idref="html35"/>
+    <itemref idref="html36"/>
+    <itemref idref="html37"/>
+    <itemref idref="html38"/>
+    <itemref idref="html39"/>
+    <itemref idref="html40"/>
+    <itemref idref="html41"/>
+    <itemref idref="html42"/>
+    <itemref idref="html43"/>
+    <itemref idref="html44"/>
+    <itemref idref="html45"/>
+    <itemref idref="html46"/>
+    <itemref idref="html47"/>
+  </spine>
+  <guide>
+    <reference href="titlepage.xhtml" title="Cover" type="cover"/>
+  </guide>
+</package>

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>工具 - Sketch 实践 绘制图标</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_14">工具 - Sketch 实践 绘制图标</h1>
+        <div class="section">
+            <h1 id="product-design-产品的起点---sketch-实践-绘制图标" class="calibre7">Product Design: 产品的起点 - Sketch 实践 绘制图标</h1>
+<h2 id="wunderlist" class="calibre14">Wunderlist</h2>
+<p class="calibre8">Wunderlist 的图标是一个很好的实践对象，简单的几何图形，足够丰富的技巧运用。</p>
+<p class="calibre8"><img src="wunderlist.jpg" alt="wunderlist" class="calibre20"/></p>
+<p class="calibre8">在完成了这个图标之后，你大可以选择你喜欢的图标进行实践。</p>
+<h2 id="分解" class="calibre9">分解</h2>
+<p class="calibre8">分解是进行复刻的第一步，Wunderlist 的这个图标由四部分组成</p>
+<p class="calibre8"><img src="wunderlist_details.jpg" alt="wunderlist_details" class="calibre20"/></p>
+<ul class="calibre10">
+<li class="calibre11">底色</li>
+<li class="calibre11">白板</li>
+<li class="calibre11">书签</li>
+<li class="calibre11">五星</li>
+</ul>
+<p class="calibre8">分解之后，我们的任务就变成了逐一实现每个结构，然后再组装到一起。</p>
+<h2 id="底色" class="calibre9">底色</h2>
+<p class="calibre8">打开 Sketch 按下 A 新建一个 Artboard，选择右边的 Desktop HD</p>
+<p class="calibre8"><img src="1.1.jpg" alt="wunderlist_details_1.1" class="calibre20"/></p>
+<p class="calibre8">然后按下 U 进入创建圆角矩形模式，按住 Shift 在刚刚创建的 Artboard 里绘制一个圆角矩形。大约占据 Artboard 的 80%。</p>
+<p class="calibre8"><img src="1.2.jpg" alt="wunderlist_details_1.2" class="calibre20"/></p>
+<p class="calibre8">绘制完成后，点击右上角的 <strong class="calibre12">水平居中</strong> 以及 <strong class="calibre12">纵向居中</strong> 图标来将这个矩形对齐到 Artboard 的中心。</p>
+<p class="calibre8"><strong class="calibre12">水平居中</strong> <img src="1.3.1.jpg" alt="wunderlist_details_1.3.1" class="calibre20"/></p>
+<p class="calibre8"><strong class="calibre12">纵向居中</strong> <img src="1.3.2.jpg" alt="wunderlist_details_1.3.1" class="calibre20"/></p>
+<p class="calibre8">接着修改矩形的圆角半径（Radius）为圆角矩形的四分之一，例如你的圆角矩形高度是 800 那么你的 Radius 就是 200.</p>
+<p class="calibre8">接着给这个圆角矩形上一个渐变色，点击右边的 Fills 按钮，选择截图中亮起的 Linear Gradients</p>
+<p class="calibre8"><img src="1.4.jpg" alt="wunderlist_details_1.4" class="calibre20"/></p>
+<p class="calibre8">渐变滑块左端选择颜色 HEX 值为 E39D6D, 右端选择的是 C4754E。</p>
+<p class="calibre8"><img src="1.4.1.jpg" alt="wunderlist_details_1.4" class="calibre20"/></p>
+<p class="calibre8">到此我们就完成了底色的创建。</p>
+<h2 id="白板" class="calibre9">白板</h2>
+<p class="calibre8">选中刚刚创建的圆角矩形，按下 Command + C 复制，然后再按下 Command + V 粘贴一个。</p>
+<p class="calibre8">修改高度为底色高度乘以 0.85，我的底色为 800 高度，那么此时就是 680 的高度。</p>
+<p class="calibre8">修改 Radius 为白板高度除以 5，即 136。</p>
+<p class="calibre8"><img src="1.5.jpg" alt="wunderlist_details_1.5" class="calibre20"/></p>
+<p class="calibre8">0.85 和 除以 5 都是我用我的 “像素眼” 目测出来的，试了下确实比较接近。(Just Kidding)</p>
+<p class="calibre8">复刻的时候目测即可，当然你也可以选择去量一下图标里具体的比例。</p>
+<p class="calibre8">接下来是给白板加上阴影。</p>
+<p class="calibre8">仔细观察 Wunderlist 的图标阴影，你会发现其实有两级，点击右边的 Shadows 上的加号，添加两个 Shadow</p>
+<p class="calibre8"><img src="1.5.1.jpg" alt="wunderlist_details_1.5.1" class="calibre20"/></p>
+<p class="calibre8">第一个 Shadow 的 Y 为 50，Blur 为 30， Alpha 为 60，Blending 为 Soft Light。</p>
+<p class="calibre8"><img src="1.5.2.jpg" alt="wunderlist_details_1.5.2" class="calibre20"/></p>
+<p class="calibre8">第二个 Shadow 的 Y 为 30，Blur 为 10， Alpha 为 50，Blending 为 Soft Light。</p>
+<h2 id="书签" class="calibre9">书签</h2>
+<p class="calibre8">按下 R 进入矩形创建模式，绘制一个矩形宽度大概在 450。</p>
+<p class="calibre8"><img src="1.6.jpg" alt="wunderlist_details_1.6" class="calibre20"/></p>
+<p class="calibre8">点击 Edit 编辑这个矩形的路径，在底边中心增加一个点，并向上拖动大概 60 的距离，右边的拐角模式选择 Straight。</p>
+<p class="calibre8"><img src="1.6.1.jpg" alt="wunderlist_details_1.6.1" class="calibre20"/></p>
+<p class="calibre8">接着点击左上角的顶点，按住 Shift 再点击右上角的顶点，使这两个点都处于选中状态。然后把右边的 Corners 设置为 5。</p>
+<p class="calibre8"><img src="1.6.2.jpg" alt="wunderlist_details_1.6.2" class="calibre20"/></p>
+<p class="calibre8">再点击一下 Edit 退出路径编辑模式。</p>
+<p class="calibre8">完成形状之后就是添加颜色，Fills 选择渐变模式，左端 HEX 为 F85944，右端为 E33727。</p>
+<p class="calibre8">Borders 的 HEX 为 C72F22 Thickness 为 3。</p>
+<p class="calibre8"><img src="1.6.3.jpg" alt="wunderlist_details_1.6.3" class="calibre20"/></p>
+<p class="calibre8">完成之后将书签通过键盘方向键向上移动一些，距离大概为 5。</p>
+<p class="calibre8">最后给书签增加一个阴影，HEX 值为 9F251B，Alpha 为 70，Blur 为 15。</p>
+<p class="calibre8"><img src="1.6.4.jpg" alt="wunderlist_details_1.6.4" class="calibre20"/></p>
+<h2 id="五星" class="calibre9">五星</h2>
+<p class="calibre8">点击 Insert -&gt; Shape 选择五角星，按住 Shift 绘制一个五角星</p>
+<p class="calibre8"><img src="1.7.jpg" alt="wunderlist_details_1.7" class="calibre20"/></p>
+<p class="calibre8">使用对齐工具将五角星对齐到中心，修改 Radius 为 35%。</p>
+<p class="calibre8"><img src="1.7.1.jpg" alt="wunderlist_details_1.7.1" class="calibre20"/></p>
+<p class="calibre8">修改五星的 Fills 为白色，Borders 设置颜色的 HEX 为 C72F22，Thickness 为 3。</p>
+<p class="calibre8">然后按住 Shift 在左边同时选中 Star 1（五星） 和 Rectangle 3 （书签）点击顶部工具栏的 Subtract</p>
+<p class="calibre8"><img src="1.7.2.jpg" alt="wunderlist_details_1.7.2" class="calibre20"/></p>
+<p class="calibre8">此时就将五星和书签合二为一了，最后给五星增加一个 Inner Shadows，设置颜色为 C72F22，Y 为 5，Blur 为 5。</p>
+<p class="calibre8"><img src="1.7.3.jpg" alt="wunderlist_details_1.7.3" class="calibre20"/></p>
+<h2 id="优化" class="calibre9">优化</h2>
+<p class="calibre8">初稿完成后，我们的 icon 还并不完美，仔细观察原 icon 的底色和书签的顶部，都有一个高光的感觉。</p>
+<p class="calibre8">现在我们就需要优化渐变，来实现这个效果。</p>
+<p class="calibre8">选中底色，将 Fills 的左端滑块向右拖动一些，然后双击左边的颜色区域，新建一个滑块，颜色 HEX 设置为 FAC298。</p>
+<p class="calibre8"><img src="1.8.jpg" alt="wunderlist_details_1.8" class="calibre20"/></p>
+<p class="calibre8">然后将中间的滑块向左拖动，使得渐变的过度逐渐缩小，直到一个很细微的距离。</p>
+<p class="calibre8"><img src="1.8.1.jpg" alt="wunderlist_details_1.8.1" class="calibre20"/></p>
+<p class="calibre8">在书签上也重复这个操作，只不过最左端的颜色 HEX 为 C72F22</p>
+<p class="calibre8"><img src="1.8.2.jpg" alt="wunderlist_details_1.8.2" class="calibre20"/></p>
+<p class="calibre8">你可以在这里 <a href="http://static-catch.qiniudn.com/Wunderlist_refine.zip" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">获取</a> 到完整的 Sketch 文件。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

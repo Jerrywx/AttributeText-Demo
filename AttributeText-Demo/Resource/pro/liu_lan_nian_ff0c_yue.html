@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - 浏览年，月</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_31">产品的实现 - 浏览年，月</h1>
+        <div class="section">
+            <h1 id="product-code-产品的实现---浏览年，月" class="calibre7">Product Code: 产品的实现 - 浏览年，月</h1>
+<p class="calibre8">浏览主要涉及到三个方面，查询，分类，展示。</p>
+<h2 id="查询" class="calibre9">查询</h2>
+<p class="calibre8">存了这么多日记，早就想读取出来看看了，进入 HomeCollectionViewController，添加以下属性</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> diarys = [<span class="hljs-class">NSManagedObject</span>]()
+
+<span class="hljs-keyword">var</span> fetchedResultsController : <span class="hljs-class">NSFetchedResultsController</span>!
+
+<span class="hljs-keyword">var</span> yearsCount: <span class="hljs-class">Int</span> = <span class="hljs-number">1</span>
+
+<span class="hljs-keyword">var</span> sectionsCount: <span class="hljs-class">Int</span> = <span class="hljs-number">0</span>
+</code></pre>
+<p class="calibre8">查询 CoreData 的查询逻辑很好理解</p>
+<p class="calibre8"><img src="producter.008.jpeg" alt="" class="calibre20"/></p>
+<p class="calibre8">在 <code class="pcalibre6 pcalibre5 calibre34">viewDidLoad</code> 中添加如下代码</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">do</span> {
+    <span class="hljs-title">// 查询 CoreData 的 Diary 数据</span>
+    <span class="hljs-keyword">let</span> fetchRequest = <span class="hljs-class">NSFetchRequest</span>(entityName:<span class="hljs-string">"Diary"</span>)
+    <span class="hljs-title">// 设置按照创建时间的升序排序</span>
+    fetchRequest.sortDescriptors = [<span class="hljs-class">NSSortDescriptor</span>(key: <span class="hljs-string">"created_at"</span>, ascending: <span class="hljs-number">true</span>)]
+    <span class="hljs-title">// 初始化 NSFetchedResultsController 并根据 year 分成不同的 section</span>
+    fetchedResultsController = <span class="hljs-class">NSFetchedResultsController</span>(fetchRequest: fetchRequest,
+        managedObjectContext: managedContext,
+         sectionNameKeyPath: <span class="hljs-string">"year"</span>,
+        cacheName: <span class="hljs-number">nil</span>)
+
+    <span class="hljs-title">//开始尝试查询</span>
+    <span class="hljs-keyword">try</span> <span class="hljs-keyword">self</span>.fetchedResultsController.performFetch()
+
+    <span class="hljs-keyword">if</span> (fetchedResultsController.
+      fetchedObjects!.<span class="hljs-number">count</span> == <span class="hljs-number">0</span>){
+        <span class="hljs-number">print</span>(<span class="hljs-string">"Present empty year"</span>) <span class="hljs-title">// 没有任何查询结果</span>
+    }<span class="hljs-keyword">else</span>{
+
+        <span class="hljs-title">// 根据 sections 来判断 year 的数量</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> sectionsCount = fetchedResultsController.sections?.<span class="hljs-number">count</span> {
+            yearsCount = sectionsCount
+            diarys = fetchedResultsController
+            .fetchedObjects <span class="hljs-keyword">as</span>! [<span class="hljs-class">NSManagedObject</span>]
+        }<span class="hljs-keyword">else</span> {
+            sectionsCount = <span class="hljs-number">0</span>
+            yearsCount = <span class="hljs-number">1</span>
+        }
+    }
+
+} <span class="hljs-keyword">catch</span> <span class="hljs-keyword">let</span> error <span class="hljs-keyword">as</span> <span class="hljs-class">NSError</span> {
+  <span class="hljs-number">debugPrint</span>(error)
+}
+</code></pre>
+<h2 id="获取分组信息" class="calibre9">获取分组信息</h2>
+<p class="calibre8">分组已经由 NSFetchedResultsController 帮我们自动完成，那么接下来就是在年、月界面正确的显示。</p>
+<p class="calibre8">年的数量</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">collectionView</span><span class="hljs-number">(collectionView: UICollectionView,
+   numberOfItemsInSection section: Int)</span></span> -&gt; <span class="hljs-class">Int</span> {
+        <span class="hljs-keyword">return</span> yearsCount
+}
+</code></pre>
+<p class="calibre8">年的 Cell 配置</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">collectionView</span><span class="hljs-number">(collectionView:
+   UICollectionView,
+cellForItemAtIndexPath indexPath: NSIndexPath)</span></span> -&gt;
+ <span class="hljs-class">HomeYearCollectionViewCell</span> {
+
+  <span class="hljs-keyword">let</span> cell = collectionView.
+  dequeueReusableCellWithReuseIdentifier(reuseIdentifier,
+    forIndexPath: indexPath)
+   <span class="hljs-keyword">as</span>! <span class="hljs-class">HomeYearCollectionViewCell</span>
+
+  <span class="hljs-title">// 格式化日期</span>
+  <span class="hljs-keyword">let</span> components = <span class="hljs-class">NSCalendar</span>.currentCalendar().
+  component(<span class="hljs-class">NSCalendarUnit</span>.<span class="hljs-class">CalendarUnitYear</span>,
+    fromDate: <span class="hljs-class">NSDate</span>())
+
+  <span class="hljs-keyword">var</span> year = components
+  <span class="hljs-keyword">if</span> sectionsCount &gt; <span class="hljs-number">0</span> {
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> sectionInfo = fetchedResultsController.
+    sections![indexPath.row] <span class="hljs-keyword">as</span>?
+     <span class="hljs-class">NSFetchedResultsSectionInfo</span> {
+      <span class="hljs-number">print</span>(<span class="hljs-string">"Section info <span class="hljs-class">\(sectionInfo.name)</span>"</span>)
+      year = sectionInfo.name!.toInt()!
+    }
+  }
+
+  cell.textInt = year
+  cell.labelText = <span class="hljs-string">"<span class="hljs-class">\(numberToChinese(cell.textInt)</span>) 年"</span>
+
+  <span class="hljs-title">// Configure the cell</span>
+
+  <span class="hljs-keyword">return</span> cell
+}
+</code></pre>
+<p class="calibre8">点击年的时候</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">collectionView</span><span class="hljs-number">(
+  collectionView: UICollectionView,
+didSelectItemAtIndexPath indexPath: NSIndexPath)</span></span>
+{
+
+  <span class="hljs-keyword">let</span> identifier = <span class="hljs-string">"DiaryYearCollectionViewController"</span>
+  <span class="hljs-keyword">let</span> dvc = <span class="hljs-keyword">self</span>.storyboard?.
+  instantiateViewControllerWithIdentifier(identifier)
+  <span class="hljs-keyword">as</span>! <span class="hljs-class">DiaryYearCollectionViewController</span>
+
+  <span class="hljs-keyword">let</span> components = <span class="hljs-class">NSCalendar</span>.currentCalendar().
+  component(<span class="hljs-class">NSCalendarUnit</span>.<span class="hljs-class">CalendarUnitYear</span>,
+     fromDate: <span class="hljs-class">NSDate</span>())
+
+  <span class="hljs-keyword">var</span> year = components
+  <span class="hljs-keyword">if</span> sectionsCount &gt; <span class="hljs-number">0</span> {
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> sectionInfo = fetchedResultsController.
+    sections![indexPath.row] <span class="hljs-keyword">as</span>?
+    <span class="hljs-class">NSFetchedResultsSectionInfo</span> {
+      <span class="hljs-number">print</span>(<span class="hljs-string">"Section info <span class="hljs-class">\(sectionInfo.name)</span>"</span>)
+      year = sectionInfo.name!.toInt()!
+    }
+  }
+
+  dvc.year = year
+  <span class="hljs-keyword">self</span>.navigationController!.pushViewController(dvc,
+     animated: <span class="hljs-number">true</span>)
+
+}
+</code></pre>
+<p class="calibre8">self.storyboard?.
+instantiateViewControllerWithIdentifier(identifier) 这个方法可以从 StoryBoard 里取出 Identifier 为 DiaryYearCollectionViewController 的实例对象。</p>
+<p class="calibre8">月份采用了类似的方式实现。</p>
+<p class="calibre8">月的查询略有变化</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">fetchRequest.predicate = <span class="hljs-class">NSPredicate</span>(format:
+  <span class="hljs-string">"year = <span class="hljs-class">\(year)</span> AND month = <span class="hljs-class">\(month)</span>"</span>)
+</code></pre>
+<p class="calibre8">增加了确切的年和月份</p>
+<p class="calibre8">当点击月份的某篇日记的时候，将对应的 Diary 传递过去</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> identifier = <span class="hljs-class">DiaryViewController</span>
+
+<span class="hljs-keyword">let</span> dvc = <span class="hljs-keyword">self</span>.storyboard?.
+instantiateViewControllerWithIdentifier(identifier)
+<span class="hljs-keyword">as</span>! <span class="hljs-class">DiaryViewController</span>
+
+<span class="hljs-keyword">let</span> diary = fetchedResultsController.
+objectAtIndexPath(indexPath) <span class="hljs-keyword">as</span>! <span class="hljs-class">Diary</span>
+
+dvc.diary = diary
+
+<span class="hljs-keyword">self</span>.navigationController!.pushViewController(dvc,
+   animated: <span class="hljs-number">true</span>)
+</code></pre>
+<p class="calibre8">你可以在 <a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Diary/BrowseYearAndMonth/Diary" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github</a> 找到本章的工程项目</p>
+<h2 id="深入了解-nspredicate，-nsfetchedresultscontroller" class="calibre9">深入了解 NSPredicate， NSFetchedResultsController</h2>
+<p class="calibre8"><a href="http://nshipster.cn/nspredicate/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">NSPredicate</a></p>
+<p class="calibre8"><a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSPredicate_Class/index.html" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">NSPredicate Class Reference</a></p>
+<p class="calibre8"><a href="https://developer.apple.com/library/prerelease/ios/documentation/CoreData/Reference/NSFetchedResultsController_Class/index.html" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">NSFetchedResultsController Class Reference</a></p>
+<p class="calibre8"><a href="http://www.raywenderlich.com/999/core-data-tutorial-for-ios-how-to-use-nsfetchedresultscontroller" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Core Data Tutorial for iOS: How To Use NSFetchedResultsController</a></p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

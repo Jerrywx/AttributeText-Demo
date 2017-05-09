@@ -1,0 +1,275 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>动画进阶 - 动画库 Facebook POP</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_42">动画进阶 - 动画库 Facebook POP</h1>
+        <div class="section">
+            <h1 id="product-advanced-动画进阶---动画库-facebook-pop" class="calibre7">Product Advanced: 动画进阶 - 动画库 Facebook POP</h1>
+<p class="calibre8">上一章我们使用了 Facebook 的 POP 动画库，下面一起来一探究竟。趁此机会，你也可以了解一下 Objective－C。</p>
+<p class="calibre8">Facebook 在发布了 Paper 之后，似乎还不满足于只是将其作为一个概念性产品，更进一步开源了其背后的动画引擎  <a href="https://github.com/facebook/pop" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">POP</a> ，此举大有三年前发布的 iOS UI 框架  <a href="https://github.com/facebookarchive/three20" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Three20</a> 的意味。而 POP 开源后不负 Facebook 的厚望，在 Github 上不足一个月的时间，就已经拥有了 6000＋ 个 Star，非常火爆。</p>
+<p class="calibre8">POP 背后的开发者是 <a href="http://kimtsi.com" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">￼￼￼Kimon Tsinteris</a>，Push Pop Press 的联合创始人，曾经在 Apple 担任高级工程师，并参与了 iPhone 和 iPad 上软件的研发（iPhone的指南针以及地图）。 2011年的时候 Facebook 收购了他的公司，此后他便加入了 Facebook 负责 Facebook iOS 版本的开发。</p>
+<p class="calibre8">如果你打开 Push Pop Press 开发的 AI Gore 这款 App，你会发现交互和动画与 Paper 几乎如出一辙。对，他们都是 Kimon Tsinteris 开发的。</p>
+<p class="calibre8">不满于 Apple 自身动画框架的单调，Push Pop Press 致力于创造一个逼真的，充满物理效应的体验。POP 就是这个理念下最新一代的成果。</p>
+<p class="calibre8">POP 使用 Objective-C++ 编写，Objective-C++ 是对 C++ 的扩展，就像 Objective-C 是 C 的扩展。而至于为什么他们用 Objective-C++ 而不是纯粹的 Objective-C，原因是他们更喜欢 Objective-C++ 的语法特性所提供的便利。</p>
+<h2 id="pop-的架构" class="calibre9">POP 的架构</h2>
+<p class="calibre8">POP 目前由四部分组成 (图1.1)</p>
+<ol class="calibre2">
+<li class="calibre11">Animations</li>
+<li class="calibre11">Engine</li>
+<li class="calibre11">Utility</li>
+<li class="calibre11">WebCore</li>
+</ol>
+<div class="calibre21"><img src="facebookpopstructure.jpg" class="calibre32"/></div>
+
+<p class="calibre8">POP 动画极为流畅，其秘密就在于这个 Engine 中的 POPAnimator 里，POP 通过 CADisplayLink 高达 60 FPS 的特性，打造了一个游戏级的动画引擎。</p>
+<p class="calibre8">CADisplayLink 是类似 NSTimer 的定时器，不同之处在于，NSTimer 用于我们定义任务的执行周期，资料的更新周期，他的执行受到 CPU 的阻塞影响，而 CADisplayLink 则用于定义画面的重绘，动画的演变，他的执行基于 frames 的间隔，更加稳定。</p>
+<p class="calibre8">通过 CADisplayLink，Apple 允许你将 App 的重绘速度设定到和屏幕刷新频率一致，由此你可以获得非常流畅的交互动画，这项技术的应用在游戏中非常常见，著名的 Cocos-2D 也应用了这个重要的技术。</p>
+<p class="calibre8">WebCore 里包含了一些从 Apple 的开源的网页渲染引擎里拿出的<a href="http://www.opensource.apple.com/source/WebCore" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">源文件</a>，与 Utility 里的组件一并，提供了 POP 的各项复杂计算的基本支持。</p>
+<p class="calibre8">由此通过 Engine、Utility、WebCore 三个基石，打造了Animations。</p>
+<p class="calibre8">POPAnimation 有着和 CALayer 非常相似的 API。如果你知道 CALayer 的动画 API，那么你对下面的接口一定非常熟悉, 想必你一定开始迫不及待想试试 POP 了，我们现在就 Jump right in。</p>
+<p class="calibre8">因为篇幅原因，下面的代码并不是完整代码，你可以到 <a href="https://github.com/kevinzhow/pop-handapp" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">https://github.com/kevinzhow/pop-handapp</a> 获取我们的示例 App 。</p>
+<h2 id="基本类型" class="calibre9">基本类型</h2>
+<h3 id="spring-animation" class="calibre31">Spring Animation</h3>
+<p class="calibre8">Ease-in Ease-out 这些可能你已经非常熟悉，这是动画的动作标配了，不过 POP 觉得只是这样显然太无聊，提供了两个非常不同的动画模式，第一个就是 Spring Animation。（图 2.1 ）</p>
+<div class="calibre21"><img src="animation_type.jpg" class="calibre48"/></div>
+
+<p class="calibre8">Spring Animation 由诸多的复杂参数来控制，展现了一个非常风骚的姿势。（图 2.2）</p>
+<div class="calibre21"><img src="sping.jpg" class="calibre46"/></div>
+
+<ul class="calibre10">
+<li class="calibre11">Bounciness 反弹 - 影响动画作用的参数的变化幅度</li>
+<li class="calibre11">Speed 速度</li>
+<li class="calibre11">Tension 拉力 - 影响回弹力度以及速度</li>
+<li class="calibre11">Friction 摩擦力 - 如果开启，动画会不断重复，幅度逐渐削弱，直到停止</li>
+<li class="calibre11">Mass 质量 - 细微的影响动画的回弹力度以及速度</li>
+</ul>
+<p class="calibre8">Tension，Friction，Mass 这三个参数的作用很微妙，需要你在示例程序里去仔细体会。</p>
+<p class="calibre8">使用 Spring Animation 的方式非常简单。（图 2.3 ）</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">POPSpringAnimation *anim = [POPSpringAnimation
+animationWithPropertyNamed:kPOPLayerScaleXY];
+
+anim.toValue = [<span class="hljs-number">NSValue</span>
+valueWith<span class="hljs-number">CGPoint</span>:<span class="hljs-number">CGPointMake</span>(<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>)];
+
+anim.springBounciness = <span class="hljs-number">4.0</span>;
+
+anim.springSpeed = <span class="hljs-number">12.0</span>;
+
+anim.completionBlock = ^(POPAnimation *anim,
+   <span class="hljs-number">BOOL</span> finished) {
+
+  <span class="hljs-keyword">if</span> (finished) {<span class="hljs-number">NSLog</span>(<span class="hljs-string">@"Animation finished!"</span>);}};
+</code></pre>
+<p class="calibre8">通过 <code class="pcalibre6 pcalibre5 calibre34">[POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY]</code> 我们创建了一个二维平面上分别沿着 X 和 Y 坐标轴进行缩放的动画。</p>
+<p class="calibre8">因此我们要使用 toValue 来告诉 POP 我们希望分别缩放几倍，如果你不提供 fromValue，那么 POP 将默认从当前的大小为依据进行缩放。值得一提的是，toValue 这里的值要和动画作用的属性一样的结构。如果我们操作 bounds ，那么这里应该是  <code class="pcalibre6 pcalibre5 calibre34">[NSValue valueWithCGRect:CGRectMake(0.0, 0.0, 200.0,400.0)]</code>。</p>
+<p class="calibre8">completionBlock 提供了一个 Callback，动画的执行过程会不断调用这个 block，finished 这个布尔变量可以用来做动画完成与否的判断。</p>
+<p class="calibre8">最后我们使用  <code class="pcalibre6 pcalibre5 calibre34">pop_addAnimation</code> 来让动画开始生效，如果你想删除动画的话，那么你需要调用 <code class="pcalibre6 pcalibre5 calibre34">pop_removeAllAnimations</code> 。
+与 iOS 自带的动画不同，如果你在动画的执行过程中删除了物体的动画，那么物体会停在动画状态的最后一个瞬间，而不是闪回开始前的状态。</p>
+<h3 id="decay-animation" class="calibre31">Decay Animation</h3>
+<p class="calibre8">Decay Animation 就是 POP 提供的另外一个非常特别的动画，他实现了一个衰减的效果。这个动画有一个重要的参数 velocity（速率），一般并不用于物体的自发动画，而是与用户的交互共生。这个和 iOS7 引入的 UIDynamic 非常相似，如果你想实现一些物理效果，这个也是非常不错的选择。</p>
+<p class="calibre8">Decay 的动画没有 toValue 只有 fromValue，然后按照 velocity 来做衰减操作。如果我们想做一个刹车效果，那么应该是这样的。图（ 2.4 ）</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+POPDecayAnimation *anim = [POPDecayAnimation
+ animWithPropertyNamed:kPOPLayerPositionX];
+anim.velocity = @(<span class="hljs-number">100.0</span>);
+anim.fromValue =  @(<span class="hljs-number">25.0</span>);
+<span class="hljs-title">//anim.deceleration = 0.998;</span>
+anim.completionBlock = ^(POPAnimation *anim, <span class="hljs-number">BOOL</span> finished)
+{
+  <span class="hljs-keyword">if</span> (finished) {<span class="hljs-number">NSLog</span>(<span class="hljs-string">@"Stop!"</span>);}};
+</code></pre>
+<p class="calibre8">这个动画会使得物体从 X 坐标的点 25.0 开始按照速率 100点/s 做减速运动。
+这里非常值得一提的是，velocity 也是必须和你操作的属性有相同的结构，如果你操作的是 bounds，想实现一个水滴滴到桌面的扩散效果，那么应该是 <code class="pcalibre6 pcalibre5 calibre34">[NSValue valueWithCGRect:CGRectMake(0, 0,20.0, 20.0)]</code>。</p>
+<p class="calibre8">如果 velocity 是负值，那么就会反向递减。</p>
+<p class="calibre8">deceleration （负加速度） 是一个你会很少用到的值，默认是就是我们地球的 0.998，如果你开发给火星人用，那么这个值你使用 0.376 会更合适。</p>
+<h3 id="property-animation--basic-animation" class="calibre31">Property Animation &amp; Basic Animation</h3>
+<p class="calibre8">POP 号称可以对物体的任何属性进行动画，其背后就是这个 Property Animation 驱动。Spring Animation 和 Decay Animation 都是继承自这个类，接下来我们通过一个 Counting Label 的例子来展现它神奇的能力。( 图 2.5.0 )</p>
+<div class="calibre21"><img src="countinglabel.jpg" class="calibre46"/></div>
+
+<p class="calibre8">与此同时我们也使用了 Basic Animation，经典的 ease-in-out 此刻发挥了重要的作用，因为我们并不需要计数器的数值进行回弹。（ 图 2.5 ）</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+POPBasicAnimation *anim = [POPBasicAnimation animation];
+anim.duration = <span class="hljs-number">10.0</span>;
+anim.timingFunction = [<span class="hljs-number">CAMediaTimingFunction</span>
+functionWithName:k<span class="hljs-number">CAMediaTimingFunctionEaseInEaseOut</span>];
+
+POPAnimatableProperty * prop = [POPAnimatableProperty
+ propertyWithName:<span class="hljs-string">@"count"</span>
+ initializer:^(POPMutableAnimatableProperty *prop) {
+     prop.readBlock = ^(<span class="hljs-keyword">id</span> obj, <span class="hljs-number">CGFloat</span> values[]) {
+
+      values[<span class="hljs-number">0</span>] = [[obj description] floatValue];};
+
+    prop.writeBlock = ^(<span class="hljs-keyword">id</span> obj, <span class="hljs-keyword">const</span> <span class="hljs-number">CGFloat</span> values[]) {
+
+      [obj setText:
+      [<span class="hljs-number">NSString</span> stringWithFormat:<span class="hljs-string">@"%.2f"</span>,values[<span class="hljs-number">0</span>]]];
+
+    };
+    prop.threshold = <span class="hljs-number">0.01</span>;
+  }];
+
+anim.property = prop;
+anim.fromValue = @(<span class="hljs-number">0.0</span>);
+anim.toValue = @(<span class="hljs-number">100.0</span>);
+</code></pre>
+<p class="calibre8">通过 POPBasicAnimation 的 timingFunction， 我们定义了动画的方式，慢开慢停。随后通过 POPAnimatableProperty 定义了 POP 如何操作 Label 上的数值。</p>
+<p class="calibre8">readBlock 中，obj 就是我们的 Label，values 这个是动画作用的属性数组，其值必须是 CGFloat，之前我们在 Decay Animation 中操作了 bounds。</p>
+<p class="calibre8">那么 values[0]，values[1]，values[2]，values[3] 就分别对应 CGRectMake(0, 0, 20.0, 20.0) 的 0, 0, 20.0, 20.0。</p>
+<p class="calibre8">这里我们只需要操作 Label 上显示的文字，所以只需要一个参数。通过 <code class="pcalibre6 pcalibre5 calibre34">values[0] = [[obj description] floatValue]</code> 我们告诉 POP 如何获取这个值。</p>
+<p class="calibre8">相应地，我们通过 <code class="pcalibre6 pcalibre5 calibre34">[obj setText:[NSString stringWithFormat:@"%.2f",values[0]]]</code> 告诉了 POP 如何改变 Label 的属性。</p>
+<p class="calibre8">threshold 定义了动画的变化阈值，如果这里使用 1，那么我们就不会看到动画执行的时候小数点后面数字的变化。
+到此为止，我们的 Counting Label 就完成了，是不是超简单？</p>
+<h2 id="实战" class="calibre9">实战</h2>
+<h3 id="popup--decay-move" class="calibre31">PopUp &amp; Decay Move</h3>
+<p class="calibre8">这个实例中我们介绍下如何将 Decay 动画和用户的操作结合起来，实现一个推冰壶的效果。</p>
+<p class="calibre8">首先我们给我们的物体添加个 UIPanGestureRecognizer 的手势操作其，处理方式如下 （ 图2.6 ）</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">case</span> <span class="hljs-number">UIGestureRecognizerStateChanged</span>: {
+  [<span class="hljs-keyword">self</span>.popCircle.layer pop_removeAllAnimations];
+  <span class="hljs-number">CGPoint</span> translation = [pan translationInView:<span class="hljs-keyword">self</span>.view];
+  <span class="hljs-number">CGPoint</span> center = <span class="hljs-keyword">self</span>.popCircle.center;
+  center.x += translation.x;
+  center.y += translation.y;
+  <span class="hljs-keyword">self</span>.popCircle.center = center;
+  [pan setTranslation:<span class="hljs-number">CGPointZero</span> inView:<span class="hljs-keyword">self</span>.popCircle];
+  <span class="hljs-keyword">break</span>;
+}
+<span class="hljs-keyword">case</span> <span class="hljs-number">UIGestureRecognizerStateEnded</span>:
+<span class="hljs-keyword">case</span> <span class="hljs-number">UIGestureRecognizerStateCancelled</span>: {
+  <span class="hljs-number">CGPoint</span> velocity = [pan velocityInView:<span class="hljs-keyword">self</span>.view];
+  [<span class="hljs-keyword">self</span> addDecayPositionAnimationWithVelocity:velocity];
+  <span class="hljs-keyword">break</span>;
+ }
+</code></pre>
+<p class="calibre8">当用户触摸这个冰壶的时候，所有动画会立刻停止，然后跟随用户的手指移动。
+通过  <code class="pcalibre6 pcalibre5 calibre34">[pan velocityInView:self.view];</code>  我们获取了用户手指移动的速率然后在  addDecayPositionAnimationWithVelocity 中处理动画（图 2.7）。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">POPDecayAnimation *anim = [POPDecayAnimation
+animationWithPropertyNamed:kPOPLayerPosition];
+
+anim.velocity = [<span class="hljs-number">NSValue</span> valueWith<span class="hljs-number">CGPoint</span>:<span class="hljs-number">CGPointMake</span>(velocity.x, velocity.y)];
+</code></pre>
+<p class="calibre8">当用户松开手之后，冰壶会依照地球的重力在低摩擦的状态下前进逐渐停止。如果想增大摩擦力，你可以把速率乘以一个摩擦系数。</p>
+<h3 id="fly-in" class="calibre31">Fly In</h3>
+<p class="calibre8">在这个实例中，我们介绍下如何结合两个动画。实现一个像 Path 的卡片飞入的效果(图 2.8.0)。</p>
+<div class="calibre21"><img src="flyin.jpg" class="calibre46"/></div>
+
+<p class="calibre8">同样保留了 Decay Move 的效果，你可以甩走这张卡片（图 2.8）。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">POPSpringAnimation *anim = [POPSpringAnimation
+animationWithPropertyNamed:kPOPLayerPositionY];
+
+anim.fromValue = @<span class="hljs-number">-200</span>;
+anim.toValue = @(<span class="hljs-keyword">self</span>.view.center.y);
+
+POPBasicAnimation *opacityAnim = [POPBasicAnimation
+animationWithPropertyNamed:kPOPLayerOpacity];
+
+opacityAnim.timingFunction = [<span class="hljs-number">CAMediaTimingFunction</span>
+functionWithName:k<span class="hljs-number">CAMediaTimingFunctionEaseInEaseOut</span>];
+
+opacityAnim.toValue = @<span class="hljs-number">1.0</span>;
+
+POPBasicAnimation *rotationAnim = [POPBasicAnimation
+animationWithPropertyNamed:kPOPLayerRotation];
+
+rotationAnim.timingFunction = [<span class="hljs-number">CAMediaTimingFunction</span>
+functionWithName:k<span class="hljs-number">CAMediaTimingFunctionEaseInEaseOut</span>];
+
+rotationAnim.beginTime = <span class="hljs-number">CACurrentMediaTime</span>() + <span class="hljs-number">0.1</span>;
+rotationAnim.toValue = @(<span class="hljs-number">0</span>);
+</code></pre>
+<p class="calibre8">首先把我们的冰壶变成卡片，旋转一点角度。这里需要注意的是，我们使用了 duration 来定义 Basic Animation 的执行时间，beginTime 来定义动画的开始时间。beginTime 接受的是一个以秒为单位的时间，所以我们使用了 <code class="pcalibre6 pcalibre5 calibre34">CACurrentMediaTime()</code> 获取了当前时间，然后加上延迟时间。</p>
+<h3 id="transform" class="calibre31">Transform</h3>
+<p class="calibre8">这个实例是真的酷极了的效果，我们将实现一个用户点击后播放按钮转换为进度条容器的变形效果。（ 图 2.9.0 ）</p>
+<div class="calibre21"><img src="transfrom.jpg" class="calibre46"/></div>
+
+<p class="calibre8">首先我们创建一个进度条，这个真是我最拿手的事情了。（梗请见 <a href="https://github.com/kevinzhow/PNChart" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">PNChart</a> ）通过 lineCap 和 lineWidth 我们调整进度条的样式，然后使用 UIBezierPath 定义了进度条的走向。 （ 图2.9 ）</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-number">CAShapeLayer</span> *progressLayer = [<span class="hljs-number">CAShapeLayer</span> layer];
+progressLayer.strokeColor = [<span class="hljs-number">UIColor</span> colorWithWhite:<span class="hljs-number">1.0</span>
+ alpha:<span class="hljs-number">0.98</span>].CGColor;
+progressLayer.lineWidth = <span class="hljs-number">26.0</span>;
+
+<span class="hljs-number">UIBezierPath</span> *progressline = [<span class="hljs-number">UIBezierPath</span> bezierPath];
+[progressline moveToPoint:<span class="hljs-number">CGPointMake</span>(<span class="hljs-number">25.0</span>, <span class="hljs-number">25.0</span>)];
+[progressline addLineToPoint:<span class="hljs-number">CGPointMake</span>(<span class="hljs-number">700.0</span>, <span class="hljs-number">25.0</span>)];
+progressLayer.path = progressline.CGPath;
+
+POPSpringAnimation *scaleAnim = [POPSpringAnimation
+animationWithPropertyNamed:kPOPLayerScaleXY];
+
+scaleAnim.toValue = [<span class="hljs-number">NSValue</span> valueWith<span class="hljs-number">CGPoint</span>:
+<span class="hljs-number">CGPointMake</span>(<span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>)];
+
+POPSpringAnimation *boundsAnim = [POPSpringAnimation
+animationWithPropertyNamed:kPOPLayerBounds];
+
+boundsAnim.toValue = [<span class="hljs-number">NSValue</span> valueWith<span class="hljs-number">CGRect</span>:
+<span class="hljs-number">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">800</span>, <span class="hljs-number">50</span>)];
+boundsAnim.completionBlock = ^(POPAnimation *anim,
+   <span class="hljs-number">BOOL</span> finished) {
+  <span class="hljs-keyword">if</span> (finished) {
+     <span class="hljs-number">UIGraphicsBeginImageContextWithOptions</span>(
+       <span class="hljs-keyword">self</span>.popCircle.frame.size, <span class="hljs-number">NO</span>, <span class="hljs-number">0.0</span>);
+
+     POPBasicAnimation *progressBoundsAnim =
+     [POPBasicAnimation
+      animationWithPropertyNamed:
+      kPOPShapeLayerStrokeEnd];
+
+     progressBoundsAnim.timingFunction =
+     [<span class="hljs-number">CAMediaTimingFunction</span>
+     functionWithName:k<span class="hljs-number">CAMediaTimingFunctionEaseInEaseOut</span>];
+
+     progressBoundsAnim.toValue = @<span class="hljs-number">1.0</span>;
+     progressBoundsAnim.completionBlock = ^(
+       POPAnimation *anim,
+        <span class="hljs-number">BOOL</span> finished) {
+       <span class="hljs-keyword">if</span> (finished) {
+         <span class="hljs-number">UIGraphicsEndImageContext</span>();
+         }
+     };
+
+     [progressLayer pop_addAnimation:progressBoundsAnim
+     forKey:<span class="hljs-string">@"AnimateBounds"</span>];
+   }
+ };
+</code></pre>
+<p class="calibre8">首先是一起进行的 scale 和 bounds 的变化效果，播放按钮将缩小然后改变外形成为进度条的容器，在变形结束后，我们触发进度条的动画。</p>
+<p class="calibre8">这里我们使用 <code class="pcalibre6 pcalibre5 calibre34">UIGraphicsBeginImageContextWithOptions(self.popCircle.frame.size, NO, 0.0);</code>
+开启了绘画上下文，动画结束后使用 <code class="pcalibre6 pcalibre5 calibre34">UIGraphicsEndImageContext();</code> 清空了绘画上下文。这个主要是影响了画板的大小。</p>
+<p class="calibre8">这里我们没有使用 <code class="pcalibre6 pcalibre5 calibre34">UIGraphicsBeginImageContext()</code> 而是使用 <code class="pcalibre6 pcalibre5 calibre34">UIGraphicsBeginImageContextWithOptions()</code> 以此获取一个更清晰的绘图效果。</p>
+<h3 id="值得关注的-pop-周边" class="calibre31">值得关注的 POP 周边</h3>
+<ul class="calibre10">
+<li class="calibre11"><a href="https://github.com/kevinzhow/pop-handapp" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">POP-HandApp</a>
+这就是本文的示例App，包含了大量动画的操作方法和上述介绍的实例。</li>
+<li class="calibre11"><a href="https://github.com/hfossli/aggeometrykit-pop" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">AGGeometryKit-POP</a>
+通过 POP 对图片进行变形操作，非常酷。</li>
+<li class="calibre11"><a href="https://github.com/matthewcheok/POP-MCAnimate" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">POP-MCAnimate</a>
+POP 的一个封装，可以让你更方便的使用 POP。</li>
+<li class="calibre11"><a href="http://facebook.github.io/rebound/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Rebound</a>
+POP 的 Android 部分实现，主要是 Spring 的效果，移植自 Facebook 的 rebound-js。</li>
+</ul>
+<h3 id="结语" class="calibre31">结语</h3>
+<p class="calibre8">POP 是一个新的里程碑，通过 POP，动画的开发门槛大大降低，并且实现了丰富的属性操作，其倡导的可中断式动画交互会革命性也值得我们仔细研究体会，想必不久就会涌现大量富有活力的 App ，感谢 Facebook，感谢开源。
+Long live Opensource.</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

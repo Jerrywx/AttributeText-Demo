@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - AutoLayout</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_24">产品的实现 - AutoLayout</h1>
+        <div class="section">
+            <h1 id="product-design-产品的起点---autolayout" class="calibre7">Product Design: 产品的起点 - AutoLayout</h1>
+<h2 id="什么是-autolayout" class="calibre14">什么是 AutoLayout</h2>
+<p class="calibre8">iPhone 5 开始，iPhone 有了更多的尺寸，使用代码针对不同的设备布局变成了一件不可能完成的任务，更何况你还要处理屏幕的横屏和竖屏模式。</p>
+<p class="calibre8">其难度你可以参考下图</p>
+<p class="calibre8"><img src="image21.jpg" alt="ios_devices" class="calibre20"/></p>
+<p class="calibre8"><a href="http://devsbuild.it/content/How-Create-One-Size-Fits-All-App-iOS-iOS-8’s-Adaptive-UI" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">图 DevsBuildIt</a></p>
+<p class="calibre8">从 iOS 9 开始，iPad 有了分屏模式 (Multitasking)，这又使得界面可能存在多种分屏大小。</p>
+<p class="calibre8"><img src="image_large_2x.jpg" alt="ios_devices" class="calibre20"/></p>
+<p class="calibre8">AutoLayout 技术正是为了解决这些问题而生，而且这个技术也非常的简单优雅，通过约束绑定的方式，来应对界面的变化。</p>
+<h2 id="居中约束" class="calibre9">居中约束</h2>
+<p class="calibre8">我们从处理三个可爱的猫咪的问题开始 AutoLayout 的学习。</p>
+<p class="calibre8">你可以在 <a href="https://github.com/ProducterTips/producter-book-examples" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github </a> 找到相关代码。</p>
+<p class="calibre8"><img src="cat_cart.jpg" alt="cat" class="calibre20"/></p>
+<p class="calibre8">第一个任务是，让这只猫咪显示在屏幕中间</p>
+<p class="calibre8">新建一个 Project，你可以从 AutoLayout 的 meow_begin 获取我们的起始项目，三只猫咪的图片我已经帮你添加到 Images 里面里，在 Xcode 里添加图片非常简单，拖拽到 Images.xcassets 里面即可。</p>
+<p class="calibre8"><img src="36.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">点击左边的 Main.Storyboard 进入故事板，在右下角的搜索框输入 imageview 搜索到 UIImageview 这个控件，它可以用来显示图片</p>
+<p class="calibre8"><img src="110.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">按住左键拖入 ViewController 里面，然后点击右边的尺子 (Size Inspector) 图标，将 Width 和 Height 都改成 100</p>
+<p class="calibre8"><img src="28.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">接着点击尺子左边的箭头 (Attributes Inspector) 图标，在 Image 里面输入 cat_cart 我们的猫咪就显示出来了</p>
+<p class="calibre8"><img src="45.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">截图左上角有个 Kevin 的 iPhone 按钮，点这里选择 Resizable iPhone(在最新版的 Xcode 中此模拟器已被去掉，我们可以在 iPhone6，iPhone5 这两个模拟器之间切换来测试不同尺寸下的表现。)，按下播放键或者键盘的 Command + R 运行——</p>
+<p class="calibre8"><img src="55.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">然而，猫咪并没有像我们摆放的那样显示在屏幕中间……这是因为我们还没有添加任何约束，立刻回到 Xcode 解决这个问题，选中猫咪后，点击右下角的 Align 按钮</p>
+<p class="calibre8"><img src="63.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">勾选 Horizontal Center in Container 和 Vertical Center in Container，确保后面的偏移数字是 0，点击 Add 2 Constraints 确认添加。</p>
+<p class="calibre8">这里我们就用到了 Constraints 这个东西，也就是约束，而约定的就是物体横向和纵向都显示在他的容器中心。</p>
+<p class="calibre8"><img src="72.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">你会看到猫咪被一个十字格子标注了起来，并且出现了两层虚线。虚线的意思是当运行的时候，图片的大小会改变，并不是你现在看到的这个大小，这是一个不正确的放置 (Misplacement)。</p>
+<p class="calibre8">而在 View Controller Scene 的右边，也出现了个黄色的箭头。你可以通过点击这个箭头来进入 Misplacement 的处理界面。</p>
+<p class="calibre8"><img src="81.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">在这个界面里，点击黄色的叹号，选择 Update Frame，再点击 Fix Mispalcement 就可以自动修正错误。</p>
+<p class="calibre8">重新运行程序，此时猫咪已经居中显示了。</p>
+<p class="calibre8"><img src="122.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">你可以通过修改左下角的 Width Height 来更改屏幕的大小，点击 Apply 来生效。通过这种方式你可以测试在不通的尺寸下是否依旧正常。</p>
+<p class="calibre8"><img src="92.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">除此之外，你也可以通过点击菜单栏的 Hardware 中的 Roate 来旋转屏幕，测试在横屏模式时是不是正常。</p>
+<p class="calibre8"><img src="112.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">我选择了 Rotate Left，截图证明表现的不错。</p>
+<p class="calibre8"><img src="101.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">你可以在 <a href="http://static-catch.qiniudn.com/meow_center.zip" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a> 获取居中约束的完成代码。</p>
+<h2 id="位置约束" class="calibre9">位置约束</h2>
+<p class="calibre8">现在坐在篮子里的猫咪有了一个追随者，它要呆在这支蓝色猫咪的下面。加入新的 UIImageView 放置在蓝色猫咪的下面。</p>
+<p class="calibre8"><img src="151.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">此时你运行下，会发现灰色猫咪并不在蓝色猫咪的下面。</p>
+<p class="calibre8"><img src="20.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">如何约束这支灰色的猫咪在蓝色的猫咪下面呢？在左边的 Scene 里面，按住 Control 键左键点击 cat_eyes 然后拖拽到 cat_cart 上 （注意拖拽顺序会影响约束的行为）</p>
+<p class="calibre8"><img src="141.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">这时候就会弹出一个灰色的菜单，让你选择约束类型，选择 Vertical Spacing 垂直距离。</p>
+<p class="calibre8"><img src="131.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">这样就约束了灰色猫咪在蓝色猫咪的下面。此时如果你点击灰色猫咪，你会发现有个黄色的线框标注在了左边。</p>
+<p class="calibre8"><img src="171.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">它的意思是告诉你，这是一个 Misplacement，当你运行的时候，猫咪会显示在左边。这是因为我们只约束了灰色在蓝色的下面，没有约束左右的位置。</p>
+<p class="calibre8">按照刚才的方式拖拽，再添加一个约束 Center X，居中对齐 X 坐标。</p>
+<p class="calibre8"><img src="191.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">再次运行 App，就会发现表现已然完美。</p>
+<p class="calibre8"><img src="211.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">第三者小黄加入了，我们的任务是让它他的位置总是在左上角，那么就是距离其容器的左端和顶端都是 0 。</p>
+<p class="calibre8"><img src="221.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">选中小黄，点击右下角的 Pin 在 Add New Constraints 的上边和左边都输入 0，仔细观察你会发现这两个输入框旁边都有一个红色的横杠，代表数值生效。</p>
+<p class="calibre8"><img src="231.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">接着点击 Add 2 Constraints 来添加这两个约束。</p>
+<p class="calibre8">再次运行，小黄就乖乖呆在左上角不会打扰下面的两位了。</p>
+<p class="calibre8"><img src="241.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">横屏模式检查下，是不是依旧按照我们的预期呆在左上角。</p>
+<p class="calibre8"><img src="251.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">嗯，完美！你可以在 <a href="http://static-catch.qiniudn.com/meow_relationship.zip" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a> 获得本节的完成代码。</p>
+<h2 id="比例约束" class="calibre9">比例约束</h2>
+<p class="calibre8">除了以上两种约束外，你还会遇到下图这种需求，在屏幕横竖不同的情况下，文字保持了间距一致，到屏幕的边距一致，文字的宽度自动调整。</p>
+<p class="calibre8"><img src="321.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8"><img src="331.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">我们删掉之前的猫咪，使用 UITextView 来创建这两个文本框。</p>
+<p class="calibre8"><img src="341.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">拖入两个 UITextView 调整成下图的样子。</p>
+<p class="calibre8"><img src="261.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">先对左边的 TextView 进行约束，增加一个到左边距为 20 的约束。</p>
+<p class="calibre8"><img src="271.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">接着对右边的文本框进行一个约束，增加一个到右边距为 20 的约束。</p>
+<p class="calibre8"><img src="281.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">然后对这两个文本框进行宽度的关系约束，按住 Control 左键按住从任意一个文本框拖到另外一个上面，选择 Equal Widths，这个约束使得他们宽度始终相等。</p>
+<p class="calibre8"><img src="29.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">继续约束，让左边的 UITextView 垂直居中</p>
+<p class="calibre8"><img src="30.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">右边的 UITextView 应该是和左边的保持垂直 Y 坐标对齐，所以增加一个 Center Y，并且两者的水平间距应该是固定的，因此，同时增加一个 Horizontal Spacing 的约束。</p>
+<p class="calibre8"><img src="311.jpg" alt="meow" class="calibre20"/></p>
+<p class="calibre8">终于约束完毕，此刻运行 App，旋转屏幕，你就能看到在最开始我们想要实现的效果了。</p>
+<p class="calibre8">你可以在 AutoLayout 的 meow_final 中获取我们最终的项目代码。</p>
+<h2 id="深入学习-autolayout" class="calibre9">深入学习 AutoLayout</h2>
+<p class="calibre8"><a href="https://developer.apple.com/library/mac/documentation/UserExperience/Conceptual/AutolayoutPG/index.html" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">AutoLayout Guide</a></p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

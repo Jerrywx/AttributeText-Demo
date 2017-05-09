@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的迭代 - Crashlystics</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_36">产品的迭代 - Crashlystics</h1>
+        <div class="section">
+            <h1 id="product-redesign-产品的迭代---crashlystics" class="calibre7">Product ReDesign: 产品的迭代 - Crashlystics</h1>
+<p class="calibre8">每个  App 都有崩溃的时候，在你手里崩溃并不可怕，在用户手里崩溃才是最恐怖的。更恐怖的是，他们高喊 App 崩溃啦，你却不知道原因。</p>
+<p class="calibre8"><a href="https://www.crashlytics.com" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Crashlystics</a> 是非常优秀的错误和使用情况统计服务，现在已经被 Twitter 收购变成了 Fabric 的一员。</p>
+<h2 id="集成" class="calibre9">集成</h2>
+<p class="calibre8">首先打开<a href="https://fabric.io/downloads" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">添加 App 页面</a></p>
+<p class="calibre8"><img src="216.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">点击 Xcode 下载 Fabric 并打开，使用你注册的 Fabric 账户登陆。</p>
+<div class="calibre21"><img src="411.jpg" class="calibre27"/></div>
+
+<p class="calibre8">点击 Add New, 选择我们的工程文件</p>
+<p class="calibre8"><img src="75.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">选择安装 Crashlytics</p>
+<div class="calibre21"><img src="84.jpg" class="calibre27"/></div>
+
+<p class="calibre8">接下来会提示你添加 Run Script</p>
+<div class="calibre21"><img src="94.jpg" class="calibre27"/></div>
+
+<p class="calibre8">先复制步骤 2 中给出的代码，然后打开 Build Phases</p>
+<p class="calibre8"><img src="104.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">点击左边的加号，添加 Run Script 把代码粘贴进去，然后按下 Command + B</p>
+<p class="calibre8"><img src="1110.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">当 Crashlystics 检测到你添加了新 App 的时候，就会提示你将 Framework 添加到工程文件，直接拖拽添加到你的工程里即可</p>
+<p class="calibre8">再次运行，Crashlystics 会提示你添加运行代码到 AppDelegate</p>
+<p class="calibre8">完成这步之后，再次运行 App，你的 Crashlystics 就准备就绪了。</p>
+<h2 id="错误处理" class="calibre9">错误处理</h2>
+<p class="calibre8">当用户发生崩溃的时候，你会收到邮件提示，并且可能登陆 Crashlystics 官网查看错误信息。</p>
+<p class="calibre8"><img src="124.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">Crashlystics 不仅会为你分析归类，并定位是哪里出了问题，而且还会告诉你 App 的用户留存等信息，非常实用。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

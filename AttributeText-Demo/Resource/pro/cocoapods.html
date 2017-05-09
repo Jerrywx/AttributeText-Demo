@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的迭代 - CocoaPods</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_35">产品的迭代 - CocoaPods</h1>
+        <div class="section">
+            <h1 id="product-redesign-产品的迭代---cocoapods" class="calibre7">Product ReDesign: 产品的迭代 - CocoaPods</h1>
+<p class="calibre8">到底如何引入第三方库也是很有趣的事情。直觉来说，应该直接把要引入的库拖进我们的当前项目，但是这样一来，会引发一些不同项目之间的编译问题，以及版本管理的问题。</p>
+<p class="calibre8">所以 CocoaPods 作为一种优雅的解决方案就显得格外清新。</p>
+<h2 id="安装-cocoapods" class="calibre9">安装 CocoaPods</h2>
+<p class="calibre8">打开系统的 终端 (Terminal)</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">gem install cocoapods
+</code></pre><h2 id="初始化-podfile" class="calibre9">初始化 Podfile</h2>
+<p class="calibre8">在终端里进入我们的项目文件夹，Diary 我存放在 Home 的 SourceCode 文件夹下</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">cd SourceCode/Diary
+pod setup
+</code></pre><p class="calibre8">这时候就会为你生成一个 Podfile</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"># Uncomment this line to define a global platform for your project
+platform :ios, '8.0'
+
+use_frameworks!
+
+target 'Diary' do
+
+pod 'pop'
+
+end
+</code></pre><p class="calibre8">'use_frameworks!' 的意思是将第三方库以 Framework 的方式引用，这样不同 App 间如果都引用了同一个第三方库，那么就不针对每个 App 都再创建一个那个库的实例，以达到节省系统内存的作用。</p>
+<p class="calibre8">在  target 'Diary'  里加入 pod 'pop' 就完成了 pop 的引用添加。</p>
+<h2 id="安装依赖" class="calibre9">安装依赖</h2>
+<p class="calibre8">最后，执行</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">pod install
+</code></pre><p class="calibre8">就可以完成安装。</p>
+<p class="calibre8">安装完成后帮你生成一个 .xcworkspace 的文件，在这里就是  Diary.xcworkspace，从现在开始，就要使用 Diary.xcworkspace 来打开我们的项目了。</p>
+<h2 id="使用第三方库" class="calibre9">使用第三方库</h2>
+<p class="calibre8">以 pop 为例，在优化一节里我们使用了这个来自 Facebook 的第三方库，pod install 之后，我们需要在引用的地方头部输入</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> pop
+</code></pre>
+<p class="calibre8">完整的代码应该是这样的</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> pop
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryLabel</span>: <span class="hljs-title">UILabel</span> </span>{
+
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">touchesBegan</span><span class="hljs-number">(touches: Set&lt;NSObject&gt;,
+        withEvent event: UIEvent)</span></span> {
+        <span class="hljs-title">// 使用 Pop 对其进行缩放</span>
+    <span class="hljs-keyword">var</span> anim = <span class="hljs-class">POPSpringAnimation</span>(propertyNamed:
+             kPOPLayerScaleXY)
+    anim.springBounciness = <span class="hljs-number">10</span>
+    anim.springSpeed = <span class="hljs-number">15</span>
+    anim.fromValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>))
+    anim.toValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span>))
+    <span class="hljs-keyword">self</span>.layer.pop_addAnimation(anim, forKey: <span class="hljs-string">"PopScale"</span>)
+
+    <span class="hljs-keyword">super</span>.touchesBegan(touches <span class="hljs-keyword">as</span> <span class="hljs-class">Set</span>&lt;<span class="hljs-class">NSObject</span>&gt;,
+             withEvent: event)
+  }
+
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">touchesEnded</span><span class="hljs-number">(touches: Set&lt;NSObject&gt;,
+         withEvent event: UIEvent)</span></span> {
+        <span class="hljs-title">// 使用 Pop 对其进行缩放还原</span>
+    <span class="hljs-keyword">var</span> anim = <span class="hljs-class">POPSpringAnimation</span>(propertyNamed:
+             kPOPLayerScaleXY)
+    anim.springBounciness = <span class="hljs-number">10</span>
+    anim.springSpeed = <span class="hljs-number">15</span>
+    anim.fromValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>:
+             <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span>))
+    anim.toValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>))
+    <span class="hljs-keyword">self</span>.layer.pop_addAnimation(anim,
+             forKey: <span class="hljs-string">"PopScaleback"</span>)
+
+    <span class="hljs-keyword">super</span>.touchesEnded(touches <span class="hljs-keyword">as</span> <span class="hljs-class">Set</span>&lt;<span class="hljs-class">NSObject</span>&gt;,
+             withEvent: event)
+
+  }
+
+}
+</code></pre>
+<h2 id="第三方库" class="calibre9">第三方库</h2>
+<p class="calibre8">这可能为刚开始学习 iOS 的你打开了一个世界的大门，全世界有非常多优秀的程序员在分享他们的代码。</p>
+<h3 id="cocoa-controls" class="calibre31">Cocoa Controls</h3>
+<p class="calibre8"><a href="https://www.cocoacontrols.com/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">CocoaControls</a> 是非常老牌的一个分享社区</p>
+<p class="calibre8"><img src="120.jpg" alt="数以千计的开源控件" class="calibre20"/></p>
+<p class="calibre8">阅读别人的代码是最快速的学习途径，你不妨随时浏览一下。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

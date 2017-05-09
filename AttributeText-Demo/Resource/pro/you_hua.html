@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的迭代 - 优化</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_34">产品的迭代 - 优化</h1>
+        <div class="section">
+            <h2 id="product-redesign-产品的迭代---优化" class="calibre9">Product ReDesign 产品的迭代 - 优化</h2>
+<p class="calibre8">在开发阶段，开发者往往会为了迅速实现功能而忽略结构上的合理性。</p>
+<p class="calibre8">到了在这个阶段你就可以对整个程序的无用代码进行清理，对架构进行优化，例如之前我们有个问题就是 UIViewCollectionView 不能全屏滑动。</p>
+<p class="calibre8">删除之前更改 Frame 的做法，我们可以靠 UICollectionViewFlowLayout 来实现这个功能</p>
+<h3 id="自定义-uicollectionviewflowlayout" class="calibre31">自定义 UICollectionViewFlowLayout</h3>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">import</span> UIKit
+
+<span class="hljs-keyword">var</span> edgeInsets = (screenRect.width -
+  collectionViewWidth)/<span class="hljs-number">2.0</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryLayout</span>: <span class="hljs-title">UICollectionViewFlowLayout</span> </span>{
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">prepareLayout</span><span class="hljs-number">()</span></span> {
+    <span class="hljs-keyword">super</span>.prepareLayout()
+    <span class="hljs-keyword">let</span> itemSize = <span class="hljs-class">CGSizeMake</span>(itemWidth, itemHeight)
+    <span class="hljs-keyword">self</span>.itemSize = itemSize
+    <span class="hljs-keyword">self</span>.minimumInteritemSpacing = <span class="hljs-number">0.0</span>
+    <span class="hljs-keyword">self</span>.minimumLineSpacing = itemSpacing
+        <span class="hljs-keyword">self</span>.scrollDirection = .<span class="hljs-class">Horizontal</span>
+  }
+
+  <span class="hljs-title">// 每次 Cell 的位置发生变化的时候都会执行</span>
+  <span class="hljs-title">// layoutAttributesForElementsInRect 询问 Cell 应该放在什么位置</span>
+
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">layoutAttributesForElementsInRect</span><span class="hljs-number">(
+    rect: CGRect)</span></span> -&gt; [<span class="hljs-class">AnyObject</span>]? {
+
+    <span class="hljs-keyword">let</span> layoutAttributes = <span class="hljs-keyword">super</span>.
+    layoutAttributesForElementsInRect(rect)
+      <span class="hljs-keyword">as</span>! [<span class="hljs-class">UICollectionViewLayoutAttributes</span>]
+    <span class="hljs-title">// 获取所有需要显示的 Cell 的位置信息</span>
+
+    <span class="hljs-keyword">let</span> contentOffset = collectionView!.contentOffset
+    <span class="hljs-title">// 获取 collectionView 的滑动情况</span>
+
+    <span class="hljs-keyword">for</span> (index, attributes) <span class="hljs-keyword">in</span> <span class="hljs-number">enumerate</span>(layoutAttributes){
+
+      <span class="hljs-keyword">let</span> center = attributes.center
+
+      <span class="hljs-keyword">let</span> cellPositinOnScreen = (center.x - itemWidth/<span class="hljs-number">2.0</span>)
+       - contentOffset.x
+
+      <span class="hljs-keyword">if</span> cellPositinOnScreen &gt;= (edgeInsets - itemWidth/<span class="hljs-number">2.0</span>)
+      &amp;&amp; cellPositinOnScreen &lt; (edgeInsets
+        + collectionViewWidth ) {
+
+          <span class="hljs-title">// 计算 Cell 是不是在应该显示的区域</span>
+          attributes.alpha = <span class="hljs-number">1</span>
+
+      } <span class="hljs-keyword">else</span> {
+          attributes.alpha = <span class="hljs-number">0</span>
+      }
+    }
+
+    <span class="hljs-keyword">return</span> layoutAttributes
+  }
+
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">shouldInvalidateLayoutForBoundsChange</span><span class="hljs-number">(
+    newBounds: CGRect)</span></span> -&gt; <span class="hljs-class">Bool</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-number">true</span>
+  }
+}
+</code></pre>
+<p class="calibre8">通过这种方式就可以实现全屏滚动了。</p>
+<h3 id="uitapgesturerecognizer--touch-events" class="calibre31">UITapGestureRecognizer &amp; Touch Events</h3>
+<p class="calibre8">对于每个按钮和 Label 的点击，我希望可以有细腻的按下效果——按下时候缩小，放开时候还原，带有一点弹簧效果。</p>
+<p class="calibre8">普通的实现方式是先添加一个 UITapGestureRecognizer</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> tapGesture = <span class="hljs-class">UITapGestureRecognizer</span>(target: <span class="hljs-keyword">self</span>,
+   action: <span class="hljs-string">"SomeMethod:"</span>)
+
+<span class="hljs-keyword">self</span>.view.addGestureRecognizer(tapGesture)
+</code></pre>
+<p class="calibre8">这时候你可以通过判断 UITapGestureRecognizer 的不同 state 来添加不同的动画</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">SomeMethod</span><span class="hljs-number">(gesture: UITapGestureRecognizer)</span></span> {
+  <span class="hljs-keyword">if</span> gesture.state = <span class="hljs-class">UIGestureRecognizerState</span>.<span class="hljs-class">Began</span> {
+
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> gesture.state = <span class="hljs-class">UIGestureRecognizerState</span>.<span class="hljs-class">End</span> {
+
+  }
+}
+</code></pre>
+<p class="calibre8">另外一种方式是通过较底层的 Touch Events</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiaryLabel</span>: <span class="hljs-title">UILabel</span> </span>{
+
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">touchesBegan</span><span class="hljs-number">(touches: Set&lt;NSObject&gt;,
+     withEvent event: UIEvent)</span></span> {
+    <span class="hljs-keyword">var</span> anim = <span class="hljs-class">POPSpringAnimation</span>(propertyNamed:
+       kPOPLayerScaleXY)
+    anim.springBounciness = <span class="hljs-number">10</span>
+    anim.springSpeed = <span class="hljs-number">15</span>
+    anim.fromValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>))
+    anim.toValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span>))
+    <span class="hljs-keyword">self</span>.layer.pop_addAnimation(anim, forKey: <span class="hljs-string">"PopScale"</span>)
+    <span class="hljs-keyword">super</span>.touchesBegan(touches <span class="hljs-keyword">as</span> <span class="hljs-class">Set</span>&lt;<span class="hljs-class">NSObject</span>&gt;,
+       withEvent: event)
+  }
+
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">touchesEnded</span><span class="hljs-number">(touches: Set&lt;NSObject&gt;,
+    withEvent event: UIEvent)</span></span> {
+    <span class="hljs-keyword">var</span> anim = <span class="hljs-class">POPSpringAnimation</span>(propertyNamed:
+      kPOPLayerScaleXY)
+    anim.springBounciness = <span class="hljs-number">10</span>
+    anim.springSpeed = <span class="hljs-number">15</span>
+    anim.fromValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span>))
+    anim.toValue = <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>))
+    <span class="hljs-keyword">self</span>.layer.pop_addAnimation(anim,
+      forKey: <span class="hljs-string">"PopScaleback"</span>)
+    <span class="hljs-keyword">super</span>.touchesEnded(touches <span class="hljs-keyword">as</span> <span class="hljs-class">Set</span>&lt;<span class="hljs-class">NSObject</span>&gt;,
+      withEvent: event)
+
+  }
+
+}
+</code></pre>
+<p class="calibre8">通过 override DiaryLabel 类的 <code class="pcalibre6 pcalibre5 calibre34">touchesBegan</code> 和 <code class="pcalibre6 pcalibre5 calibre34">touchesEnded</code> 方法来实现这个效果。这样每个 DiaryLabel 都可以实现一个精致的交互效果。</p>
+<p class="calibre8">你可以在 <a href="https://github.com/kevinzhow/Diary" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a> 找到本章的最终工程文件，想要正确的打开这个工程文件，你还需要先阅读完 ReDesign 关于 CocoaPods 的介绍。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

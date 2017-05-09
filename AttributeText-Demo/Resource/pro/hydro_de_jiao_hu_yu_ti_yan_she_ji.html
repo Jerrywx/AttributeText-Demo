@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的起点 - Hydro 的交互与体验设计</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_20">产品的起点 - Hydro 的交互与体验设计</h1>
+        <div class="section">
+            <h1 id="product-design-产品的起点---hydro-的交互与体验设计" class="calibre7">Product Design: 产品的起点 - Hydro 的交互与体验设计</h1>
+<p class="calibre8">去年感恩节的时候，我和 Ray 突然谈起能不能在 Today Widget 里面快速开关 VPN 的问题，我们希望做一款极致体验的 VPN 产品，送给朋友和家人以表达感谢
+（不要以为我们从去年一直搞到现在，其实两天开发＋四天打磨，两个月后才提交，今天才过审核而已……）。</p>
+<p class="calibre8">之前 iOS 8 的 Personal VPN 相关技术已经被我们完全攻克，所以整体来说，这个 App 剩下的似乎只是设计和体验的问题。</p>
+<div class="calibre21"><img src="17.jpg" class="calibre25"/></div>
+
+<h2 id="hydro-名字的由来" class="calibre9">Hydro 名字的由来</h2>
+<p class="calibre8">Hydro 是从 Hydrogen 里来的，氢元素是元素周期表第一个元素，我们希望这个只有一个质子的产品，可以像中国第一次接入互联网的时候说的那句话一样，穿越长城，走向世界。</p>
+<p class="calibre8">当你收到邀请函的时候，邀请函的发件人就是那个质子，Proton。</p>
+<div class="calibre21"><img src="25.jpg" class="calibre25"/></div>
+
+<h2 id="界面设计思路" class="calibre9">界面设计思路</h2>
+<p class="calibre8">在这款产品里，交互和视觉无论如何炫酷，都不应该影响 VPN 最根本的一个体验，就是快点翻越。所以我们没有做任何的页面切换的部分，而是所有交互层都叠加在了一张世界地图里。</p>
+<p class="calibre8">0.利用 Today Widget 的特性来提供快速拨号功能。</p>
+<p class="calibre8">1.灰色世界地图上会有一个 Station 基站标点标注服务器位置，标注点有一个波纹动画。</p>
+<p class="calibre8">2.运用视差效果增加 App 的动感。</p>
+<p class="calibre8">3.链接成功后地图变成蓝色，意为与世界成功联通的情感。</p>
+<p class="calibre8">4.每个可以点按的地方都做了缩放交互动画来体现 App 的层次感。</p>
+<p class="calibre8">5.Station 基站使用红，绿，黄这三种通用颜色来表示线路质量。</p>
+<p class="calibre8">你可以<a href="http://static-catch.qiniudn.com/hydro.mov" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">下载视频</a>来一探究竟。</p>
+<h2 id="today-widget-与-邀请" class="calibre9">Today Widget 与 邀请</h2>
+<p class="calibre8">通知中心以及邀请界面由 Nix 开发完成，这算是 Hydro 里第一次应用了 AutoLayout 的地方。我属于纯代码流，加上比较懒，Nix 成了 AutoLayout 的布道者。</p>
+<p class="calibre8">在 Today Widget 里也遇到了一些小坑，最坑的是开发过程中经常不响应部署。</p>
+<p class="calibre8">邀请采用了一个比较取巧的方法，在你有资格的时候，上滑主界面就会进入邀请界面，这时候后面的地图会放大，产生一种空间的深度感。</p>
+<div class="calibre21"><img src="33.jpg" class="calibre25"/></div>
+
+<h2 id="机制的设计" class="calibre9">机制的设计</h2>
+<p class="calibre8">VPN 服务最大的问题就是稳定性，为了最小化这种影响，我们只做移动端，并且实行邀请制。</p>
+<ol class="calibre2">
+<li class="calibre11">每个用户只能通过邀请注册</li>
+<li class="calibre11">用户五天后会产生唯一一个邀请码，用来邀请他最想带入的朋友或者家人</li>
+</ol>
+<p class="calibre8">我们希望以此提供稳定的服务以及线路的通畅。</p>
+<p class="calibre8">但是国际出口的情况很复杂，即使到今年，我所了解的能够影响国际出口的因素依旧在增加。</p>
+<p class="calibre8">你可以在<a href="https://github.com/CatchChat/Hydro.network" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a>找到 Hydro 的源码。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

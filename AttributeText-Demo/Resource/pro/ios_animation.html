@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - iOS 基础动画</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_26">产品的实现 - iOS 基础动画</h1>
+        <div class="section">
+            <h1 id="product-design-产品的起点---ios-基础动画" class="calibre7">Product Design: 产品的起点 - iOS 基础动画</h1>
+<h2 id="动画的方式" class="calibre14">动画的方式</h2>
+<p class="calibre8">在进行动画前，我们先要理解 UIView 和 CALayer 的关系。</p>
+<p class="calibre8">CALayer 是 iOS 系统绘制图形的底层类，UIView 是基于 CALayer 的上层类，具有 CALayer 的全部功能，并且多了对用户交互事件的响应能力，就像乳鸽肚子里塞了小乳鸽一样，UIView 同时还具备容器的特性。</p>
+<p class="calibre8">而 iOS 主要有两种动画方式，一种是底层一些的 Core Animation 直接针对 CALayer，一种是顶层一些的 UIKit 针对 UIView，UIKit 使用起来要方便一些，但是支持的参数没有 Core Animation 多，可定制性也会差一些。</p>
+<h3 id="uikit-的-animation" class="calibre31">UIKit 的 Animation</h3>
+<p class="calibre8">有时候你可能只是想进行一些简单的大小和位置变化，那么可以直接用 UIView 动画来实现</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class">UIView</span>.animateWithDuration(<span class="hljs-number">1.0</span>, delay: <span class="hljs-number">0</span>, options:
+   <span class="hljs-class">UIViewAnimationOptions</span>.<span class="hljs-class">CurveEaseInOut</span>, animations: {
+
+    <span class="hljs-keyword">self</span>.codeView.frame = <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)
+    <span class="hljs-title">// 可以修改多个属性</span>
+
+}, completion: <span class="hljs-number">nil</span>)
+</code></pre>
+<p class="calibre8">1.0 指的是动画执行的总时间， delay 可以设定是否延迟执行， options 可以设定动画的执行模式，CurveEaseInOut 是渐入渐出，如果你做过幻灯片的话应该对这个很熟悉。<a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/#//apple_ref/c/tdef/UIViewAnimationOptions" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">UIViewAnimationOptions</a> 的可选参数非常多，你可以根据文档查看。</p>
+<p class="calibre8">UIView 动画可以操控的属性如下</p>
+<table class="calibre37">
+<thead class="calibre38">
+<tr class="calibre39">
+<th class="calibre40">属性</th>
+<th class="calibre41">描述</th>
+</tr>
+</thead>
+<tbody class="calibre42">
+<tr class="calibre39">
+<td class="calibre43">frame</td>
+<td class="calibre44">相对于父层 view 的大小和位置</td>
+</tr>
+<tr class="calibre45">
+<td class="calibre43">bounds</td>
+<td class="calibre44">view 的大小</td>
+</tr>
+<tr class="calibre39">
+<td class="calibre43">center</td>
+<td class="calibre44">相对于父层的中心</td>
+</tr>
+<tr class="calibre45">
+<td class="calibre43">transform</td>
+<td class="calibre44">变形</td>
+</tr>
+<tr class="calibre39">
+<td class="calibre43">alpha</td>
+<td class="calibre44">透明度</td>
+</tr>
+<tr class="calibre45">
+<td class="calibre43">backgroundColor</td>
+<td class="calibre44">背景色</td>
+</tr>
+<tr class="calibre39">
+<td class="calibre43">contentStretch</td>
+<td class="calibre44">内容显示模式</td>
+</tr>
+</tbody>
+</table>
+<p class="calibre8">参考 <a href="https://developer.apple.com/library/ios/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/AnimatingViews/AnimatingViews.html#//apple_ref/doc/uid/TP40009503-CH6-SW1" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">View Programmings Guide For iOS</a></p>
+<h3 id="core-animation" class="calibre31">Core Animation</h3>
+<p class="calibre8">如果想用 Core Animation 来实现上面的动画，做的就要复杂的多</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-title">// 针对你想要修改的属性创建一个 Animation</span>
+<span class="hljs-keyword">let</span> animation = <span class="hljs-class">CABasicAnimation</span>(keyPath: <span class="hljs-string">"frame"</span>)
+
+<span class="hljs-title">// 设置动画初始值</span>
+animation.fromValue = <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>)
+
+<span class="hljs-title">// 设置动画结束时候的值</span>
+animation.toValue = <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)
+
+<span class="hljs-title">// 动画重复多少次</span>
+animation.repeatCount = <span class="hljs-number">0</span>
+
+<span class="hljs-title">// 最后，将动画添加到 Layer 上</span>
+<span class="hljs-keyword">self</span>.view.layer.addAnimation(animation, forKey: <span class="hljs-string">"frame"</span>)
+</code></pre>
+<p class="calibre8">Core Animation 动画可以操控的属性非常多，就不一一列举了，你可以从这里查看 <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/AnimatableProperties/AnimatableProperties.html#//apple_ref/doc/uid/TP40004514-CH11-SW2" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Core Animation Animatable Properties</a></p>
+<p class="calibre8">相较而言，如果不是做比较复杂的动画，一般 UIKit 就可以满足你的需求。</p>
+<h2 id="纯代码动画与-autolayout-动画" class="calibre9">纯代码动画与 AutoLayout 动画</h2>
+<p class="calibre8">纯代码和 AutoLayout 各要处理情况不尽相同，纯代码相对而言要直接的多，但是 AutoLayout 就略为复杂。</p>
+<p class="calibre8">你可以在 <a href="http://static-catch.qiniudn.com/iOS%20Animation.zip" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">这里</a> 下载到我们的 Demo</p>
+<h3 id="纯代码动画" class="calibre31">纯代码动画</h3>
+<p class="calibre8">纯代码的动画实现非常简单，在 Demo 里 codeView 是使用纯代码添加到界面上，我们用 UIView 动画修改了它的 frame 和 center。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class">UIView</span>.animateWithDuration(<span class="hljs-number">1.0</span>, delay: <span class="hljs-number">0</span>, options:
+   <span class="hljs-class">UIViewAnimationOptions</span>.<span class="hljs-class">CurveEaseInOut</span>, animations: {
+
+    <span class="hljs-keyword">self</span>.codeView.frame = <span class="hljs-class">CGRectMake</span>(<span class="hljs-keyword">self</span>.codeView.frame.origin.x,
+       <span class="hljs-keyword">self</span>.codeView.frame.origin.y , <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)
+
+    <span class="hljs-keyword">self</span>.codeView.center = <span class="hljs-keyword">self</span>.view.center
+
+}, completion: <span class="hljs-number">nil</span>)
+</code></pre>
+<p class="calibre8">这里比较麻烦的是你需要自己计算比较多的参数，这一点在上一章中已经有所体现。</p>
+<h3 id="autolayout-动画" class="calibre31">AutoLayout 动画</h3>
+<p class="calibre8">AutoLayout 因为是使用约束对界面进行绑定，所以思路就要转换一下，此时你就不需要再直接操作其属性，而是更改其绑定，让 AutoLayout 自动处理约束绑定变更后的大小。</p>
+<p class="calibre8">首先給 autoLayoutView 添加一个宽度 100 的约束，然后在选中 autoLayoutView 的情况下，按住 control 拖到 autoLayoutView 上，给自己添加一个 aspect 的比例约束为 1:1。这样高度就会自动设置为和宽度相等。</p>
+<p class="calibre8"><img src="init.jpg" alt="初始化" class="calibre20"/></p>
+<p class="calibre8">接下来，我们选中 autoLayoutView 的 width 约束，把它作为一个 outlet 拖拽到 ViewController 里并命名为 autoLayoutViewWidthConstraint</p>
+<p class="calibre8"><img src="final.jpg" alt="初始化" class="calibre20"/></p>
+<p class="calibre8">由此你就可以在 ViewController 里操控约束了，下面就是我们对 AutoLayout 动画的操控代码。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class">UIView</span>.animateWithDuration(<span class="hljs-number">1.0</span>, delay: <span class="hljs-number">0</span>, options:
+  <span class="hljs-class">UIViewAnimationOptions</span>.<span class="hljs-class">CurveEaseInOut</span>, animations: {
+
+    <span class="hljs-keyword">self</span>.autoLayoutViewWidthConstraint.constant = <span class="hljs-number">200</span>
+
+    <span class="hljs-keyword">self</span>.view.layoutIfNeeded()
+
+}, completion: <span class="hljs-number">nil</span>)
+</code></pre>
+<p class="calibre8">上面我们还执行了 autoLayoutView 父层 view 的 layoutIfNeeded 方法，这是通知 self.view AutoLayout 的约束有变化，让其重新计算布局。</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

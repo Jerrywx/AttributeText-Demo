@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - 编辑日记</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_33">产品的实现 - 编辑日记</h1>
+        <div class="section">
+            <h1 id="product-code-产品的实现---编辑日记" class="calibre7">Product Code: 产品的实现 - 编辑日记</h1>
+<p class="calibre8">在实现了基本的创建浏览之后，对日记的编辑就是最后一件事情的了。三个红色的点和直书结合后的展示效果我非常喜欢。</p>
+<div class="calibre21"><img src="119.jpg" class="calibre47"/></div>
+
+<h2 id="添加按钮" class="calibre9">添加按钮</h2>
+<p class="calibre8">首先我们有三个红色的按钮需要添加，这三个按钮统一放在 buttonsView 里面方便控制。</p>
+<p class="calibre8">添加属性</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> saveButton:<span class="hljs-class">UIButton</span>!
+
+<span class="hljs-keyword">var</span> deleteButton:<span class="hljs-class">UIButton</span>!
+
+<span class="hljs-keyword">var</span> editButton:<span class="hljs-class">UIButton</span>!
+
+<span class="hljs-keyword">var</span> buttonsView:<span class="hljs-class">UIView</span>!
+
+<span class="hljs-title">// 在 `viewDidLoad` 里添加具体控件</span>
+
+buttonsView = <span class="hljs-class">UIView</span>(frame: <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>,
+   screenRect.height,
+   screenRect.width,
+   <span class="hljs-number">80.0</span>))
+
+buttonsView.backgroundColor = <span class="hljs-class">UIColor</span>.clearColor()
+buttonsView.alpha = <span class="hljs-number">0.0</span>
+
+saveButton = diaryButtonWith(text: <span class="hljs-string">"存"</span>,  
+  fontSize: buttonFontSize,
+  width: <span class="hljs-number">50.0</span>,  
+  normalImageName: <span class="hljs-string">"Oval"</span>,
+  highlightedImageName: <span class="hljs-string">"Oval_pressed"</span>)
+
+saveButton.center = <span class="hljs-class">CGPointMake</span>(buttonsView.frame.width/<span class="hljs-number">2.0</span>,
+  buttonsView.frame.height/<span class="hljs-number">2.0</span>)
+
+saveButton.addTarget(<span class="hljs-keyword">self</span>, action: <span class="hljs-string">"saveToRoll"</span>,
+forControlEvents: <span class="hljs-class">UIControlEvents</span>.<span class="hljs-class">TouchUpInside</span>)
+
+buttonsView.addSubview(saveButton)
+
+
+editButton = diaryButtonWith(text: <span class="hljs-string">"改"</span>,  
+fontSize: buttonFontSize,
+width: <span class="hljs-number">50.0</span>,  
+normalImageName: <span class="hljs-string">"Oval"</span>,
+highlightedImageName: <span class="hljs-string">"Oval_pressed"</span>)
+
+editButton.center = <span class="hljs-class">CGPointMake</span>(saveButton.center.x - <span class="hljs-number">56.0</span>,
+  saveButton.center.y)
+
+editButton.addTarget(<span class="hljs-keyword">self</span>, action: <span class="hljs-string">"editDiary"</span>,
+forControlEvents: <span class="hljs-class">UIControlEvents</span>.<span class="hljs-class">TouchUpInside</span>)
+
+buttonsView.addSubview(editButton)
+
+
+deleteButton = diaryButtonWith(text: <span class="hljs-string">"刪"</span>,  
+fontSize: buttonFontSize,
+width: <span class="hljs-number">50.0</span>,  
+normalImageName: <span class="hljs-string">"Oval"</span>,
+highlightedImageName: <span class="hljs-string">"Oval_pressed"</span>)
+
+deleteButton.center = <span class="hljs-class">CGPointMake</span>(
+  saveButton.center.x + <span class="hljs-number">56.0</span>,
+  saveButton.center.y)
+
+deleteButton.addTarget(<span class="hljs-keyword">self</span>, action: <span class="hljs-string">"deleteThisDiary"</span>,
+forControlEvents: <span class="hljs-class">UIControlEvents</span>.<span class="hljs-class">TouchUpInside</span>)
+
+buttonsView.addSubview(deleteButton)
+
+<span class="hljs-keyword">self</span>.view.addSubview(buttonsView)
+</code></pre>
+<h2 id="改" class="calibre9">改</h2>
+<p class="calibre8">修改日记只需要把日记传给我们之前的创建界面</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">editDiary</span><span class="hljs-number">()</span></span> {
+
+  <span class="hljs-keyword">let</span> identifier = <span class="hljs-string">"DiaryComposeViewController"</span>
+
+  <span class="hljs-keyword">var</span> composeViewController = <span class="hljs-keyword">self</span>.storyboard?.
+  instantiateViewControllerWithIdentifier(identifier)
+  <span class="hljs-keyword">as</span>! <span class="hljs-class">DiaryComposeViewController</span>
+
+  <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> diary = diary {
+      composeViewController.diary = diary
+  }
+
+  <span class="hljs-keyword">self</span>.presentViewController(composeViewController,
+  animated: <span class="hljs-number">true</span>, completion: <span class="hljs-number">nil</span>)
+}
+</code></pre>
+<p class="calibre8">对应的，当创建界面显示的时候，如果已经有 diary，那么显示即可</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> diary = diary {
+  composeView.text = diary.content
+  <span class="hljs-keyword">self</span>.composeView.contentOffset = <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>,
+  <span class="hljs-keyword">self</span>.composeView.contentSize.height)
+
+  locationTextView.text = diary.location
+  locationTextView.alpha = <span class="hljs-number">1.0</span>
+  <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> title = diary.title {
+      titleTextView.text = title
+  }
+}
+</code></pre>
+<p class="calibre8">Finished 的时候，针对不同的情况进行处理</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">func finishCompose(button: UIButton) {
+
+  self.composeView.endEditing(true)
+  //使用 endEditing 收起键盘
+
+  self.locationTextView.endEditing(true)
+
+  let contentText = composeView.text
+  //取出文字
+  let encode = NSUTF8StringEncoding
+
+  let textLength = contentText.
+  lengthOfBytesUsingEncoding(encode)
+  // 计算文字长度
+
+  if (textLength) &gt; 1 {
+    // 确保有内容才进行保存
+
+    if let diary = diary {
+
+      diary.content = composeView.text
+      diary.location = locationTextView.text
+      diary.title = titleTextView.text
+
+    }else {
+
+      let entity =  NSEntityDescription.entityForName("Diary",
+      inManagedObjectContext: managedContext)
+
+      let newdiary = Diary(entity: entity!,
+          insertIntoManagedObjectContext:managedContext)
+      newdiary.content = composeView.text
+
+      if let address  = locationHelper.address {
+          newdiary.location = address
+      }
+
+      if let title = titleTextView.text {
+            newdiary.title = title
+      }
+
+      newdiary.updateTimeWithDate(NSDate())
+    }
+
+    var error: NSError?
+    if !managedContext.save(&amp;error) {
+        print("Could not save \(error),
+        \(error?.userInfo)")
+    }
+
+  }
+
+  self.dismissViewControllerAnimated(true, completion: nil)
+}
+</code></pre>
+<h2 id="存" class="calibre9">存</h2>
+<p class="calibre8">存所需要的其实就是把 WebView 全尺寸展开然后转换成 UIImage</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">extension</span> <span class="hljs-title">UIWebView</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">captureView</span><span class="hljs-number">()</span></span> -&gt; <span class="hljs-class">UIImage</span>{
+
+    <span class="hljs-title">// 存储初始大小</span>
+    <span class="hljs-keyword">var</span> tmpFrame = <span class="hljs-keyword">self</span>.frame
+
+    <span class="hljs-title">// 新的 Frame</span>
+
+    <span class="hljs-keyword">var</span> aFrame = <span class="hljs-keyword">self</span>.frame
+
+    aFrame.size.width = <span class="hljs-keyword">self</span>.sizeThatFits
+    (<span class="hljs-class">UIScreen</span>.mainScreen().bounds.size).width
+
+    <span class="hljs-title">// 展开 Frame</span>
+    <span class="hljs-keyword">self</span>.frame = aFrame
+
+    <span class="hljs-title">// 初始化 ImageContext</span>
+    <span class="hljs-class">UIGraphicsBeginImageContextWithOptions</span>(
+      <span class="hljs-keyword">self</span>.sizeThatFits(<span class="hljs-class">UIScreen</span>.mainScreen().bounds.size),
+      <span class="hljs-number">false</span>,
+      <span class="hljs-class">UIScreen</span>.mainScreen().scale)
+
+    <span class="hljs-title">// 创建新的 Context</span>
+
+    <span class="hljs-keyword">var</span> resizedContext = <span class="hljs-class">UIGraphicsGetCurrentContext</span>()
+    <span class="hljs-keyword">self</span>.layer.renderInContext(resizedContext!)
+
+    <span class="hljs-title">// 重新渲染到新的 resizedContext</span>
+      <span class="hljs-keyword">var</span> image = <span class="hljs-class">UIGraphicsGetImageFromCurrentImageContext</span>()
+      <span class="hljs-class">UIGraphicsEndImageContext</span>()
+
+    <span class="hljs-title">// 还原 Frame</span>
+    <span class="hljs-keyword">self</span>.frame = tmpFrame
+    <span class="hljs-keyword">return</span> image
+    }
+}
+</code></pre>
+<p class="calibre8">最终利用系统的分享框架让用户选择适当的处理方式</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">saveToRoll</span><span class="hljs-number">()</span></span> {
+
+  <span class="hljs-keyword">let</span> offset = <span class="hljs-keyword">self</span>.webview.scrollView.contentOffset.x
+  <span class="hljs-keyword">var</span> image =  webview.captureView()
+  <span class="hljs-keyword">self</span>.webview.scrollView.contentOffset.x = offset
+
+  <span class="hljs-keyword">var</span> sharingItems = [<span class="hljs-class">AnyObject</span>]()
+  sharingItems.append(image)
+  <span class="hljs-number">println</span>(<span class="hljs-string">"Do Share"</span>)
+
+  <span class="hljs-keyword">let</span> activityViewController = <span class="hljs-class">UIActivityViewController</span>(
+  activityItems: sharingItems, applicationActivities: <span class="hljs-number">nil</span>)
+
+  activityViewController.
+  popoverPresentationController?.sourceView =
+  <span class="hljs-keyword">self</span>.saveButton
+
+  <span class="hljs-keyword">self</span>.presentViewController(activityViewController,
+  animated: <span class="hljs-number">true</span>, completion: <span class="hljs-number">nil</span>)
+
+}
+</code></pre>
+<h2 id="删" class="calibre9">删</h2>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">deleteThisDiary</span><span class="hljs-number">()</span></span> {
+  managedContext.deleteObject(diary)
+  managedContext.save(<span class="hljs-number">nil</span>)
+  hideDiary()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">hideDiary</span><span class="hljs-number">()</span></span> {
+  <span class="hljs-keyword">self</span>.navigationController?.popViewControllerAnimated(<span class="hljs-number">true</span>)
+}
+</code></pre>
+<p class="calibre8">删除要简单得多，使用 <code class="pcalibre6 pcalibre5 calibre34">deleteObject()</code> 方法删除当前正在查看的 Diary，接着调用 <code class="pcalibre6 pcalibre5 calibre34">save()</code> 方法保存操作。最后实现 <code class="pcalibre6 pcalibre5 calibre34">hideDiary()</code> 返回上一层。</p>
+<p class="calibre8">你可以在<a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Diary/EditDiary/Diary" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github</a>找到本章的工程文件</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

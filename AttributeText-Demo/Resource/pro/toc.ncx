@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="zh-cn">
+  <head>
+    <meta content="1b5c4d3a-c2d2-4ba5-813e-efd04bdfb67e" name="dtb:uid"/>
+    <meta content="3" name="dtb:depth"/>
+    <meta content="calibre (2.69.0)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>Producter</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="uXgHSDRn8m9oTUr2JfjgMOD" playOrder="1">
+      <navLabel>
+        <text>Introduction</text>
+      </navLabel>
+      <content src="index.html"/>
+    </navPoint>
+    <navPoint id="unhOdNKacZf2WLljgG6MlQE" playOrder="2">
+      <navLabel>
+        <text>Product 设计驱动开发</text>
+      </navLabel>
+      <content src="she_ji_qu_dong_kai_fa.html"/>
+      <navPoint id="uNabNRfVQ8UfmJHF7Hzgvr2" playOrder="3">
+        <navLabel>
+          <text>设计的感觉 - 从感觉开始</text>
+        </navLabel>
+        <content src="cong_gan_jue_kai_shi.html"/>
+      </navPoint>
+      <navPoint id="uoxkI8kxEoeRXiDJXKJSxl5" playOrder="4">
+        <navLabel>
+          <text>设计的感觉 - Clarity</text>
+        </navLabel>
+        <content src="clear.html"/>
+      </navPoint>
+      <navPoint id="upbjSO4MQCRf6YexFOokcYG" playOrder="5">
+        <navLabel>
+          <text>设计的感觉 - Clean</text>
+        </navLabel>
+        <content src="clean.html"/>
+      </navPoint>
+      <navPoint id="ujJcFzyp4JOsmO9pF4CRJz7" playOrder="6">
+        <navLabel>
+          <text>设计的感觉 - Cool</text>
+        </navLabel>
+        <content src="cool.html"/>
+      </navPoint>
+      <navPoint id="um7nZinfmJamedsvn4bS7IG" playOrder="7">
+        <navLabel>
+          <text>设计的感觉 - 寻找灵感</text>
+        </navLabel>
+        <content src="xun_zhao_ling_gan.html"/>
+      </navPoint>
+      <navPoint id="u2RzqldKfPnLhdhnfglzA72" playOrder="8">
+        <navLabel>
+          <text>基础界面 - TabBar</text>
+        </navLabel>
+        <content src="tabbar.html"/>
+      </navPoint>
+      <navPoint id="uy3xapH443Bktctyz5QmwJ7" playOrder="9">
+        <navLabel>
+          <text>基础界面 - Slide Menu</text>
+        </navLabel>
+        <content src="slide_menu.html"/>
+      </navPoint>
+      <navPoint id="u8THF93Pk5MQQ2AWlxLTQzC" playOrder="10">
+        <navLabel>
+          <text>基础界面 - Slider</text>
+        </navLabel>
+        <content src="card_slider.html"/>
+      </navPoint>
+      <navPoint id="uJWkMuAFMHfymPxWkfjEAFB" playOrder="11">
+        <navLabel>
+          <text>基础界面 - Waterfall</text>
+        </navLabel>
+        <content src="collection.html"/>
+      </navPoint>
+      <navPoint id="uGmIu45pX4YJnEkT4bFfOv5" playOrder="12">
+        <navLabel>
+          <text>工具 - 设计工具的选择</text>
+        </navLabel>
+        <content src="she_ji_gong_ju_de_xuan_ze.html"/>
+      </navPoint>
+      <navPoint id="uZ6qqfZKHPK9lQnXgnUEgS6" playOrder="13">
+        <navLabel>
+          <text>工具 - Sketch 基础</text>
+        </navLabel>
+        <content src="sketch_ji_chu.html"/>
+      </navPoint>
+      <navPoint id="umxDvnrupO2PVVN4chBTvFB" playOrder="14">
+        <navLabel>
+          <text>工具 - Sketch 实践 绘制图标</text>
+        </navLabel>
+        <content src="sketch_shijian_wunderlist.html"/>
+      </navPoint>
+      <navPoint id="uz2VN9J44OoAGmad3Ql7Dr3" playOrder="15">
+        <navLabel>
+          <text>工具 - Framer 基础</text>
+        </navLabel>
+        <content src="framer_ji_chu.html"/>
+      </navPoint>
+      <navPoint id="u3JLqhY2NpKORiHDThZKu9A" playOrder="16">
+        <navLabel>
+          <text>产品的起点 - 为什么做 小记</text>
+        </navLabel>
+        <content src="wei_shi_yao_di_yi_ge_shi_xiao_ji.html"/>
+      </navPoint>
+      <navPoint id="uag5Ug7O5Ap5cj5PLmxxOHC" playOrder="17">
+        <navLabel>
+          <text>产品的起点 - 设计 小记</text>
+        </navLabel>
+        <content src="she_ji_xiao_ji.html"/>
+      </navPoint>
+      <navPoint id="uDYm5xDsiIQLGNCVIhrcFzB" playOrder="18">
+        <navLabel>
+          <text>产品的起点 - 交互设计</text>
+        </navLabel>
+        <content src="jiao_hu_she_ji.html"/>
+      </navPoint>
+      <navPoint id="uia9BmZMx3n6VOZmRFWmJZF" playOrder="19">
+        <navLabel>
+          <text>产品的起点 - 小记 的交互设计</text>
+        </navLabel>
+        <content src="xiao_ji_de_jiao_hu_she_ji.html"/>
+      </navPoint>
+      <navPoint id="uhocDya4ir3ozgkuqCkOxsD" playOrder="20">
+        <navLabel>
+          <text>产品的起点 - Hydro 的交互与体验设计</text>
+        </navLabel>
+        <content src="hydro_de_jiao_hu_yu_ti_yan_she_ji.html"/>
+      </navPoint>
+      <navPoint id="uRS6VDo44rtklXJKVe9EKVH" playOrder="21">
+        <navLabel>
+          <text>产品的实现 - 成为开发者</text>
+        </navLabel>
+        <content src="cheng_wei_kai_fa_zhe.html"/>
+      </navPoint>
+      <navPoint id="u2bUGH4Q4kyDkwC3cxlhQlC" playOrder="22">
+        <navLabel>
+          <text>产品的实现 - Swift</text>
+        </navLabel>
+        <content src="swift.html"/>
+      </navPoint>
+      <navPoint id="ugFNMsPPWKQRWy4thPferN4" playOrder="23">
+        <navLabel>
+          <text>产品的实现 - iOS App 是什么</text>
+        </navLabel>
+        <content src="ios_app_shi_shi_yao.html"/>
+      </navPoint>
+      <navPoint id="u72gTtyJRgtjcaVcGc2ms3C" playOrder="24">
+        <navLabel>
+          <text>产品的实现 - AutoLayout</text>
+        </navLabel>
+        <content src="autolayout.html"/>
+      </navPoint>
+      <navPoint id="u8imi6ZUvNNZ5R5Dvjh2OM9" playOrder="25">
+        <navLabel>
+          <text>产品的实现 - 一个简单的 iOS App</text>
+        </navLabel>
+        <content src="simple_iOS_App.html"/>
+      </navPoint>
+      <navPoint id="u7sadjwOpJDEhpdfzvobfZC" playOrder="26">
+        <navLabel>
+          <text>产品的实现 - iOS 基础动画</text>
+        </navLabel>
+        <content src="ios_animation.html"/>
+      </navPoint>
+      <navPoint id="ug9vrNrHFADOLcLRS4qYNeF" playOrder="27">
+        <navLabel>
+          <text>产品的实现 - 在年之外</text>
+        </navLabel>
+        <content src="zai_nian_zhi_wai.html"/>
+      </navPoint>
+      <navPoint id="uuMwPbmkIxN3GLZPBUpSAe5" playOrder="28">
+        <navLabel>
+          <text>产品的实现 - 使用 Git 管理你的代码</text>
+        </navLabel>
+        <content src="shi_yong_git_guan_li_ni_de_dai_ma.html"/>
+      </navPoint>
+      <navPoint id="u9YcDY8aZN6ljHcFpqX9bP6" playOrder="29">
+        <navLabel>
+          <text>产品的实现 - 年 和 月</text>
+        </navLabel>
+        <content src="nian_he_yue.html"/>
+      </navPoint>
+      <navPoint id="un2gwNUttGDKl9jCGs95Nm7" playOrder="30">
+        <navLabel>
+          <text>产品的实现 - 撰写</text>
+        </navLabel>
+        <content src="zhuan_xie.html"/>
+      </navPoint>
+      <navPoint id="uVc2e4WX5555MaVpthJmsGE" playOrder="31">
+        <navLabel>
+          <text>产品的实现 - 浏览年，月</text>
+        </navLabel>
+        <content src="liu_lan_nian_ff0c_yue.html"/>
+      </navPoint>
+      <navPoint id="ufaQLKip6jvyCGZJCzE28H3" playOrder="32">
+        <navLabel>
+          <text>产品的实现 - 浏览日记</text>
+        </navLabel>
+        <content src="liu_lan_ri_ji.html"/>
+      </navPoint>
+      <navPoint id="uIJV8ufKPh8qlS6qVZ7OlIC" playOrder="33">
+        <navLabel>
+          <text>产品的实现 - 编辑日记</text>
+        </navLabel>
+        <content src="bian_ji_ri_ji.html"/>
+      </navPoint>
+      <navPoint id="ukFupjYVDC4NJPCEUPS3pxC" playOrder="34">
+        <navLabel>
+          <text>产品的迭代 - 优化</text>
+        </navLabel>
+        <content src="you_hua.html"/>
+      </navPoint>
+      <navPoint id="uCOtxkohdvF2E3covKX8bKB" playOrder="35">
+        <navLabel>
+          <text>产品的迭代 - CocoaPods</text>
+        </navLabel>
+        <content src="cocoapods.html"/>
+      </navPoint>
+      <navPoint id="uCvoWeAiA6ofUCsmfSG9LkD" playOrder="36">
+        <navLabel>
+          <text>产品的迭代 - Crashlystics</text>
+        </navLabel>
+        <content src="crashlystics.html"/>
+      </navPoint>
+      <navPoint id="uoYcpFk3mQtDDflEvATsPeD" playOrder="37">
+        <navLabel>
+          <text>产品的迭代 - 更通用</text>
+        </navLabel>
+        <content src="geng_tong_yong.html"/>
+      </navPoint>
+      <navPoint id="u7dBfwI8DtyiwBJDZ26cZ8G" playOrder="38">
+        <navLabel>
+          <text>产品的营销 - 产品的特质</text>
+        </navLabel>
+        <content src="chan_pin_de_te_zhi.html"/>
+      </navPoint>
+      <navPoint id="uq64zUuuzCFBurS8qKw9zyE" playOrder="39">
+        <navLabel>
+          <text>产品的营销 - 营销的方法</text>
+        </navLabel>
+        <content src="ying_xiao_de_fang_fa.html"/>
+      </navPoint>
+      <navPoint id="uKMkreMkibotT8bSioxCH35" playOrder="40">
+        <navLabel>
+          <text>产品的营销 - 营销的细节</text>
+        </navLabel>
+        <content src="ying_xiao_de_xi_jie.html"/>
+      </navPoint>
+      <navPoint id="uJ53hDB9FNHSkg4T4l8wFrE" playOrder="41">
+        <navLabel>
+          <text>产品的营销 - 内测你的产品</text>
+        </navLabel>
+        <content src="nei_ce_ni_de_chan_pin.html"/>
+      </navPoint>
+      <navPoint id="uFBjrDSYepmrEAkKEFyGYz2" playOrder="42">
+        <navLabel>
+          <text>动画进阶 - 动画库 Facebook POP</text>
+        </navLabel>
+        <content src="dong_hua_ku_facebook_pop.html"/>
+      </navPoint>
+      <navPoint id="uHQjMJ7Zdp8ayiArVYZ44p2" playOrder="43">
+        <navLabel>
+          <text>动画进阶 - Bezier 曲线动画</text>
+        </navLabel>
+        <content src="motion_graphic.html"/>
+      </navPoint>
+      <navPoint id="ubCEg2KimZpFZxTrcKOCEo2" playOrder="44">
+        <navLabel>
+          <text>动画进阶 - Bezier Waver 声波效果</text>
+        </navLabel>
+        <content src="waver_sheng_bo_xiao_guo.html"/>
+      </navPoint>
+      <navPoint id="uPa33yIVe2nQ6UvdvhAJwH9" playOrder="45">
+        <navLabel>
+          <text>动画进阶 - 帧序列动画</text>
+        </navLabel>
+        <content src="zhen_dong_hua.html"/>
+      </navPoint>
+      <navPoint id="uo8D2dfstlfE4dFRENpHJy8" playOrder="46">
+        <navLabel>
+          <text>动画进阶 - 关键帧动画</text>
+        </navLabel>
+        <content src="guan_jian_zhen_dong_hua.html"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="ueLgaXwS26iVdxGHATfBcNE" playOrder="47">
+      <navLabel>
+        <text>Product Next 新篇章</text>
+      </navLabel>
+      <content src="product_next.html"/>
+    </navPoint>
+  </navMap>
+</ncx>

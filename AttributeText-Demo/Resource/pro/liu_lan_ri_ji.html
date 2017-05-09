@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - 浏览日记</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_32">产品的实现 - 浏览日记</h1>
+        <div class="section">
+            <h1 id="product-code-产品的实现---浏览日记" class="calibre7">Product Code: 产品的实现 - 浏览日记</h1>
+<p class="calibre8">在文字竖排方面，我原本是打算用 CoreText 来实现，源码里有一个 DiaryVerticalTextView，就是竖排效果，但是考虑到 UIWebView 可以简单灵活的实现，我们还是采用 UIWebView 来搞定这个问题。</p>
+<p class="calibre8">在使用 WebView 之前，我们需要先实现这个网页的样式。</p>
+<p class="calibre8">写网页，推荐编辑器 <a href="https://atom.io/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Atom</a>。</p>
+<h2 id="html--css" class="calibre9">HTML &amp; CSS</h2>
+<p class="calibre8">First of all, 先看下效果</p>
+<p class="calibre8"><img src="atom.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">代码也是相当的简单，我最早学会的和写代码有关的就是做网页。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-tag">&lt;<span class="hljs-class">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-class">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-class">meta</span> <span class="hljs-class">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-class">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-class">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-class">style</span>&gt;</span><span class="hljs-class">
+    <span class="hljs-class">body</span> {
+      <span class="hljs-tag">padding</span>: <span class="hljs-number">0px</span>;
+    }
+    * {
+      <span class="hljs-tag">-webkit-text-size-adjust</span>: <span class="hljs-number">100%</span>;
+      <span class="hljs-tag">margin</span>: <span class="hljs-number">0</span>;
+      <span class="hljs-tag">font-family</span>: <span class="hljs-string">'Wyue-GutiFangsong-NC'</span>;
+      <span class="hljs-tag">-webkit-writing-mode</span>: vertical-rl;
+      <span class="hljs-tag">letter-spacing</span>: <span class="hljs-number">3px</span>;
+    }
+    <span class="hljs-class">.content</span> {
+      <span class="hljs-tag">min-width</span>: <span class="hljs-number">170.0px</span>;
+      <span class="hljs-tag">margin-right</span>: <span class="hljs-number">10.0px</span>;
+    }
+    <span class="hljs-class">.content</span> <span class="hljs-class">p</span> {
+      <span class="hljs-tag">font-size</span>: <span class="hljs-number">12pt</span>;
+      <span class="hljs-tag">line-height</span>: <span class="hljs-number">24pt</span>;
+    }
+    <span class="hljs-class">.title</span> {
+      <span class="hljs-tag">font-size</span>: <span class="hljs-number">12pt</span>;
+      <span class="hljs-tag">font-weight</span>: bold;
+      <span class="hljs-tag">line-height</span>: <span class="hljs-number">24pt</span>;
+      <span class="hljs-tag">margin-right</span>: <span class="hljs-number">15.0px</span>;
+      <span class="hljs-tag">padding-left</span>: <span class="hljs-number">20px</span>;
+    }
+    <span class="hljs-class">.extra</span> {
+      <span class="hljs-tag">font-size</span>: <span class="hljs-number">12pt</span>;
+      <span class="hljs-tag">line-height</span>: <span class="hljs-number">24pt</span>;
+      <span class="hljs-tag">margin-right</span>: <span class="hljs-number">30px</span>;
+    }
+    <span class="hljs-class">.container</span> {
+      <span class="hljs-tag">padding</span>: <span class="hljs-number">25px</span> <span class="hljs-number">10px</span> <span class="hljs-number">25px</span> <span class="hljs-number">25px</span>;
+    }
+    <span class="hljs-class">.stamp</span> {
+      <span class="hljs-tag">width</span>: <span class="hljs-number">24px</span>;
+      <span class="hljs-tag">height</span>: auto;
+      <span class="hljs-tag">position</span>: fixed;
+      <span class="hljs-tag">bottom</span>: <span class="hljs-number">20px</span>;
+    }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-class">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-class">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-class">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-class">div</span> <span class="hljs-class">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-class">div</span> <span class="hljs-class">class</span>=<span class="hljs-string">"title"</span>&gt;</span>怎麽不憂傷<span class="hljs-tag">&lt;/<span class="hljs-class">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-class">div</span> <span class="hljs-class">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-class">p</span>&gt;</span>臨窗獨唱明月光
+        <span class="hljs-tag">&lt;<span class="hljs-class">br</span>&gt;</span>明月光啊明月光
+        <span class="hljs-tag">&lt;<span class="hljs-class">br</span>&gt;</span>我的快樂不見了
+        <span class="hljs-tag">&lt;<span class="hljs-class">br</span>&gt;</span>叫我怎麽不憂傷
+      <span class="hljs-tag">&lt;/<span class="hljs-class">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-class">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-class">div</span> <span class="hljs-class">class</span>=<span class="hljs-string">"extra"</span>&gt;</span>
+      于 琅琊
+      <span class="hljs-tag">&lt;<span class="hljs-class">br</span>&gt;</span>二零一五年 五月 五日
+    <span class="hljs-tag">&lt;/<span class="hljs-class">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-class">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-class">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-class">html</span>&gt;</span>
+</code></pre>
+<p class="calibre8">HTML 和 CSS 在语言上并没没有什么难度，HTML 就是用一个个成对的标签把内容标记起来，通过 class 来指定类。 CSS 用 .class {} 的形式指定这个类的样式。</p>
+<p class="calibre8">难处在于排版经验的积累，如果你有兴趣学习网页，那么可以从 <a href="http://www.w3school.com.cn/html/index.asp" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">W3cSchool</a> 开始。</p>
+<p class="calibre8">那我们要做的首先就是制作一个模版，将一下内容保存为 DiaryTemplate.html</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-class">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-class">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-class">meta</span> <span class="hljs-class">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-class">meta</span> <span class="hljs-class">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-class">content</span>=<span class="hljs-string">"width=device-width;
+     initial-scale=1.0; maximum-scale=1.0;"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-class">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-class">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-class">style</span>&gt;</span><span class="hljs-class">
+        <span class="hljs-class">body</span> { <span class="hljs-tag">padding</span>: <span class="hljs-number">0px</span>; <span class="hljs-tag">background-color</span>: white;}
+      * {
+        <span class="hljs-tag">-webkit-text-size-adjust</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-tag">margin</span>:<span class="hljs-number">0</span>;
+        <span class="hljs-tag">font-family</span>: <span class="hljs-string">'#fontStr#'</span>;
+        <span class="hljs-tag">-webkit-writing-mode</span>: vertical-rl;
+        <span class="hljs-tag">letter-spacing</span>: <span class="hljs-number">3px</span>;
+        }
+    <span class="hljs-class">.content</span> { <span class="hljs-tag">min-width</span>: #minWidth#px;
+      <span class="hljs-tag">margin-right</span>: <span class="hljs-number">#c</span>ontentMargin#px;}
+
+      <span class="hljs-class">.content</span> <span class="hljs-class">p</span> { <span class="hljs-tag">font-size</span>: <span class="hljs-number">12pt</span>; <span class="hljs-tag">line-height</span>: <span class="hljs-number">24pt</span>;}
+      <span class="hljs-class">.title</span> {
+        <span class="hljs-tag">font-size</span>: <span class="hljs-number">12pt</span>;
+        <span class="hljs-tag">font-weight</span>:bold;
+        <span class="hljs-tag">line-height</span>: <span class="hljs-number">24pt</span>;
+        <span class="hljs-tag">margin-right</span>: #titleMarginRight#px;
+        <span class="hljs-tag">padding-left</span>: <span class="hljs-number">20px</span>;
+        }
+      <span class="hljs-class">.extra</span>{
+        <span class="hljs-tag">font-size</span>:<span class="hljs-number">12pt</span>;
+        <span class="hljs-tag">line-height</span>: <span class="hljs-number">24pt</span>;
+        <span class="hljs-tag">margin-right</span>:<span class="hljs-number">30px</span>;
+      }
+      <span class="hljs-class">.container</span> {
+        <span class="hljs-tag">padding</span>:<span class="hljs-number">25px</span> <span class="hljs-number">10px</span> <span class="hljs-number">25px</span> <span class="hljs-number">25px</span>;
+      }
+
+      <span class="hljs-class">.stamp</span> {
+        <span class="hljs-tag">width</span>:<span class="hljs-number">24px</span>;
+        <span class="hljs-tag">height</span>:auto;
+        <span class="hljs-tag">position</span>:fixed;
+        <span class="hljs-tag">bottom</span>:<span class="hljs-number">20px</span>;
+      }
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-class">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-class">head</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-class">body</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-class">div</span> <span class="hljs-class">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+         #title#
+       <span class="hljs-tag">&lt;<span class="hljs-class">div</span> <span class="hljs-class">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-class">p</span>&gt;</span>#newDiaryString#<span class="hljs-tag">&lt;/<span class="hljs-class">p</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-class">div</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-class">div</span> <span class="hljs-class">class</span>=<span class="hljs-string">"extra"</span>&gt;</span>
+           #location#<span class="hljs-tag">&lt;<span class="hljs-class">br</span>&gt;</span>#timeString#
+       <span class="hljs-tag">&lt;/<span class="hljs-class">div</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-class">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-class">body</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-class">html</span>&gt;</span>
+</code></pre>
+<p class="calibre8">模版中的文字都被替换成了站位符号。</p>
+<h2 id="uiwebview" class="calibre9">UIWebView</h2>
+<p class="calibre8">新建一个 DiaryViewController，添加一个 webview 的属性</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">webview = <span class="hljs-class">UIWebView</span>(frame: <span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,
+  <span class="hljs-keyword">self</span>.view.frame.size.width, <span class="hljs-keyword">self</span>.view.frame.size.height))
+webview.scrollView.bounces = <span class="hljs-number">true</span>
+webview.backgroundColor = <span class="hljs-class">UIColor</span>.whiteColor()
+webview.scrollView.delegate = <span class="hljs-keyword">self</span>
+</code></pre>
+<p class="calibre8">创建一个 Diary 来填充内容</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">let diary = Diary()
+diary.content = "沒道理\n是一枚太平洋的暖濕空氣\n
+飄散了我們的心\n在青春的墓地\n就這樣平行下去"
+
+diary.location = "于 琅琊"
+diary.title = "要有光"
+diary.updateTimeWithDate(NSDate())
+</code></pre>
+<p class="calibre8">然后把我们制作好的网页载入进去</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+//读取模版的内容
+
+let mainHTML = NSBundle.mainBundle().
+URLForResource("DiaryTemplate", withExtension:"html")
+
+var contents: NSString = ""
+
+do {
+    contents = try NSString(contentsOfFile:
+      mainHTML!.path!, encoding: NSUTF8StringEncoding)
+} catch let error as NSError {
+    print(error)
+}
+
+//生成年的整数类型
+let year = NSCalendar.currentCalendar().
+component(NSCalendarUnit.Year, fromDate: diary.created_at)
+
+//生成月的整数类型
+let month = NSCalendar.currentCalendar().
+component(NSCalendarUnit.Month, fromDate: diary.created_at)
+
+//生成日的整数类型
+let day = NSCalendar.currentCalendar().
+component(NSCalendarUnit.Day, fromDate: diary.created_at)
+
+let timeString = "\(numberToChinese(year))年
+ \(numberToChineseWithUnit(month))月
+  \(numberToChineseWithUnit(day))日"
+
+// 替换字符串
+contents = contents.stringByReplacingOccurrencesOfString(
+  "#timeString#", withString: timeString)
+
+let newDiaryString = diary.content.
+stringByReplacingOccurrencesOfString("\n",
+withString: "&lt;br&gt;",
+options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+contents = contents.
+stringByReplacingOccurrencesOfString("#newDiaryString#",
+withString: newDiaryString)
+
+var title = ""
+var contentWidthOffset = 140
+var contentMargin:CGFloat = 10
+
+if let titleStr = diary?.title {
+    let parsedTime = "\(numberToChineseWithUnit(
+      NSCalendar.currentCalendar().
+      component(NSCalendarUnit.Day,
+        fromDate: diary.created_at))) 日"
+
+    if titleStr != parsedTime {
+        title = titleStr
+        contentWidthOffset = 205
+        contentMargin = 10
+        title = "&lt;div class='title'&gt;\(title)&lt;/div&gt;"
+    }
+}
+
+contents = contents.stringByReplacingOccurrencesOfString(
+  "#contentMargin#", withString: "\(contentMargin)")
+
+contents = contents.stringByReplacingOccurrencesOfString(
+  "#title#", withString: title)
+
+let minWidth = self.view.frame.size.width -
+CGFloat(contentWidthOffset)
+
+contents = contents.stringByReplacingOccurrencesOfString(
+  "#minWidth#", withString: "\(minWidth)")
+
+let fontStr = "Wyue-GutiFangsong-NC"
+
+contents = contents.stringByReplacingOccurrencesOfString(
+  "#fontStr#", withString: fontStr)
+
+let titleMarginRight:CGFloat = 15
+
+contents = contents.stringByReplacingOccurrencesOfString(
+  "#titleMarginRight#", withString: "\(titleMarginRight)")
+
+if let location = diary.location {
+    contents = contents.
+    stringByReplacingOccurrencesOfString("#location#",
+    withString: location)
+} else {
+    contents = contents.
+    stringByReplacingOccurrencesOfString("#location#",
+    withString: "")
+}
+
+
+webview.loadHTMLString(contents as String, baseURL: nil)
+</code></pre>
+<p class="calibre8">你可以在 Diary/ShowDiary/Diary 找到本章的工程文件</p>
+<h2 id="深入了解-uiwebview" class="calibre9">深入了解 UIWebView</h2>
+<p class="calibre8"><a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIWebView_Class/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">UIWebView Class Reference</a></p>
+<p class="calibre8"><a href="https://github.com/marcuswestin/WebViewJavascriptBridge" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">WebViewJavascriptBridge</a></p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

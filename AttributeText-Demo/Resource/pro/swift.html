@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>产品的实现 - Swift</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_22">产品的实现 - Swift</h1>
+        <div class="section">
+            <h1 id="product-code-产品的实现---swift" class="calibre7">Product Code 产品的实现 - Swift</h1>
+<p class="calibre8">WWDC15 之后，苹果宣布 Swift 开源，这是 WWDC 最高潮的一刻，掌声经久不息，我也红了眼眶。</p>
+<p class="calibre8"><img src="0.jpg" alt="swift_opensource" class="calibre20"/></p>
+<p class="calibre8">Swift Anywhere 很快会成为现实，作为 Objective－C 的继任者，学习它也显得格外重要。</p>
+<p class="calibre8">那么我们就从 Swift 开始 iOS 的编程之旅吧，在开始前，需要去 OS X 的 AppStore 下载 Xcode 这个软件。</p>
+<p class="calibre8">编程就像在用计算机能看得懂的语言，给计算机讲述一个故事，让它去做你想做的事情，相比起现实世界，其实除了语言略有不同，其他并没有什么差别。所以并不需要觉得这是一件很困难的事情，当你觉得难以理解的时候，请发挥想象力。</p>
+<p class="calibre8">在现代编程，有个概念需要理解清楚——类。</p>
+<h2 id="类——零件" class="calibre9">类——零件</h2>
+<p class="calibre8">计算机世界的 “类” 就像现实世界的 “东西”，如果把 App 看作一个机器人，那么类就像他的零件。类被设计用来完成一件事情，这个事情可大可小，完全由你掌控。</p>
+<p class="calibre8">不如一起写一个转换阿拉伯数字为中文的类来了解下到底什么是类，你可以在 <a href="https://github.com/ProducterTips/producter-book-examples" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github </a> Swift 文件夹中找到相关代码。</p>
+<p class="calibre8">首先打开 Xcode 点击 Get started with a playground</p>
+<p class="calibre8"><img src="xcode.jpg" alt="Swift" class="calibre20"/></p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">现实世界
+
+有一个东西叫做 NumberParser（数字转换器）
+</code></pre><pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-title">//Swift 世界</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberParser</span> </span>{
+
+}
+</code></pre>
+<p class="calibre8">在 Swift 里，一个类就是这么简单就完成，并且给他起了个名字叫 NumberParser，但是这东西除了占点空间啥都还做不了，所以我们要教会它第一件事情就是把单个数字字符 0 转换成中文字符 零。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">现实世界
+
+NumberParser 可以做一件叫做 singleNumberToChinese 的事情，这件事可以把一个阿拉伯数字转换成汉语大写的数字。
+</code></pre><pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-title">//Swift 世界</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberParser</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">singleNumberToChinese</span><span class="hljs-number">(number: Character)</span></span> -&gt; <span class="hljs-class">String</span> {
+        <span class="hljs-keyword">switch</span> number {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"0"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"零"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"1"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"一"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"2"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"二"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"3"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"三"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"4"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"四"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"5"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"五"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"6"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"六"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"7"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"七"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"8"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"八"</span>
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"9"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"九"</span>
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>
+        }
+    }
+
+}
+</code></pre>
+<p class="calibre8">func 是 function （方法）的缩写，在这里就是指有件事情叫 singleNumberToChinese，我会给你一个名为 number 的字符（Character），你返回一个字符串（String） 给我，如果对于一个字符不知道该怎么处理的情况（比如我给你了一个“一”），你可以直接返回一个空文字给我代表无法处理。</p>
+<p class="calibre8">落实到具体做事的方法呢，就是，通过 switch 来对不同的 case （情况）进行判断处理，number 是 "0" ，那么返回（return） “零”，如果不是我们想要的哪几种情况，则返回空字符串。</p>
+<p class="calibre8">嗯，这个零件就完成了。</p>
+<h2 id="实例化" class="calibre9">实例化</h2>
+<p class="calibre8">如果你要使用这个零件，那么要做一件事情就是实例化，其实上面写的那些代码其实是一个零件的图纸，要通过实例化变成一个真正的零件。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> convertor = <span class="hljs-class">NumberParser</span>()
+<span class="hljs-keyword">let</span> zeroString = convertor.singleNumberToChinese(<span class="hljs-string">"0"</span>)
+<span class="hljs-number">print</span>(zeroString)
+</code></pre>
+<p class="calibre8">这时候点击右上角中间蓝色的图标</p>
+<p class="calibre8"><img src="icon.jpg" alt="Swift" class="calibre20"/></p>
+<p class="calibre8">就可以开启 Console （终端）看到日志里面有个 零。</p>
+<p class="calibre8">Swift 中，let 用来创建常量，var 用来创建变量。</p>
+<p class="calibre8">使用 let 创建的常量不能够重新赋值，例如</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">"Swift"</span>
+str = <span class="hljs-string">"Taylor"</span>
+</code></pre>
+<p class="calibre8">因为 str 使用 let 创建，所以不能重新赋值，这里就会报错。</p>
+<p class="calibre8">如果你采用的是 var 就可以针对变量重新赋值。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">"Swift"</span>
+str = <span class="hljs-string">"Taylor"</span>
+</code></pre>
+<p class="calibre8">Swift 中对于方法的调用非常的简单，即在对象名字后面加上 . 和想要调用的方法名。举例，
+如果想要使用 conventor 对象的 singleNumberToChinese 方法，可以用 convertor.singleNumberToChinese() 这种方式，在括号里放进去我们要转换的数字，返回的数字就存到 zeroString 里。</p>
+<p class="calibre8">最终我们使用 print() 这个 App 本身能理解的函数打印 zeroString 到屏幕上。</p>
+<p class="calibre8">明白了这两个基础的概念，我们就可以开始 “搬砖” 了。</p>
+<h2 id="类的继承" class="calibre9">类的继承</h2>
+<p class="calibre8">类的继承就是继承上一代的功能，改造或衍生出新功能。</p>
+<p class="calibre8">假如我们需要一个 NumbersParser 那么可以这么写</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumbersParser</span>: <span class="hljs-title">NumberParser</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">numberToChinese</span><span class="hljs-number">(number: Int)</span></span> -&gt; <span class="hljs-class">String</span> {
+        <span class="hljs-keyword">let</span> numbers = <span class="hljs-class">String</span>(number).characters
+        <span class="hljs-keyword">var</span> finalString = <span class="hljs-string">""</span>
+        <span class="hljs-keyword">for</span> singleNumber <span class="hljs-keyword">in</span> numbers{
+            <span class="hljs-keyword">let</span> string = singleNumberToChinese(singleNumber)
+            finalString = <span class="hljs-string">"<span class="hljs-class">\(finalString)</span><span class="hljs-class">\(string)</span>"</span>
+        }
+        <span class="hljs-keyword">return</span> finalString
+    }
+}
+</code></pre>
+<p class="calibre8">你这下是不是看晕了？ NumbersParser 和 NumberParser 没区别啊？ 仔细看看，中间有个 s 的区别。</p>
+<p class="calibre8">这是非常好的一个命名问题的例子，千万不要采用这种非常像的名字来命名不同的类，你会把自己搞晕的。</p>
+<p class="calibre8">从另外一个角度，再遇到不明 Bug 的时候，一定要仔细看你是不是打错了名字了。</p>
+<p class="calibre8">此时这个 NumbersParser 就可以利用 NumberParser 的方法来实现 numberToChinese。</p>
+<p class="calibre8">for singleNumber in numbers 这种，for x in y 的形式的方法是逐个取出 y 中的元素，命名为 x。</p>
+<p class="calibre8">Swift 使用 "\(finalString)\(string)" 这种方式来组成字符串。</p>
+<p class="calibre8">例如</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> name = <span class="hljs-string">"牛奶"</span>
+<span class="hljs-number">print</span>(<span class="hljs-string">"今天早上我有喝 <span class="hljs-class">\(name)</span>"</span>)
+</code></pre>
+<p class="calibre8">就可以得到结果 —— “今天早上我有喝牛奶”</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> conventor = <span class="hljs-class">NumbersParser</span>()
+<span class="hljs-keyword">let</span> yearString = conventor.numberToChinese(<span class="hljs-number">2015</span>)
+<span class="hljs-number">print</span>(yearString)
+</code></pre>
+<p class="calibre8">此时就可以得到我们想要的结果 —— 二零一五</p>
+<h3 id="单例" class="calibre31">单例</h3>
+<p class="calibre8">像 NumbersParser 这种类你可能会在程序里多处使用，如果每次使用的时候，都 let conventor = NumbersParser() 一下就显得多余。就像现实场景一样，你要在每个房间里都可以听歌不见得需要每个房间都放一台音响，你可以搬过去。</p>
+<p class="calibre8">单例就是为此而生。</p>
+<p class="calibre8">给类增加一个这样的方法</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumbersParser</span>: <span class="hljs-title">NumberParser</span> </span>{
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">let</span> sharedInstance = <span class="hljs-class">NumbersParser</span>()
+    ...
+}
+</code></pre>
+<p class="calibre8">这样你每次使用的时候，就可以简化几步</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> numbersString = <span class="hljs-class">NumbersParser</span>.sharedInstance.
+numberToChinese(<span class="hljs-number">2015</span>)
+
+<span class="hljs-number">print</span>(numbersString)
+</code></pre>
+<p class="calibre8">单例有诸多便利之处，像这种负责单纯的单位转换场景的类非常适合用单例。不过
+也有其滥用的危害，在被坑到之前，你并不需要过多在意。</p>
+<h3 id="override" class="calibre31">Override</h3>
+<p class="calibre8">这也是一个极为有趣的功能，例如你想利用上面的方法实现一个 YearParser，输入 2015 可以输出 二零一五年，那么可以这么做</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YearParser</span>: <span class="hljs-title">NumbersParser</span> </span>{
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">let</span> sharedYearParserInstance = <span class="hljs-class">YearParser</span>()
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">numberToChinese</span><span class="hljs-number">(number:Int)</span></span> -&gt; <span class="hljs-class">String</span> {
+        <span class="hljs-keyword">let</span> numbersString = <span class="hljs-keyword">super</span>.numberToChinese(number)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"<span class="hljs-class">\(numbersString)</span>年"</span>
+    }
+
+}
+</code></pre>
+<p class="calibre8">override 的意思是说明要对某个方法进行改造。super.numberToChinese(number) 可以使用改造前的方法，得到旧的结果，随后用 "\(numbersString)年" 格式化了结果</p>
+<p class="calibre8">因此</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> yearString = <span class="hljs-class">YearParser</span>.sharedYearParserInstance.
+numberToChinese(<span class="hljs-number">2015</span>)
+
+<span class="hljs-number">print</span>(yearString)
+</code></pre>
+<p class="calibre8">得到的 yearString 结果就是 —— “二零一五年”。</p>
+<p class="calibre8">YearParser 里对于 NumbersParser 的改造并不会影响 NumbersParser 的结果，所以</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> numbersString = <span class="hljs-class">NumbersParser</span>.sharedInstance.
+numberToChinese(<span class="hljs-number">2015</span>)
+
+<span class="hljs-number">print</span>(numbersString)
+</code></pre>
+<p class="calibre8">得到的结果依旧是 —— “二零一五”</p>
+<p class="calibre8">如果你希望全盘改造，就不要使用 super.numberToChinese(number) 方法，完全重写一个即可。</p>
+<h3 id="protocol" class="calibre31">protocol</h3>
+<p class="calibre8">Swift 中相当重要的另外一个概念，就是 protocol （协议），在 Swift 里，指定一个物体可以回答另外一个物体的问题，就叫做协议。</p>
+<p class="calibre8">例如，你养了一只猫，那么如果猫咪问你它是不是可以去睡觉了，你就要回答这个问题。</p>
+<p class="calibre8">首先定义这个协议</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">protocol</span> <span class="hljs-title">SleepDelegate</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">canISleep</span><span class="hljs-number">()</span></span> -&gt; <span class="hljs-class">Bool</span>
+}
+</code></pre>
+<p class="calibre8">协议并不规定具体的答案，只定义可以回答什么问题，上面这个协议，定义了 canISleep 这个问题， -&gt; 这个箭头表示左边的问题可以得到右边的答案类型，在这里即为 Bool，Bool 是一个布尔值（发明这个东西的人的名字），可以为 true （真）或者 false（假），布尔值可以通过 if...else 语句来判断，例如</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">if</span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span> {
+    <span class="hljs-number">print</span>(<span class="hljs-string">"You must be kidding"</span>)
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-number">print</span>(<span class="hljs-string">"Yeah"</span>)
+}
+</code></pre>
+<p class="calibre8">1 &gt; 2 是一个判断语句，在这个情况下会返回 false，那么就不会执行 if 的后 {} 中的内容，而是会执行 else 后 {} 的内容。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span>: <span class="hljs-title">SleepDelegate</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">canISleep</span><span class="hljs-number">()</span></span> -&gt; <span class="hljs-class">Bool</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">false</span>
+    }
+}
+</code></pre>
+<p class="calibre8">我们创建了 Human 这个类，冒号后面加了 SleepDelegate，代表 Human 可以回答 SleepDelegate 里的问题。而在 canISleep 这个问题上，我们 return (回答) false。</p>
+<p class="calibre8">最后我们创建 Cat 这个类</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span> </span>{
+    <span class="hljs-keyword">var</span> delegate: <span class="hljs-class">SleepDelegate</span>?
+
+    <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">wantsToSleep</span><span class="hljs-number">()</span></span> {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> master = delegate {
+            <span class="hljs-keyword">if</span> master.canISleep() {
+                <span class="hljs-number">print</span>(<span class="hljs-string">"Go To Sleep"</span>)
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-number">print</span>(<span class="hljs-string">"No"</span>)
+            }
+        }
+    }
+}
+</code></pre>
+<p class="calibre8">我们给 cat 加入了个属性，delegate（委托人），委托人可以回答 SleepDelegate 里的问题，后面还加了个问号表示 delegate 并不一定存在。</p>
+<p class="calibre8">因此在 wantsToSleep 这个方法里，我们首先用 if let master = delegate 对其进行了拆包，只有 delegate 这个属性真的存在的时候，才能通过拆包，let master = delegate 就可以产生一个 true，通过 if 的布尔测试，并把 delegate 的值赋值给 master，master 其实可以使用任何名字，通常我们会直接使用 delegate，写成 if let delegate = delegate。</p>
+<p class="calibre8">最后，通过 master.canISleep() 来询问是否可以睡觉。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> myCat = <span class="hljs-class">Cat</span>()
+myCat.delegate = <span class="hljs-class">Human</span>()
+myCat.wantsToSleep()
+</code></pre>
+<h3 id="enum" class="calibre31">enum</h3>
+<p class="calibre8">enum（枚举）的名字虽然比较晦涩，但是可以很好的帮助我们编写可读性更高的代码，swift 中的 enum 非常强大，我们这里只了解一下初级但是最常见的用法</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">China</span>: <span class="hljs-title">Int</span> </span>{
+    <span class="hljs-keyword">case</span> <span class="hljs-class">Guangzhou</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-class">Beijing</span>
+
+    <span class="hljs-keyword">var</span> description: <span class="hljs-class">String</span> {
+        <span class="hljs-keyword">switch</span> <span class="hljs-keyword">self</span> {
+            <span class="hljs-keyword">case</span> <span class="hljs-class">Guangzhou</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-string">"广州"</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-class">Beijing</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-string">"北京"</span>
+        }
+    }
+}
+</code></pre>
+<p class="calibre8">我们这里定义了一个叫 China 的 Int（整数） 枚举类型，给 Guangzhou 设置值为 0，Beijing 会自动被递增为 1。</p>
+<p class="calibre8">通过 description 给这个枚举类型定义了一个 String（字符串）属性，给不同的 case 返回了不同的中文。</p>
+<p class="calibre8">那么在实际环境中，就可以这样应用。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">City</span> </span>{
+    <span class="hljs-keyword">var</span> name = <span class="hljs-class">China</span>.<span class="hljs-class">Guangzhou</span>
+}
+
+<span class="hljs-keyword">let</span> guangzhou = <span class="hljs-class">City</span>()
+<span class="hljs-number">print</span>(guangzhou.name.description)
+
+<span class="hljs-title">// 直接输出 enum 的值</span>
+
+<span class="hljs-number">print</span>(<span class="hljs-class">China</span>.<span class="hljs-class">Guangzhou</span>.description)
+</code></pre>
+<p class="calibre8">通过 enum，我们既可以提高可读性，也可以提高代码的效率。</p>
+<p class="calibre8">你可以在 Producter Demos 的 Swift 文件夹里找到 Swift.playground 来测试本章节的内容。</p>
+<h2 id="深入学习-swift" class="calibre9">深入学习 Swift</h2>
+<p class="calibre8"><a href="http://numbbbbb.gitbooks.io/-the-swift-programming-language-/content/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">The Swift Programming Language</a></p>
+<p class="calibre8"><a href="https://selfstore.io/products/171" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Swifter - 100 个 Swift 必备 tips</a></p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

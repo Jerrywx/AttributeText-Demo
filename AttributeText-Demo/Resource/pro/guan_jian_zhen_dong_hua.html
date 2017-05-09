@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>动画进阶 - 关键帧动画</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_46">动画进阶 - 关键帧动画</h1>
+        <div class="section">
+            <h1 id="product-advanced-动画进阶-关键帧动画" class="calibre7">Product Advanced 动画进阶: 关键帧动画</h1>
+<p class="calibre8">关键帧动画的实现方式有两种，一种是 UIView 动画，一种是 Core Animation 的 CAKeyFrameAnimation。两种方式的实现方式都很简单，先声明动画的总时间，再定义每个关键帧的属性变化和开始位置以及播放时间。</p>
+<p class="calibre8"><img src="producter.009.jpeg" alt="" class="calibre20"/></p>
+<h2 id="uiview-关键帧动画" class="calibre9">UIView 关键帧动画</h2>
+<p class="calibre8">首先定义一个 UIImageView 把图片加载进来，更改一下合适的显示方式</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">var</span> imageView = <span class="hljs-class">UIImageView</span>(frame: <span class="hljs-class">CGRectZero</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">keyFrame</span><span class="hljs-number">()</span></span> {
+  imageView.image = <span class="hljs-class">UIImage</span>(named: <span class="hljs-string">"leaf"</span>)
+
+  imageView.clipsToBounds = <span class="hljs-number">true</span>
+
+  <span class="hljs-title">// clipsToBounds 使得图片显示不超过 imageView 的 bounds</span>
+
+  imageView.contentMode = <span class="hljs-class">UIViewContentMode</span>.<span class="hljs-class">ScaleAspectFill</span>
+
+  <span class="hljs-title">// ScaleAspectFill 避免图片在缩放的时候变形</span>
+}
+</code></pre>
+<p class="calibre8">然后就是定义我们的关键帧操作，需要注意的是，addKeyframeWithRelativeStartTime 的第一个参数是进度不是时间。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">startKeyFrameAnimation</span><span class="hljs-number">()</span></span> {
+
+  <span class="hljs-title">// 定义一个总时间为 2 秒的动画</span>
+
+  <span class="hljs-class">UIView</span>.animateKeyframesWithDuration(<span class="hljs-number">2</span>, delay: <span class="hljs-number">0</span>,
+     options: .<span class="hljs-class">CalculationModeCubic</span>, animations: {
+
+    <span class="hljs-title">// 在动画进度为 0 的时候开始，耗时 0.5 秒</span>
+    <span class="hljs-class">UIView</span>.addKeyframeWithRelativeStartTime(<span class="hljs-number">0.0</span>,
+      relativeDuration: <span class="hljs-number">0.5</span>) {
+        <span class="hljs-keyword">self</span>.imageView.frame = <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">48</span>,
+          width: <span class="hljs-keyword">self</span>.view.frame.width, height: <span class="hljs-number">0</span>)
+    }
+
+    <span class="hljs-title">// 在动画进度为 0.25 的时候开始，耗时 0.5 秒</span>
+    <span class="hljs-class">UIView</span>.addKeyframeWithRelativeStartTime(<span class="hljs-number">0.25</span>, relativeDuration: <span class="hljs-number">0.5</span>) {
+        <span class="hljs-keyword">self</span>.imageView.frame = <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">32</span>,
+          width: <span class="hljs-keyword">self</span>.view.frame.width,
+          height: <span class="hljs-number">260</span> + <span class="hljs-keyword">self</span>.view.frame.height/<span class="hljs-number">4.0</span>)
+    }
+
+    <span class="hljs-title">// 在动画进度为 0.5 的时候开始，耗时 0.5 秒</span>
+    <span class="hljs-class">UIView</span>.addKeyframeWithRelativeStartTime(<span class="hljs-number">0.5</span>,
+      relativeDuration: <span class="hljs-number">0.5</span>) {
+        <span class="hljs-keyword">self</span>.imageView.frame = <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">16</span>,
+          width: <span class="hljs-keyword">self</span>.view.frame.width,
+          height: <span class="hljs-number">260</span> + <span class="hljs-keyword">self</span>.view.frame.height/<span class="hljs-number">2.0</span>)
+    }
+
+    <span class="hljs-title">// 在动画进度为 0.75 的时候开始，耗时 0.5 秒</span>
+    <span class="hljs-class">UIView</span>.addKeyframeWithRelativeStartTime(<span class="hljs-number">0.75</span>, relativeDuration: <span class="hljs-number">0.5</span>) {
+        <span class="hljs-keyword">self</span>.imageView.frame = <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>,
+           width: <span class="hljs-keyword">self</span>.view.frame.width,
+           height: <span class="hljs-keyword">self</span>.view.frame.height)
+    }
+
+  }, completion: <span class="hljs-number">nil</span>)
+
+}
+</code></pre>
+<h2 id="core-animation-关键帧动画" class="calibre9">Core Animation 关键帧动画</h2>
+<p class="calibre8">UIView 动画能操作的参数很少，利用 Core Animation 我们可以操作更多 Layer 的参数，实现更为有趣的动画。</p>
+<div class="calibre21"><img src="maskanimation.gif" class="calibre50"/></div>
+
+<p class="calibre8">这次我们需要额外定义一个 maskView 来作为 imageView 的 Mask。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maskAnimation</span><span class="hljs-number">()</span></span> {
+    imageView.image = <span class="hljs-class">UIImage</span>(named: <span class="hljs-string">"leaf"</span>)
+    imageView.clipsToBounds = <span class="hljs-number">true</span>
+    imageView.contentMode = .<span class="hljs-class">ScaleAspectFill</span>
+
+    view.window!.addSubview(imageView)
+
+    imageView.frame = <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>,
+      width: view.frame.width,
+      height: view.frame.size.height)
+
+    maskView.frame = <span class="hljs-class">CGRect</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">64</span>,
+      width: <span class="hljs-number">30</span>, height: <span class="hljs-number">30</span>)
+
+    maskView.layer.cornerRadius = <span class="hljs-number">15.0</span>
+    maskView.layer.masksToBounds = <span class="hljs-number">true</span>
+    maskView.backgroundColor = <span class="hljs-class">UIColor</span>.blackColor()
+    imageView.layer.mask = maskView.layer
+
+    startMaskAnimation()
+}
+</code></pre>
+<p class="calibre8">Core Animation 因为较为底层，用起来就相对繁琐一些</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">startMaskAnimation</span><span class="hljs-number">()</span></span> {
+
+    <span class="hljs-keyword">let</span> screenWidth = view.frame.width
+    <span class="hljs-keyword">let</span> screenHeight = view.frame.height
+
+    <span class="hljs-title">// 针对 bounds 的变形动画</span>
+    <span class="hljs-keyword">let</span> transformAnim = <span class="hljs-class">CAKeyframeAnimation</span>(
+      keyPath:<span class="hljs-string">"bounds"</span>)
+
+    <span class="hljs-title">// values 中定义了各个关键帧真对属性所需要修改的目标数值</span>
+    transformAnim.values  = [
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGRect</span>:<span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">64</span>, <span class="hljs-number">64</span>)) ,
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGRect</span>:<span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">128</span>, <span class="hljs-number">128</span>)) ,
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGRect</span>:<span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">256</span>, <span class="hljs-number">256</span>)) ,
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGRect</span>:<span class="hljs-class">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>,
+      view.frame.height*<span class="hljs-number">2</span> , view.frame.height*<span class="hljs-number">2</span>)) ]
+
+    <span class="hljs-title">// keyTimes 和 values 是一一对应的关系， 定义了每个关键帧</span>
+    <span class="hljs-title">// 执行时相对于总时间的位置</span>
+    transformAnim.keyTimes = [<span class="hljs-number">0</span>, <span class="hljs-number">0.349</span>, <span class="hljs-number">0.618</span>, <span class="hljs-number">1</span>]
+
+    <span class="hljs-title">// duration 为总时间</span>
+    transformAnim.duration = <span class="hljs-number">1</span>
+
+    <span class="hljs-title">// removedOnCompletion 定义了动画完成时是否从 Layer 上删除</span>
+    transformAnim.removedOnCompletion = <span class="hljs-number">false</span>
+    <span class="hljs-title">// fillMode 定义了动画完成时，对于 Layer 的属性修改是否保留</span>
+    transformAnim.fillMode = kCAFillModeForwards
+
+    <span class="hljs-title">// 我们这里将 removedOnCompletion 定义为 false，fillMode</span>
+    <span class="hljs-title">// 定义为 kCAFillModeForwards 则可以使得动画结束时，保留</span>
+    <span class="hljs-title">// Layer 的结束状态，你可以通过注释到这两句，看看其默认效果</span>
+
+    <span class="hljs-keyword">self</span>.maskView.layer.addAnimation(transformAnim,
+       forKey: <span class="hljs-string">"bounds"</span>)
+
+    <span class="hljs-title">// 定义位移动画，因为 Core Animation 不能操作 frame，所以</span>
+    <span class="hljs-title">// 需要拆分成 position 和 bounds 两个动画</span>
+
+    <span class="hljs-keyword">let</span> positionAnim = <span class="hljs-class">CAKeyframeAnimation</span>(
+      keyPath:<span class="hljs-string">"position"</span>)
+    positionAnim.values = [
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>:<span class="hljs-class">CGPointMake</span>(screenWidth/<span class="hljs-number">8.0</span>, screenHeight/<span class="hljs-number">8.0</span>)) ,
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>:<span class="hljs-class">CGPointMake</span>(screenWidth/<span class="hljs-number">4.0</span>, screenHeight/<span class="hljs-number">4.0</span>)) ,
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>:<span class="hljs-class">CGPointMake</span>(screenWidth/<span class="hljs-number">2.0</span>, screenHeight/<span class="hljs-number">2.0</span>)) ,
+    <span class="hljs-class">NSValue</span>(<span class="hljs-class">CGPoint</span>:<span class="hljs-class">CGPointMake</span>(screenWidth/<span class="hljs-number">2.0</span>, screenHeight/<span class="hljs-number">2.0</span>)) ]
+    positionAnim.keyTimes = [<span class="hljs-number">0</span>, <span class="hljs-number">0.249</span>, <span class="hljs-number">0.618</span>, <span class="hljs-number">1</span>]
+    positionAnim.duration = <span class="hljs-number">1</span>
+    positionAnim.removedOnCompletion = <span class="hljs-number">false</span>
+    positionAnim.fillMode = kCAFillModeForwards
+    <span class="hljs-keyword">self</span>.maskView.layer.addAnimation(positionAnim,
+      forKey: <span class="hljs-string">"position"</span>)
+
+    <span class="hljs-title">//定义修改圆角的动画</span>
+
+    <span class="hljs-keyword">let</span> radiusAnim = <span class="hljs-class">CAKeyframeAnimation</span>(
+      keyPath:<span class="hljs-string">"cornerRadius"</span>)
+    radiusAnim.values = [<span class="hljs-number">32</span>,<span class="hljs-number">64</span>,<span class="hljs-number">128</span>,view.frame.height]
+    radiusAnim.keyTimes = [<span class="hljs-number">0</span>, <span class="hljs-number">0.349</span>, <span class="hljs-number">0.618</span>, <span class="hljs-number">1</span>]
+    radiusAnim.duration = <span class="hljs-number">1</span>
+    radiusAnim.removedOnCompletion = <span class="hljs-number">false</span>
+    radiusAnim.fillMode = kCAFillModeForwards
+    <span class="hljs-keyword">self</span>.maskView.layer.addAnimation(radiusAnim,
+      forKey: <span class="hljs-string">"cornerRadius"</span>)
+}
+</code></pre>
+<p class="calibre8">你可以从 <a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Animation%20Advanced" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github</a> 获取我们以上两个 Demo 的源码.</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

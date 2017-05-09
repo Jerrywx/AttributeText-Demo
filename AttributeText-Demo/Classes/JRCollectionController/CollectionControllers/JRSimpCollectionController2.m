@@ -15,6 +15,13 @@
 ///
 @property (nonatomic, strong) UICollectionView	*collectionView;
 
+@property (nonatomic, assign) CGFloat hhhh;
+@property (nonatomic, assign) CGFloat hhhh2;
+
+
+@property (nonatomic, strong) NSMutableArray *hs;
+
+
 @end
 
 @implementation JRSimpCollectionController2
@@ -24,12 +31,22 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.hs = [NSMutableArray array];
+	
+	for (int i=0; i<10; i++) {
+		[self.hs addObject:@(SCREEN_H)];
+	}
+	
+	
 	[self setupUI];
 }
 
 ///
 - (void)setupUI {
 	self.view.backgroundColor = [UIColor whiteColor];
+	
+	self.hhhh = 333;
+	self.hhhh2 = SCREEN_H;
 	
 	self.collectionView = ({
 		UICollectionView *colView = [[UICollectionView alloc] initWithFrame:self.view.bounds
@@ -40,6 +57,24 @@ static NSString * const reuseIdentifier = @"Cell";
 		[self.view addSubview:colView];
 		colView;
 	});
+	
+	UIBarButtonItem *r = [[UIBarButtonItem alloc] initWithTitle:@"😁"
+														  style:UIBarButtonItemStylePlain 
+														 target:self 
+														 action:@selector(test)];
+	self.navigationItem.rightBarButtonItem = r;
+}
+
+- (void)test {
+	self.hhhh = 2222;
+	self.hhhh2 = 2;
+	NSLog(@"=======");
+	CGPoint point = self.collectionView.contentOffset;
+	[self.collectionView reloadData];
+	
+//	[self.collectionView scrollRectToVisible:CGRectMake(point.x, point.y + 2222 - 333, SCREEN_W, SCREEN_H) animated:NO];
+	
+	[self.collectionView scrollRectToVisible:CGRectMake(point.x, point.y, SCREEN_W, SCREEN_H) animated:NO];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -67,8 +102,29 @@ static NSString * const reuseIdentifier = @"Cell";
 				  layout:(UICollectionViewLayout*)collectionViewLayout 
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	
-	CGFloat w = (SCREEN_W - 20) / 2;
-	return CGSizeMake(w, 200);
+//	CGFloat w = (SCREEN_W - 20) / 2;
+	
+	NSLog(@"------ %@", indexPath);
+	
+//	if (indexPath.row == 3) {
+//		CGFloat w = SCREEN_W;
+//		return CGSizeMake(w, self.hhhh);
+//	}
+//	
+//	if (indexPath.row == 1) {
+//		CGFloat w = SCREEN_W;
+//		return CGSizeMake(w, self.hhhh2);
+//	}
+	
+	CGFloat w = SCREEN_W;
+	return CGSizeMake(w, SCREEN_H - 64);
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+	
+	
 }
 
 //- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
@@ -112,6 +168,11 @@ static NSString * const reuseIdentifier = @"Cell";
 	NSLog(@"--- %@ %@", NSStringFromSelector(action), sender);
 }
 
+
+- (nonnull UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout {
+	NSLog(@"aaaaaaaaaaaaaaa");
+	return [UICollectionViewTransitionLayout new];
+}
 
 #pragma mark - Getter Methond
 - (UICollectionViewFlowLayout *)layout {

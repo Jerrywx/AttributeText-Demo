@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>动画进阶 - Bezier 曲线动画</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_43">动画进阶 - Bezier 曲线动画</h1>
+        <div class="section">
+            <h1 id="product-advanced-动画进阶-bezier-曲线动画" class="calibre7">Product Advanced 动画进阶: Bezier 曲线动画</h1>
+<p class="calibre8">这两天和 Ray 一起吃拉面的时候，除了关注那位可爱服务员之外，他还煞有介事的跟我讲 —— “我发现了一个超屌的设计师，balabala”，其实时至今日我已经不知道如何定义超屌的设计师这个概念了，就像超屌的开发者一样，这个问题探究到最后只会变成一句感叹——人类最屌竟然只能做成这个样子。</p>
+<p class="calibre8">不过，还是捧捧 Ray 的场啦，我问道 “是何许人也？”。</p>
+<p class="calibre8">他拿过来几乎没有信号的 iPad 给我看，你看这个人，这个人，目光从 Safari 地址栏的 .cn 这个坑爹的后缀扫过后，赫然发现一个完全不知道的名字 <a href="http://www.ui.cn/project.php?id=21507" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Marcus Eckert</a>。 虽然不知道名字，但是接下来的内容绝对是如雷贯耳——<a href="http://www.marcuseckert.com/wide-sky/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Wide Sky</a>。</p>
+<p class="calibre8">这段留着你来点开上面的两个链接欣赏下</p>
+<p class="calibre8"><img src="new1.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><a href="http://player.vimeo.com/video/61004254" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Vimeo 链接</a></p>
+<p class="calibre8"><a href="http://v.youku.com/v_show/id_XNzYzODA2MDgw.html?from=s1.8-1-1.2" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Youku 链接</a></p>
+<p class="calibre8">个人英雄主义如果不是个人能力超强的话，往往会变成一个自我重伤的事情，但是很显然 Marcus Eckert 把这一点发挥到了极致， Meek for iOS 太震撼了。
+所以按捺不住心中的激动，我对 Motion Graphics 展开了一番问道。</p>
+<h2 id="寻路" class="calibre9">寻路</h2>
+<p class="calibre8">Motion Graphics 这个词我不久前第一次听说，当时是一米天给 <a href="http://catchchat.me" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">CatchChat</a> 做介绍动画的时候，跟我说他们是高大上的 MG，不过我的理解是怎么现在搞啥都得发明个名词来方便忽悠了，不过只要是好东西做做忽悠也没啥，但是此事也就这样没放在心上。</p>
+<p class="calibre8">这次我借机好好研究了一下。</p>
+<p class="calibre8">这里正好有一段关于 MG 是啥的 Youtube 视频，应该是某个专业做 MG 的团队出品的，质量一般般，不过我觉得是体现了绝大部分从业者对这个的理解。</p>
+<p class="calibre8"><img src="220.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><a href="https://www.youtube.com/watch?v=9sAVrCDhDhM" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">视频链接</a></p>
+<p class="calibre8">所以我想了想，之前我应该也做过一个类似的东西，之前研究 Facebook POP 的时候，有个 <a href="http://zhowkev.in/2014/06/06/facebook-pop/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Transform</a>  的部分正是异曲同工。</p>
+<p class="calibre8">但是说实在的，探究 Motion Graphics 的过程是不愉快的，因为看得越多，越发现了大家在用那么几种相似的变换形式来来回折腾。这种体验相似于其它的行业，最顶尖的天才研究出来一些新式的效果，其他人抄袭个改进。但是想想如果人类最顶尖的想象力和效果就是这样了，还是很伤心的。</p>
+<h2 id="问道" class="calibre9">问道</h2>
+<p class="calibre8">Motion Graphics 在 AE 里做应该是相对简单的，不过 Marcus Eckert 用代码实现了这些效果，就让我很感动了，他自己也说，其实对他而言更多的是技术上的实验，所以我也思考了下如何从技术上实现这些效果。</p>
+<p class="calibre8">Actually，动效无论是软件还是在动画里，用多了其实都会让人吐的。</p>
+<p class="calibre8">好好，先聊聊 iOS 里怎么实现动效。</p>
+<h2 id="ios-里的动效初探" class="calibre9">iOS 里的动效初探</h2>
+<p class="calibre8">简单的飞来飞去，大小改变什么的就很简单了，聊聊复杂的形变问题。</p>
+<p class="calibre8">还好我之前玩过 Blender，我的思路第一个就是对 Bezier 曲线进行改变，这个就比较类似关键帧动画。</p>
+<p class="calibre8">比如我们如何把多边形变成五角星，这里我使用了 (PaintCode)[<a href="http://www.paintcodeapp.com" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">http://www.paintcodeapp.com</a>] 这款软件来生成曲线</p>
+<p class="calibre8">先画五边形</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-title">//// Polygon Drawing</span>
+<span class="hljs-keyword">let</span> polygonPath = <span class="hljs-class">UIBezierPath</span>()
+polygonPath.moveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">162</span>, <span class="hljs-number">93</span>))
+polygonPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">230.48</span>, <span class="hljs-number">142.75</span>))
+polygonPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">204.32</span>, <span class="hljs-number">223.25</span>))
+polygonPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">119.68</span>, <span class="hljs-number">223.25</span>))
+polygonPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">93.52</span>, <span class="hljs-number">142.75</span>))
+polygonPath.closePath()
+</code></pre>
+<p class="calibre8">然后再画一个五角星的曲线</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">        <span class="hljs-title">//// Star Drawing</span>
+<span class="hljs-keyword">let</span> starPath = <span class="hljs-class">UIBezierPath</span>()
+starPath.moveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">162</span>, <span class="hljs-number">82</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">191.27</span>, <span class="hljs-number">124.71</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">240.94</span>, <span class="hljs-number">139.35</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">209.36</span>, <span class="hljs-number">180.39</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">210.79</span>, <span class="hljs-number">232.15</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">162</span>, <span class="hljs-number">214.8</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">113.21</span>, <span class="hljs-number">232.15</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">114.64</span>, <span class="hljs-number">180.39</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">83.06</span>, <span class="hljs-number">139.35</span>))
+starPath.addLineToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">132.73</span>, <span class="hljs-number">124.71</span>))
+starPath.closePath()
+</code></pre>
+<p class="calibre8">拥有了这两个曲线后，我们使用一个 CAShapeLayer 来绘制第一个曲线</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-title">// 绘制 CAShapeLayer</span>
+
+<span class="hljs-keyword">let</span> shape = <span class="hljs-class">CAShapeLayer</span>()
+shape.drawsAsynchronously = <span class="hljs-number">true</span>
+shape.frame = view.bounds
+shape.path = polygonPath.<span class="hljs-class">CGPath</span>
+shape.lineWidth = <span class="hljs-number">3.0</span>
+shape.lineCap = kCALineCapRound
+shape.lineJoin = kCALineJoinRound
+shape.strokeColor = <span class="hljs-class">UIColor</span>.whiteColor().<span class="hljs-class">CGColor</span>
+shape.fillColor = color.<span class="hljs-class">CGColor</span>
+view.layer.addSublayer(shape)
+</code></pre>
+<p class="calibre8">接下来要做的就是加入个动画让 A path 变成 B path</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> pathAnimation = <span class="hljs-class">CABasicAnimation</span>(keyPath: <span class="hljs-string">"path"</span>)
+pathAnimation.fromValue = polygonPath.<span class="hljs-class">CGPath</span>
+pathAnimation.toValue = starPath.<span class="hljs-class">CGPath</span>
+pathAnimation.duration = <span class="hljs-number">1.0</span>
+pathAnimation.autoreverses = <span class="hljs-number">false</span>
+pathAnimation.timingFunction = <span class="hljs-class">CAMediaTimingFunction</span>(name:
+   kCAMediaTimingFunctionEaseInEaseOut)
+
+shape.addAnimation(pathAnimation, forKey: <span class="hljs-string">"animationKey"</span>)
+
+shape.path = starPath.<span class="hljs-class">CGPath</span>
+</code></pre>
+<p class="calibre8">Build Run 一下就可以发生这个渐变动画了，timingFunction 可以经过复杂的定义实现一个比较生动的动画。</p>
+<p class="calibre8">通过  addQuadCurveToPoint 这个也可以实现控制点方式对形状进行控制，也可以写一个函数进行 Path 的 Smooth 的操作。这方面我们已经有 <a href="https://github.com/Petrakeas/outlineDEMO" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">先行者</a> 做了尝试</p>
+<p class="calibre8">同时我也给 <a href="https://github.com/kevinzhow/PNChart" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">PNChart</a> 0.6 版本加入了一个实时更新数据的功能，用的就是这个方法。</p>
+<h2 id="动效物理效果进阶" class="calibre9">动效物理效果进阶</h2>
+<p class="calibre8">之后我又发现了一位先驱。</p>
+<p class="calibre8"><img src="315.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8"><a href="https://www.youtube.com/watch?v=vV-EE1j8fEQ" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">视频链接</a></p>
+<p class="calibre8">这效果看起来非常高大上，但是原理其实也很简单。添加一个 Pan 手势，通过 addQuadCurveToPoint 增加控制点，然后添加一个 Dummy 的 UIView 跟随控制点，在释放的时候给 Dummy 一个 Spring 的 Animation。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> pan = <span class="hljs-class">UIPanGestureRecognizer</span>(target: <span class="hljs-keyword">self</span>,
+   action: <span class="hljs-string">"updatePathPan:"</span>)
+
+view.addGestureRecognizer(pan)
+<span class="hljs-title">//// Polygon Drawing</span>
+<span class="hljs-keyword">let</span> polygonPath = <span class="hljs-class">UIBezierPath</span>()
+polygonPath.moveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>))
+polygonPath.addQuadCurveToPoint(
+  <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, view.frame.height),
+ controlPoint: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, view.frame.height/<span class="hljs-number">2.0</span>))
+polygonPath.closePath()
+
+<span class="hljs-title">// 绘制 CAShapeLayer</span>
+
+jellyShape.drawsAsynchronously = <span class="hljs-number">true</span>
+jellyShape.frame = view.bounds
+jellyShape.path = polygonPath.<span class="hljs-class">CGPath</span>
+jellyShape.lineWidth = <span class="hljs-number">3.0</span>
+jellyShape.lineCap = kCALineCapRound
+jellyShape.lineJoin = kCALineJoinRound
+jellyShape.strokeColor = <span class="hljs-class">UIColor</span>.whiteColor().<span class="hljs-class">CGColor</span>
+jellyShape.fillColor = color.<span class="hljs-class">CGColor</span>
+view.layer.addSublayer(jellyShape)
+</code></pre>
+<p class="calibre8">在滑动的时候同步改变 Path</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">updatePathPan</span><span class="hljs-number">(gesture: UIPanGestureRecognizer)</span></span> {
+
+  <span class="hljs-keyword">if</span> gesture.state == <span class="hljs-class">UIGestureRecognizerState</span>.<span class="hljs-class">Ended</span> {
+
+    <span class="hljs-keyword">let</span> displayLink = <span class="hljs-class">CADisplayLink</span>(target: <span class="hljs-keyword">self</span>,
+       selector: <span class="hljs-string">"syncPath"</span>)
+
+    displayLink.addToRunLoop(<span class="hljs-class">NSRunLoop</span>.currentRunLoop(),
+     forMode: <span class="hljs-class">NSDefaultRunLoopMode</span>)
+
+    dummyView = <span class="hljs-class">UIView</span>(frame:
+      <span class="hljs-class">CGRect</span>(x: currentControlPoint,
+      y: view.frame.height/<span class="hljs-number">2.0</span>, width: <span class="hljs-number">10</span>, height: <span class="hljs-number">10</span>))
+
+    view.addSubview(dummyView!)
+
+    <span class="hljs-class">UIView</span>.animateWithDuration(<span class="hljs-number">1.0</span>, delay: <span class="hljs-number">0</span>,
+       usingSpringWithDamping: <span class="hljs-number">0.3</span>,
+       initialSpringVelocity: <span class="hljs-number">50</span>,
+        options: <span class="hljs-class">UIViewAnimationOptions</span>.<span class="hljs-class">CurveEaseInOut</span>,
+         animations: { () -&gt; <span class="hljs-class">Void</span> <span class="hljs-keyword">in</span>
+
+        <span class="hljs-keyword">self</span>.dummyView!.center = <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>,
+           <span class="hljs-keyword">self</span>.view.frame.height/<span class="hljs-number">2.0</span>)
+
+        }, completion: { finish <span class="hljs-keyword">in</span>
+
+            <span class="hljs-keyword">self</span>.currentControlPoint = <span class="hljs-number">0</span>
+            displayLink.invalidate()
+    })
+
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> gesture.state == <span class="hljs-class">UIGestureRecognizerState</span>.
+    <span class="hljs-class">Changed</span> {
+
+    <span class="hljs-keyword">let</span> translationPoint = gesture.translationInView(view)
+
+    currentControlPoint = currentControlPoint +
+     translationPoint.x
+
+    <span class="hljs-title">//// Polygon Drawing</span>
+    <span class="hljs-keyword">let</span> polygonPath = <span class="hljs-class">UIBezierPath</span>()
+    polygonPath.moveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>))
+
+    polygonPath.addQuadCurveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>,
+       view.frame.height),
+     controlPoint: <span class="hljs-class">CGPointMake</span>(currentControlPoint,
+        view.frame.height/<span class="hljs-number">2.0</span>))
+
+    polygonPath.closePath()
+    gesture.setTranslation(<span class="hljs-class">CGPointZero</span>, inView: view)
+
+    jellyShape.path = polygonPath.<span class="hljs-class">CGPath</span>
+  }
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">syncPath</span><span class="hljs-number">()</span></span> {
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> dummyView = dummyView,
+     currentLayer = dummyView.layer.presentationLayer()
+      <span class="hljs-keyword">as</span>? <span class="hljs-class">CALayer</span> {
+        <span class="hljs-title">//// Polygon Drawing</span>
+        <span class="hljs-keyword">let</span> polygonPath = <span class="hljs-class">UIBezierPath</span>()
+        polygonPath.moveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>))
+
+        polygonPath.addQuadCurveToPoint(
+          <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, view.frame.height),
+         controlPoint:
+         <span class="hljs-class">CGPointMake</span>(currentLayer.frame.origin.x,
+            view.frame.height/<span class="hljs-number">2.0</span>))
+
+        polygonPath.closePath()
+
+        jellyShape.path = polygonPath.<span class="hljs-class">CGPath</span>
+    }
+
+}
+</code></pre>
+<p class="calibre8">值得注意的是，这里利用了 presentationLayer 来获取在动画过程中 Layer 的实际位置。</p>
+<p class="calibre8">另外一种思路是使用 UIDynamic 增加一个重力坠落的效果，使用 CADisplayLink 同步 Path 和 Dummy View 的数值。</p>
+<h2 id="uidynamic" class="calibre9">UIDynamic</h2>
+<p class="calibre8">首先和之前一样，创建初始环境</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript">
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">bezierUIDynamic</span><span class="hljs-number">()</span></span> {
+
+    <span class="hljs-keyword">let</span> pan = <span class="hljs-class">UIPanGestureRecognizer</span>(target: <span class="hljs-keyword">self</span>,
+       action: <span class="hljs-string">"updateUIDynamicPathPan:"</span>)
+
+    view.addGestureRecognizer(pan)
+    <span class="hljs-title">//// Polygon Drawing</span>
+    <span class="hljs-keyword">let</span> polygonPath = <span class="hljs-class">UIBezierPath</span>()
+    polygonPath.moveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>))
+
+    polygonPath.addQuadCurveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>,
+       view.frame.height),
+     controlPoint: <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, view.frame.height/<span class="hljs-number">2.0</span>))
+
+    polygonPath.closePath()
+
+    <span class="hljs-title">// 绘制 CAShapeLayer</span>
+
+    jellyShape.drawsAsynchronously = <span class="hljs-number">true</span>
+    jellyShape.frame = view.bounds
+    jellyShape.path = polygonPath.<span class="hljs-class">CGPath</span>
+    jellyShape.lineWidth = <span class="hljs-number">3.0</span>
+    jellyShape.lineCap = kCALineCapRound
+    jellyShape.lineJoin = kCALineJoinRound
+    jellyShape.strokeColor = <span class="hljs-class">UIColor</span>.whiteColor().<span class="hljs-class">CGColor</span>
+    jellyShape.fillColor = color.<span class="hljs-class">CGColor</span>
+    view.layer.addSublayer(jellyShape)
+}
+</code></pre>
+<p class="calibre8">处理 pan 手势略有不同</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">updateUIDynamicPathPan</span><span class="hljs-number">(gesture: UIPanGestureRecognizer)</span></span> {
+
+  <span class="hljs-keyword">if</span> gesture.state == <span class="hljs-class">UIGestureRecognizerState</span>.<span class="hljs-class">Ended</span> {
+
+      bezierUIDynamicSetup()
+
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> gesture.state == <span class="hljs-class">UIGestureRecognizerState</span>.
+    <span class="hljs-class">Changed</span> {
+
+      <span class="hljs-keyword">let</span> translationPoint = gesture.translationInView(view)
+
+      currentControlPoint = currentControlPoint +
+       translationPoint.x
+
+      <span class="hljs-title">//// Polygon Drawing</span>
+      <span class="hljs-keyword">let</span> polygonPath = <span class="hljs-class">UIBezierPath</span>()
+      polygonPath.moveToPoint(<span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>))
+
+      polygonPath.addQuadCurveToPoint(
+        <span class="hljs-class">CGPointMake</span>(<span class="hljs-number">0</span>, view.frame.height),
+      controlPoint:
+       <span class="hljs-class">CGPointMake</span>(currentControlPoint,
+          view.frame.height/<span class="hljs-number">2.0</span>))
+
+      polygonPath.closePath()
+      gesture.setTranslation(<span class="hljs-class">CGPointZero</span>, inView: view)
+
+      jellyShape.path = polygonPath.<span class="hljs-class">CGPath</span>
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> gesture.state == <span class="hljs-class">UIGestureRecognizerState</span>.
+    <span class="hljs-class">Began</span> {
+
+      displayLinkUIDynamic?.invalidate()
+      currentControlPoint = <span class="hljs-number">0</span>
+
+  }
+
+}
+</code></pre>
+<p class="calibre8">在 bezierUIDynamicSetup() 里面，我们开始构建 UIDynamic 的环境</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">bezierUIDynamicSetup</span><span class="hljs-number">()</span></span> {
+
+    <span class="hljs-title">// 创建碰撞盒子</span>
+    box = <span class="hljs-class">UIView</span>(frame: <span class="hljs-class">CGRect</span>(x: currentControlPoint,
+      y: view.frame.height/<span class="hljs-number">2.0</span>, width: <span class="hljs-number">10</span>, height: <span class="hljs-number">10</span>))
+<span class="hljs-title">//        box?.backgroundColor = UIColor.redColor()</span>
+    view.addSubview(box!)
+
+    <span class="hljs-title">// 创建 Animator</span>
+    animator = <span class="hljs-class">UIDynamicAnimator</span>(referenceView:<span class="hljs-keyword">self</span>.view)
+
+    <span class="hljs-title">// 添加給盒子添加重力属性</span>
+    gravity = <span class="hljs-class">UIGravityBehavior</span>(items: [box!])
+
+    <span class="hljs-title">// 将重力调整为 x 轴向左坠落</span>
+    gravity.gravityDirection = <span class="hljs-class">CGVectorMake</span>(-<span class="hljs-number">10.9</span>, <span class="hljs-number">0</span>)
+
+    <span class="hljs-title">// 給盒子增加碰撞检测</span>
+    collision = <span class="hljs-class">UICollisionBehavior</span>(items: [box!])
+    collision.translatesReferenceBoundsIntoBoundary = <span class="hljs-number">true</span>
+
+    <span class="hljs-title">// 修改盒子的弹性</span>
+    <span class="hljs-keyword">let</span> itemBehaviour = <span class="hljs-class">UIDynamicItemBehavior</span>(items: [box!])
+    itemBehaviour.elasticity = <span class="hljs-number">0.6</span>
+
+    animator?.addBehavior(itemBehaviour)
+    animator?.addBehavior(collision)
+    animator?.addBehavior(gravity)
+
+    displayLinkUIDynamic = <span class="hljs-class">CADisplayLink</span>(target: <span class="hljs-keyword">self</span>,
+       selector: <span class="hljs-string">"syncUIDynamicPath"</span>)
+
+    displayLinkUIDynamic!.addToRunLoop(
+      <span class="hljs-class">NSRunLoop</span>.currentRunLoop(),
+     forMode: <span class="hljs-class">NSDefaultRunLoopMode</span>)
+}
+</code></pre>
+<h2 id="动效果冻效果" class="calibre9">动效果冻效果</h2>
+<p class="calibre8">那么随着进一步探索，又找到一位复制 Skype 的 <a href="http://holko.pl/2014/06/26/recreating-skypes-action-sheet-animation/" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">果冻菜单</a> 效果的先驱。</p>
+<p class="calibre8">实现的原理也是一样的，不过是创建两个 Dummy View ，你可以研究下这篇文章。</p>
+<p class="calibre8">后来作者创建了一个独立的库 <a href="https://github.com/fastred/AHKBendableView" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">AHKBendableView</a>。</p>
+<p class="calibre8">虽然实现的方式就更加复杂了，不过原理还是一样的。</p>
+<pre class="calibre33"><code class="pcalibre4 pcalibre3 lang-coffeescript"><span class="hljs-keyword">let</span> path = <span class="hljs-class">UIBezierPath</span>()
+path.moveToPoint(<span class="hljs-class">CGPoint</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>))
+
+path.addQuadCurveToPoint(<span class="hljs-class">CGPoint</span>(x: width, y: <span class="hljs-number">0</span>),
+controlPoint:<span class="hljs-class">CGPoint</span>(x: width / <span class="hljs-number">2.0</span>,
+  y: <span class="hljs-number">0</span> + bendableOffset.vertical))
+
+path.addQuadCurveToPoint(<span class="hljs-class">CGPoint</span>(x: width, y: height),
+controlPoint:<span class="hljs-class">CGPoint</span>(x: width + bendableOffset.horizontal,
+  y: height / <span class="hljs-number">2.0</span>))
+
+path.addQuadCurveToPoint(<span class="hljs-class">CGPoint</span>(x: <span class="hljs-number">0</span>, y: height),
+controlPoint: <span class="hljs-class">CGPoint</span>(x: width / <span class="hljs-number">2.0</span>,
+   y: height + bendableOffset.vertical))
+
+path.addQuadCurveToPoint(<span class="hljs-class">CGPoint</span>(x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>),
+controlPoint: <span class="hljs-class">CGPoint</span>(x: bendableOffset.horizontal,
+   y: height / <span class="hljs-number">2.0</span>))
+
+path.closePath()
+</code></pre>
+<p class="calibre8">使用 CADisplayLink 同步 bendableOffset 和 Dummy View 的移动。</p>
+<h2 id="再续前缘" class="calibre9">再续前缘</h2>
+<p class="calibre8">研究到这里，回想 Marcus Eckert 的工作，觉得越发碉堡，如果要在三维空间实现这些效果，那么还要再去搞 OpenGL，不禁为此觉得潸然泪下，无论是工程师还是设计师，局限于自己的领域是无法做出极具创造性的工作的。</p>
+<p class="calibre8">望着窗外广州大道的车灯，被雨夜的风吹的更清醒一点了。</p>
+<p class="calibre8">你可以从 <a href="https://github.com/ProducterTips/producter-book-examples/tree/master/Animation%20Advanced" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Github</a> 获取我们以上两个 Demo 的源码.</p>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+  <head>
+    <title>动画进阶 - Bezier Waver 声波效果</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="" name="description"/>
+    <meta content="GitBook 3.2.2" name="generator"/>
+    <meta content="周楷雯 (kevinzhow)" name="author"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+        
+<div class="page">
+    
+        <h1 class="book-chapter" id="calibre_toc_44">动画进阶 - Bezier Waver 声波效果</h1>
+        <div class="section">
+            <h1 id="product-advanced-动画进阶-bezier-waver-声波效果" class="calibre7">Product Advanced 动画进阶: Bezier Waver 声波效果</h1>
+<p class="calibre8">在上一篇研究了动效之后，这段时间一直在琢磨如何做一些更有趣的东西，所以，昨天我开源了一个新的声波库——<a href="https://github.com/kevinzhow/Waver" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">Waver</a>，拥有非常动人的声波效果，在此要感谢 <a href="https://github.com/stefanceriu/SCSiriWaveformView" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">SCSiriWaveformView</a> 这个项目，Waver 在他的基础上改成了 Block 的使用方式，同时声波采用我最熟悉的 UIBezierPath 和 CAShapeLayer 实现，并做了一些逻辑上的优化，实现了 8 倍的性能提升。</p>
+<p class="calibre8">采用 UIBezierPath &amp; CAShapeLayer 的另外一个好处是更方便对初始形态进行调整，像 Siri 那样可以从圆形变成线条。</p>
+<div class="calibre21"><img src="waver.jpg" class="calibre49"/></div>
+
+<p class="calibre8">不过对此而言，怎么使用不是最重要的，重要的是怎么实现这样的效果，So，Let's have some fun！</p>
+<h2 id="原理" class="calibre9">原理</h2>
+<p class="calibre8">在大概半年多前的时候，iOS 群里曾有过关于如何实现像 Siri 的声波效果的讨论，当时提出的第一个解决方案是 <a href="http://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">FFT</a> ，网易公开课有斯坦福<a href="http://v.163.com/movie/2008/2/6/6/M7Q4BLENR_M7QBP2N66.html" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">相关的课程</a>。</p>
+<blockquote class="calibre17">
+<p class="calibre8">傅立叶原理：任何连续测量的时序或信号，都可以表示为不同频率的正弦波信号的无限叠加。</p>
+</blockquote>
+<p class="calibre8">不过解释或者推导再应用这个原理显然不那么有趣，我想从一个纯粹的逻辑角度出发去解决这个问题。</p>
+<p class="calibre8">Mac 上有个非常有趣的软件，叫做 Grapher，你可以在里面输入我们玩的公式，也可以<a href="https://dl.dropboxusercontent.com/u/1599662/waver/WaverMath.gcx" target="_blank" class="calibre13 pcalibre1 pcalibre pcalibre2">直接下载</a>我们的试验文件。</p>
+<h2 id="屏幕上的波纹" class="calibre9">屏幕上的波纹</h2>
+<p class="calibre8">长按 Home 叫出 Siri，千里之行的第一步就是在屏幕上画出一个从左边缘到右边缘的周期性线条。</p>
+<p class="calibre8">要不就试试三角函数 Sin 呗。</p>
+<p class="calibre8"><img src="sinx.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">对这个基本函数我们需要以下几个操作做基本调整</p>
+<ol class="calibre2">
+<li class="calibre11"><p class="calibre8"><strong class="calibre12">函数周期变化的 x 范围限制</strong></p>
+<p class="calibre8">符合手机屏幕的宽度，假设为 32。</p>
+</li>
+<li class="calibre11"><p class="calibre8"><strong class="calibre12">在 x 内变化的周期数限制</strong></p>
+<p class="calibre8">假设我们需要 2 个周期变化。</p>
+</li>
+<li class="calibre11"><p class="calibre8"><strong class="calibre12">波峰限制</strong></p>
+<p class="calibre8">我们需要峰值不超过我们 UIView 容器的高度，所以假设 UIView 高是 20，那么峰值应该限制在 10 以内。</p>
+</li>
+<li class="calibre11"><p class="calibre8"><strong class="calibre12">五个波纹</strong></p>
+<p class="calibre8">依次波峰递减 1/5。</p>
+<p class="calibre8"><img src="sin5wave.jpg" alt="" class="calibre20"/></p>
+</li>
+</ol>
+<h2 id="波纹的限制" class="calibre9">波纹的限制</h2>
+<p class="calibre8">上面已经非常接近我们想要的效果了，但是还有一个比较重要的，就是最终出来的效果应该是越靠近屏幕中间的位置，波峰越大，靠近屏幕边缘的地方，无限接近于静止。</p>
+<p class="calibre8">那么我们还需要一个参数（一元二次方程）来调整。</p>
+<p class="calibre8">满足在 x 的范围内，值从 0 ~ 正数值变化。</p>
+<p class="calibre8"><img src="x2.jpg" alt="" class="calibre20"/></p>
+<p class="calibre8">那么这两个函数相乘的时候，就能实现我们想要的效果</p>
+<p class="calibre8"><img src="x2andsin.jpg" alt="" class="calibre20"/></p>
+<h2 id="animate" class="calibre9">Animate</h2>
+<p class="calibre8">如何让这个动起来呢？</p>
+<p class="calibre8">满足以下两个条件</p>
+<ol class="calibre2">
+<li class="calibre11"><p class="calibre8"><strong class="calibre12">一个用来调整波峰的参数</strong></p>
+<p class="calibre8">把声音的音量处理后作为参数传入，于函数相乘。</p>
+</li>
+<li class="calibre11"><p class="calibre8"><strong class="calibre12">循环进行 x 变化的参数</strong></p>
+<p class="calibre8">使用 CADisplayLink 作为循环器，声明一个位移量，每次循环的时候进行递增，然后传入我们的函数。</p>
+</li>
+</ol>
+
+        </div>
+    
+</div>
+
+        
+    
+
+
+</body></html>
